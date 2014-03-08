@@ -24,7 +24,6 @@ import java.util.concurrent.Future;
 import java.util.logging.Level;
 
 import javolution.util.FastList;
-
 import ct26.xtreme.gameserver.ThreadPoolManager;
 import ct26.xtreme.gameserver.ai.L2CharacterAI;
 import ct26.xtreme.gameserver.ai.L2DoorAI;
@@ -152,20 +151,9 @@ public class L2DoorInstance extends L2Character
 	}
 	
 	@Override
-	public L2CharacterAI getAI()
+	protected L2CharacterAI initAI()
 	{
-		if (_ai == null)
-		{
-			synchronized (this)
-			{
-				if (_ai == null)
-				{
-					_ai = new L2DoorAI(new AIAccessor());
-				}
-				return _ai;
-			}
-		}
-		return _ai;
+		return new L2DoorAI(new AIAccessor());
 	}
 	
 	private void startTimerOpen()

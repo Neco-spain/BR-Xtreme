@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.logging.Level;
 
 import javolution.util.FastList;
-
 import ct26.xtreme.gameserver.enums.InstanceType;
 import ct26.xtreme.gameserver.model.L2Spawn;
 import ct26.xtreme.gameserver.model.actor.L2Character;
@@ -34,7 +33,7 @@ import ct26.xtreme.gameserver.model.actor.templates.L2NpcTemplate;
  */
 public class L2ControlTowerInstance extends L2Tower
 {
-	private List<L2Spawn> _guards;
+	private volatile List<L2Spawn> _guards;
 	
 	public L2ControlTowerInstance(int objectId, L2NpcTemplate template)
 	{

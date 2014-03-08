@@ -19,9 +19,9 @@
 package ct26.xtreme.gameserver.model.instancezone;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javolution.util.FastList;
-
 import ct26.xtreme.gameserver.instancemanager.InstanceManager;
 import ct26.xtreme.gameserver.model.actor.L2Character;
 import ct26.xtreme.gameserver.model.entity.Instance;
@@ -37,7 +37,7 @@ public class InstanceWorld
 	private int _instanceId;
 	private int _templateId = -1;
 	private final List<Integer> _allowed = new FastList<>();
-	private volatile int _status;
+	private final AtomicInteger _status = new AtomicInteger();
 	
 	public List<Integer> getAllowed()
 	{
@@ -81,22 +81,22 @@ public class InstanceWorld
 	
 	public int getStatus()
 	{
-		return _status;
+		return _status.get();
 	}
 	
 	public boolean isStatus(int status)
 	{
-		return _status == status;
+		return _status.get() == status;
 	}
 	
 	public void setStatus(int status)
 	{
-		_status = status;
+		_status.set(status);
 	}
 	
 	public void incStatus()
 	{
-		_status++;
+		_status.incrementAndGet();
 	}
 	
 	/**

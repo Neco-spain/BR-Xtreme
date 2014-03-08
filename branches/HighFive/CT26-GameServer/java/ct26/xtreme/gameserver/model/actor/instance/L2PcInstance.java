@@ -48,7 +48,6 @@ import java.util.logging.Level;
 import javolution.util.FastList;
 import javolution.util.FastMap;
 import javolution.util.FastSet;
-
 import ct26.xtreme.Config;
 import ct26.xtreme.L2DatabaseFactory;
 import ct26.xtreme.gameserver.Announcements;
@@ -1120,7 +1119,7 @@ public final class L2PcInstance extends L2Playable
 		_appearance = app;
 		
 		// Create an AI
-		_ai = new L2PlayerAI(new L2PcInstance.AIAccessor());
+		getAI();
 		
 		// Create a L2Radar object
 		_radar = new L2Radar(this);
@@ -1206,24 +1205,10 @@ public final class L2PcInstance extends L2Playable
 		super.setTemplate(CharTemplateTable.getInstance().getTemplate(newclass));
 	}
 	
-	/**
-	 * Return the AI of the L2PcInstance (create it if necessary).
-	 */
 	@Override
-	public L2CharacterAI getAI()
+	protected L2CharacterAI initAI()
 	{
-		if (_ai == null)
-		{
-			synchronized (this)
-			{
-				if (_ai == null)
-				{
-					_ai = new L2PlayerAI(new L2PcInstance.AIAccessor());
-				}
-				return _ai;
-			}
-		}
-		return _ai;
+		return new L2PlayerAI(new L2PcInstance.AIAccessor());
 	}
 	
 	/** Return the Level of the L2PcInstance. */

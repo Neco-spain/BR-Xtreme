@@ -24,12 +24,10 @@ import java.util.List;
 import java.util.logging.Level;
 
 import javolution.util.FastList;
-
 import ct26.xtreme.Config;
 import ct26.xtreme.gameserver.GameTimeController;
 import ct26.xtreme.gameserver.ThreadPoolManager;
 import ct26.xtreme.gameserver.ai.CtrlIntention;
-import ct26.xtreme.gameserver.ai.L2CharacterAI;
 import ct26.xtreme.gameserver.enums.InstanceType;
 import ct26.xtreme.gameserver.instancemanager.MapRegionManager;
 import ct26.xtreme.gameserver.model.L2World;
@@ -505,15 +503,6 @@ public abstract class L2Vehicle extends L2Character
 	public boolean isAutoAttackable(L2Character attacker)
 	{
 		return false;
-	}
-	
-	@Override
-	public void setAI(L2CharacterAI newAI)
-	{
-		if (_ai == null)
-		{
-			_ai = newAI;
-		}
 	}
 	
 	public class AIAccessor extends L2Character.AIAccessor
