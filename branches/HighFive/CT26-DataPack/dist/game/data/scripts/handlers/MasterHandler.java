@@ -34,7 +34,6 @@ import ct26.xtreme.gameserver.handler.TargetHandler;
 import ct26.xtreme.gameserver.handler.TelnetHandler;
 import ct26.xtreme.gameserver.handler.UserCommandHandler;
 import ct26.xtreme.gameserver.handler.VoicedCommandHandler;
-
 import handlers.actionhandlers.L2ArtefactInstanceAction;
 import handlers.actionhandlers.L2DecoyAction;
 import handlers.actionhandlers.L2DoorInstanceAction;
@@ -233,6 +232,7 @@ import handlers.targethandlers.Pet;
 import handlers.targethandlers.Self;
 import handlers.targethandlers.Servitor;
 import handlers.targethandlers.Summon;
+import handlers.targethandlers.TargetParty;
 import handlers.targethandlers.Unlockable;
 import handlers.telnethandlers.ChatsHandler;
 import handlers.telnethandlers.DebugHandler;
@@ -546,6 +546,7 @@ public class MasterHandler
 			Self.class,
 			Servitor.class,
 			Summon.class,
+			TargetParty.class,
 			Unlockable.class,
 		},
 		{
