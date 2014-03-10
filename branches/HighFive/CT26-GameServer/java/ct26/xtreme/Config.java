@@ -75,7 +75,7 @@ public final class Config
 	// --------------------------------------------------
 	public static final String EOL = System.getProperty("line.separator");
 	// --------------------------------------------------
-	// BR Xtreme Property File Definitions
+	// L2J Property File Definitions
 	// --------------------------------------------------
 	public static final String CHARACTER_CONFIG_FILE = "./config/Character.properties";
 	public static final String FEATURE_CONFIG_FILE = "./config/Feature.properties";
@@ -83,8 +83,8 @@ public final class Config
 	public static final String GENERAL_CONFIG_FILE = "./config/General.properties";
 	public static final String HEXID_FILE = "./config/hexid.txt";
 	public static final String ID_CONFIG_FILE = "./config/IdFactory.properties";
-	public static final String SERVER_VERSION_FILE = "./config/br-version.properties";
-	public static final String DATAPACK_VERSION_FILE = "./config/brdp-version.properties";
+	public static final String SERVER_VERSION_FILE = "./config/l2j-version.properties";
+	public static final String DATAPACK_VERSION_FILE = "./config/l2jdp-version.properties";
 	public static final String L2JMOD_CONFIG_FILE = "./config/L2JMods.properties";
 	public static final String LOGIN_CONFIGURATION_FILE = "./config/LoginServer.properties";
 	public static final String NPC_CONFIG_FILE = "./config/NPC.properties";
@@ -105,7 +105,7 @@ public final class Config
 	public static final String EMAIL_CONFIG_FILE = "./config/Email.properties";
 	public static final String CH_SIEGE_FILE = "./config/ConquerableHallSiege.properties";
 	// --------------------------------------------------
-	// BR Xtreme Variable Definitions
+	// L2J Variable Definitions
 	// --------------------------------------------------
 	public static boolean ALT_GAME_DELEVEL;
 	public static boolean DECREASE_SKILL_LEVEL;
@@ -510,10 +510,6 @@ public final class Config
 	public static boolean GRIDS_ALWAYS_ON;
 	public static int GRID_NEIGHBOR_TURNON_TIME;
 	public static int GRID_NEIGHBOR_TURNOFF_TIME;
-	public static int WORLD_X_MIN;
-	public static int WORLD_X_MAX;
-	public static int WORLD_Y_MIN;
-	public static int WORLD_Y_MAX;
 	public static int GEODATA;
 	public static String GEODATA_DRIVER;
 	public static File PATHNODE_DIR;
@@ -682,7 +678,7 @@ public final class Config
 	public static FloodProtectorConfig FLOOD_PROTECTOR_CHARACTER_SELECT;
 	public static FloodProtectorConfig FLOOD_PROTECTOR_ITEM_AUCTION;
 	// --------------------------------------------------
-	// BR Xtreme Mods Settings
+	// L2JMods Settings
 	// --------------------------------------------------
 	public static boolean L2JMOD_CHAMPION_ENABLE;
 	public static boolean L2JMOD_CHAMPION_PASSIVE;
@@ -1050,27 +1046,44 @@ public final class Config
 	public static int MAX_CONNECTION_PER_IP;
 	
 	// GrandBoss Settings
+	
+	// Antharas
 	public static int ANTHARAS_WAIT_TIME;
 	public static int ANTHARAS_SPAWN_INTERVAL;
 	public static int ANTHARAS_SPAWN_RANDOM;
+	
+	// Valakas
 	public static int VALAKAS_WAIT_TIME;
 	public static int VALAKAS_SPAWN_INTERVAL;
 	public static int VALAKAS_SPAWN_RANDOM;
+	
+	// Baium
 	public static int BAIUM_SPAWN_INTERVAL;
 	public static int BAIUM_SPAWN_RANDOM;
+	
+	// Core
 	public static int CORE_SPAWN_INTERVAL;
 	public static int CORE_SPAWN_RANDOM;
+	
+	// Offen
 	public static int ORFEN_SPAWN_INTERVAL;
 	public static int ORFEN_SPAWN_RANDOM;
+	
+	// Queen Ant
 	public static int QUEEN_ANT_SPAWN_INTERVAL;
 	public static int QUEEN_ANT_SPAWN_RANDOM;
+	
+	// Zaken
 	public static int ZAKEN_SPAWN_INTERVAL;
 	public static int ZAKEN_SPAWN_RANDOM;
+	
+	// Beleth
 	public static int BELETH_MIN_PLAYERS;
 	public static int BELETH_SPAWN_INTERVAL;
 	public static int BELETH_SPAWN_RANDOM;
 	
 	// Gracia Seeds Settings
+	
 	public static int SOD_TIAT_KILL_COUNT;
 	public static long SOD_STAGE_2_LENGTH;
 	
@@ -1696,7 +1709,7 @@ public final class Config
 			ALT_VALIDATE_TRIGGER_SKILLS = Character.getBoolean("AltValidateTriggerSkills", false);
 			PLAYER_MOVEMENT_BLOCK_TIME = Character.getInt("NpcTalkBlockingTime", 0) * 1000;
 			
-			// Load BR Xtreme Version L2Properties file (if exists)
+			// Load L2J Server Version L2Properties file (if exists)
 			final PropertiesParser serverVersion = new PropertiesParser(SERVER_VERSION_FILE);
 			
 			SERVER_VERSION = serverVersion.getString("version", "Unsupported Custom Version.");
@@ -1832,10 +1845,6 @@ public final class Config
 			GRIDS_ALWAYS_ON = General.getBoolean("GridsAlwaysOn", false);
 			GRID_NEIGHBOR_TURNON_TIME = General.getInt("GridNeighborTurnOnTime", 1);
 			GRID_NEIGHBOR_TURNOFF_TIME = General.getInt("GridNeighborTurnOffTime", 90);
-			WORLD_X_MIN = General.getInt("WorldXMin", 10);
-			WORLD_X_MAX = General.getInt("WorldXMax", 26);
-			WORLD_Y_MIN = General.getInt("WorldYMin", 10);
-			WORLD_Y_MAX = General.getInt("WorldYMax", 26);
 			GEODATA = General.getInt("GeoData", 0);
 			GEODATA_DRIVER = General.getString("GeoDataDriver", "ct26.xtreme.gameserver.geoengine.NullDriver");
 			try
@@ -2503,7 +2512,7 @@ public final class Config
 			L2JMOD_DISPLAY_SERVER_TIME = L2JModSettings.getBoolean("DisplayServerTime", false);
 			
 			WELCOME_MESSAGE_ENABLED = L2JModSettings.getBoolean("ScreenWelcomeMessageEnable", false);
-			WELCOME_MESSAGE_TEXT = L2JModSettings.getString("ScreenWelcomeMessageText", "Welcome to BR Xtreme!");
+			WELCOME_MESSAGE_TEXT = L2JModSettings.getString("ScreenWelcomeMessageText", "Welcome to L2J server!");
 			WELCOME_MESSAGE_TIME = L2JModSettings.getInt("ScreenWelcomeMessageTime", 10) * 1000;
 			
 			L2JMOD_ANTIFEED_ENABLE = L2JModSettings.getBoolean("AntiFeedEnable", false);
@@ -2832,8 +2841,8 @@ public final class Config
 			// Email
 			final PropertiesParser emailSettings = new PropertiesParser(EMAIL_CONFIG_FILE);
 			
-			EMAIL_SERVERINFO_NAME = emailSettings.getString("ServerInfoName", "Unconfigured BR Xtreme");
-			EMAIL_SERVERINFO_ADDRESS = emailSettings.getString("ServerInfoAddress", "info@mybrxtreme.com");
+			EMAIL_SERVERINFO_NAME = emailSettings.getString("ServerInfoName", "Unconfigured L2J Server");
+			EMAIL_SERVERINFO_ADDRESS = emailSettings.getString("ServerInfoAddress", "info@myl2jserver.com");
 			
 			EMAIL_SYS_ENABLED = emailSettings.getBoolean("EmailSystemEnabled", false);
 			EMAIL_SYS_HOST = emailSettings.getString("SmtpServerHost", "smtp.gmail.com");

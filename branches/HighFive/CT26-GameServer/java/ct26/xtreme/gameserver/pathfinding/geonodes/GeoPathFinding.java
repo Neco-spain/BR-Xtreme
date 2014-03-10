@@ -36,7 +36,6 @@ import java.util.logging.Logger;
 
 import javolution.util.FastList;
 import javolution.util.FastMap;
-
 import ct26.xtreme.Config;
 import ct26.xtreme.gameserver.GeoData;
 import ct26.xtreme.gameserver.model.L2World;
@@ -416,7 +415,7 @@ public class GeoPathFinding extends PathFinding
 	
 	private void LoadPathNodeFile(byte rx, byte ry)
 	{
-		if ((rx < Config.WORLD_X_MIN) || (rx > Config.WORLD_X_MAX) || (ry < Config.WORLD_Y_MIN) || (ry > Config.WORLD_Y_MAX))
+		if ((rx < L2World.TILE_X_MIN) || (rx > L2World.TILE_X_MAX) || (ry < L2World.TILE_Y_MIN) || (ry > L2World.TILE_Y_MAX))
 		{
 			_log.warning("Failed to Load PathNode File: invalid region " + rx + "," + ry + Config.EOL);
 			return;
