@@ -112,10 +112,6 @@ public class NpcTable
 				{
 					_log.log(Level.SEVERE, "NPCTable: Error creating custom NPC table.", e);
 				}
-				finally
-				{
-					L2DatabaseFactory.close(con);
-				}
 			}
 			try
 			{
@@ -157,10 +153,7 @@ public class NpcTable
 			{
 				_log.log(Level.SEVERE, "NPCTable: Error reading NPC skills table.", e);
 			}
-			finally
-			{
-				L2DatabaseFactory.close(con);
-			}
+			
 			try
 			{
 				PreparedStatement statement2 = con.prepareStatement("SELECT "
