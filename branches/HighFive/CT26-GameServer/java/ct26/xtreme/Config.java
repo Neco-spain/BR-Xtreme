@@ -1,14 +1,14 @@
 /*
- * Copyright (C) 2004-2014 L2J Server
+ * Copyright (C) 2004-2014 BR Xtreme
  * 
- * This file is part of L2J Server.
+ * This file is part of BR Xtreme.
  * 
- * L2J Server is free software: you can redistribute it and/or modify
+ * BR Xtreme is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  * 
- * L2J Server is distributed in the hope that it will be useful,
+ * BR Xtreme is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * General Public License for more details.
@@ -75,7 +75,7 @@ public final class Config
 	// --------------------------------------------------
 	public static final String EOL = System.getProperty("line.separator");
 	// --------------------------------------------------
-	// L2J Property File Definitions
+	// BR Xtreme Property File Definitions
 	// --------------------------------------------------
 	public static final String CHARACTER_CONFIG_FILE = "./config/Character.properties";
 	public static final String FEATURE_CONFIG_FILE = "./config/Feature.properties";
@@ -83,8 +83,8 @@ public final class Config
 	public static final String GENERAL_CONFIG_FILE = "./config/General.properties";
 	public static final String HEXID_FILE = "./config/hexid.txt";
 	public static final String ID_CONFIG_FILE = "./config/IdFactory.properties";
-	public static final String SERVER_VERSION_FILE = "./config/l2j-version.properties";
-	public static final String DATAPACK_VERSION_FILE = "./config/l2jdp-version.properties";
+	public static final String SERVER_VERSION_FILE = "./config/br-version.properties";
+	public static final String DATAPACK_VERSION_FILE = "./config/brdp-version.properties";
 	public static final String L2JMOD_CONFIG_FILE = "./config/L2JMods.properties";
 	public static final String LOGIN_CONFIGURATION_FILE = "./config/LoginServer.properties";
 	public static final String NPC_CONFIG_FILE = "./config/NPC.properties";
@@ -1709,7 +1709,7 @@ public final class Config
 			ALT_VALIDATE_TRIGGER_SKILLS = Character.getBoolean("AltValidateTriggerSkills", false);
 			PLAYER_MOVEMENT_BLOCK_TIME = Character.getInt("NpcTalkBlockingTime", 0) * 1000;
 			
-			// Load L2J Server Version L2Properties file (if exists)
+			// Load BR Xtreme Version L2Properties file (if exists)
 			final PropertiesParser serverVersion = new PropertiesParser(SERVER_VERSION_FILE);
 			
 			SERVER_VERSION = serverVersion.getString("version", "Unsupported Custom Version.");
@@ -2512,7 +2512,7 @@ public final class Config
 			L2JMOD_DISPLAY_SERVER_TIME = L2JModSettings.getBoolean("DisplayServerTime", false);
 			
 			WELCOME_MESSAGE_ENABLED = L2JModSettings.getBoolean("ScreenWelcomeMessageEnable", false);
-			WELCOME_MESSAGE_TEXT = L2JModSettings.getString("ScreenWelcomeMessageText", "Welcome to L2J server!");
+			WELCOME_MESSAGE_TEXT = L2JModSettings.getString("ScreenWelcomeMessageText", "Welcome to BR Xtreme!");
 			WELCOME_MESSAGE_TIME = L2JModSettings.getInt("ScreenWelcomeMessageTime", 10) * 1000;
 			
 			L2JMOD_ANTIFEED_ENABLE = L2JModSettings.getBoolean("AntiFeedEnable", false);
@@ -2841,8 +2841,8 @@ public final class Config
 			// Email
 			final PropertiesParser emailSettings = new PropertiesParser(EMAIL_CONFIG_FILE);
 			
-			EMAIL_SERVERINFO_NAME = emailSettings.getString("ServerInfoName", "Unconfigured L2J Server");
-			EMAIL_SERVERINFO_ADDRESS = emailSettings.getString("ServerInfoAddress", "info@myl2jserver.com");
+			EMAIL_SERVERINFO_NAME = emailSettings.getString("ServerInfoName", "Unconfigured BR Xtreme");
+			EMAIL_SERVERINFO_ADDRESS = emailSettings.getString("ServerInfoAddress", "info@mybrxtreme.com");
 			
 			EMAIL_SYS_ENABLED = emailSettings.getBoolean("EmailSystemEnabled", false);
 			EMAIL_SYS_HOST = emailSettings.getString("SmtpServerHost", "smtp.gmail.com");
@@ -2852,7 +2852,7 @@ public final class Config
 			EMAIL_SYS_FACTORY_CALLBACK = emailSettings.getBoolean("SmtpFactoryCallback", false);
 			EMAIL_SYS_USERNAME = emailSettings.getString("SmtpUsername", "user@gmail.com");
 			EMAIL_SYS_PASSWORD = emailSettings.getString("SmtpPassword", "password");
-			EMAIL_SYS_ADDRESS = emailSettings.getString("EmailSystemAddress", "noreply@myl2jserver.com");
+			EMAIL_SYS_ADDRESS = emailSettings.getString("EmailSystemAddress", "noreply@mybrxtreme.com");
 			EMAIL_SYS_SELECTQUERY = emailSettings.getString("EmailDBSelectQuery", "SELECT value FROM account_data WHERE account_name=? AND var='email_addr'");
 			EMAIL_SYS_DBFIELD = emailSettings.getString("EmailDBField", "value");
 		}
