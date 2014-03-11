@@ -33,6 +33,7 @@ import ct23.xtreme.gameserver.model.actor.L2Character;
 import ct23.xtreme.gameserver.model.actor.L2Npc;
 import ct23.xtreme.gameserver.model.actor.instance.L2MonsterInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
+import ct23.xtreme.gameserver.model.quest.Quest.QuestSound;
 import ct23.xtreme.gameserver.network.SystemMessageId;
 import ct23.xtreme.gameserver.network.serverpackets.ExShowQuestMark;
 import ct23.xtreme.gameserver.network.serverpackets.InventoryUpdate;
@@ -793,7 +794,7 @@ public final class QuestState
 			getPlayer().destroyItemByItemId("Quest", itemId, count, getPlayer(), true);
 		}
 	}
-
+	
 	/**
 	 * Send a packet in order to play sound at client terminal
 	 * @param sound
@@ -802,7 +803,37 @@ public final class QuestState
 	{
 		getPlayer().sendPacket(new PlaySound(sound));
 	}
+	
+	/**
+	 * Send a packet in order to play a sound to the player.
+	 * @param sound the {@link QuestSound} object of the sound to play
+	 */
+	public void playSound(QuestSound sound)
+	{
+		getQuest().playSound(getPlayer(), sound);
+	}
 
+    /**
+     * @param itemId : ID of the item you're looking for
+     * @return true if item exists in player's inventory, false - if not
+     */
+    public boolean hasQuestItems(int itemId)
+    {
+        return _player.getInventory().getItemByItemId(itemId) != null;
+    }
+
+    /**
+     * Reward player with items. The amount is affected by Config.RATE_QUEST_REWARD or Config.RATE_QUEST_REWARD_ADENA.
+     * @param itemId : Identifier of the item.
+     * @param itemCount : Quantity of item to reward before applying multiplier.
+     */
+    public void rewardItems(int itemId, int itemCount)
+    {
+        if (itemId == 57)
+            giveItems(itemId, (int) (itemCount * Config.RATE_QUEST_REWARD_ADENA), 0);
+        else
+            giveItems(itemId, (int) (itemCount * Config.RATE_QUESTS_REWARD), 0);
+    }
 	/**
 	 * Add XP and SP as quest reward
 	 * @param exp

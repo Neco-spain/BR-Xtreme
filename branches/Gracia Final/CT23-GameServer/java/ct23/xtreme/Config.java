@@ -668,6 +668,7 @@ public final class Config
 	public static float RATE_PARTY_XP;
 	public static float RATE_PARTY_SP;
 	public static float RATE_QUESTS_REWARD;
+	public static float RATE_QUEST_REWARD_ADENA;
 	public static float RATE_DROP_ADENA;
 	public static float RATE_CONSUMABLE_COST;
 	public static float RATE_EXTR_FISH;
@@ -1706,6 +1707,7 @@ public final class Config
 					RATE_PARTY_XP = Float.parseFloat(ratesSettings.getProperty("RatePartyXp", "1."));
 					RATE_PARTY_SP = Float.parseFloat(ratesSettings.getProperty("RatePartySp", "1."));
 					RATE_QUESTS_REWARD = Float.parseFloat(ratesSettings.getProperty("RateQuestsReward", "1."));
+					RATE_QUEST_REWARD_ADENA = Float.parseFloat(ratesSettings.getProperty("RateQuestsReward", "1."));
 					RATE_DROP_ADENA = Float.parseFloat(ratesSettings.getProperty("RateDropAdena", "1."));
 					RATE_CONSUMABLE_COST = Float.parseFloat(ratesSettings.getProperty("RateConsumableCost", "1."));
 					RATE_EXTR_FISH = Float.parseFloat(ratesSettings.getProperty("RateExtractFish", "1."));
