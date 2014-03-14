@@ -183,7 +183,7 @@ public final class Config
 	public static String PARTY_XP_CUTOFF_METHOD;
 	public static double PARTY_XP_CUTOFF_PERCENT;
 	public static int PARTY_XP_CUTOFF_LEVEL;
-
+	public static boolean DISABLE_TUTORIAL;
 
 	//--------------------------------------------------
 	// ClanHall Settings
@@ -1341,6 +1341,7 @@ public final class Config
 					PARTY_XP_CUTOFF_METHOD = Character.getProperty("PartyXpCutoffMethod", "auto");
 					PARTY_XP_CUTOFF_PERCENT = Double.parseDouble(Character.getProperty("PartyXpCutoffPercent", "3."));
 					PARTY_XP_CUTOFF_LEVEL = Integer.parseInt(Character.getProperty("PartyXpCutoffLevel", "30"));
+					DISABLE_TUTORIAL = Boolean.parseBoolean(Character.getProperty("DisableTutorial", "False"));
 				}
 				catch (Exception e)
 				{

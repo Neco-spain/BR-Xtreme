@@ -197,16 +197,20 @@ public class PcStat extends PlayableStat
     @Override
 	public final boolean addLevel(byte value)
     {
-		if (getLevel() + value > Experience.MAX_LEVEL - 1) return false;
+		if (getLevel() + value > Experience.MAX_LEVEL - 1)
+			return false;
 
         boolean levelIncreased = super.addLevel(value);
 
         if (levelIncreased)
         {
-        	QuestState qs = getActiveChar().getQuestState("255_Tutorial"); 
-        		if (qs != null)
-        			qs.getQuest().notifyEvent("CE40", null, getActiveChar());
-
+			if (!Config.DISABLE_TUTORIAL)
+			{
+				QuestState qs = getActiveChar().getQuestState("255_Tutorial");
+				if (qs != null)
+					qs.getQuest().notifyEvent("CE40", null, getActiveChar());
+			}
+			
         	getActiveChar().setCurrentCp(getMaxCp());
             getActiveChar().broadcastPacket(new SocialAction(getActiveChar().getObjectId(), SocialAction.LEVEL_UP));
             getActiveChar().sendPacket(new SystemMessage(SystemMessageId.YOU_INCREASED_YOUR_LEVEL));
@@ -295,9 +299,9 @@ public class PcStat extends PlayableStat
     @Override
 	public final void setLevel(byte value)
     {
-		if (value > Experience.MAX_LEVEL - 1) 
+		if (value > Experience.MAX_LEVEL - 1)
 			value = Experience.MAX_LEVEL - 1;
-        	
+			
         if (getActiveChar().isSubClassActive())
             getActiveChar().getSubClasses().get(getActiveChar().getClassIndex()).setLevel(value);
         else

@@ -14,6 +14,7 @@
  */
 package ct23.xtreme.gameserver.model.actor.status;
 
+import ct23.xtreme.Config;
 import ct23.xtreme.gameserver.ai.CtrlIntention;
 import ct23.xtreme.gameserver.instancemanager.DuelManager;
 import ct23.xtreme.gameserver.model.actor.L2Character;
@@ -216,9 +217,12 @@ public class PcStatus extends PlayableStatus
 			}
 
 			getActiveChar().doDie(attacker);
-			QuestState qs = getActiveChar().getQuestState("255_Tutorial");
-			if (qs != null)
-				qs.getQuest().notifyEvent("CE30", null, getActiveChar());
+			if (!Config.DISABLE_TUTORIAL)
+			{
+				QuestState qs = getActiveChar().getQuestState("255_Tutorial");
+				if (qs != null)
+					qs.getQuest().notifyEvent("CE30", null, getActiveChar());
+			}
 		}
 	}
 
@@ -227,12 +231,13 @@ public class PcStatus extends PlayableStatus
 	{
 		super.setCurrentHp(newHp, broadcastPacket);
 
-		if (getCurrentHp() <= getActiveChar().getStat().getMaxHp() * .3)
+		if (!Config.DISABLE_TUTORIAL
+				&& getCurrentHp() <= getActiveChar().getStat().getMaxHp() * .3)
 		{
 			QuestState qs = getActiveChar().getQuestState("255_Tutorial");
 			if (qs != null)
 				qs.getQuest().notifyEvent("CE45", null, getActiveChar());
-        }
+		}
 	}
 
 	@Override

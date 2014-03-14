@@ -33,21 +33,13 @@ public class QuestManager extends ScriptManager<Quest>
 	{
 		return SingletonHolder._instance;
 	}
-	// =========================================================
-	
-	// =========================================================
-	// Data Field
 	private Map<String, Quest> _quests = new FastMap<String, Quest>();
 	
-	// =========================================================
-	// Constructor
 	private QuestManager()
 	{
 		_log.info("Initializing QuestManager");
 	}
 	
-	// =========================================================
-	// Method - Public
 	public final boolean reload(String questFolder)
 	{
 		Quest q = getQuest(questFolder);

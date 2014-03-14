@@ -213,4 +213,10 @@ public class PetStat extends SummonStat
 			val =val/2;
     	return  val;
     }
+	
+	@Override
+	public int getMaxLevel()
+	{
+		return Experience.PET_MAX_LEVEL;
+	}
 }

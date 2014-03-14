@@ -247,16 +247,16 @@ public final class L2ItemInstance extends L2Object
         	ItemsOnGroundManager.getInstance().removeObject(this);
         }
         
-        if (itemId == 57 || itemId == 6353)
-        {
-        	L2PcInstance actor = player.getActingPlayer();
-        	if (actor != null)
-        	{
-        		QuestState qs = actor.getQuestState("255_Tutorial");
-            	if (qs != null)
-            		qs.getQuest().notifyEvent("CE"+itemId+"",null, actor);
-        	}
-        }
+		if (!Config.DISABLE_TUTORIAL && (itemId == 57 || itemId == 6353))
+		{
+			L2PcInstance actor = player.getActingPlayer();
+			if (actor != null)
+			{
+				QuestState qs = actor.getQuestState("255_Tutorial");
+				if (qs != null)
+					qs.getQuest().notifyEvent("CE"+itemId+"",null, actor);
+			}
+		}
         // outside of synchronized to avoid deadlocks
         // Remove the L2ItemInstance from the world
         L2World.getInstance().removeVisibleObject(this, oldregion);

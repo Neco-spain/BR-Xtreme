@@ -34,6 +34,7 @@ import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import ct23.xtreme.gameserver.model.actor.stat.PcStat;
 import ct23.xtreme.gameserver.model.quest.Quest;
 import ct23.xtreme.gameserver.model.quest.QuestState;
+import ct23.xtreme.gameserver.model.quest.State;
 import ct23.xtreme.gameserver.network.L2GameClient;
 import ct23.xtreme.gameserver.network.serverpackets.CharCreateFail;
 import ct23.xtreme.gameserver.network.serverpackets.CharCreateOk;
@@ -249,7 +250,10 @@ public final class CharacterCreate extends L2GameClientPacket
 			if (Config.DEBUG)
 				_log.fine("Adding starter skill:" + skill.getId() + " / " + skill.getLevel());
 		}
-		startTutorialQuest(newChar);
+		
+		if (!Config.DISABLE_TUTORIAL)
+			startTutorialQuest(newChar);
+		
 		L2GameClient.saveCharToDisk(newChar);
 		newChar.deleteMe();
 		
@@ -268,14 +272,9 @@ public final class CharacterCreate extends L2GameClientPacket
 		if (qs == null)
 			q = QuestManager.getInstance().getQuest("255_Tutorial");
 		if (q != null)
-			q.newQuestState(player);
+			q.newQuestState(player).setState(State.STARTED);
 	}
-	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see ct23.xtreme.gameserver.clientpackets.ClientBasePacket#getType()
-	 */
+
 	@Override
 	public String getType()
 	{

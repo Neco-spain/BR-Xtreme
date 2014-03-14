@@ -78,7 +78,7 @@ public class Q172_NewHorizons extends Quest
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
 		String htmltext = getNoQuestMsg();
-		final QuestState st = player.getQuestState(getName());
+		final QuestState st = player.getQuestState(qn);
 		if (st == null)
 		{
 			return htmltext;

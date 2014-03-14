@@ -1439,6 +1439,15 @@ public class Quest extends ManagedScript
 		return addEventId(npcId, Quest.QuestEventType.ON_FIRST_TALK);
 	}
 
+    /**
+     * Add the quest to the NPC's first-talk (default action dialog)
+     * @param npcIds A serie of ids.
+     */
+    public void addFirstTalkId(int... npcIds)
+    {
+        for (int npcId : npcIds)
+            addEventId(npcId, QuestEventType.ON_FIRST_TALK);
+    }
 	/**
 	 * Add the NPC to the AcquireSkill dialog
 	 * @param npcId

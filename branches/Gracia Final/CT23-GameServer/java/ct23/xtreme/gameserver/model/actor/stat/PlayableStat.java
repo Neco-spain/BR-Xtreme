@@ -38,11 +38,11 @@ public class PlayableStat extends CharStat
     // Method - Public
     public boolean addExp(long value)
     {
-		if ((getExp() + value) < 0 || getExp() == (getExpForLevel(Experience.MAX_LEVEL) - 1))
+    	if ((getExp() + value) < 0 || (value > 0 && getExp() == (getExpForLevel(getMaxLevel()) - 1)))
             return true;
-
-		if (getExp() + value >= getExpForLevel(Experience.MAX_LEVEL))
- 			value = getExpForLevel(Experience.MAX_LEVEL) - 1 - getExp();
+		
+		if (getExp() + value >= getExpForLevel(getMaxLevel()))
+			value = getExpForLevel(getMaxLevel()) - 1 - getExp();
 
         setExp(getExp() + value);
 
@@ -55,15 +55,15 @@ public class PlayableStat extends CharStat
 
         byte level = minimumLevel; // minimum level
 
-        for (byte tmp = level; tmp <= Experience.MAX_LEVEL; tmp++)
-        {
-            if (getExp() >= getExpForLevel(tmp))
-            	continue;
-            level = --tmp;
-            break;
-        }
-        if (level != getLevel() && level >= minimumLevel) 
-        	addLevel((byte)(level - getLevel()));
+		for (byte tmp = level; tmp <= getMaxLevel(); tmp++)
+		{
+			if (getExp() >= getExpForLevel(tmp))
+				continue;
+			level = --tmp;
+			break;
+		}
+		if (level != getLevel() && level >= minimumLevel)
+			addLevel((byte)(level - getLevel()));
 
         return true;
     }
@@ -83,13 +83,13 @@ public class PlayableStat extends CharStat
         }
         byte level = minimumLevel;
         
-        for (byte tmp = level; tmp <= Experience.MAX_LEVEL; tmp++)
-        {
-            if (getExp() >= getExpForLevel(tmp))
-            	continue;
-            level = --tmp;
-            break;
-        }
+		for (byte tmp = level; tmp <= getMaxLevel(); tmp++)
+		{
+			if (getExp() >= getExpForLevel(tmp))
+				continue;
+			level = --tmp;
+			break;
+		}
         if (level != getLevel() && level >= minimumLevel)
         	addLevel((byte)(level - getLevel()));
         return true;
@@ -117,14 +117,14 @@ public class PlayableStat extends CharStat
 
     public boolean addLevel(byte value)
     {
-		if (getLevel() + value > Experience.MAX_LEVEL - 1)
-        {
-			if (getLevel() < Experience.MAX_LEVEL - 1)
-				value = (byte)(Experience.MAX_LEVEL - 1 - getLevel());
-        	else
-        		return false;
-        }
-
+		if (getLevel() + value > getMaxLevel() - 1)
+		{
+			if (getLevel() < getMaxLevel() - 1)
+				value = (byte)(getMaxLevel() - 1 - getLevel());
+			else
+				return false;
+		}
+		
         boolean levelIncreased = (getLevel() + value > getLevel());
         value += getLevel();
         setLevel(value);
@@ -190,5 +190,13 @@ public class PlayableStat extends CharStat
     // =========================================================
     // Property - Public
     @Override
-	public L2Playable getActiveChar() { return (L2Playable)super.getActiveChar(); }
+	public L2Playable getActiveChar() 
+    { 
+    	return (L2Playable)super.getActiveChar(); 
+    }
+	
+	public int getMaxLevel()
+	{
+		return Experience.MAX_LEVEL;
+	}
 }

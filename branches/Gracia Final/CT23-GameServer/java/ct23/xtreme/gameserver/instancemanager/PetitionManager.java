@@ -81,7 +81,6 @@ public final class PetitionManager
 	private class Petition
 	{
 		private long _submitTime = System.currentTimeMillis();
-		private long _endTime = -1;
 		
 		private int _id;
 		private PetitionType _type;
@@ -120,7 +119,6 @@ public final class PetitionManager
 		public boolean endPetitionConsultation(PetitionState endState)
 		{
 			setState(endState);
-			_endTime = System.currentTimeMillis();
 			
 			if (getResponder() != null && getResponder().isOnline() == 1)
 			{
