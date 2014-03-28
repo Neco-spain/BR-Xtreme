@@ -16,9 +16,11 @@ package ct23.xtreme.gameserver.model;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javolution.util.FastList;
+import javolution.util.FastMap;
 import ct23.xtreme.Config;
 import ct23.xtreme.gameserver.GeoData;
 import ct23.xtreme.gameserver.datatables.HeroSkillTable;
@@ -161,6 +163,7 @@ public abstract class L2Skill implements IChanceSkillTrigger
     private final int _negateLvl;   // abnormalLvl is negated with negateLvl
     private final int[] _negateId; 			// cancels the effect of skill ID
     private final L2SkillType[] _negateStats; 	// lists the effect types that are canceled
+    private final Map<String, Byte> _negateAbnormals; // lists the effect abnormal types with order below the presented that are canceled
     private final int _maxNegatedEffects; 	// maximum number of effects to negate
 
     private final boolean _stayAfterDeath; // skill should stay after death
@@ -323,6 +326,34 @@ public abstract class L2Skill implements IChanceSkillTrigger
         	_negateStats = array;
         }
         
+        String negateAbnormals = set.getString("negateAbnormals", null);
+		if (negateAbnormals != null && negateAbnormals != "")
+		{
+			_negateAbnormals = new FastMap<String, Byte>();
+			for (String ngtStack : negateAbnormals.split(";"))
+			{
+				String[] ngt = ngtStack.split(",");
+				if (ngt.length == 1) // Only abnormalType is present, without abnormalLvl
+				{
+					_negateAbnormals.put(ngt[0], Byte.MAX_VALUE);
+				}
+				else if (ngt.length == 2) // Both abnormalType and abnormalLvl are present
+				{
+					try
+					{
+						_negateAbnormals.put(ngt[0], Byte.parseByte(ngt[1]));
+					}
+					catch (Exception e)
+					{
+						throw new IllegalArgumentException("SkillId: "+_id+" Byte value required, but found: "+ngt[1]);
+					}
+				}
+				else // If not both from above, then smth is messed up... throw an error.
+					throw new IllegalArgumentException("SkillId: "+_id+": Incorrect negate Abnormals for "+ngtStack+". Lvl: abnormalType1,abnormalLvl1;abnormalType2,abnormalLvl2;abnormalType3,abnormalLvl3... or abnormalType1;abnormalType2;abnormalType3...");
+			}
+		}
+		else
+			_negateAbnormals = null;
         
         String negateId = set.getString("negateId", null);
         if (negateId != null)
@@ -530,6 +561,11 @@ public abstract class L2Skill implements IChanceSkillTrigger
     {
         return _negateStats;
     }
+    
+    public final Map<String, Byte> getNegateAbnormals()
+	{
+		return _negateAbnormals;
+	}
     
     public final int getAbnormalLvl()
     {

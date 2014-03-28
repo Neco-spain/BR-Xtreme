@@ -217,6 +217,45 @@ public abstract class L2Character extends L2Object
 
 	private boolean _isFlying;
 	
+	private L2Character _debugger = null;
+	
+	/**
+	 * @return True if debugging is enabled for this L2Character
+	 */
+	public boolean isDebug()
+	{
+		return _debugger != null;
+	}
+	
+	/**
+	 * Sets L2Character instance, to which debug packets will be send
+	 * @param d
+	 */
+	public void setDebug(L2Character d)
+	{
+		_debugger = d;
+	}
+	
+	/**
+	 * Send debug packet.
+	 * @param pkt
+	 */
+	public void sendDebugPacket(L2GameServerPacket pkt)
+	{
+		if (_debugger != null)
+			_debugger.sendPacket(pkt);
+	}
+	
+	/**
+	 * Send debug text string
+	 * @param msg
+	 */
+	public void sendDebugMessage(String msg)
+	{
+		if (_debugger != null)
+			_debugger.sendMessage(msg);
+	}
+	
 	/**
 	 * Returns character inventory, default null, overridden in L2Playable types and in L2NPcInstance
 	 */

@@ -14,11 +14,14 @@
  */
 package ct23.xtreme.gameserver.model.zone.type;
 
+import java.util.Map;
+
 import javolution.util.FastMap;
 import ct23.xtreme.gameserver.GameServer;
 import ct23.xtreme.gameserver.datatables.MapRegionTable;
 import ct23.xtreme.gameserver.model.actor.L2Attackable;
 import ct23.xtreme.gameserver.model.actor.L2Character;
+import ct23.xtreme.gameserver.model.actor.L2Npc;
 import ct23.xtreme.gameserver.model.actor.L2Playable;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import ct23.xtreme.gameserver.model.zone.L2ZoneType;
@@ -344,5 +347,25 @@ public class L2BossZone extends L2ZoneType
 	@Override
 	public void onReviveInside(L2Character character)
 	{
+	}
+	
+	public void updateKnownList(L2Npc npc)
+	{
+		if (_characterList == null || _characterList.isEmpty())
+			return;
+		
+		Map<Integer, L2PcInstance> npcKnownPlayers = npc.getKnownList().getKnownPlayers();
+		for (L2Character character : _characterList.values())
+		{
+			if (character == null)
+				continue;
+			if (character instanceof L2PcInstance)
+			{
+				L2PcInstance player = (L2PcInstance) character;
+				if (player.isOnline() == 1)
+					npcKnownPlayers.put(player.getObjectId(), player);
+			}
+		}
+		return;
 	}
 }

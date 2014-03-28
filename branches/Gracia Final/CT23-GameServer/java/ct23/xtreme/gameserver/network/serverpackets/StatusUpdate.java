@@ -16,6 +16,11 @@ package ct23.xtreme.gameserver.network.serverpackets;
 
 import java.util.ArrayList;
 
+import ct23.xtreme.gameserver.model.L2Object;
+import ct23.xtreme.gameserver.model.L2World;
+import ct23.xtreme.gameserver.model.actor.L2Attackable;
+import ct23.xtreme.gameserver.model.actor.L2Character;
+
 /**
  *
  * 01                // Packet Identifier <BR>
@@ -33,6 +38,8 @@ import java.util.ArrayList;
 public final class StatusUpdate extends L2GameServerPacket
 {
     private static final String _S__1A_STATUSUPDATE = "[S] 18 StatusUpdate";
+    private static final int HP_MOD = 10000000;
+    
     public static final int LEVEL = 0x01;
     public static final int EXP = 0x02;
     public static final int STR = 0x03;
@@ -67,51 +74,82 @@ public final class StatusUpdate extends L2GameServerPacket
     public static final int MAX_CP = 0x22;
 
     private int _objectId;
-    private ArrayList<Attribute> _attributes;
-
-    class Attribute
-    {
-        /** id values
-         * 09 - current health
-         * 0a - max health
-         * 0b - current mana
-         * 0c - max mana
-         *
-         */
-        public int id;
-        public int value;
-
-        Attribute(int pId, int pValue)
-        {
-            id = pId;
-            value = pValue;
-        }
-    }
-
-    public StatusUpdate(int objectId)
-    {
-        _attributes = new ArrayList<Attribute>();
-        _objectId = objectId;
-    }
-
-    public void addAttribute(int id, int level)
-    {
-        _attributes.add(new Attribute(id, level));
-    }
-
-    @Override
+	private int _maxHp = -1;
+	private ArrayList<Attribute> _attributes;
+	
+	static class Attribute
+	{
+		/** id values
+		 * 09 - current health
+		 * 0a - max health
+		 * 0b - current mana
+		 * 0c - max mana
+		 *
+		 */
+		public int id;
+		public int value;
+		
+		Attribute(int pId, int pValue)
+		{
+			id = pId;
+			value = pValue;
+		}
+	}
+	
+	/**
+	 * If you have access to object itself use {@link StatusUpdate#StatusUpdate(L2Object)}.
+	 * @param objectId
+	 */
+	public StatusUpdate(int objectId)
+	{
+		_attributes = new ArrayList<Attribute>();
+		_objectId = objectId;
+		L2Object obj = L2World.getInstance().findObject(objectId);
+		if (obj != null && obj instanceof L2Attackable)
+		{
+			_maxHp = ((L2Character) obj).getMaxHp();
+		}
+	}
+	
+	/**
+	 * Create {@link StatusUpdate} packet for given {@link L2Object}.
+	 * @param object
+	 */
+	public StatusUpdate(L2Object object)
+	{
+		_attributes = new ArrayList<Attribute>();
+		_objectId = object.getObjectId();
+		if (object instanceof L2Attackable)
+			_maxHp = ((L2Character) object).getMaxHp();
+	}
+	
+	public void addAttribute(int id, int level)
+	{
+		if (_maxHp != -1)
+		{
+			if (id == MAX_HP)
+				level = HP_MOD;
+			else if (id == CUR_HP)
+			{
+				level = (int) ((level / (float)_maxHp) * HP_MOD);
+			}
+		}
+		_attributes.add(new Attribute(id, level));
+	}
+	
+	@Override
 	protected final void writeImpl()
-    {
-        writeC(0x18);
-        writeD(_objectId);
-        writeD(_attributes.size());
-
-        for (Attribute temp: _attributes)
-        {
-            writeD(temp.id);
-            writeD(temp.value);
-        }
-    }
+	{
+		writeC(0x18);
+		writeD(_objectId);
+		writeD(_attributes.size());
+		
+		for (Attribute temp: _attributes)
+		{
+			writeD(temp.id);
+			writeD(temp.value);
+		}
+	}
 
     /* (non-Javadoc)
      * @see ct23.xtreme.gameserver.serverpackets.ServerBasePacket#getType()
