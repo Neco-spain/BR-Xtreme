@@ -23,6 +23,8 @@ import ct23.xtreme.gameserver.model.L2CharPosition;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import ct23.xtreme.gameserver.network.serverpackets.ActionFailed;
 import ct23.xtreme.gameserver.network.serverpackets.PartyMemberPosition;
+import ct23.xtreme.gameserver.network.serverpackets.StopMove;
+import ct23.xtreme.gameserver.templates.item.L2WeaponType;
 
 /**
  * This class ...
@@ -32,28 +34,24 @@ import ct23.xtreme.gameserver.network.serverpackets.PartyMemberPosition;
 public class MoveBackwardToLocation extends L2GameClientPacket
 {
 	//private static Logger _log = Logger.getLogger(MoveBackwardToLocation.class.getName());
+	
+	private static final String _C__01_MOVEBACKWARDTOLOC = "[C] 01 MoveBackwardToLoc";
+	
 	// cdddddd
-	private       int _targetX;
-	private       int _targetY;
-	private       int _targetZ;
-	@SuppressWarnings("unused")
-    private int _originX;
-	@SuppressWarnings("unused")
-    private int _originY;
-	@SuppressWarnings("unused")
-    private int _originZ;
-	private       int _moveMovement;
+	private int _targetX,_targetY,_targetZ;
+	private int _originX,_originY,_originZ;
+	private int _moveMovement;
 
     //For geodata
-    private       int _curX;
-    private       int _curY;
+    private int _curX;
+    private int _curY;
     @SuppressWarnings("unused")
-    private       int _curZ;
+    private int _curZ;
 
-	public TaskPriority getPriority() { return TaskPriority.PR_HIGH; }
-
-	private static final String _C__01_MOVEBACKWARDTOLOC = "[C] 01 MoveBackwardToLoc";
-
+	public TaskPriority getPriority() 
+	{ 
+		return TaskPriority.PR_HIGH; 
+	}
 
 	@Override
 	protected void readImpl()
@@ -81,6 +79,23 @@ public class MoveBackwardToLocation extends L2GameClientPacket
 		L2PcInstance activeChar = getClient().getActiveChar();
 		if (activeChar == null)
 			return;
+
+        if(activeChar.getPrivateStoreType() != 0)
+        {
+                getClient().sendPacket(ActionFailed.STATIC_PACKET);
+                return;
+        }
+
+        if(activeChar.isTeleporting())
+        {
+            activeChar.sendPacket(ActionFailed.STATIC_PACKET);
+            return;
+        }
+		if (_targetX == _originX && _targetY == _originY && _targetZ == _originZ)
+		{
+			activeChar.sendPacket(new StopMove(activeChar));
+			return;
+		}
 		// Correcting targetZ from floor level to head level (?)
 		// Client is giving floor level as targetZ but that floor level doesn't
 		// match our current geodata and teleport coords as good as head level! 
@@ -88,7 +103,7 @@ public class MoveBackwardToLocation extends L2GameClientPacket
 		// sort of incompatibility fix.
 		// Validate position packets sends head level.
 		_targetZ += activeChar.getTemplate().collisionHeight;
-		
+
 		_curX = activeChar.getX();
         _curY = activeChar.getY();
         _curZ = activeChar.getZ();
@@ -107,6 +122,10 @@ public class MoveBackwardToLocation extends L2GameClientPacket
 		}
 
 		if (_moveMovement == 0 && Config.GEODATA < 1) // cursor movement without geodata is disabled
+		{
+			activeChar.sendPacket(ActionFailed.STATIC_PACKET);
+		}
+		else if(activeChar.isAttackingNow() && activeChar.getActiveWeaponItem() != null && activeChar.getActiveWeaponItem().getItemType() == L2WeaponType.BOW)
 		{
 			activeChar.sendPacket(ActionFailed.STATIC_PACKET);
 		}

@@ -180,7 +180,7 @@ public final class StatsSet  {
 	 * @param name : String designating the key in the set
 	 * @return int : value associated to the key
 	 */
-	public int     getInteger(String name)
+	public int getInteger(String name)
 	{
 		Object val = _set.get(name);
 		if (val == null)

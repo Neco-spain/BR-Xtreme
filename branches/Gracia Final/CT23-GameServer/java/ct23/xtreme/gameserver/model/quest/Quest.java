@@ -1428,7 +1428,16 @@ public class Quest extends ManagedScript
 	{
 		return addEventId(npcId, Quest.QuestEventType.QUEST_START);
 	}
-	
+
+    /**
+     * Add the quest to the NPC's first-talk (default action dialog)
+     * @param npcIds A serie of ids.
+     */
+    public void addStartNpc(int... npcIds)
+    {
+        for (int npcId : npcIds)
+            addEventId(npcId, QuestEventType.QUEST_START);
+    }
 	/**
 	 * Add the quest to the NPC's first-talk (default action dialog)
 	 * @param npcId
