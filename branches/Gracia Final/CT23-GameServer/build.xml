@@ -31,6 +31,7 @@
     <property name="build.dist.libs" location="${build.dist}/libs"/>
 	<property name="build.dist.languages" location="${build.dist}/languages"/>
 	<property name="build.dist.images" location="${build.dist}/images"/>
+	<property name="properties-file" location="${build.dist.game}/config/br-version.properties"/>
 	
 	<path id="classpath">
 		<fileset dir="${lib}">
@@ -101,7 +102,7 @@
         
 	</target>
 
-    <target name="dist" depends="jar">
+    <target name="dist" depends="jar,version">
     	
     	<copy todir="${build.dist.login}">
             <fileset dir="${src}">
@@ -257,20 +258,20 @@
     	  <arg line="-n ."/>
     	</exec>
     	
-    	<concat destfile="${build.dist.game}/config/br-version.properties">
+		<concat destfile="${properties-file}">
     	version=${br.revision}
     	builddate=${build.tstamp} 
       detailed info:
 </concat>
-      <concat destfile="${build.dist.game}/config/br-version.properties" append="true">
-        <filelist dir="${src}/../.svn/" files="entries"/>
-        <filterchain>
-          <prefixlines prefix="          "/>
-          <headfilter lines="8" skip="4"/>
-          <tokenfilter>
-             <ignoreblank/>
-          </tokenfilter>
-        </filterchain>
+	      <concat destfile="${properties-file}" append="true">
+	        <filelist dir="${src}/../.svn/" files="entries"/>
+	        <filterchain>
+	          <prefixlines prefix="          "/>
+	          <headfilter lines="8" skip="4"/>
+	          <tokenfilter>
+	             <ignoreblank/>
+	          </tokenfilter>
+	        </filterchain>
 </concat>
 </target>
 
