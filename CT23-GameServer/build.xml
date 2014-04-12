@@ -158,35 +158,35 @@
 		<mkdir dir="${build.dist.game}/config" />
 		<mkdir dir="${build.dist.login}/config" />
 		<copy todir="${build.dist.game}/config">
-			<fileset dir="java/config">
-				<include name="*.properties" />
+			<fileset dir="config">
+				<include name="*.ini" />
 				<include name="chatfilter.txt" />
-				<exclude name="loginserver.properties" />
+				<exclude name="loginserver.ini" />
 			</fileset>
 		</copy>
 		<copy todir="${build.dist.login}/config">
-			<fileset dir="java/config">
-				<include name="loginserver.properties" />
-				<include name="mmo.properties" />
-				<include name="telnet.properties" />
+			<fileset dir="config">
+				<include name="loginserver.ini" />
+				<include name="mmo.ini" />
+				<include name="telnet.ini" />
 			</fileset>
 		</copy>
 		<zip destfile="${build}/GameServer.zip" basedir="${build.dist}" />
 	</target>
 
-	<target name="version" depends="init" description="Create brserver-version.properties file">
+	<target name="version" depends="init" description="Create brserver-version.ini file">
 		<tstamp>
 			<format property="build.tstamp" pattern="yyyyMMdd_HHmm" />
 		</tstamp>
 		<exec dir="." executable="svnversion" outputproperty="brserver.revision" failifexecutionfails="false">
 			<arg line="-n ." />
 		</exec>
-		<concat destfile="${build.dist.game}/config/brserver-version.properties">
+		<concat destfile="${build.dist.game}/config/brserver-version.ini">
 			version=${brserver.revision}
 			builddate=${build.tstamp}
 			detailed info:
 		</concat>
-		<concat destfile="${build.dist.game}/config/brserver-version.properties" append="true">
+		<concat destfile="${build.dist.game}/config/brserver-version.ini" append="true">
 			<filelist dir="${src}/../.svn/" files="entries" />
 			<filterchain>
 				<prefixlines prefix="          " />

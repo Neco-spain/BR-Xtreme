@@ -233,7 +233,7 @@ public class ConfigUserInterface extends JFrame implements ActionListener
     	File configsDir = new File("config");
 	    for (File file : configsDir.listFiles())
 	    {
-	    	if (file.getName().endsWith(".properties") && file.isFile() && file.canWrite())
+	    	if (file.getName().endsWith(".ini") && file.isFile() && file.canWrite())
 	    	{
 	    		try
                 {
@@ -699,7 +699,7 @@ public class ConfigUserInterface extends JFrame implements ActionListener
                 catch (Exception e1)
                 {
                 	e1.printStackTrace();
-                	errors.append(getBundle().getString("errorSaving")+cf.getName()+".properties. "+getBundle().getString("reason")+e1.getLocalizedMessage()+"\r\n");
+                	errors.append(getBundle().getString("errorSaving")+cf.getName()+".ini. "+getBundle().getString("reason")+e1.getLocalizedMessage()+"\r\n");
                 }
 	    	}
 	    	if (errors.length() == 0)

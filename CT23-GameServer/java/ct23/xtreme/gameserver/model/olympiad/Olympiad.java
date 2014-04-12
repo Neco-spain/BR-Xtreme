@@ -65,7 +65,7 @@ public class Olympiad
 	private static Map<Integer, L2FastList<L2PcInstance>> _classBasedRegisters;
 	private static TIntIntHashMap _noblesRank;
 	
-	private static final String OLYMPIAD_DATA_FILE = "config/olympiad.properties";
+	private static final String OLYMPIAD_DATA_FILE = "config/olympiad.ini";
 	public static final String OLYMPIAD_HTML_PATH = "data/html/olympiad/";
 	private static final String OLYMPIAD_LOAD_DATA = "SELECT current_cycle, period, olympiad_end, validation_end, "
 			+ "next_weekly_change FROM olympiad_data WHERE id = 0";
@@ -1123,7 +1123,7 @@ public class Olympiad
 	}
 	
 	/**
-	 *  Save olympiad.properties file with current olympiad status and update noblesse table in database
+	 *  Save olympiad.ini file with current olympiad status and update noblesse table in database
 	 */
 	public void saveOlympiadStatus()
 	{

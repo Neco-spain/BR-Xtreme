@@ -59,11 +59,11 @@ public class FortSiegeManager
 	// Fort Siege settings
 	private FastMap<Integer, FastList<SiegeSpawn>> _commanderSpawnList;
 	private FastMap<Integer, FastList<CombatFlag>> _flagList;
-	private int _flagMaxCount = 1; // Changeable in fortsiege.properties
-	private int _siegeClanMinLevel = 4; // Changeable in fortsiege.properties
-	private int _siegeLength = 60; // Time in minute. Changeable in fortsiege.properties
-	private int _countDownLength = 10; // Time in minute. Changeable in fortsiege.properties
-	private int _suspiciousMerchantRespawnDelay = 180; // Time in minute. Changeable in fortsiege.properties
+	private int _flagMaxCount = 1; // Changeable in fortsiege.ini
+	private int _siegeClanMinLevel = 4; // Changeable in fortsiege.ini
+	private int _siegeLength = 60; // Time in minute. Changeable in fortsiege.ini
+	private int _countDownLength = 10; // Time in minute. Changeable in fortsiege.ini
+	private int _suspiciousMerchantRespawnDelay = 180; // Time in minute. Changeable in fortsiege.ini
 	private List<FortSiege> _sieges;
 	
 	// =========================================================

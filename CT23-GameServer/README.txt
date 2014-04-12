@@ -122,9 +122,9 @@ content. (Datapack)
 
 L2J Server has also a possibility to change exp/sp/drop rates relative
 to data in spawnlist/droplist files. To do that, just change the rates 
-you need in server.properties file found in config folder.
+you need in server.ini file found in config folder.
 
-You should also configure your IP address in server.properties. 
+You should also configure your IP address in server.ini. 
 
 Server uses ports 2106 (LoginServer) and 7777 (GameServer) by
 default. If your server runs behind NAT or firewall you will need to
@@ -176,7 +176,7 @@ keep the data accurate.
   new format.
 - You should ALWAYS Backup all MySql data.
 - You should ALWAYS Backup all Server and Datapack files.
-- back up all .properties files (don't forget to check if new server use same 
+- back up all .ini files (don't forget to check if new server use same 
   format for those files)
 - download & unzip new server code to the Server directory
 - download & unzip new datapack code to the Server directory
