@@ -41,7 +41,7 @@ public class DynamicExtension
 	
 	/**
 	 * create an instance of DynamicExtension
-	 * this will be done by GameServer according to the altsettings.properties
+	 * this will be done by GameServer according to the altsettings.ini
 	 *
 	 */
 	private DynamicExtension()

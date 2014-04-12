@@ -49,7 +49,7 @@ it. It's safe to answer 'yes' at this point.
 
 For new L2J databases or existing databases where you want to delete character 
 and account information: Create your loginserver and gameserver databases so they 
-match the loginserver.properties and server.properties settings respectively (the 
+match the loginserver.ini and server.ini settings respectively (the 
 default for both is 'l2jdb'.)
 
 Method 1: run database_installer.bat for windows users, or database_installer.sh for

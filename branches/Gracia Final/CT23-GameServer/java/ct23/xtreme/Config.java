@@ -45,29 +45,29 @@ public final class Config
 	//--------------------------------------------------
 	// BRXtreme Property File Definitions
 	//--------------------------------------------------
-	public static final String CHARACTER_CONFIG_FILE = "./config/Character.properties";
-	public static final String EXTENSIONS_CONFIG_FILE = "./config/extensions.properties";
-	public static final String FEATURE_CONFIG_FILE = "./config/Feature.properties";
-	public static final String FORTSIEGE_CONFIGURATION_FILE = "./config/fortsiege.properties";
-	public static final String GENERAL_CONFIG_FILE = "./config/General.properties";
+	public static final String CHARACTER_CONFIG_FILE = "./config/Character.ini";
+	public static final String EXTENSIONS_CONFIG_FILE = "./config/extensions.ini";
+	public static final String FEATURE_CONFIG_FILE = "./config/Feature.ini";
+	public static final String FORTSIEGE_CONFIGURATION_FILE = "./config/fortsiege.ini";
+	public static final String GENERAL_CONFIG_FILE = "./config/General.ini";
 	public static final String HEXID_FILE = "./config/hexid.txt";
-	public static final String ID_CONFIG_FILE = "./config/idfactory.properties";
-	public static final String SERVER_VERSION_FILE = "./config/brserver-version.properties";
-	public static final String DATAPACK_VERSION_FILE = "./config/brdp-version.properties";
-	public static final String L2JMOD_CONFIG_FILE = "./config/l2jmods.properties";
-	public static final String LOGIN_CONFIGURATION_FILE = "./config/loginserver.properties";
-	public static final String NPC_CONFIG_FILE = "./config/NPC.properties";
-	public static final String PVP_CONFIG_FILE = "./config/pvp.properties";
-	public static final String RATES_CONFIG_FILE = "./config/rates.properties";
-	public static final String CONFIGURATION_FILE = "./config/server.properties";
-	public static final String SIEGE_CONFIGURATION_FILE = "./config/siege.properties";
-	public static final String TW_CONFIGURATION_FILE = "./config/territorywar.properties";
-	public static final String TELNET_FILE = "./config/telnet.properties";
-	public static final String FLOOD_PROTECTOR_FILE = "./config/floodprotector.properties";
-	public static final String MMO_CONFIG_FILE = "./config/mmo.properties";
-	public static final String OLYMPIAD_CONFIG_FILE = "./config/olympiad.properties";
-	public static final String COMMUNITY_CONFIGURATION_FILE = "./config/CommunityServer.properties";
-	public static final String GRANDBOSS_CONFIG_FILE = "./config/Grandboss.properties";
+	public static final String ID_CONFIG_FILE = "./config/idfactory.ini";
+	public static final String SERVER_VERSION_FILE = "./config/brserver-version.ini";
+	public static final String DATAPACK_VERSION_FILE = "./config/brdp-version.ini";
+	public static final String L2JMOD_CONFIG_FILE = "./config/l2jmods.ini";
+	public static final String LOGIN_CONFIGURATION_FILE = "./config/loginserver.ini";
+	public static final String NPC_CONFIG_FILE = "./config/NPC.ini";
+	public static final String PVP_CONFIG_FILE = "./config/pvp.ini";
+	public static final String RATES_CONFIG_FILE = "./config/rates.ini";
+	public static final String CONFIGURATION_FILE = "./config/server.ini";
+	public static final String SIEGE_CONFIGURATION_FILE = "./config/siege.ini";
+	public static final String TW_CONFIGURATION_FILE = "./config/territorywar.ini";
+	public static final String TELNET_FILE = "./config/telnet.ini";
+	public static final String FLOOD_PROTECTOR_FILE = "./config/floodprotector.ini";
+	public static final String MMO_CONFIG_FILE = "./config/mmo.ini";
+	public static final String OLYMPIAD_CONFIG_FILE = "./config/olympiad.ini";
+	public static final String COMMUNITY_CONFIGURATION_FILE = "./config/CommunityServer.ini";
+	public static final String GRANDBOSS_CONFIG_FILE = "./config/Grandboss.ini";
 	public static final String CHAT_FILTER_FILE = "./config/chatfilter.txt";
 
 
@@ -2645,7 +2645,7 @@ public final class Config
 	 */
 	public static boolean setParameterValue(String pName, String pValue)
 	{
-		// rates.properties
+		// rates.ini
 		if (pName.equalsIgnoreCase("RateXp")) RATE_XP = Float.parseFloat(pValue);
 		else if (pName.equalsIgnoreCase("RateSp")) RATE_SP = Float.parseFloat(pValue);
 		else if (pName.equalsIgnoreCase("RatePartyXp")) RATE_PARTY_XP = Float.parseFloat(pValue);
@@ -2697,7 +2697,7 @@ public final class Config
 		else if (pName.equalsIgnoreCase("KarmaRateDropEquip")) KARMA_RATE_DROP_EQUIP = Integer.parseInt(pValue);
 		else if (pName.equalsIgnoreCase("KarmaRateDropEquipWeapon")) KARMA_RATE_DROP_EQUIP_WEAPON = Integer.parseInt(pValue);
 		
-		// general.properties
+		// general.ini
 		else if (pName.equalsIgnoreCase("AutoDestroyDroppedItemAfter")) AUTODESTROY_ITEM_AFTER = Integer.parseInt(pValue);
 		else if (pName.equalsIgnoreCase("DestroyPlayerDroppedItem")) DESTROY_DROPPED_PLAYER_ITEM = Boolean.parseBoolean(pValue);
 		else if (pName.equalsIgnoreCase("DestroyEquipableItem")) DESTROY_EQUIPABLE_PLAYER_ITEM = Boolean.parseBoolean(pValue);

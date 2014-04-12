@@ -31,7 +31,7 @@
 	<property name="build.dist.cb_sql" location="${build.dist}/cb_sql" />
 	<property name="build.dist.tools" location="${build.dist}/tools" />
 	<property name="build.dist.doc" location="${build.dist}/doc" />
-	<property name="properties-file" location="${build.dist.game}/config/brdp-version.properties" />
+	<property name="properties-file" location="${build.dist.game}/config/brdp-version.ini" />
 
 	<target name="init" description="Create the output directories. Do nothing if dirs were already created">
 		<mkdir dir="${build}" />
@@ -100,7 +100,7 @@
 		<zip destfile="${build}/DataPack-nocompress.zip" basedir="${build.dist}" update="true" compress="false" />
 	</target>
 
-	<target name="version" depends="init" description="Create brdp-version.properties file">
+	<target name="version" depends="init" description="Create brdp-version.ini file">
 		<tstamp>
 			<format property="build.tstamp" pattern="yyyyMMdd_HHmm" />
 		</tstamp>
