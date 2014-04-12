@@ -1,8 +1,8 @@
 @echo off
 cls
-title L2J - SQL Account Manager
+title BR Xtreme  - SQL Account Manager
 color 17
-java -Djava.util.logging.config.file=console.cfg -cp ./../libs/*;l2jlogin.jar ct23.xtreme.accountmanager.SQLAccountManager 2> NUL
+java -Djava.util.logging.config.file=console.cfg -cp ./../libs/*;ct23-login.jar ct23.xtreme.accountmanager.SQLAccountManager 2> NUL
 if %errorlevel% == 0 (
 echo.
 echo Execution succesful
