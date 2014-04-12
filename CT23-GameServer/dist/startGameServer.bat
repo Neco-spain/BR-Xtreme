@@ -1,17 +1,17 @@
 @echo off
 title Game Server Console
 :start
-echo Starting L2J Game Server.
+echo Starting BR Xtreme Game Server.
 echo.
 REM -------------------------------------
 REM Default parameters for a basic server.
-java -Djava.util.logging.manager=ct23.xtreme.util.L2LogManager -Xms1024m -Xmx1024m -cp ./../libs/*;l2jserver.jar ct23.xtreme.gameserver.GameServer
+java -Djava.util.logging.manager=ct23.xtreme.util.L2LogManager -Xms1024m -Xmx1024m -cp ./../libs/*;ct23-server.jar ct23.xtreme.gameserver.GameServer
 REM
 REM If you have a big server and lots of memory, you could experiment for example with
 REM java -server -Xmx1536m -Xms1024m -Xmn512m -XX:PermSize=256m -XX:SurvivorRatio=8 -Xnoclassgc -XX:+AggressiveOpts
 REM If you are having troubles on server shutdown (saving data),
 REM add this to startup paramethers: -Djava.util.logging.manager=ct23.xtreme.L2LogManager. Example:
-REM java -Djava.util.logging.manager=ct23.xtreme.util.L2LogManager -Xmx1024m -cp ./../libs/*;l2jserver.jar ct23.xtreme.gameserver.GameServer
+REM java -Djava.util.logging.manager=ct23.xtreme.util.L2LogManager -Xmx1024m -cp ./../libs/*;ct23-server.jar ct23.xtreme.gameserver.GameServer
 REM -------------------------------------
 if ERRORLEVEL 2 goto restart
 if ERRORLEVEL 1 goto error

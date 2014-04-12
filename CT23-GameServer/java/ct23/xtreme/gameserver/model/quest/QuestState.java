@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javolution.util.FastMap;
 import ct23.xtreme.Config;
 import ct23.xtreme.L2DatabaseFactory;
 import ct23.xtreme.gameserver.GameTimeController;
@@ -33,6 +34,7 @@ import ct23.xtreme.gameserver.model.actor.L2Character;
 import ct23.xtreme.gameserver.model.actor.L2Npc;
 import ct23.xtreme.gameserver.model.actor.instance.L2MonsterInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
+import ct23.xtreme.gameserver.model.quest.Quest.QuestSound;
 import ct23.xtreme.gameserver.network.SystemMessageId;
 import ct23.xtreme.gameserver.network.serverpackets.ExShowQuestMark;
 import ct23.xtreme.gameserver.network.serverpackets.InventoryUpdate;
@@ -47,7 +49,6 @@ import ct23.xtreme.gameserver.network.serverpackets.TutorialShowQuestionMark;
 import ct23.xtreme.gameserver.skills.Stats;
 import ct23.xtreme.gameserver.templates.item.L2EtcItemType;
 import ct23.xtreme.util.Rnd;
-import javolution.util.FastMap;
 
 /**
  * @author Luis Arias
@@ -56,19 +57,16 @@ public final class QuestState
 {
 	protected static final Logger _log = Logger.getLogger(Quest.class.getName());
 
-	/** Quest associated to the QuestState */
+	
+	public static final byte DROP_DIVMOD = 0;
+	public static final byte DROP_FIXED_RATE = 1;
+	public static final byte DROP_FIXED_COUNT = 2;
+	public static final byte DROP_FIXED_BOTH = 3;
+	
 	private final String _questName;
-
-	/** Player who engaged the quest */
 	private final L2PcInstance _player;
-
-	/** State of the quest */
 	private byte _state;
-
-	/** List of couples (variable for quest,value of the variable for quest) */
 	private Map<String, String> _vars;
-
-	/** Boolean flag letting QuestStateManager know to exit quest when cleaning up */
 	private boolean _isExitQuestOnCleanUp = false;
 
 	/**
@@ -538,9 +536,9 @@ public final class QuestState
 	 * @param itemId : ID of the item wanted to be count
 	 * @return long
 	 */
-	public long getQuestItemsCount(int itemId)
+	public int getQuestItemsCount(int itemId)
 	{
-		long count = 0;
+		int count = 0;
 
 		for (L2ItemInstance item : getPlayer().getInventory().getItems())
 			if (item != null && item.getItemId() == itemId)
@@ -772,67 +770,97 @@ public final class QuestState
 		su.addAttribute(StatusUpdate.CUR_LOAD, getPlayer().getCurrentLoad());
 		getPlayer().sendPacket(su);
 	}
-
 	/**
-	 * Drop Quest item using Config.RATE_QUEST_DROP
-	 * @param itemId : int Item Identifier of the item to be dropped
-	 * @param count(minCount, maxCount) : long Quantity of items to be dropped
-	 * @param neededCount : Quantity of items needed for quest
-	 * @param dropChance : int Base chance of drop, same as in droplist
-	 * @param sound : boolean indicating whether to play sound
-	 * @return boolean indicating whether player has requested number of items
+	 * Drop items to the player's inventory. Rate is 100%, amount is affected by Config.RATE_QUEST_DROP.
+	 * @param itemId : Identifier of the item to be dropped.
+	 * @param count : Quantity of items to be dropped.
+	 * @param neededCount : Quantity of items needed to complete the task. If set to 0, unlimited amount is collected.
+	 * @return boolean : Indicating whether item quantity has been reached.
 	 */
-	public boolean dropQuestItems(int itemId, int count, long neededCount, int dropChance, boolean sound)
+	public boolean dropItemsAlways(int itemId, int count, int neededCount)
 	{
-		return dropQuestItems(itemId, count, count, neededCount, dropChance, sound);
+		return dropItems(itemId, count, neededCount, L2DropData.MAX_CHANCE, DROP_FIXED_RATE);
 	}
-
-	public boolean dropQuestItems(int itemId, int minCount, int maxCount, long neededCount, int dropChance, boolean sound)
+	
+	/**
+	 * Drop items to the player's inventory. Rate and amount is affected by DIVMOD of Config.RATE_QUEST_DROP.
+	 * @param itemId : Identifier of the item to be dropped.
+	 * @param count : Quantity of items to be dropped.
+	 * @param neededCount : Quantity of items needed to complete the task. If set to 0, unlimited amount is collected.
+	 * @param dropChance : Item drop rate (100% chance is defined by the L2DropData.MAX_CHANCE = 1.000.000).
+	 * @return boolean : Indicating whether item quantity has been reached.
+	 */
+	public boolean dropItems(int itemId, int count, int neededCount, int dropChance)
 	{
-		dropChance *= Config.RATE_QUEST_DROP / ((getPlayer().getParty() != null) ? getPlayer().getParty().getMemberCount() : 1);
-		long currentCount = getQuestItemsCount(itemId);
-
+		return dropItems(itemId, count, neededCount, dropChance, DROP_DIVMOD);
+	}
+	
+	/**
+	 * Drop items to the player's inventory.
+	 * @param itemId : Identifier of the item to be dropped.
+	 * @param count : Quantity of items to be dropped.
+	 * @param neededCount : Quantity of items needed to complete the task. If set to 0, unlimited amount is collected.
+	 * @param dropChance : Item drop rate (100% chance is defined by the L2DropData.MAX_CHANCE = 1.000.000).
+	 * @param type : Item drop behavior: DROP_DIVMOD (rate and), DROP_FIXED_RATE, DROP_FIXED_COUNT or DROP_FIXED_BOTH
+	 * @return boolean : Indicating whether item quantity has been reached.
+	 */
+	public boolean dropItems(int itemId, int count, int neededCount, int dropChance, byte type)
+	{
+		// Get current amount of item.
+		final int currentCount = getQuestItemsCount(itemId);
+		
+		// Required amount reached already?
 		if (neededCount > 0 && currentCount >= neededCount)
 			return true;
-
-		if (currentCount >= neededCount)
-			return true;
-
-		long itemCount = 0;
-		int random = Rnd.get(L2DropData.MAX_CHANCE);
-
-		while (random < dropChance)
+		
+		int amount = 0;
+		switch (type)
 		{
-			// Get the item quantity dropped
-			if (minCount < maxCount)
-				itemCount += Rnd.get(minCount, maxCount);
-			else if (minCount == maxCount)
-				itemCount += minCount;
-			else
-				itemCount++;
-
-			// Prepare for next iteration if dropChance > L2DropData.MAX_CHANCE
-			dropChance -= L2DropData.MAX_CHANCE;
+			case DROP_DIVMOD:
+				dropChance *= Config.RATE_QUEST_DROP;
+				amount = count * (dropChance / L2DropData.MAX_CHANCE);
+				if (Rnd.get(L2DropData.MAX_CHANCE) < dropChance % L2DropData.MAX_CHANCE)
+					amount += count;
+				break;
+			
+			case DROP_FIXED_RATE:
+				if (Rnd.get(L2DropData.MAX_CHANCE) < dropChance)
+					amount = (int) (count * Config.RATE_QUEST_DROP);
+				break;
+			
+			case DROP_FIXED_COUNT:
+				if (Rnd.get(L2DropData.MAX_CHANCE) < dropChance * Config.RATE_QUEST_DROP)
+					amount = count;
+				break;
+			
+			case DROP_FIXED_BOTH:
+				if (Rnd.get(L2DropData.MAX_CHANCE) < dropChance)
+					amount = count;
+				break;
 		}
-
-		if (itemCount > 0)
+		
+		boolean reached = false;
+		if (amount > 0)
 		{
-			// if over neededCount, just fill the gap
-			if (neededCount > 0 && currentCount + itemCount > neededCount)
-				itemCount = neededCount - currentCount;
-
-			// Inventory slot check
-			if (!getPlayer().getInventory().validateCapacityByItemId(itemId))
+			// Limit count to reach required amount.
+			if (neededCount > 0)
+			{
+				reached = (currentCount + amount) >= neededCount;
+				amount = (reached) ? neededCount - currentCount : amount;
+			}
+			
+			// Inventory slot check.
+			if (!_player.getInventory().validateCapacityByItemId(itemId))
 				return false;
-
-			// Give the item to Player
-			getPlayer().addItem("Quest", itemId, itemCount, getPlayer().getTarget(), true);
-
-			if (sound)
-				playSound((currentCount + itemCount < neededCount) ? "Itemsound.quest_itemget" : "Itemsound.quest_middle");
+			
+			// Give items to the player.
+			giveItems(itemId, amount, 0);
+			
+			// Play the sound.
+			playSound(reached ? "Itemsound.quest_itemget" : "Itemsound.quest_middle");
 		}
-
-		return (neededCount > 0 && currentCount + itemCount >= neededCount);
+		
+		return neededCount > 0 && reached;
 	}
 
 	//TODO: More radar functions need to be added when the radar class is complete.
@@ -894,7 +922,16 @@ public final class QuestState
 	{
 		getPlayer().sendPacket(new PlaySound(sound));
 	}
-
+	
+	/**
+	 * Send a packet in order to play a sound to the player.
+	 * @param sound the {@link QuestSound} object of the sound to play
+	 */
+	public void playSound(QuestSound sound)
+	{
+		getQuest().playSound(getPlayer(), sound);
+	}
+	
 	/**
 	 * Add XP and SP as quest reward
 	 * @param exp

@@ -63,8 +63,6 @@
 				<exclude name="**.svn**" />
 				<exclude name="**/*.class" />
 				<exclude name="**/*.jar" />
-				<exclude name="geodata/**" />
-				<exclude name="pathnode/**" />
 			</fileset>
 		</sync>
 		<sync todir="${build.dist.cb}/data">

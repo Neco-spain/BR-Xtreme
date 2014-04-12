@@ -18,6 +18,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.logging.Level;
@@ -43,6 +44,7 @@ import ct23.xtreme.gameserver.model.zone.L2ZoneType;
 import ct23.xtreme.gameserver.network.serverpackets.ActionFailed;
 import ct23.xtreme.gameserver.network.serverpackets.NpcHtmlMessage;
 import ct23.xtreme.gameserver.network.serverpackets.NpcQuestHtmlMessage;
+import ct23.xtreme.gameserver.network.serverpackets.PlaySound;
 import ct23.xtreme.gameserver.scripting.ManagedScript;
 import ct23.xtreme.gameserver.scripting.ScriptManager;
 import ct23.xtreme.gameserver.templates.chars.L2NpcTemplate;
@@ -69,12 +71,170 @@ public class Quest extends ManagedScript
 	private final String _descr;
 	private final byte _initialState = State.CREATED;
 	protected boolean _onEnterWorld = false;
-	// NOTE: questItemIds will be overridden by child classes.  Ideally, it should be
-	// protected instead of public.  However, quest scripts written in Jython will
-	// have trouble with protected, as Jython only knows private and public...
-	// In fact, protected will typically be considered private thus breaking the scripts.
-	// Leave this as public as a workaround.
 	public int[] questItemIds = null;
+	
+	private static final String HTML_NONE_AVAILABLE = "<html><body>You are either not on a quest that involves this NPC, or you don't meet this NPC's minimum quest requirements.</body></html>";
+	private static final String HTML_ALREADY_COMPLETED = "<html><body>This quest has already been completed.</body></html>";
+	
+	/**
+	 * This enum contains known sound effects used by quests.<br>
+	 * The idea is to have only a single object of each quest sound instead of constructing a new one every time a script calls the playSound method.<br>
+	 * This is pretty much just a memory and CPU cycle optimization; avoids constructing/deconstructing objects all the time if they're all the same.<br>
+	 * For datapack scripts written in Java and extending the Quest class, this does not need an extra import.
+	 * @author jurchiks
+	 */
+	public static enum QuestSound
+	{
+		ITEMSOUND_QUEST_ACCEPT(new PlaySound("ItemSound.quest_accept")),
+		ITEMSOUND_QUEST_MIDDLE(new PlaySound("ItemSound.quest_middle")),
+		ITEMSOUND_QUEST_FINISH(new PlaySound("ItemSound.quest_finish")),
+		ITEMSOUND_QUEST_ITEMGET(new PlaySound("ItemSound.quest_itemget")),
+		// Newbie Guide tutorial (incl. some quests), Mutated Kaneus quests, Quest 192
+		ITEMSOUND_QUEST_TUTORIAL(new PlaySound("ItemSound.quest_tutorial")),
+		// Quests 107, 363, 364
+		ITEMSOUND_QUEST_GIVEUP(new PlaySound("ItemSound.quest_giveup")),
+		// Quests 212, 217, 224, 226, 416
+		ITEMSOUND_QUEST_BEFORE_BATTLE(new PlaySound("ItemSound.quest_before_battle")),
+		// Quests 211, 258, 266, 330
+		ITEMSOUND_QUEST_JACKPOT(new PlaySound("ItemSound.quest_jackpot")),
+		// Quests 508, 509 and 510
+		ITEMSOUND_QUEST_FANFARE_1(new PlaySound("ItemSound.quest_fanfare_1")),
+		// Played only after class transfer via Test Server Helpers (Id 31756 and 31757)
+		ITEMSOUND_QUEST_FANFARE_2(new PlaySound("ItemSound.quest_fanfare_2")),
+		// Quest 336
+		ITEMSOUND_QUEST_FANFARE_MIDDLE(new PlaySound("ItemSound.quest_fanfare_middle")),
+		// Quest 114
+		ITEMSOUND_ARMOR_WOOD(new PlaySound("ItemSound.armor_wood_3")),
+		// Quest 21
+		ITEMSOUND_ARMOR_CLOTH(new PlaySound("ItemSound.item_drop_equip_armor_cloth")),
+		AMDSOUND_ED_CHIMES(new PlaySound("AmdSound.ed_chimes_05")),
+		HORROR_01(new PlaySound("horror_01")), // played when spawned monster sees player
+		// Quest 22
+		AMBSOUND_HORROR_01(new PlaySound("AmbSound.dd_horror_01")),
+		AMBSOUND_HORROR_03(new PlaySound("AmbSound.d_horror_03")),
+		AMBSOUND_HORROR_15(new PlaySound("AmbSound.d_horror_15")),
+		// Quest 23
+		ITEMSOUND_ARMOR_LEATHER(new PlaySound("ItemSound.itemdrop_armor_leather")),
+		ITEMSOUND_WEAPON_SPEAR(new PlaySound("ItemSound.itemdrop_weapon_spear")),
+		AMBSOUND_MT_CREAK(new PlaySound("AmbSound.mt_creak01")),
+		AMBSOUND_EG_DRON(new PlaySound("AmbSound.eg_dron_02")),
+		SKILLSOUND_HORROR_02(new PlaySound("SkillSound5.horror_02")),
+		CHRSOUND_MHFIGHTER_CRY(new PlaySound("ChrSound.MHFighter_cry")),
+		// Quest 24
+		AMDSOUND_WIND_LOOT(new PlaySound("AmdSound.d_wind_loot_02")),
+		INTERFACESOUND_CHARSTAT_OPEN(new PlaySound("InterfaceSound.charstat_open_01")),
+		// Quest 25
+		AMDSOUND_HORROR_02(new PlaySound("AmdSound.dd_horror_02")),
+		CHRSOUND_FDELF_CRY(new PlaySound("ChrSound.FDElf_Cry")),
+		// Quest 115
+		AMBSOUND_WINGFLAP(new PlaySound("AmbSound.t_wingflap_04")),
+		AMBSOUND_THUNDER(new PlaySound("AmbSound.thunder_02")),
+		// Quest 120
+		AMBSOUND_DRONE(new PlaySound("AmbSound.ed_drone_02")),
+		AMBSOUND_CRYSTAL_LOOP(new PlaySound("AmbSound.cd_crystal_loop")),
+		AMBSOUND_PERCUSSION_01(new PlaySound("AmbSound.dt_percussion_01")),
+		AMBSOUND_PERCUSSION_02(new PlaySound("AmbSound.ac_percussion_02")),
+		// Quest 648 and treasure chests
+		ITEMSOUND_BROKEN_KEY(new PlaySound("ItemSound2.broken_key")),
+		// Quest 184
+		ITEMSOUND_SIREN(new PlaySound("ItemSound3.sys_siren")),
+		// Quest 648
+		ITEMSOUND_ENCHANT_SUCCESS(new PlaySound("ItemSound3.sys_enchant_success")),
+		ITEMSOUND_ENCHANT_FAILED(new PlaySound("ItemSound3.sys_enchant_failed")),
+		// Best farm mobs
+		ITEMSOUND_SOW_SUCCESS(new PlaySound("ItemSound3.sys_sow_success")),
+		// Quest 25
+		SKILLSOUND_HORROR_1(new PlaySound("SkillSound5.horror_01")),
+		// Quests 21 and 23
+		SKILLSOUND_HORROR_2(new PlaySound("SkillSound5.horror_02")),
+		// Quest 22
+		SKILLSOUND_ANTARAS_FEAR(new PlaySound("SkillSound3.antaras_fear")),
+		// Quest 505
+		SKILLSOUND_JEWEL_CELEBRATE(new PlaySound("SkillSound2.jewel.celebrate")),
+		// Quest 373
+		SKILLSOUND_LIQUID_MIX(new PlaySound("SkillSound5.liquid_mix_01")),
+		SKILLSOUND_LIQUID_SUCCESS(new PlaySound("SkillSound5.liquid_success_01")),
+		SKILLSOUND_LIQUID_FAIL(new PlaySound("SkillSound5.liquid_fail_01")),
+		// Quest 111
+		ETCSOUND_ELROKI_SONG_FULL(new PlaySound("EtcSound.elcroki_song_full")),
+		ETCSOUND_ELROKI_SONG_1ST(new PlaySound("EtcSound.elcroki_song_1st")),
+		ETCSOUND_ELROKI_SONG_2ND(new PlaySound("EtcSound.elcroki_song_2nd")),
+		ETCSOUND_ELROKI_SONG_3RD(new PlaySound("EtcSound.elcroki_song_3rd")),
+		// Long duration AI sounds
+		BS01_A(new PlaySound("BS01_A")),
+		BS02_A(new PlaySound("BS02_A")),
+		BS03_A(new PlaySound("BS03_A")),
+		BS04_A(new PlaySound("BS04_A")),
+		BS06_A(new PlaySound("BS06_A")),
+		BS07_A(new PlaySound("BS07_A")),
+		BS08_A(new PlaySound("BS08_A")),
+		BS01_D(new PlaySound("BS01_D")),
+		BS02_D(new PlaySound("BS02_D")),
+		BS05_D(new PlaySound("BS05_D")),
+		BS07_D(new PlaySound("BS07_D"));
+		
+		private final PlaySound _playSound;
+		
+		private static Map<String, PlaySound> soundPackets = new HashMap<>();
+		
+		private QuestSound(PlaySound playSound)
+		{
+			_playSound = playSound;
+		}
+		
+		/**
+		 * Get a {@link PlaySound} packet by its name.
+		 * @param soundName : the name of the sound to look for
+		 * @return the {@link PlaySound} packet with the specified sound or {@code null} if one was not found
+		 */
+		public static PlaySound getSound(String soundName)
+		{
+			if (soundPackets.containsKey(soundName))
+			{
+				return soundPackets.get(soundName);
+			}
+			
+			for (QuestSound qs : QuestSound.values())
+			{
+				if (qs._playSound.getSoundName().equals(soundName))
+				{
+					soundPackets.put(soundName, qs._playSound); // cache in map to avoid looping repeatedly
+					return qs._playSound;
+				}
+			}
+			
+			_log.info("Missing QuestSound enum for sound: " + soundName);
+			soundPackets.put(soundName, new PlaySound(soundName));
+			return soundPackets.get(soundName);
+		}
+		
+		/**
+		 * @return the name of the sound of this QuestSound object
+		 */
+		public String getSoundName()
+		{
+			return _playSound.getSoundName();
+		}
+		
+		/**
+		 * @return the {@link PlaySound} packet of this QuestSound object
+		 */
+		public PlaySound getPacket()
+		{
+			return _playSound;
+		}
+	}
+	
+	/**
+	 * Send a packet in order to play a sound to the player.
+	 * @param player the player whom to send the packet
+	 * @param sound the {@link QuestSound} object of the sound to play
+	 */
+	public void playSound(L2PcInstance player, QuestSound sound)
+	{
+		player.sendPacket(sound.getPacket());
+	}
+	
 	
 	/**
 	 * Return collection view of the values contains in the allEventS
@@ -1216,6 +1376,16 @@ public class Quest extends ManagedScript
 	}
 	
 	/**
+	 * Add the quest to the NPC's startQuest
+	 * @param npcIds A serie of ids.
+	 */
+	public void addStartNpc(int... npcIds)
+	{
+		for (int npcId : npcIds)
+			addEventId(npcId, QuestEventType.QUEST_START);
+	}
+	
+	/**
 	 * Add the quest to the NPC's first-talk (default action dialog)
 	 * @param npcId
 	 * @return L2NpcTemplate : Start NPC
@@ -1224,7 +1394,16 @@ public class Quest extends ManagedScript
 	{
 		return addEventId(npcId, Quest.QuestEventType.ON_FIRST_TALK);
 	}
-
+	
+	/**
+	 * Add the quest to the NPC's first-talk (default action dialog)
+	 * @param npcIds A serie of ids.
+	 */
+	public void addFirstTalkId(int... npcIds)
+	{
+		for (int npcId : npcIds)
+			addEventId(npcId, QuestEventType.ON_FIRST_TALK);
+	}
 	/**
 	 * Add the NPC to the AcquireSkill dialog
 	 * @param npcId
@@ -1265,6 +1444,15 @@ public class Quest extends ManagedScript
 		return addEventId(talkId, Quest.QuestEventType.ON_TALK);
 	}
 	
+	/**
+	 * Add this quest to the list of quests that the passed npc will respond to for Talk Events.
+	 * @param talkIds : A serie of ids.
+	 */
+	public void addTalkId(int... talkIds)
+	{
+		for (int talkId : talkIds)
+			addEventId(talkId, QuestEventType.ON_TALK);
+	}
 	/**
 	 * Add this quest to the list of quests that the passed npc will respond to for Spawn Events.<BR><BR>
 	 * @param talkId : ID of the NPC
@@ -1676,6 +1864,22 @@ public class Quest extends ManagedScript
 			return QuestManager.getInstance().removeQuest(this);
 		else
 			return true;
+	}
+	
+	/**
+	 * @return default html page "You are either not on a quest that involves this NPC, or you don't meet this NPC's minimum quest requirements."
+	 */
+	public static String getNoQuestMsg()
+	{
+		return HTML_NONE_AVAILABLE;
+	}
+	
+	/**
+	 * @return default html page "This quest has already been completed."
+	 */
+	public static String getAlreadyCompletedMsg()
+	{
+		return HTML_ALREADY_COMPLETED;
 	}
 	
 	@Override

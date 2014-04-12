@@ -376,19 +376,24 @@ public class EnterWorld extends L2GameClientPacket
 		}
 
 		sendPacket(new SystemMessage(SystemMessageId.WELCOME_TO_LINEAGE));
-
-		activeChar.sendMessage(getText("VGhpcyBzZXJ2ZXIgdXNlcyBMMkosIGEgcHJvamVjdCBmb3VuZGVkIGJ5IEwyQ2hlZg==\n"));
-		activeChar.sendMessage(getText("YW5kIGRldmVsb3BlZCBieSB0aGUgTDJKIERldiBUZWFtIGF0IGwyanNlcnZlci5jb20=\n"));
-
-		if (Config.DISPLAY_SERVER_VERSION)
-		{
-			if (Config.SERVER_VERSION != null)
-				activeChar.sendMessage(getText("TDJKIFNlcnZlciBWZXJzaW9uOg==")+" "+Config.SERVER_VERSION);
-
-			if (Config.DATAPACK_VERSION != null)
-				activeChar.sendMessage(getText("TDJKIERhdGFwYWNrIFZlcnNpb246")+" "+Config.DATAPACK_VERSION);
-		}
-		activeChar.sendMessage(getText("Q29weXJpZ2h0IDIwMDQtMjAxMA==\n"));
+		
+		activeChar.sendMessage("This server uses BR Xtreme files, a project founded by Browser"
+			+ "and developed by the BR Xtreme Dev Team at brxtreme.forumexpress.org,"
+			+ "you can find our changelog and servers at www.l2jbrasil.com");
+		activeChar.sendMessage("BR Xtreme Developers:");
+		activeChar.sendMessage("Browser");
+		activeChar.sendMessage("BR Xtreme Technician Staff:");
+		activeChar.sendMessage("Browser");
+	
+	if (Config.DISPLAY_SERVER_VERSION)
+	{
+		if (Config.SERVER_VERSION != null)
+			activeChar.sendMessage("GameServer Version: " + Config.SERVER_VERSION);
+		
+		if (Config.DATAPACK_VERSION != null)
+			activeChar.sendMessage("DataPack Version: " + Config.DATAPACK_VERSION);
+	}
+	activeChar.sendMessage("Copyright 2010-2014");
 
 		SevenSigns.getInstance().sendCurrentPeriodMsg(activeChar);
 		Announcements.getInstance().showAnnouncements(activeChar);
