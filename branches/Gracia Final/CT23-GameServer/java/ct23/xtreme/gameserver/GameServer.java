@@ -98,7 +98,6 @@ import ct23.xtreme.gameserver.instancemanager.GrandBossManager;
 import ct23.xtreme.gameserver.instancemanager.HellboundManager;
 import ct23.xtreme.gameserver.instancemanager.InstanceManager;
 import ct23.xtreme.gameserver.instancemanager.ItemsOnGroundManager;
-import ct23.xtreme.gameserver.instancemanager.MailManager;
 import ct23.xtreme.gameserver.instancemanager.MercTicketManager;
 import ct23.xtreme.gameserver.instancemanager.PetitionManager;
 import ct23.xtreme.gameserver.instancemanager.QuestManager;
@@ -377,9 +376,6 @@ public class GameServer
 		CastleManager.getInstance().activateInstances();
 		FortManager.getInstance().activateInstances();
 		HellboundManager.getInstance();
-
-		if (Config.ALLOW_MAIL)
-			MailManager.getInstance();
 
 		//Universe.getInstance();
 		

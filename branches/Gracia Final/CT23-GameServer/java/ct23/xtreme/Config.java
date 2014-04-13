@@ -461,8 +461,6 @@ public final class Config
 	public static boolean WAREHOUSE_CACHE;
 	public static int WAREHOUSE_CACHE_TIME;
 	public static boolean ALLOW_REFUND;
-	public static boolean ALLOW_MAIL;
-	public static boolean ALLOW_ATTACHMENTS;
 	public static boolean ALLOW_WEAR;
 	public static int WEAR_DELAY;
 	public static int WEAR_PRICE;
@@ -1738,8 +1736,6 @@ public final class Config
 					WAREHOUSE_CACHE = Boolean.parseBoolean(General.getProperty("WarehouseCache", "False"));
 					WAREHOUSE_CACHE_TIME = Integer.parseInt(General.getProperty("WarehouseCacheTime", "15"));
 					ALLOW_REFUND = Boolean.parseBoolean(General.getProperty("AllowRefund", "True"));
-					ALLOW_MAIL = Boolean.parseBoolean(General.getProperty("AllowMail", "True"));
-					ALLOW_ATTACHMENTS = Boolean.parseBoolean(General.getProperty("AllowAttachments", "True"));
 					ALLOW_WEAR = Boolean.parseBoolean(General.getProperty("AllowWear", "False"));
 					WEAR_DELAY = Integer.parseInt(General.getProperty("WearDelay", "5"));
 					WEAR_PRICE = Integer.parseInt(General.getProperty("WearPrice", "10"));
