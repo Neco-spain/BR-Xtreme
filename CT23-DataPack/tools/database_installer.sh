@@ -426,7 +426,6 @@ $MYG < ../sql/mapregion.sql &> /dev/null
 $MYG < ../sql/merchant_buylists.sql &> /dev/null
 $MYG < ../sql/merchant_lease.sql &> /dev/null
 $MYG < ../sql/merchant_shopids.sql &> /dev/null
-$MYG < ../sql/messages.sql &> /dev/null
 $MYG < ../sql/minions.sql &> /dev/null
 $MYG < ../sql/npc.sql &> /dev/null
 $MYG < ../sql/npc_buffer.sql &> /dev/null

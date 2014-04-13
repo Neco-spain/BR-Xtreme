@@ -38,7 +38,6 @@ import ct23.xtreme.gameserver.instancemanager.DimensionalRiftManager;
 import ct23.xtreme.gameserver.instancemanager.FortManager;
 import ct23.xtreme.gameserver.instancemanager.FortSiegeManager;
 import ct23.xtreme.gameserver.instancemanager.InstanceManager;
-import ct23.xtreme.gameserver.instancemanager.MailManager;
 import ct23.xtreme.gameserver.instancemanager.PetitionManager;
 import ct23.xtreme.gameserver.instancemanager.QuestManager;
 import ct23.xtreme.gameserver.instancemanager.SiegeManager;
@@ -69,7 +68,6 @@ import ct23.xtreme.gameserver.network.serverpackets.ExBasicActionList;
 import ct23.xtreme.gameserver.network.serverpackets.ExBirthdayPopup;
 import ct23.xtreme.gameserver.network.serverpackets.ExBrExtraUserInfo;
 import ct23.xtreme.gameserver.network.serverpackets.ExGetBookMarkInfoPacket;
-import ct23.xtreme.gameserver.network.serverpackets.ExNoticePostArrived;
 import ct23.xtreme.gameserver.network.serverpackets.ExShowScreenMessage;
 import ct23.xtreme.gameserver.network.serverpackets.ExStorageMaxCount;
 import ct23.xtreme.gameserver.network.serverpackets.FriendList;
@@ -469,12 +467,6 @@ public class EnterWorld extends L2GameClientPacket
 				// but non-participant or attacker
 				&& (!activeChar.isInSiege() || activeChar.getSiegeState() < 2))
 			activeChar.teleToLocation(MapRegionTable.TeleportWhereType.Town);
-
-		if (Config.ALLOW_MAIL)
-		{
-			if (MailManager.getInstance().hasUnreadPost(activeChar))
-				sendPacket(ExNoticePostArrived.valueOf(false));
-		}
 
 		RegionBBSManager.getInstance().changeCommunityBoard();
 		CommunityServerThread.getInstance().sendPacket(new WorldInfo(activeChar, null, WorldInfo.TYPE_UPDATE_PLAYER_STATUS));

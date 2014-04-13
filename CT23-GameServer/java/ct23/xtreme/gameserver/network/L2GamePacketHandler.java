@@ -999,37 +999,37 @@ public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, 
 		                    	msg = new RequestSeedPhase();
 		                    	break;
 		                    case 0x65:
-		                    	msg = new RequestPostItemList();
+		                    	//RequestPostItemList();
 		                    	break;
 		                    case 0x66:
-		                    	msg = new RequestSendPost();
+		                    	//RequestSendPost();
 		                    	break;
 		                    case 0x67:
-		                    	msg = new RequestReceivedPostList();
+		                    	//RequestReceivedPostList();
 		                    	break;
 		                    case 0x68:
-		                    	msg = new RequestDeleteReceivedPost();
+		                    	//RequestDeleteReceivedPost();
 		                    	break;
 		                    case 0x69:
-		                    	msg = new RequestReceivedPost();
+		                    	//RequestReceivedPost();
 		                    	break;
 		                    case 0x6a:
-		                    	msg = new RequestPostAttachment();
+		                    	//RequestPostAttachment();
 		                    	break;
 		                    case 0x6b:
-		                    	msg = new RequestRejectPostAttachment();
+		                    	//RequestRejectPostAttachment();
 		                    	break;
 		                    case 0x6c:
-		                    	msg = new RequestSentPostList();
+		                    	//RequestSentPostList();
 		                    	break;
 		                    case 0x6d:
-		                    	msg = new RequestDeleteSentPost();
+		                    	//RequestDeleteSentPost();
 		                    	break;
 		                    case 0x6e:
-		                    	msg = new RequestSentPost();
+		                    	//RequestSentPost();
 		                    	break;
 		                    case 0x6f:
-		                    	msg = new RequestCancelPost();
+		                    	//RequestCancelPost();
 		                    	break;
 		                    case 0x70:
 		                    	// RequestShowNewUserPetition

@@ -88,7 +88,6 @@ DROP TABLE IF EXISTS mapregion;
 DROP TABLE IF EXISTS merchant_buylists;
 DROP TABLE IF EXISTS merchant_lease;
 DROP TABLE IF EXISTS merchant_shopids;
-DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS minions;
 DROP TABLE IF EXISTS npc;
 DROP TABLE IF EXISTS npc_buffer;

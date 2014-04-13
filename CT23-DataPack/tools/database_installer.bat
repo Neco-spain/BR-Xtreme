@@ -781,7 +781,6 @@ mapregion.sql
 merchant_buylists.sql
 merchant_lease.sql
 merchant_shopids.sql
-messages.sql
 minions.sql
 npc.sql
 npc_buffer.sql
