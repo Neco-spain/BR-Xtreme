@@ -48,7 +48,7 @@ public class LanguageControl extends Control
 			throw new NullPointerException();
 		}
 		ResourceBundle bundle = null;
-		if (format.equals("java.ini"))
+		if (format.equals("java.properties"))
 		{
 			format = "properties";
 			String bundleName = toBundleName(baseName, locale);
