@@ -40,8 +40,8 @@ import ct23.xtreme.gameserver.ai.L2CharacterAI;
 import ct23.xtreme.gameserver.datatables.DoorTable;
 import ct23.xtreme.gameserver.datatables.ItemTable;
 import ct23.xtreme.gameserver.datatables.MapRegionTable;
-import ct23.xtreme.gameserver.datatables.SkillTable;
 import ct23.xtreme.gameserver.datatables.MapRegionTable.TeleportWhereType;
+import ct23.xtreme.gameserver.datatables.SkillTable;
 import ct23.xtreme.gameserver.handler.ISkillHandler;
 import ct23.xtreme.gameserver.handler.SkillHandler;
 import ct23.xtreme.gameserver.instancemanager.DimensionalRiftManager;
@@ -58,17 +58,17 @@ import ct23.xtreme.gameserver.model.L2ItemInstance;
 import ct23.xtreme.gameserver.model.L2Object;
 import ct23.xtreme.gameserver.model.L2Party;
 import ct23.xtreme.gameserver.model.L2Skill;
+import ct23.xtreme.gameserver.model.L2Skill.SkillTargetType;
 import ct23.xtreme.gameserver.model.L2World;
 import ct23.xtreme.gameserver.model.L2WorldRegion;
 import ct23.xtreme.gameserver.model.Location;
-import ct23.xtreme.gameserver.model.L2Skill.SkillTargetType;
 import ct23.xtreme.gameserver.model.actor.instance.L2DoorInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2MinionInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2NpcWalkerInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
+import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance.SkillDat;
 import ct23.xtreme.gameserver.model.actor.instance.L2PetInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2RiftInvaderInstance;
-import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance.SkillDat;
 import ct23.xtreme.gameserver.model.actor.knownlist.CharKnownList;
 import ct23.xtreme.gameserver.model.actor.position.CharPosition;
 import ct23.xtreme.gameserver.model.actor.stat.CharStat;
@@ -83,6 +83,7 @@ import ct23.xtreme.gameserver.network.serverpackets.Attack;
 import ct23.xtreme.gameserver.network.serverpackets.ChangeMoveType;
 import ct23.xtreme.gameserver.network.serverpackets.ChangeWaitType;
 import ct23.xtreme.gameserver.network.serverpackets.FlyToLocation;
+import ct23.xtreme.gameserver.network.serverpackets.FlyToLocation.FlyType;
 import ct23.xtreme.gameserver.network.serverpackets.L2GameServerPacket;
 import ct23.xtreme.gameserver.network.serverpackets.MagicSkillCanceld;
 import ct23.xtreme.gameserver.network.serverpackets.MagicSkillLaunched;
@@ -91,11 +92,11 @@ import ct23.xtreme.gameserver.network.serverpackets.MoveToLocation;
 import ct23.xtreme.gameserver.network.serverpackets.Revive;
 import ct23.xtreme.gameserver.network.serverpackets.ServerObjectInfo;
 import ct23.xtreme.gameserver.network.serverpackets.SetupGauge;
+import ct23.xtreme.gameserver.network.serverpackets.SocialAction;
 import ct23.xtreme.gameserver.network.serverpackets.StatusUpdate;
 import ct23.xtreme.gameserver.network.serverpackets.StopMove;
 import ct23.xtreme.gameserver.network.serverpackets.SystemMessage;
 import ct23.xtreme.gameserver.network.serverpackets.TeleportToLocation;
-import ct23.xtreme.gameserver.network.serverpackets.FlyToLocation.FlyType;
 import ct23.xtreme.gameserver.pathfinding.AbstractNodeLoc;
 import ct23.xtreme.gameserver.pathfinding.PathFinding;
 import ct23.xtreme.gameserver.skills.AbnormalEffect;
@@ -6954,4 +6955,10 @@ public abstract class L2Character extends L2Object
 	{
 		return true;
 	}
+	
+	public void broadcastSocialAction(int id)
+	{
+		broadcastPacket(new SocialAction(getObjectId(), id));
+	}
+	
 }

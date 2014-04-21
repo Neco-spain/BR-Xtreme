@@ -355,16 +355,6 @@ public abstract class IdFactory
 			{
 				temp.add(rset.getInt(1));
 			}
-			
-			rset = statement.executeQuery("SELECT COUNT(*) FROM messages");
-			rset.next();
-			temp.ensureCapacity(temp.size() + rset.getInt(1));
-			rset = statement.executeQuery("SELECT messageId FROM messages");
-			while (rset.next())
-			{
-				temp.add(rset.getInt(1));
-			}
-
 			temp.sort();
 			
 			return temp.toNativeArray();
