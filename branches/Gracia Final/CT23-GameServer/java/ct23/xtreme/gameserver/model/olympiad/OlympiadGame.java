@@ -533,17 +533,17 @@ class OlympiadGame
 		final StatsSet playerOneStat = Olympiad.getNobleStats(_playerOneID);
 		final StatsSet playerTwoStat = Olympiad.getNobleStats(_playerTwoID);
 		
-		final int playerOnePlayed = playerOneStat.getInteger(COMP_DONE);
-		final int playerTwoPlayed = playerTwoStat.getInteger(COMP_DONE);
-		final int playerOneWon = playerOneStat.getInteger(COMP_WON);
-		final int playerTwoWon = playerTwoStat.getInteger(COMP_WON);
-		final int playerOneLost = playerOneStat.getInteger(COMP_LOST);
-		final int playerTwoLost = playerTwoStat.getInteger(COMP_LOST);
-		final int playerOneDrawn = playerOneStat.getInteger(COMP_DRAWN);
-		final int playerTwoDrawn = playerTwoStat.getInteger(COMP_DRAWN);
+		final int playerOnePlayed = playerOneStat.getInt(COMP_DONE);
+		final int playerTwoPlayed = playerTwoStat.getInt(COMP_DONE);
+		final int playerOneWon = playerOneStat.getInt(COMP_WON);
+		final int playerTwoWon = playerTwoStat.getInt(COMP_WON);
+		final int playerOneLost = playerOneStat.getInt(COMP_LOST);
+		final int playerTwoLost = playerTwoStat.getInt(COMP_LOST);
+		final int playerOneDrawn = playerOneStat.getInt(COMP_DRAWN);
+		final int playerTwoDrawn = playerTwoStat.getInt(COMP_DRAWN);
 		
-		final int playerOnePoints = playerOneStat.getInteger(POINTS);
-		final int playerTwoPoints = playerTwoStat.getInteger(POINTS);
+		final int playerOnePoints = playerOneStat.getInt(POINTS);
+		final int playerTwoPoints = playerTwoStat.getInt(POINTS);
 		final int pointDiff = Math.min(Math.min(playerOnePoints, playerTwoPoints) / _div, Config.ALT_OLY_MAX_POINTS);
 
 		// Check for if a player defaulted before battle started

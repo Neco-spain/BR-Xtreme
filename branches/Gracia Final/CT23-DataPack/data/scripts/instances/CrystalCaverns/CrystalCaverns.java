@@ -100,7 +100,7 @@ public class CrystalCaverns extends Quest
 
 		public CCWorld(Long time)
 		{
-			InstanceManager.getInstance().super();
+			InstanceManager.getInstance();
 			endTime = time;
 		}
 	}

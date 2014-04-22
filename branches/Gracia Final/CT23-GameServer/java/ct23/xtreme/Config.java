@@ -68,6 +68,7 @@ public final class Config
 	public static final String OLYMPIAD_CONFIG_FILE = "./config/olympiad.ini";
 	public static final String COMMUNITY_CONFIGURATION_FILE = "./config/CommunityServer.ini";
 	public static final String GRANDBOSS_CONFIG_FILE = "./config/Grandboss.ini";
+	public static final String GRACIASEEDS_CONFIG_FILE = "./config/GraciaSeeds.ini";
 	public static final String CHAT_FILTER_FILE = "./config/chatfilter.txt";
 
 
@@ -958,6 +959,10 @@ public final class Config
 	public static int Random_Of_Zaken_Spawn;
 	public static int Interval_Of_Frintezza_Spawn;
 	public static int Random_Of_Frintezza_Spawn;	
+	
+	// Gracia Seeds Settings
+	public static int SOD_TIAT_KILL_COUNT;
+	public static long SOD_STAGE_2_LENGTH;
 	
 	//chatfilter
 	public static ArrayList<String>	FILTER_LIST;
@@ -2493,6 +2498,24 @@ public final class Config
 					throw new Error("Failed to Load " + GRANDBOSS_CONFIG_FILE + " File.");
 				}
 
+				// Gracia Seeds
+				try
+				{
+					L2Properties graciaseedsSettings = new L2Properties();
+					is = new FileInputStream(new File(GRACIASEEDS_CONFIG_FILE));
+					graciaseedsSettings.load(is);
+
+					// Seed of Destruction
+					SOD_TIAT_KILL_COUNT = Integer.parseInt(graciaseedsSettings.getProperty("TiatKillCountForNextState", "10"));
+					SOD_STAGE_2_LENGTH = Long.parseLong(graciaseedsSettings.getProperty("Stage2Length", "720")) * 60000;
+
+				}
+				catch (Exception e)
+				{
+					e.printStackTrace();
+					throw new Error("Failed to Load " + GRACIASEEDS_CONFIG_FILE + " File.");
+				}
+				
 				try
 				{
 					FILTER_LIST = new ArrayList<String>();

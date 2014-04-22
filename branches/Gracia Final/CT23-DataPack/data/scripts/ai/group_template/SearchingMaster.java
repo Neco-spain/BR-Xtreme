@@ -14,6 +14,7 @@
  */
 package ai.group_template;
 
+import ai.engines.L2AttackableAIScript;
 import ct23.xtreme.gameserver.ai.CtrlIntention;
 import ct23.xtreme.gameserver.model.actor.L2Attackable;
 import ct23.xtreme.gameserver.model.actor.L2Character;

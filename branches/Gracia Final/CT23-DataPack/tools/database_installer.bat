@@ -699,6 +699,7 @@ gameservers.sql
 set dest=gs
 for %%i in (
 access_levels.sql
+account_gsdata.sql
 admin_command_access_rights.sql
 airships.sql
 armor.sql
@@ -737,6 +738,7 @@ character_subclasses.sql
 character_tpbookmark.sql
 character_ui_actions.sql
 character_ui_categories.sql
+character_variables.sql
 characters.sql
 clan_data.sql
 clan_notices.sql
@@ -766,6 +768,7 @@ four_sepulchers_spawnlist.sql
 games.sql
 global_tasks.sql
 grandboss_data.sql
+global_variables.sql
 grandboss_list.sql
 helper_buff_list.sql
 henna.sql

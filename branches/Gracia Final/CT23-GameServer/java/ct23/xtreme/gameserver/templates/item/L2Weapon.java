@@ -90,19 +90,19 @@ public final class L2Weapon extends L2Item
 	public L2Weapon(L2WeaponType type, StatsSet set)
 	{
 		super(type, set);
-		_soulShotCount = set.getInteger("soulshots");
-		_spiritShotCount = set.getInteger("spiritshots");
-		_pDam = set.getInteger("p_dam");
-		_rndDam = set.getInteger("rnd_dam");
-		_critical = set.getInteger("critical");
+		_soulShotCount = set.getInt("soulshots");
+		_spiritShotCount = set.getInt("spiritshots");
+		_pDam = set.getInt("p_dam");
+		_rndDam = set.getInt("rnd_dam");
+		_critical = set.getInt("critical");
 		_hitModifier = set.getDouble("hit_modify");
-		_avoidModifier = set.getInteger("avoid_modify");
-		_shieldDef = set.getInteger("shield_def");
+		_avoidModifier = set.getInt("avoid_modify");
+		_shieldDef = set.getInt("shield_def");
 		_shieldDefRate = set.getDouble("shield_def_rate");
-		_atkSpeed = set.getInteger("atk_speed");
-		_atkReuse = set.getInteger("atk_reuse", (type == L2WeaponType.BOW) ? 1500 : (type == L2WeaponType.CROSSBOW) ? 1200 : 0);
-		_mpConsume = set.getInteger("mp_consume");
-		_mDam = set.getInteger("m_dam");
+		_atkSpeed = set.getInt("atk_speed");
+		_atkReuse = set.getInt("atk_reuse", (type == L2WeaponType.BOW) ? 1500 : (type == L2WeaponType.CROSSBOW) ? 1200 : 0);
+		_mpConsume = set.getInt("mp_consume");
+		_mDam = set.getInt("m_dam");
 		
 		String[] skills = set.getString("skill").split(";");
 		_skillHolder = new SkillHolder[skills.length];
@@ -137,14 +137,14 @@ public final class L2Weapon extends L2Item
 			}
 		}
 		
-		int sId = set.getInteger("enchant4_skill_id");
-		int sLv = set.getInteger("enchant4_skill_lvl");
+		int sId = set.getInt("enchant4_skill_id");
+		int sLv = set.getInt("enchant4_skill_lvl");
 		if (sId > 0 && sLv > 0)
 			_enchant4Skill = SkillTable.getInstance().getInfo(sId, sLv);
 		
-		sId = set.getInteger("onCast_skill_id");
-		sLv = set.getInteger("onCast_skill_lvl");
-		int sCh = set.getInteger("onCast_skill_chance");
+		sId = set.getInt("onCast_skill_id");
+		sLv = set.getInt("onCast_skill_lvl");
+		int sCh = set.getInt("onCast_skill_chance");
 		if (sId > 0 && sLv > 0 && sCh > 0)
 		{
 			L2Skill skill = SkillTable.getInstance().getInfo(sId, sLv);
@@ -152,16 +152,16 @@ public final class L2Weapon extends L2Item
 			attachOnCast(skill, sCh);
 		}
 		
-		sId = set.getInteger("onCrit_skill_id");
-		sLv = set.getInteger("onCrit_skill_lvl");
-		sCh = set.getInteger("onCrit_skill_chance");
+		sId = set.getInt("onCrit_skill_id");
+		sLv = set.getInt("onCrit_skill_lvl");
+		sCh = set.getInt("onCrit_skill_chance");
 		if (sId > 0 && sLv > 0 && sCh > 0)
 		{
 			L2Skill skill = SkillTable.getInstance().getInfo(sId, sLv);
 			//skill.attach(new ConditionGameChance(sCh),true);
 			attachOnCrit(skill, sCh);
 		}
-		_changeWeaponId = set.getInteger("change_weaponId");
+		_changeWeaponId = set.getInt("change_weaponId");
 	}
 	
 	/**

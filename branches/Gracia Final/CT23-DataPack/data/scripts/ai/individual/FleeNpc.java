@@ -20,7 +20,7 @@ import ct23.xtreme.gameserver.model.actor.L2Npc;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import ct23.xtreme.gameserver.model.quest.Quest;
 import ct23.xtreme.util.Rnd;
-import ai.group_template.L2AttackableAIScript;
+import ai.engines.L2AttackableAIScript;
 
 public class FleeNpc extends L2AttackableAIScript 
 {

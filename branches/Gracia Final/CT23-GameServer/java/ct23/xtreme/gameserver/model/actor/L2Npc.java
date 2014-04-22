@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.logging.Level;
 
 import javolution.util.FastList;
+
 import ct23.xtreme.Config;
 import ct23.xtreme.gameserver.SevenSigns;
 import ct23.xtreme.gameserver.SevenSignsFestival;
@@ -55,6 +56,7 @@ import ct23.xtreme.gameserver.model.entity.Castle;
 import ct23.xtreme.gameserver.model.entity.Fort;
 import ct23.xtreme.gameserver.model.olympiad.Olympiad;
 import ct23.xtreme.gameserver.model.quest.Quest;
+import ct23.xtreme.gameserver.model.variables.NpcVariables;
 import ct23.xtreme.gameserver.model.zone.type.L2TownZone;
 import ct23.xtreme.gameserver.network.SystemMessageId;
 import ct23.xtreme.gameserver.network.serverpackets.AbstractNpcInfo;
@@ -1687,5 +1689,22 @@ public class L2Npc extends L2Character
 	public AIType getAiType()
 	{
 		return getTemplate().getAIDataStatic().getAiType();
+	}
+	
+	/**
+	 * @return {@code true} if {@link NpcVariables} instance is attached to current player's scripts, {@code false} otherwise.
+	 */
+	public boolean hasVariables()
+	{
+		return getScript(NpcVariables.class) != null;
+	}
+	
+	/**
+	 * @return {@link NpcVariables} instance containing parameters regarding NPC.
+	 */
+	public NpcVariables getVariables()
+	{
+		final NpcVariables vars = getScript(NpcVariables.class);
+		return vars != null ? vars : addScript(new NpcVariables());
 	}
 }

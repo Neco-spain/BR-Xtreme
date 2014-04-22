@@ -156,7 +156,7 @@ public class PailakaSongOfIceAndFire extends Quest
 		{
 			final int instanceId = InstanceManager.getInstance().createDynamicInstance("PailakaSongOfIceAndFire.xml");
 
-			world = InstanceManager.getInstance().new InstanceWorld();
+			world = new InstanceWorld();
 			world.instanceId = instanceId;
 			world.templateId = INSTANCE_ID;
 			InstanceManager.getInstance().addWorld(world);

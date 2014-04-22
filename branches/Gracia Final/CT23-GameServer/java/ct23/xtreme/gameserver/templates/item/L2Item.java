@@ -203,25 +203,25 @@ public abstract class L2Item
 	protected L2Item(Enum<?> type, StatsSet set)
 	{
 		_type = type;
-		_itemId = set.getInteger("item_id");
+		_itemId = set.getInt("item_id");
 		_name = set.getString("name");
-		_type1 = set.getInteger("type1"); // needed for item list (inventory)
-		_type2 = set.getInteger("type2"); // different lists for armor, weapon, etc
-		_weight = set.getInteger("weight");
-		_crystallizable = set.getBool("crystallizable");
-		_stackable = set.getBool("stackable", false);
-		_materialType = set.getInteger("material");
-		_crystalType = set.getInteger("crystal_type", CRYSTAL_NONE); // default to none-grade
-		_duration = set.getInteger("duration");
-		_time = set.getInteger("time");
-		_bodyPart = set.getInteger("bodypart");
-		_referencePrice = set.getInteger("price");
-		_crystalCount = set.getInteger("crystal_count", 0);
-		_sellable = set.getBool("sellable", true);
-		_dropable = set.getBool("dropable", true);
-		_destroyable = set.getBool("destroyable", true);
-		_tradeable = set.getBool("tradeable", true);
-		_depositable = set.getBool("depositable", true);
+		_type1 = set.getInt("type1"); // needed for item list (inventory)
+		_type2 = set.getInt("type2"); // different lists for armor, weapon, etc
+		_weight = set.getInt("weight");
+		_crystallizable = set.getBoolean("crystallizable");
+		_stackable = set.getBoolean("stackable", false);
+		_materialType = set.getInt("material");
+		_crystalType = set.getInt("crystal_type", CRYSTAL_NONE); // default to none-grade
+		_duration = set.getInt("duration");
+		_time = set.getInt("time");
+		_bodyPart = set.getInt("bodypart");
+		_referencePrice = set.getInt("price");
+		_crystalCount = set.getInt("crystal_count", 0);
+		_sellable = set.getBoolean("sellable", true);
+		_dropable = set.getBoolean("dropable", true);
+		_destroyable = set.getBoolean("destroyable", true);
+		_tradeable = set.getBoolean("tradeable", true);
+		_depositable = set.getBoolean("depositable", true);
 
 		_common = (_itemId >= 12006 && _itemId <= 12361) || (_itemId >= 11605 && _itemId <= 12308);
 		_heroItem = (_itemId >= 6611 && _itemId <= 6621) || (_itemId >= 9388 && _itemId <= 9390) || _itemId == 6842;

@@ -389,7 +389,7 @@ public class Kamaloka extends Quest
 
 		public KamaWorld()
 		{
-			InstanceManager.getInstance().super();
+			InstanceManager.getInstance();
 		}
 	}
 

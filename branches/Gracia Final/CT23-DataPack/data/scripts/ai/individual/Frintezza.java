@@ -45,7 +45,7 @@ import ct23.xtreme.gameserver.network.serverpackets.AbstractNpcInfo.NpcInfo;
 import ct23.xtreme.gameserver.skills.AbnormalEffect;
 import ct23.xtreme.gameserver.templates.StatsSet;
 import ct23.xtreme.util.Rnd;
-import ai.group_template.L2AttackableAIScript;
+import ai.engines.L2AttackableAIScript;
 
 /**
  * Frintezza AI

@@ -195,12 +195,14 @@ public class InstanceManager
 		}
 	}
 
-	public class InstanceWorld
+	public static class InstanceWorld
 	{
 		public int instanceId;
 		public int templateId = -1;
+		public Object tag;
 		public FastList<Integer> allowed = new FastList<Integer>();
-		public int status;
+		public volatile int status;
+		public boolean isLocked = false;
 	}
 	
 	public void addWorld(InstanceWorld world)

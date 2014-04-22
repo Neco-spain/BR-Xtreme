@@ -112,9 +112,9 @@ public final class ChanceCondition
 		try
 		{
 			TriggerType trigger = set.getEnum("chanceType", TriggerType.class, null);
-			int chance = set.getInteger("activationChance", -1);
+			int chance = set.getInt("activationChance", -1);
 			String elements = set.getString("activationElements", null);
-			boolean pvpOnly = set.getBool("pvpChanceOnly", false);
+			boolean pvpOnly = set.getBoolean("pvpChanceOnly", false);
 
 			if (trigger != null)
 				return new ChanceCondition(trigger, chance, parseElements(elements), pvpOnly);

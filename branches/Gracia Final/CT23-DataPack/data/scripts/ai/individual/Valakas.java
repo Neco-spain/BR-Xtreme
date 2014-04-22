@@ -41,7 +41,7 @@ import ct23.xtreme.gameserver.templates.StatsSet;
 import ct23.xtreme.gameserver.util.Util;
 import ct23.xtreme.util.Rnd;
 import javolution.util.FastList;
-import ai.group_template.L2AttackableAIScript;
+import ai.engines.L2AttackableAIScript;
 
 /**
  * Valakas AI
@@ -132,12 +132,12 @@ public class Valakas extends L2AttackableAIScript
 		}
 		else
 		{
-			int loc_x = info.getInteger("loc_x");
-			int loc_y = info.getInteger("loc_y");
-			int loc_z = info.getInteger("loc_z");
-			int heading = info.getInteger("heading");
-			final int hp = info.getInteger("currentHP");
-			final int mp = info.getInteger("currentMP");
+			int loc_x = info.getInt("loc_x");
+			int loc_y = info.getInt("loc_y");
+			int loc_z = info.getInt("loc_z");
+			int heading = info.getInt("heading");
+			final int hp = info.getInt("currentHP");
+			final int mp = info.getInt("currentMP");
 			L2GrandBossInstance valakas = (L2GrandBossInstance) addSpawn(VALAKAS, loc_x, loc_y, loc_z, heading, false, 0);
 			GrandBossManager.getInstance().addBoss(valakas);
 			final L2Npc _valakas = valakas;

@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package ai.group_template;
+package ai.engines;
 
 import static ct23.xtreme.gameserver.ai.CtrlIntention.AI_INTENTION_ATTACK;
 import ct23.xtreme.gameserver.ai.CtrlEvent;

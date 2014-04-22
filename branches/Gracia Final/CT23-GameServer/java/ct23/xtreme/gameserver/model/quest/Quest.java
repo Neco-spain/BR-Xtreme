@@ -17,6 +17,7 @@ package ct23.xtreme.gameserver.model.quest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -1896,5 +1897,29 @@ public class Quest extends ManagedScript
 	public boolean getOnEnterWorld()
 	{
 		return _onEnterWorld;
+	}
+	
+	/**
+	 * This is used simply for convenience of replacing
+	 * jython 'element in list' boolean method.
+	 */
+	public static <T> boolean contains(T[] array, T obj)
+	{
+		for (int i = 0; i < array.length; i++)
+		{
+			if (array[i] != null && array[i].equals(obj))
+				return true;
+		}
+		return false;
+	}
+
+	public static boolean contains(int[] array, int obj)
+	{
+		Arrays.sort(array);
+		int index = Arrays.binarySearch(array, obj);
+		if (index >= 0)
+			return true;
+		else
+			return false;
 	}
 }
