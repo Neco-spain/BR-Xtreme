@@ -23,8 +23,7 @@ import java.util.List;
 import java.util.logging.Level;
 
 import javolution.util.FastList;
-import ai.group_template.L2AttackableAIScript;
-
+import ai.engines.L2AttackableAIScript;
 import ct23.xtreme.Config;
 import ct23.xtreme.gameserver.GeoData;
 import ct23.xtreme.gameserver.ThreadPoolManager;
@@ -143,12 +142,12 @@ public class Baium extends L2AttackableAIScript
 		}
 		else if (status == AWAKE)
 		{
-			int loc_x = info.getInteger("loc_x");
-			int loc_y = info.getInteger("loc_y");
-			int loc_z = info.getInteger("loc_z");
-			int heading = info.getInteger("heading");
-			final int hp = info.getInteger("currentHP");
-			final int mp = info.getInteger("currentMP");
+			int loc_x = info.getInt("loc_x");
+			int loc_y = info.getInt("loc_y");
+			int loc_z = info.getInt("loc_z");
+			int heading = info.getInt("heading");
+			final int hp = info.getInt("currentHP");
+			final int mp = info.getInt("currentMP");
 			L2GrandBossInstance baium = (L2GrandBossInstance) addSpawn(LIVE_BAIUM,loc_x,loc_y,loc_z,heading,false,0);
 			GrandBossManager.getInstance().addBoss(baium);
 			final L2Npc _baium = baium;

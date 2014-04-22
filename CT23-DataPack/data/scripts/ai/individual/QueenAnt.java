@@ -30,7 +30,7 @@ import ct23.xtreme.gameserver.network.serverpackets.SocialAction;
 import ct23.xtreme.gameserver.templates.StatsSet;
 import ct23.xtreme.util.Rnd;
 import javolution.util.FastList;
-import ai.group_template.L2AttackableAIScript;
+import ai.engines.L2AttackableAIScript;
 
 /**
  * Queen Ant AI
@@ -84,12 +84,12 @@ public class QueenAnt extends L2AttackableAIScript
 		}
 		else
 		{
-			int loc_x = info.getInteger("loc_x");
-			int loc_y = info.getInteger("loc_y");
-			int loc_z = info.getInteger("loc_z");
-			int heading = info.getInteger("heading");
-			int hp = info.getInteger("currentHP");
-			int mp = info.getInteger("currentMP");
+			int loc_x = info.getInt("loc_x");
+			int loc_y = info.getInt("loc_y");
+			int loc_z = info.getInt("loc_z");
+			int heading = info.getInt("heading");
+			int hp = info.getInt("currentHP");
+			int mp = info.getInt("currentMP");
 			L2GrandBossInstance queen = (L2GrandBossInstance) addSpawn(QUEEN, loc_x, loc_y, loc_z, heading, false, 0);
 			queen.setCurrentHpMp(hp, mp);
 			spawnBoss(queen);

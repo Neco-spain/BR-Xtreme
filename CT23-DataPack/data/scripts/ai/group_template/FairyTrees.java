@@ -14,6 +14,7 @@
  */
 package ai.group_template;
  
+import ai.engines.L2AttackableAIScript;
 import ct23.xtreme.gameserver.ai.CtrlIntention;
 import ct23.xtreme.gameserver.datatables.SkillTable;
 import ct23.xtreme.gameserver.model.L2Skill;

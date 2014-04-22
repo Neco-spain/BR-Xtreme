@@ -75,7 +75,7 @@ public final class L2EtcItem  extends L2Item
 		}
 		
 		_handler = set.getString("handler");
-		_sharedReuseGroup = set.getInteger("shared_reuse_group", -1);
+		_sharedReuseGroup = set.getInt("shared_reuse_group", -1);
 	}
 
 	/**

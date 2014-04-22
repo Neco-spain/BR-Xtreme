@@ -143,7 +143,7 @@ public class HuntingGroundsTeleport extends Quest
 		return htmltext;
 	}
 
-	private static boolean contains(int[] array, int obj)
+	public static boolean contains(int[] array, int obj)
 	{
 		for (int i = 0; i < array.length; i++)
 		{

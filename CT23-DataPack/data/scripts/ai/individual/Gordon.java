@@ -23,7 +23,7 @@ import ct23.xtreme.gameserver.model.L2Spawn;
 import ct23.xtreme.gameserver.model.actor.L2Attackable;
 import ct23.xtreme.gameserver.model.actor.L2Npc;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
-import ai.group_template.L2AttackableAIScript;
+import ai.engines.L2AttackableAIScript;
 
 /**
  * Gordon AI

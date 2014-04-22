@@ -35,6 +35,7 @@ import java.util.logging.Level;
 import javolution.util.FastList;
 import javolution.util.FastMap;
 import javolution.util.FastSet;
+
 import ct23.xtreme.Config;
 import ct23.xtreme.L2DatabaseFactory;
 import ct23.xtreme.gameserver.Announcements;
@@ -112,6 +113,7 @@ import ct23.xtreme.gameserver.model.L2RecipeList;
 import ct23.xtreme.gameserver.model.L2Request;
 import ct23.xtreme.gameserver.model.L2ShortCut;
 import ct23.xtreme.gameserver.model.L2Skill;
+import ct23.xtreme.gameserver.model.L2Skill.SkillTargetType;
 import ct23.xtreme.gameserver.model.L2SkillLearn;
 import ct23.xtreme.gameserver.model.L2Transformation;
 import ct23.xtreme.gameserver.model.L2UIKeysSettings;
@@ -124,7 +126,6 @@ import ct23.xtreme.gameserver.model.PartyMatchWaitingList;
 import ct23.xtreme.gameserver.model.ShortCuts;
 import ct23.xtreme.gameserver.model.TerritoryWard;
 import ct23.xtreme.gameserver.model.TradeList;
-import ct23.xtreme.gameserver.model.L2Skill.SkillTargetType;
 import ct23.xtreme.gameserver.model.actor.L2Attackable;
 import ct23.xtreme.gameserver.model.actor.L2Character;
 import ct23.xtreme.gameserver.model.actor.L2Decoy;
@@ -161,6 +162,8 @@ import ct23.xtreme.gameserver.model.olympiad.Olympiad;
 import ct23.xtreme.gameserver.model.quest.Quest;
 import ct23.xtreme.gameserver.model.quest.QuestState;
 import ct23.xtreme.gameserver.model.quest.State;
+import ct23.xtreme.gameserver.model.variables.AccountVariables;
+import ct23.xtreme.gameserver.model.variables.PlayerVariables;
 import ct23.xtreme.gameserver.model.zone.type.L2BossZone;
 import ct23.xtreme.gameserver.network.L2GameClient;
 import ct23.xtreme.gameserver.network.SystemMessageId;
@@ -7647,6 +7650,18 @@ public final class L2PcInstance extends L2Playable
 		if (Config.STORE_UI_SETTINGS)
 			storeUISettings();
 		SevenSigns.getInstance().saveSevenSignsData(getObjectId());
+		
+		final PlayerVariables vars = getScript(PlayerVariables.class);
+		if (vars != null)
+		{
+			vars.storeMe();
+		}
+		
+		final AccountVariables aVars = getScript(AccountVariables.class);
+		if (aVars != null)
+		{
+			aVars.storeMe();
+		}
 	}
 	
 	public void store()
@@ -14837,5 +14852,39 @@ public final class L2PcInstance extends L2Playable
 		{
 			_log.log(Level.WARNING, "Exception on removeFromBossZone(): " + e.getMessage(), e);
 		}	
+	}
+	
+	/**
+	 * @return {@code true} if {@link PlayerVariables} instance is attached to current player's scripts, {@code false} otherwise.
+	 */
+	public boolean hasVariables()
+	{
+		return getScript(PlayerVariables.class) != null;
+	}
+	
+	/**
+	 * @return {@link PlayerVariables} instance containing parameters regarding player.
+	 */
+	public PlayerVariables getVariables()
+	{
+		final PlayerVariables vars = getScript(PlayerVariables.class);
+		return vars != null ? vars : addScript(new PlayerVariables(getObjectId()));
+	}
+	
+	/**
+	 * @return {@code true} if {@link AccountVariables} instance is attached to current player's scripts, {@code false} otherwise.
+	 */
+	public boolean hasAccountVariables()
+	{
+		return getScript(AccountVariables.class) != null;
+	}
+	
+	/**
+	 * @return {@link AccountVariables} instance containing parameters regarding player.
+	 */
+	public AccountVariables getAccountVariables()
+	{
+		final AccountVariables vars = getScript(AccountVariables.class);
+		return vars != null ? vars : addScript(new AccountVariables(getAccountName()));
 	}
 }

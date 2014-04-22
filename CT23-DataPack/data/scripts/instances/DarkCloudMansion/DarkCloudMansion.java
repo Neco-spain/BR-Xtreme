@@ -66,7 +66,7 @@ public class DarkCloudMansion extends Quest
 
 		public DMCWorld()
 		{
-			InstanceManager.getInstance().super();
+			InstanceManager.getInstance();
 		}
 	}
 

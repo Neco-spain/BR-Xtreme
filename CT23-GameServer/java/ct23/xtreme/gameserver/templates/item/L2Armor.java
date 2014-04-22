@@ -57,11 +57,11 @@ public final class L2Armor extends L2Item
 	public L2Armor(L2ArmorType type, StatsSet set)
 	{
 		super(type, set);
-		_avoidModifier = set.getInteger("avoid_modify");
-		_pDef          = set.getInteger("p_def");
-		_mDef          = set.getInteger("m_def");
-		_mpBonus       = set.getInteger("mp_bonus", 0);
-		_hpBonus       = set.getInteger("hp_bonus", 0);
+		_avoidModifier = set.getInt("avoid_modify");
+		_pDef          = set.getInt("p_def");
+		_mDef          = set.getInt("m_def");
+		_mpBonus       = set.getInt("mp_bonus", 0);
+		_hpBonus       = set.getInt("hp_bonus", 0);
 
 		String[] skill = set.getString("enchant4_skill").split("-");
 		if (skill != null && skill.length == 2)

@@ -942,7 +942,7 @@ public class AdminEditNpc implements IAdminCommandHandler
 		
 		NpcTable.getInstance().saveNpc(newNpcData);
 		
-		int npcId = newNpcData.getInteger("npcId");
+		int npcId = newNpcData.getInt("npcId");
 		
 		NpcTable.getInstance().reloadNpc(npcId);
 		showNpcProperty(activeChar, NpcTable.getInstance().getTemplate(npcId));

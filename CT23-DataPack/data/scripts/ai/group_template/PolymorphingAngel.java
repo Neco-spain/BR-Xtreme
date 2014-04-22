@@ -16,6 +16,7 @@ package ai.group_template;
 
 import java.util.Map;
 
+import ai.engines.L2AttackableAIScript;
 import ct23.xtreme.gameserver.model.actor.L2Attackable;
 import ct23.xtreme.gameserver.model.actor.L2Npc;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;

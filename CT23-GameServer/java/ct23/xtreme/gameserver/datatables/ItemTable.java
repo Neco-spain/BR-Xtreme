@@ -441,13 +441,13 @@ public class ItemTable
 		if (item.type == L2WeaponType.PET)
 		{
 			item.set.set("type1", L2Item.TYPE1_WEAPON_RING_EARRING_NECKLACE);
-			if (item.set.getInteger("bodypart") == L2Item.SLOT_WOLF)
+			if (item.set.getInt("bodypart") == L2Item.SLOT_WOLF)
 				item.set.set("type2", L2Item.TYPE2_PET_WOLF);
-			else if (item.set.getInteger("bodypart") == L2Item.SLOT_GREATWOLF)
+			else if (item.set.getInt("bodypart") == L2Item.SLOT_GREATWOLF)
 				item.set.set("type2", L2Item.TYPE2_PET_EVOLVEDWOLF);
-			else if (item.set.getInteger("bodypart") == L2Item.SLOT_HATCHLING)
+			else if (item.set.getInt("bodypart") == L2Item.SLOT_HATCHLING)
 				item.set.set("type2", L2Item.TYPE2_PET_HATCHLING);
-			else if (item.set.getInteger("bodypart") == L2Item.SLOT_BABYPET)
+			else if (item.set.getInt("bodypart") == L2Item.SLOT_BABYPET)
 				item.set.set("type2", L2Item.TYPE2_PET_BABY);
 			else
 				item.set.set("type2", L2Item.TYPE2_PET_STRIDER);
@@ -522,7 +522,7 @@ public class ItemTable
 			else
 			{
 				item.set.set("type1", L2Item.TYPE1_SHIELD_ARMOR);
-				switch (item.set.getInteger("bodypart"))
+				switch (item.set.getInt("bodypart"))
 				{
 					case L2Item.SLOT_WOLF:
 						item.set.set("type2", L2Item.TYPE2_PET_WOLF);

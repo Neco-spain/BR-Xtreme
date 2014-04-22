@@ -14,6 +14,10 @@
  */
 package ct23.xtreme.gameserver.model;
 
+import java.util.Map;
+
+import javolution.util.FastMap;
+
 import ct23.xtreme.gameserver.handler.ActionHandler;
 import ct23.xtreme.gameserver.handler.IActionHandler;
 import ct23.xtreme.gameserver.idfactory.IdFactory;
@@ -52,6 +56,10 @@ public abstract class L2Object
 	private ObjectPosition _position;
 	private int _instanceId = 0;
 	
+	//Method for Get/Remove/Add script
+	private volatile Map<String, Object> _scripts;
+	
+	//Instance Types
 	private InstanceType _instanceType = null;
 	
 	// =========================================================
@@ -661,5 +669,57 @@ public abstract class L2Object
 	public void sendPacket(L2GameServerPacket mov)
 	{
 		// default implementation
+	}
+	
+	/**
+	 * @param <T>
+	 * @param script
+	 * @return
+	 */
+	public final <T> T addScript(T script)
+	{
+		if (_scripts == null)
+		{
+			// Double-checked locking
+			synchronized (this)
+			{
+				if (_scripts == null)
+				{
+					_scripts = new FastMap<String, Object>().shared();
+				}
+			}
+		}
+		_scripts.put(script.getClass().getName(), script);
+		return script;
+	}
+	
+	/**
+	 * @param <T>
+	 * @param script
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public final <T> T removeScript(Class<T> script)
+	{
+		if (_scripts == null)
+		{
+			return null;
+		}
+		return (T) _scripts.remove(script.getName());
+	}
+	
+	/**
+	 * @param <T>
+	 * @param script
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public final <T> T getScript(Class<T> script)
+	{
+		if (_scripts == null)
+		{
+			return null;
+		}
+		return (T) _scripts.get(script.getName());
 	}
 }

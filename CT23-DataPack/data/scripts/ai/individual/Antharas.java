@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.concurrent.ScheduledFuture;
 
 import javolution.util.FastList;
-import ai.group_template.L2AttackableAIScript;
+import ai.engines.L2AttackableAIScript;
 import ct23.xtreme.Config;
 import ct23.xtreme.gameserver.GeoData;
 import ct23.xtreme.gameserver.ThreadPoolManager;
@@ -230,12 +230,12 @@ public class Antharas extends L2AttackableAIScript
 			}
 			else if (status == FIGHTING)
 			{
-				int loc_x = info.getInteger("loc_x");
-				int loc_y = info.getInteger("loc_y");
-				int loc_z = info.getInteger("loc_z");
-				int heading = info.getInteger("heading");
-				int hp = info.getInteger("currentHP");
-				int mp = info.getInteger("currentMP");
+				int loc_x = info.getInt("loc_x");
+				int loc_y = info.getInt("loc_y");
+				int loc_z = info.getInt("loc_z");
+				int heading = info.getInt("heading");
+				int hp = info.getInt("currentHP");
+				int mp = info.getInt("currentMP");
 				_antharas = (L2GrandBossInstance) addSpawn(ANTHARASOLDID,loc_x,loc_y,loc_z,heading,false,0);
 				GrandBossManager.getInstance().addBoss(_antharas);
 				_antharas.setCurrentHpMp(hp,mp);
@@ -276,12 +276,12 @@ public class Antharas extends L2AttackableAIScript
 			if (antharasId != 0 && status == FIGHTING)
 			{
 				StatsSet info = GrandBossManager.getInstance().getStatsSet(antharasId);
-				int loc_x = info.getInteger("loc_x");
-				int loc_y = info.getInteger("loc_y");
-				int loc_z = info.getInteger("loc_z");
-				int heading = info.getInteger("heading");
-				int hp = info.getInteger("currentHP");
-				int mp = info.getInteger("currentMP");
+				int loc_x = info.getInt("loc_x");
+				int loc_y = info.getInt("loc_y");
+				int loc_z = info.getInt("loc_z");
+				int heading = info.getInt("heading");
+				int hp = info.getInt("currentHP");
+				int mp = info.getInt("currentMP");
 				_antharas = (L2GrandBossInstance) addSpawn(antharasId,loc_x,loc_y,loc_z,heading,false,0);
 				GrandBossManager.getInstance().addBoss(_antharas);
 				_antharas.setCurrentHpMp(hp,mp);

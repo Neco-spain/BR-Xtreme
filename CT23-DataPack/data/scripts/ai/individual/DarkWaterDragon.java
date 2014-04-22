@@ -23,7 +23,7 @@ import ct23.xtreme.gameserver.model.actor.L2Npc;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import javolution.util.FastMap;
 import javolution.util.FastSet;
-import ai.group_template.L2AttackableAIScript;
+import ai.engines.L2AttackableAIScript;
 
 public class DarkWaterDragon extends L2AttackableAIScript
 {

@@ -36,7 +36,7 @@ import ct23.xtreme.gameserver.network.serverpackets.NpcHtmlMessage;
 import ct23.xtreme.gameserver.templates.chars.L2NpcTemplate;
 import ct23.xtreme.util.Rnd;
 import javolution.util.FastList;
-import ai.group_template.L2AttackableAIScript;
+import ai.engines.L2AttackableAIScript;
 
 /**
  * Ice Fairy Sirra AI

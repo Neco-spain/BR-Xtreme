@@ -24,7 +24,7 @@ import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import ct23.xtreme.gameserver.network.serverpackets.NpcSay;
 import ct23.xtreme.gameserver.network.serverpackets.SocialAction;
 import ct23.xtreme.util.Rnd;
-import ai.group_template.L2AttackableAIScript;
+import ai.engines.L2AttackableAIScript;
 
 /**
  * Dilios AI

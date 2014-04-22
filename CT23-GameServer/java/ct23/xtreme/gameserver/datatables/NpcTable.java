@@ -696,7 +696,7 @@ public class NpcTable
 				sbQuery.append(sbValues.toString());
 				sbQuery.append(" WHERE id = ?");
 				PreparedStatement statement = con.prepareStatement(sbQuery.toString());
-				statement.setInt(1, npc.getInteger("npcId"));
+				statement.setInt(1, npc.getInt("npcId"));
 				updated = statement.executeUpdate();
 				statement.close();
 			}
@@ -707,7 +707,7 @@ public class NpcTable
 				sbQuery.append(sbValues.toString());
 				sbQuery.append(" WHERE id = ?");
 				PreparedStatement statement = con.prepareStatement(sbQuery.toString());
-				statement.setInt(1, npc.getInteger("npcId"));
+				statement.setInt(1, npc.getInt("npcId"));
 				statement.executeUpdate();
 				statement.close();
 			}

@@ -94,6 +94,7 @@ import ct23.xtreme.gameserver.instancemanager.DimensionalRiftManager;
 import ct23.xtreme.gameserver.instancemanager.FortManager;
 import ct23.xtreme.gameserver.instancemanager.FortSiegeManager;
 import ct23.xtreme.gameserver.instancemanager.FourSepulchersManager;
+import ct23.xtreme.gameserver.instancemanager.GraciaSeedsManager;
 import ct23.xtreme.gameserver.instancemanager.GrandBossManager;
 import ct23.xtreme.gameserver.instancemanager.HellboundManager;
 import ct23.xtreme.gameserver.instancemanager.InstanceManager;
@@ -299,6 +300,7 @@ public class GameServer
 		TransformationManager.getInstance();
 		BoatManager.getInstance();
 		AirShipManager.getInstance();
+		GraciaSeedsManager.getInstance();
 		
 		try
 		{
