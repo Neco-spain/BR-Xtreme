@@ -29,9 +29,13 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javolution.util.FastList;
+import javolution.util.FastMap;
+
 import ct23.xtreme.L2DatabaseFactory;
 import ct23.xtreme.gameserver.ThreadPoolManager;
 import ct23.xtreme.gameserver.taskmanager.tasks.TaskCleanUp;
+import ct23.xtreme.gameserver.taskmanager.tasks.TaskGlobalVariablesSave;
 import ct23.xtreme.gameserver.taskmanager.tasks.TaskJython;
 import ct23.xtreme.gameserver.taskmanager.tasks.TaskOlympiadSave;
 import ct23.xtreme.gameserver.taskmanager.tasks.TaskRaidPointsReset;
@@ -40,8 +44,6 @@ import ct23.xtreme.gameserver.taskmanager.tasks.TaskRestart;
 import ct23.xtreme.gameserver.taskmanager.tasks.TaskScript;
 import ct23.xtreme.gameserver.taskmanager.tasks.TaskSevenSignsUpdate;
 import ct23.xtreme.gameserver.taskmanager.tasks.TaskShutdown;
-import javolution.util.FastList;
-import javolution.util.FastMap;
 
 /**
  * @author Layane
@@ -167,6 +169,7 @@ public final class TaskManager
 	{
 		registerTask(new TaskCleanUp());
 		registerTask(new TaskScript());
+		registerTask(new TaskGlobalVariablesSave());
 		registerTask(new TaskJython());
 		registerTask(new TaskOlympiadSave());
 		registerTask(new TaskRaidPointsReset());

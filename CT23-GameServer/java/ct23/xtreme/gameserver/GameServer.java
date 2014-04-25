@@ -94,6 +94,7 @@ import ct23.xtreme.gameserver.instancemanager.DimensionalRiftManager;
 import ct23.xtreme.gameserver.instancemanager.FortManager;
 import ct23.xtreme.gameserver.instancemanager.FortSiegeManager;
 import ct23.xtreme.gameserver.instancemanager.FourSepulchersManager;
+import ct23.xtreme.gameserver.instancemanager.GlobalVariablesManager;
 import ct23.xtreme.gameserver.instancemanager.GraciaSeedsManager;
 import ct23.xtreme.gameserver.instancemanager.GrandBossManager;
 import ct23.xtreme.gameserver.instancemanager.HellboundManager;
@@ -205,6 +206,7 @@ public class GameServer
 		L2World.getInstance();
 		MapRegionTable.getInstance();
 		Announcements.getInstance();
+		GlobalVariablesManager.getInstance();
 		
 		printSection("Skills");
 		EnchantGroupsTable.getInstance();
@@ -295,12 +297,14 @@ public class GameServer
 		AugmentationData.getInstance();
 		CursedWeaponsManager.getInstance();
 		
+		printSection("Gracia Seeds");
+		GraciaSeedsManager.getInstance();
+		
 		printSection("Scripts");
 		QuestManager.getInstance();
 		TransformationManager.getInstance();
 		BoatManager.getInstance();
 		AirShipManager.getInstance();
-		GraciaSeedsManager.getInstance();
 		
 		try
 		{
