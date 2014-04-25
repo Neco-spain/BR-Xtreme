@@ -24,6 +24,7 @@ import ct23.xtreme.gameserver.datatables.ClanTable;
 import ct23.xtreme.gameserver.datatables.OfflineTradersTable;
 import ct23.xtreme.gameserver.instancemanager.CastleManorManager;
 import ct23.xtreme.gameserver.instancemanager.CursedWeaponsManager;
+import ct23.xtreme.gameserver.instancemanager.GlobalVariablesManager;
 import ct23.xtreme.gameserver.instancemanager.GrandBossManager;
 import ct23.xtreme.gameserver.instancemanager.ItemsOnGroundManager;
 import ct23.xtreme.gameserver.instancemanager.QuestManager;
@@ -543,6 +544,9 @@ public class Shutdown extends Thread
 		// Save all global (non-player specific) Quest data that needs to persist after reboot
 		QuestManager.getInstance().save();
 		
+		// Save all global variables data
+		GlobalVariablesManager.getInstance().storeMe();
+				
 		//Save items on ground before closing
 		if (Config.SAVE_DROPPED_ITEM)
 		{

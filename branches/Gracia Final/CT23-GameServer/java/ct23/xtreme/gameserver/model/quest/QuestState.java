@@ -22,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javolution.util.FastMap;
+
 import ct23.xtreme.Config;
 import ct23.xtreme.L2DatabaseFactory;
 import ct23.xtreme.gameserver.GameTimeController;
@@ -657,6 +658,16 @@ public final class QuestState
 		StatusUpdate su = new StatusUpdate(getPlayer());
 		su.addAttribute(StatusUpdate.CUR_LOAD, getPlayer().getCurrentLoad());
 		getPlayer().sendPacket(su);
+	}
+	
+	/**
+	 * Gives single item to the player. No rates are applied to the amount.
+	 * 
+	 * @param itemId id of the item
+	 */
+	public void giveItems(final int itemId)
+	{
+		giveItems(itemId, 1, 0);
 	}
 	
 	/**

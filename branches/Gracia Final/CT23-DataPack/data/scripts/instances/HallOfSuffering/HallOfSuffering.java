@@ -12,13 +12,15 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package instances.SeedOfInfinity;
+package instances.HallOfSuffering;
 
 import java.util.Calendar;
 import java.util.Map;
 
-import quests.Q00694_BreakThroughTheHallOfSuffering.Q00694_BreakThroughTheHallOfSuffering;
 import javolution.util.FastMap;
+
+import quests.Q00694_BreakThroughTheHallOfSuffering.Q00694_BreakThroughTheHallOfSuffering;
+
 import ct23.xtreme.gameserver.ai.CtrlEvent;
 import ct23.xtreme.gameserver.cache.HtmCache;
 import ct23.xtreme.gameserver.datatables.SkillTable;
@@ -60,8 +62,9 @@ public class HallOfSuffering extends Quest
 		public           boolean isBossesAttacked                        = false;
 		public           long startTime                                  = 0;
 		public           String ptLeaderName                             = "";
-		public 			 boolean rewardMark		  						 = false;
 		public           int rewardItemId                                = -1;
+		public 			 boolean rewardMark		  						 = false;
+		public           String rewardHtm                                = "";
 		public           boolean isRewarded                              = false;
 		
 		public HSWorld()
@@ -127,9 +130,11 @@ public class HallOfSuffering extends Quest
 	private static final int BOSS_INVUL_TIME = 30000; // in milisex
 	private static final int BOSS_MINION_SPAWN_TIME = 60000; // in milisex
 	private static final int BOSS_RESSURECT_TIME = 20000; // in milisex
+	
 	// Instance reenter time
-	// default: 24h
-	private static final int INSTANCEPENALTY = 24;
+	// Reset 6:30 AM
+	private static final int RESET_HOUR = 6;
+	private static final int RESET_MIN = 30;
 	
 	private boolean checkConditions(L2PcInstance player)
 	{
@@ -162,8 +167,8 @@ public class HallOfSuffering extends Quest
 			}
 			for (L2PcInstance partyMember : party.getPartyMembers())
 			{
-				QuestState st = partyMember.getQuestState(Q00694_BreakThroughTheHallOfSuffering.class.getSimpleName());
-				if (st == null || st.getState() != State.STARTED )
+				QuestState quest = partyMember.getQuestState(Q00694_BreakThroughTheHallOfSuffering.class.getSimpleName());
+				if (quest == null || quest.getState() != State.STARTED )
 				{
 					player.sendMessage(partyMember.getName()+" need have quest: Break Through The Hall Of Suffering");
 					partyMember.sendMessage("You need have quest: Break Through The Hall Of Suffering");
@@ -349,42 +354,52 @@ public class HallOfSuffering extends Quest
 		Long finishDiff = System.currentTimeMillis() - world.startTime;
 		if (finishDiff < 1260000)
 		{
+			world.rewardHtm = "32530-00.htm";
 			world.rewardItemId = 13777;
 		}
 		else if (finishDiff < 1380000)
 		{
+			world.rewardHtm = "32530-01.htm";
 			world.rewardItemId = 13778;
 		}
 		else if (finishDiff < 1500000)
 		{
+			world.rewardHtm = "32530-02.htm";
 			world.rewardItemId = 13779;
 		}
 		else if (finishDiff < 1620000)
 		{
+			world.rewardHtm = "32530-03.htm";
 			world.rewardItemId = 13780;
 		}
 		else if (finishDiff < 1740000)
 		{
+			world.rewardHtm = "32530-04.htm";
 			world.rewardItemId = 13781;
 		}
 		else if (finishDiff < 1860000)
 		{
+			world.rewardHtm = "32530-05.htm";
 			world.rewardItemId = 13782;
 		}
 		else if (finishDiff < 1980000)
 		{
+			world.rewardHtm = "32530-06.htm";
 			world.rewardItemId = 13783;
 		}
 		else if (finishDiff < 2100000)
 		{
+			world.rewardHtm = "32530-07.htm";
 			world.rewardItemId = 13784;
 		}
 		else if (finishDiff < 2220000)
 		{
+			world.rewardHtm = "32530-08.htm";
 			world.rewardItemId = 13785;
 		}
 		else
 		{
+			world.rewardHtm = "32530-09.htm";
 			world.rewardItemId = 13786;
 		}
 	}
@@ -478,8 +493,13 @@ public class HallOfSuffering extends Quest
 			if (!((HSWorld)tmpworld).isBossesAttacked)
 			{
 				((HSWorld) tmpworld).isBossesAttacked = true;
+				
 				Calendar reenter = Calendar.getInstance();
-				reenter.add(Calendar.HOUR, INSTANCEPENALTY);
+				reenter.set(Calendar.MINUTE, RESET_MIN);
+				// if time is >= RESET_HOUR - roll to the next day
+				if (reenter.get(Calendar.HOUR_OF_DAY) >= RESET_HOUR)
+					reenter.add(Calendar.DATE, 1);
+				reenter.set(Calendar.HOUR_OF_DAY, RESET_HOUR);
 				
 				SystemMessage sm = new SystemMessage(SystemMessageId.INSTANT_ZONE_RESTRICTED);
 				sm.addString(InstanceManager.getInstance().getInstanceIdName(tmpworld.templateId));
@@ -488,7 +508,7 @@ public class HallOfSuffering extends Quest
 				for (int objectId : tmpworld.allowed)
 				{
 					L2PcInstance player = L2World.getInstance().getPlayer(objectId);
-					if (player != null && player.isOnline() != 1)
+					if (player != null && player.isOnline() == 1)
 					{
 						InstanceManager.getInstance().setInstanceTime(objectId, tmpworld.templateId, reenter.getTimeInMillis());
 						player.sendPacket(sm);
@@ -554,9 +574,34 @@ public class HallOfSuffering extends Quest
 					this.cancelQuestTimers("spawnBossGuards");
 					this.cancelQuestTimers("isTwinSeparated");
 					addSpawn(TEPIOS, TEPIOS_SPAWN[0], TEPIOS_SPAWN[1], TEPIOS_SPAWN[2], 0, false,0,false,world.instanceId);
-					GraciaSeedsManager.getInstance().addSoIKill(1); // Send data fo Gracia Seeds Manager
+					GraciaSeedsManager.getInstance().addSoIKill(1); // Send data for Gracia Seeds Manager
 				}
 			}
+		}
+		return "";
+	}
+	
+	@Override
+	public String onFirstTalk(L2Npc npc, L2PcInstance player)
+	{
+		if (npc.getNpcId() == TEPIOS)
+		{
+			InstanceWorld world = InstanceManager.getInstance().getPlayerWorld(player);
+			if (((HSWorld) world).rewardItemId == -1)
+			{
+				_log.warning("Hall of Suffering: " + player.getName() + "(" + player.getObjectId() + ") is try to cheat!");
+				return getPtLeaderText(player, (HSWorld) world);
+			}
+			else if (((HSWorld) world).isRewarded)
+			{
+				return "32530-11.htm";
+			}
+			else if ((player.getParty() != null) && (player.getParty().getPartyLeaderOID() == player.getObjectId()))
+			{
+				return ((HSWorld) world).rewardHtm;
+			}
+			
+			return getPtLeaderText(player, (HSWorld) world);
 		}
 		return "";
 	}
@@ -592,10 +637,10 @@ public class HallOfSuffering extends Quest
 					if (quest != null && quest.getState() == State.STARTED)
 					{
 						st = pl.getQuestState(qn);
-						st.giveItems(736, 1);
-						st.giveItems(((HSWorld)world).rewardItemId, 1);
+						st.giveItems(736);
+						st.giveItems(((HSWorld)world).rewardItemId);
 						if (((HSWorld)world).rewardMark && st.getQuestItemsCount(MARK_STAGE_1) < 1)
-						st.giveItems(MARK_STAGE_1, 1);
+						st.giveItems(MARK_STAGE_1);
 						quest.unset("cond");
 						quest.playSound(QuestSound.ITEMSOUND_QUEST_FINISH);
 						quest.exitQuest(true);
