@@ -35,7 +35,6 @@ import java.util.logging.Level;
 import javolution.util.FastList;
 import javolution.util.FastMap;
 import javolution.util.FastSet;
-
 import ct23.xtreme.Config;
 import ct23.xtreme.L2DatabaseFactory;
 import ct23.xtreme.gameserver.Announcements;
@@ -63,7 +62,6 @@ import ct23.xtreme.gameserver.datatables.AdminCommandAccessRights;
 import ct23.xtreme.gameserver.datatables.CharNameTable;
 import ct23.xtreme.gameserver.datatables.CharTemplateTable;
 import ct23.xtreme.gameserver.datatables.ClanTable;
-import ct23.xtreme.gameserver.datatables.EnchantGroupsTable;
 import ct23.xtreme.gameserver.datatables.FishTable;
 import ct23.xtreme.gameserver.datatables.HennaTable;
 import ct23.xtreme.gameserver.datatables.HeroSkillTable;
@@ -98,7 +96,6 @@ import ct23.xtreme.gameserver.model.L2CharPosition;
 import ct23.xtreme.gameserver.model.L2Clan;
 import ct23.xtreme.gameserver.model.L2ClanMember;
 import ct23.xtreme.gameserver.model.L2Effect;
-import ct23.xtreme.gameserver.model.L2EnchantSkillLearn;
 import ct23.xtreme.gameserver.model.L2Fishing;
 import ct23.xtreme.gameserver.model.L2HennaInstance;
 import ct23.xtreme.gameserver.model.L2ItemInstance;
@@ -10438,44 +10435,25 @@ public final class L2PcInstance extends L2Playable
 		sendSkillList(this);
 	}
 
-	public void sendSkillList(L2PcInstance player)
-	{
-		boolean isDisabled = false;
-		SkillList sl = new SkillList();
-		if (player != null)
-		{
-			for (L2Skill s : player.getAllSkills())
-			{
-				if (s == null)
-					continue;
-				if (s.getId() > 9000 && s.getId() < 9007)
-					continue; // Fake skills to change base stats
-				if (_transformation != null && (!containsAllowedTransformSkill(s.getId()) && !s.allowOnTransform()))
-					continue;
-				if (player.getClan() != null)
-					isDisabled = s.isClanSkill() && player.getClan().getReputationScore() < 0;
-
-				boolean isEnchantable = SkillTable.getInstance().isEnchantable(s.getId());
-				if (isEnchantable)
-				{
-					L2EnchantSkillLearn esl = EnchantGroupsTable.getInstance().getSkillEnchantmentBySkillId(s.getId());
-					if (esl != null)
-					{
-						//if player dont have min level to enchant 
-						if (s.getLevel() < esl.getBaseLevel())
-							isEnchantable = false;
-					}
-					// if no enchant data
-					else
-						isEnchantable = false;
-				}
-
-				sl.addSkill(s.getId(), s.getLevel(), s.isPassive(), isDisabled, isEnchantable);
-			}
-		}
-
-		sendPacket(sl);
-	}
+	public void sendSkillList(L2PcInstance player)  
+    {  
+    	SkillList sl = new SkillList();  
+    	if(player != null)  
+    	{  
+    		for (L2Skill s : player.getAllSkills())  
+    		{  
+    			if (s == null)   
+    				continue;  
+    			if (s.getId() > 9000 && s.getId() < 9007)  
+    				continue; // Fake skills to change base stats  
+    			if (_transformation != null && (!this.containsAllowedTransformSkill(s.getId()) && !s.allowOnTransform()))
+    				continue;
+    			
+    			sl.addSkill(s.getId(), s.getLevel(), s.isPassive());  
+    		}  
+    	}  
+    	sendPacket(sl);  
+    }
     
     /**
      * 1. Add the specified class ID as a subclass (up to the maximum number of <b>three</b>)

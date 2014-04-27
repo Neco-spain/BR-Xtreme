@@ -25,6 +25,12 @@ public final class RequestSkillList extends L2GameClientPacket
 {
 	private static final String _C__3F_REQUESTSKILLLIST = "[C] 3F RequestSkillList";
 	//private static Logger _log = Logger.getLogger(RequestSkillList.class.getName());
+	@SuppressWarnings("unused")
+	private int _unk1;
+    @SuppressWarnings("unused")
+	private int _unk2;
+    @SuppressWarnings("unused")
+	private int _unk3;
 	
 	@Override
 	protected void readImpl()
@@ -48,11 +54,5 @@ public final class RequestSkillList extends L2GameClientPacket
 	public String getType()
 	{
 		return _C__3F_REQUESTSKILLLIST;
-	}
-
-	@Override
-	protected boolean triggersOnActionRequest()
-	{
-		return false;
 	}
 }

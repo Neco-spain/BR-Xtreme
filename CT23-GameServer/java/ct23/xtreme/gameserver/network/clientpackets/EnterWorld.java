@@ -595,6 +595,7 @@ public class EnterWorld extends L2GameClientPacket
 	* @return
 	* @throws UnsupportedEncodingException
 	*/
+	@SuppressWarnings("unused")
 	private String getText(String string)
 	{
 		try
