@@ -50,7 +50,6 @@ public class ExShowSeedMapInfo extends L2GameServerPacket
 		writeD(-213770); // x coord
 		writeD(210760); // y coord
 		writeD(4400); // z coord
-		// Manager not implemented yet
 		writeD(2765 + GraciaSeedsManager.getInstance().getSoIState()); // sys msg id
 	}
 	

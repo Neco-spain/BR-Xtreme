@@ -16,8 +16,7 @@ package ct23.xtreme.gameserver.network.clientpackets;
 
 import java.util.logging.Logger;
 
-import ct23.xtreme.gameserver.datatables.EnchantGroupsTable;
-import ct23.xtreme.gameserver.model.L2EnchantSkillLearn;
+import ct23.xtreme.gameserver.datatables.SkillTreeTable;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import ct23.xtreme.gameserver.network.serverpackets.ExEnchantSkillInfoDetail;
 
@@ -32,7 +31,13 @@ public final class RequestExEnchantSkillInfoDetail extends L2GameClientPacket
 {
 	protected static final Logger _log = Logger.getLogger(RequestExEnchantSkillInfoDetail.class.getName());
 
+	private static final int TYPE_NORMAL_ENCHANT = 0;
+    private static final int TYPE_SAFE_ENCHANT = 1;
+    private static final int TYPE_UNTRAIN_ENCHANT = 2;
+    private static final int TYPE_CHANGE_ENCHANT = 3;
+    
 	private int _type;
+	@SuppressWarnings("unused")
 	private int _skillId;
 	private int _skillLvl;
 
@@ -53,49 +58,46 @@ public final class RequestExEnchantSkillInfoDetail extends L2GameClientPacket
 	protected void runImpl()
 	{
 		L2PcInstance activeChar = getClient().getActiveChar();
-
-		if (activeChar == null)
-			return;
-
-		int reqSkillLvl = -2;
-
-		if (_type == 0 || _type == 1)
-			reqSkillLvl = _skillLvl - 1; // enchant
-		else if (_type == 2)
-			reqSkillLvl = _skillLvl + 1; // untrain
-		else if (_type == 3)
-			reqSkillLvl = _skillLvl; // change route
-
-		int playerSkillLvl = activeChar.getSkillLevel(_skillId);
-
-		// dont have such skill
-		if (playerSkillLvl == -1)
-			return;
-
-		// if reqlvl is 100,200,.. check base skill lvl enchant
-		if ((reqSkillLvl % 100) == 0)
-		{
-			L2EnchantSkillLearn esl = EnchantGroupsTable.getInstance().getSkillEnchantmentBySkillId(_skillId);
-			if (esl != null)
-			{
-				// if player dont have min level to enchant
-				if (playerSkillLvl != esl.getBaseLevel())
-					return;
-			}
-			// enchant data dont exist?
-			else
-				return;
-		}
-		else if (playerSkillLvl != reqSkillLvl)
-		{
-			// change route is different skill lvl but same enchant
-			if (_type == 3 && ((playerSkillLvl % 100) != (_skillLvl % 100)))
-				return;
-		}
-
-		// send skill enchantment detail
-		ExEnchantSkillInfoDetail esd = new ExEnchantSkillInfoDetail(_type, _skillId, _skillLvl, activeChar);
-		activeChar.sendPacket(esd);
+        
+        if (activeChar == null) 
+            return;
+        
+        int bookId = 0;
+        int reqCount = 0;
+        // require book for first level
+        int enchantLevel = _skillLvl%100;
+        // if going to first level OR going to Original level(untraining) 
+        // OR changing route OR safe enchant then require book
+        if ((_skillLvl > 100 && enchantLevel == 1) || (_skillLvl < 100) 
+                || _type == TYPE_CHANGE_ENCHANT || _type == TYPE_SAFE_ENCHANT)
+        {
+            switch (_type)
+            {
+                case TYPE_NORMAL_ENCHANT:
+                    bookId = SkillTreeTable.NORMAL_ENCHANT_BOOK;
+                    reqCount = 1;
+                    break;
+                case TYPE_SAFE_ENCHANT:
+                    bookId = SkillTreeTable.SAFE_ENCHANT_BOOK;
+                    reqCount = 1;
+                    break;
+                case TYPE_UNTRAIN_ENCHANT:
+                    bookId = SkillTreeTable.UNTRAIN_ENCHANT_BOOK;
+                    reqCount = 1;
+                    break;
+                case TYPE_CHANGE_ENCHANT:
+                    bookId = SkillTreeTable.CHANGE_ENCHANT_BOOK;
+                    reqCount = 1;
+                    break;
+                default:
+                    _log.severe("Unknown skill enchant type: "+_type);
+                return;
+            }
+        }
+        
+        // send skill enchantment detail
+        ExEnchantSkillInfoDetail esd = new ExEnchantSkillInfoDetail(bookId, reqCount);
+        activeChar.sendPacket(esd);
 	}
 
 	/*

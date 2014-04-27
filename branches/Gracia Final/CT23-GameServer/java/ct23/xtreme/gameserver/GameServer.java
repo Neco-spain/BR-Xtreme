@@ -42,7 +42,6 @@ import ct23.xtreme.gameserver.datatables.CharNameTable;
 import ct23.xtreme.gameserver.datatables.CharTemplateTable;
 import ct23.xtreme.gameserver.datatables.ClanTable;
 import ct23.xtreme.gameserver.datatables.DoorTable;
-import ct23.xtreme.gameserver.datatables.EnchantGroupsTable;
 import ct23.xtreme.gameserver.datatables.EnchantHPBonusData;
 import ct23.xtreme.gameserver.datatables.EventDroplist;
 import ct23.xtreme.gameserver.datatables.ExtractableItemsData;
@@ -209,7 +208,6 @@ public class GameServer
 		GlobalVariablesManager.getInstance();
 		
 		printSection("Skills");
-		EnchantGroupsTable.getInstance();
 		SkillTable.getInstance();
 		SkillTreeTable.getInstance();
 		PetSkillsTable.getInstance();

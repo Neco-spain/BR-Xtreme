@@ -15,7 +15,6 @@
 package ct23.xtreme.gameserver.model.actor.instance;
 
 import ct23.xtreme.Config;
-import ct23.xtreme.gameserver.datatables.EnchantGroupsTable;
 import ct23.xtreme.gameserver.datatables.SkillTable;
 import ct23.xtreme.gameserver.datatables.SkillTreeTable;
 import ct23.xtreme.gameserver.model.L2Effect;
@@ -29,9 +28,9 @@ import ct23.xtreme.gameserver.network.SystemMessageId;
 import ct23.xtreme.gameserver.network.serverpackets.AcquireSkillList;
 import ct23.xtreme.gameserver.network.serverpackets.ActionFailed;
 import ct23.xtreme.gameserver.network.serverpackets.ExEnchantSkillList;
+import ct23.xtreme.gameserver.network.serverpackets.ExEnchantSkillList.EnchantSkillType;
 import ct23.xtreme.gameserver.network.serverpackets.NpcHtmlMessage;
 import ct23.xtreme.gameserver.network.serverpackets.SystemMessage;
-import ct23.xtreme.gameserver.network.serverpackets.ExEnchantSkillList.EnchantSkillType;
 import ct23.xtreme.gameserver.skills.effects.EffectBuff;
 import ct23.xtreme.gameserver.skills.effects.EffectDebuff;
 import ct23.xtreme.gameserver.templates.chars.L2NpcTemplate;
@@ -47,7 +46,8 @@ public class L2NpcInstance extends L2Npc
 		setInstanceType(InstanceType.L2NpcInstance);
 		setIsInvul(false);
 		_classesToTeach = template.getTeachInfo();
-	}		
+	}	
+	
 	@Override
 	public FolkStatus getStatus()
 	{
@@ -59,7 +59,13 @@ public class L2NpcInstance extends L2Npc
 	{
 		setStatus(new FolkStatus(this));
 	}
-
+	
+	@Override
+	public void onAction(L2PcInstance player)
+	{
+		super.onAction(player);
+	}
+	
 	@Override
 	public void addEffect(L2Effect newEffect)
 	{
@@ -175,7 +181,7 @@ public class L2NpcInstance extends L2Npc
 	public void showEnchantSkillList(L2PcInstance player, boolean isSafeEnchant)
 	{
 		if (Config.DEBUG)
-			_log.fine("EnchantSkillList activated on: "+getObjectId());
+			_log.fine("EnchantSkillList activated on: " + getObjectId());
 
 		int npcId = getTemplate().npcId;
 
@@ -222,13 +228,13 @@ public class L2NpcInstance extends L2Npc
 
 			for  (L2Skill skill : charSkills)
 			{
-				L2EnchantSkillLearn enchantLearn = EnchantGroupsTable.getInstance().getSkillEnchantmentForSkill(skill);
-				if (enchantLearn != null)
-				{
-					esl.addSkill(skill.getId(), skill.getLevel());
-					counts++;
-				}
-			}
+				L2EnchantSkillLearn enchantLearn = SkillTreeTable.getInstance().getSkillEnchantmentForSkill(skill);
+                if (enchantLearn != null)
+                {
+                    esl.addSkill(skill.getId(), skill.getLevel());
+                    counts++;
+                }
+            }
 
 			if (counts == 0)
 				player.sendPacket(new SystemMessage(SystemMessageId.THERE_IS_NO_SKILL_THAT_ENABLES_ENCHANT));
@@ -374,24 +380,32 @@ public class L2NpcInstance extends L2Npc
 
 		player.sendPacket(ActionFailed.STATIC_PACKET);
 	}
-
+	
 	@Override
-	public void onBypassFeedback(L2PcInstance player, String command)
-	{       			
+	public void onBypassFeedback(L2PcInstance activeChar, String command)
+	{  
 		if (command.startsWith("EnchantSkillList"))
-			showEnchantSkillList(player, false);
+		{
+			showEnchantSkillList(activeChar, false);
+		}
 		else if (command.startsWith("SafeEnchantSkillList"))
-			showEnchantSkillList(player, true);
+		{
+			showEnchantSkillList(activeChar, true);
+		}
 		else if (command.startsWith("ChangeEnchantSkillList"))
-			showEnchantChangeSkillList(player);
+		{
+			showEnchantChangeSkillList(activeChar);
+		}
 		else if (command.startsWith("UntrainEnchantSkillList"))
-			showEnchantUntrainSkillList(player, player.getClassId());
+		{
+			showEnchantUntrainSkillList(activeChar, activeChar.getClassId());
+		}
 		else
 		{
 			// this class dont know any other commands, let forward
 			// the command to the parent class
 
-			super.onBypassFeedback(player, command);
+			super.onBypassFeedback(activeChar, command);
 		}
 	}
 }

@@ -56,7 +56,7 @@ public class EnergySeeds extends L2AttackableAIScript implements IL2Seed
 	private static Map<L2Npc, Integer> _spawnedNpcs = new FastMap<L2Npc, Integer>().shared();
 	
 	private static final int TEMPORARY_TELEPORTER = 32602;
-	private static final int SOI_TELEPORTER = 32539;
+	private static final int SOI_TELEPORTER = 32540;
 	private static final int[] SEEDIDS = { 18678, 18679, 18680, 18681, 18682, 18683 };
 	
 	private static int[] SEED_OF_DESTRUCTION_DOORS =

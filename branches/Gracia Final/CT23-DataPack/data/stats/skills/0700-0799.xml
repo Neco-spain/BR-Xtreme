@@ -1030,7 +1030,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="764" levels="1" name="Song of Wind Storm" enchantGroup1="5" enchantGroup2="5">
+	<skill id="764" levels="1" name="Song of Wind Storm" enchantLevels1="5" enchantLevels2="5">
 		<table name="#ench1Time"> 128 136 144 152 160 168 176 184 192 200 208 216 224 232 240 </table>
 		<table name="#ench2MpConsume"> 59 58 57 56 55 54 53 52 51 50 49 48 47 46 45 </table>
 		<set name="mpConsume" val="60" />
@@ -1056,7 +1056,7 @@
 			</effect>
 		</enchant1for>
 	</skill>
-	<skill id="765" levels="1" name="Dance of Blade Storm" enchantGroup1="5" enchantGroup2="5">
+	<skill id="765" levels="1" name="Dance of Blade Storm" enchantLevels1="5" enchantLevels2="5">
 		<table name="#ench1Time"> 18 21 24 27 30 33 36 39 42 45 48 51 54 57 60 </table>
 		<table name="#ench2MpConsume"> 59 58 57 56 55 54 53 52 51 50 49 48 47 46 45 </table>
 		<set name="weaponsAllowed" val="512" /> <!-- Dual Sword -->
@@ -1585,7 +1585,7 @@
 		<set name="hitTime" val="1200" />
 		<set name="reuseDelay" val="11000" />
 	</skill>
-	<skill id="793" levels="1" name="Rush Impact" enchantGroup1="6" enchantGroup2="6" enchantGroup3="6" enchantGroup4="6" enchantGroup5="6" enchantGroup6="6" enchantGroup7="6" enchantGroup8="6">
+	<skill id="793" levels="1" name="Rush Impact" enchantLevels1="6" enchantLevels2="6" enchantLevels3="6" enchantLevels4="6" enchantLevels5="6" enchantLevels6="6" enchantLevels7="6" enchantLevels8="6">
 		<table name="#enchantMagicLvl"> 78 79 79 80 80 81 81 82 82 83 83 84 84 85 85 </table>
 		<table name="#ench1Power"> 4071 4102 4133 4164 4195 4226 4257 4289 4320 4351 4382 4413 4444 4475 4507 </table>
 		<table name="#ench2mpConsume"> 80 78 76 74 72 70 68 66 64 62 59 57 55 53 51 </table>
@@ -1642,7 +1642,7 @@
 			<effect name="Stun" time="9" val="0" effectPower="#ench3effectPower" effectType="STUN" stackOrder="1" stackType="Stun" />
 		</enchant3for>
 	</skill>
-	<skill id="794" levels="1" name="Mass Disarm" enchantGroup1="6" enchantGroup2="6">
+	<skill id="794" levels="1" name="Mass Disarm" enchantLevels1="6" enchantLevels2="6">
 		<table name="#enchantMagicLvl"> 79 80 80 81 81 82 82 82 83 83 83 84 84 85 85 </table>
 		<table name="#ench1Power"> 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 </table>
 		<table name="#ench2Reuse"> 145000 140000 135000 130000 125000 120000 115000 110000 105000 100000 95000 90000 85000 80000 75000 </table>

@@ -48,7 +48,7 @@ public final class SkillList extends L2GameServerPacket
 		public int level;
 		public boolean passive;
 
-		Skill(int pId, int pLevel, boolean pPassive, boolean pDisabled, boolean pEnchanted)
+		Skill(int pId, int pLevel, boolean pPassive)
 		{
 			id = pId;
 			level = pLevel;
@@ -57,14 +57,14 @@ public final class SkillList extends L2GameServerPacket
 	}
 
 	public SkillList()
-	{
-		_skills = new FastList<Skill>();
-	}
+    {
+        _skills = new FastList<Skill>();
+    }
 
-	public void addSkill(int id, int level, boolean passive, boolean disabled, boolean enchanted)
-	{
-		_skills.add(new Skill(id, level, passive, disabled, enchanted));
-	}
+	public void addSkill(int id, int level, boolean passive)
+    {
+        _skills.add(new Skill(id, level, passive));
+    }
 
 	@Override
 	protected final void writeImpl()
