@@ -42,6 +42,8 @@ public class L2MonsterInstance extends L2Attackable
 
 	private boolean _enableMinions = true;
 
+	private L2MonsterInstance _master = null;
+	
 	protected final MinionList _minionList;
 
 	protected ScheduledFuture<?> _maintenanceTask = null;
@@ -299,8 +301,16 @@ public class L2MonsterInstance extends L2Attackable
 		_minionList.clearRespawnList();
 	}
 	
-	
+	public L2MonsterInstance getLeader()
+	{
+		return _master;
+	}
 
+	public void setLeader(L2MonsterInstance leader)
+	{
+		_master = leader;
+	}
+	
 	public void enableMinions(boolean b)
 	{
 		_enableMinions = b;

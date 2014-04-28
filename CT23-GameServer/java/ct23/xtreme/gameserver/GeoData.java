@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 
 import ct23.xtreme.Config;
 import ct23.xtreme.gameserver.model.L2Object;
+import ct23.xtreme.gameserver.model.L2Spawn;
 import ct23.xtreme.gameserver.model.Location;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import ct23.xtreme.util.Point3D;
@@ -78,7 +79,7 @@ public class GeoData
 	 * @param spawnid
 	 * @return
 	 */
-	public short getSpawnHeight(int x, int y, int zmin, int zmax, int spawnid)
+	public short getSpawnHeight(int x, int y, int zmin, int zmax, L2Spawn spawn)
 	{
 		return (short) zmin;
 	}
