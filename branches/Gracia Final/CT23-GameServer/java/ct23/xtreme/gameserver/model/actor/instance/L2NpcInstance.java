@@ -49,21 +49,21 @@ public class L2NpcInstance extends L2Npc
 	}	
 	
 	@Override
+	public void onAction(L2PcInstance player)
+	{
+		super.onAction(player);
+	}
+	
+	@Override
 	public FolkStatus getStatus()
 	{
 		return (FolkStatus)super.getStatus();
 	}
-
+	
 	@Override
 	public void initCharStatus()
 	{
 		setStatus(new FolkStatus(this));
-	}
-	
-	@Override
-	public void onAction(L2PcInstance player)
-	{
-		super.onAction(player);
 	}
 	
 	@Override
@@ -382,30 +382,30 @@ public class L2NpcInstance extends L2Npc
 	}
 	
 	@Override
-	public void onBypassFeedback(L2PcInstance activeChar, String command)
+	public void onBypassFeedback(L2PcInstance player, String command)
 	{  
 		if (command.startsWith("EnchantSkillList"))
 		{
-			showEnchantSkillList(activeChar, false);
+			this.showEnchantSkillList(player, false);
 		}
 		else if (command.startsWith("SafeEnchantSkillList"))
 		{
-			showEnchantSkillList(activeChar, true);
+			this.showEnchantSkillList(player, true);
 		}
 		else if (command.startsWith("ChangeEnchantSkillList"))
 		{
-			showEnchantChangeSkillList(activeChar);
+			this.showEnchantChangeSkillList(player);
 		}
 		else if (command.startsWith("UntrainEnchantSkillList"))
 		{
-			showEnchantUntrainSkillList(activeChar, activeChar.getClassId());
+			this.showEnchantUntrainSkillList(player, player.getClassId());
 		}
 		else
 		{
 			// this class dont know any other commands, let forward
 			// the command to the parent class
 
-			super.onBypassFeedback(activeChar, command);
+			super.onBypassFeedback(player, command);
 		}
 	}
 }

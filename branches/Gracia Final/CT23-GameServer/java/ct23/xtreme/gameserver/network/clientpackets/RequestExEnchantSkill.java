@@ -67,15 +67,14 @@ public final class RequestExEnchantSkill extends L2GameClientPacket
 	@Override
     protected void runImpl()
     {
-        L2PcInstance player = getClient().getActiveChar();
+		L2PcInstance player = getClient().getActiveChar();
         if (player == null)
             return;
         
         L2Npc trainer = player.getLastFolkNPC();
         if (!(trainer instanceof L2NpcInstance))
-            return;
-        
-        if (!trainer.canInteract(player) && !player.isGM())
+        		
+        if ((trainer == null || !player.isInsideRadius(trainer, L2Npc.INTERACTION_DISTANCE, false, false)) && !player.isGM())
             return;
         
         if (player.getClassId().level() < 3) // requires to have 3rd class quest completed
@@ -201,7 +200,7 @@ public final class RequestExEnchantSkill extends L2GameClientPacket
         {
             if (sc.getId() == _skillId && sc.getType() == L2ShortCut.TYPE_SKILL)
             {
-                L2ShortCut newsc = new L2ShortCut(sc.getSlot(), sc.getPage(), sc.getType(), sc.getId(), player.getSkillLevel(_skillId), 1);
+            	L2ShortCut newsc = new L2ShortCut(sc.getSlot(), sc.getPage(), sc.getType(), sc.getId(), _skillLvl, 1);
                 player.sendPacket(new ShortCutRegister(newsc));
                 player.registerShortCut(newsc);
             }

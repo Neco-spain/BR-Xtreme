@@ -34,6 +34,7 @@ import java.util.logging.Logger;
 import ct23.xtreme.Config;
 import ct23.xtreme.gameserver.datatables.DoorTable;
 import ct23.xtreme.gameserver.model.L2Object;
+import ct23.xtreme.gameserver.model.L2Spawn;
 import ct23.xtreme.gameserver.model.L2World;
 import ct23.xtreme.gameserver.model.Location;
 import ct23.xtreme.gameserver.model.actor.instance.L2DefenderInstance;
@@ -90,9 +91,9 @@ public class GeoEngine extends GeoData
 	 * @see ct23.xtreme.gameserver.GeoData#getSpawnHeight(int, int, int, int, int)
 	 */
 	@Override
-	public short getSpawnHeight(int x, int y, int zmin, int zmax, int spawnid)
+	public short getSpawnHeight(int x, int y, int zmin, int zmax, L2Spawn spawn)
 	{
-		return nGetSpawnHeight((x - L2World.MAP_MIN_X) >> 4, (y - L2World.MAP_MIN_Y) >> 4, zmin, zmax, spawnid);
+		return nGetSpawnHeight((x - L2World.MAP_MIN_X) >> 4, (y - L2World.MAP_MIN_Y) >> 4, zmin, zmax, spawn);
 	}
 	
 	/**
@@ -999,7 +1000,7 @@ public class GeoEngine extends GeoData
 	 * @param zmax
 	 * @return Z betwen zmin and zmax
 	 */
-	private static short nGetSpawnHeight(int geox, int geoy, int zmin, int zmax, int spawnid)
+	private static short nGetSpawnHeight(int geox, int geoy, int zmin, int zmax, L2Spawn spawn)
 	{
 		short region = getRegionOffset(geox, geoy);
 		int blockX = getBlock(geox);
@@ -1072,7 +1073,7 @@ public class GeoEngine extends GeoData
 			{
 				if (Config.DEBUG)
 					_log.warning("SpawnHeight Error - Couldnt find correct layer to spawn NPC - GeoData or Spawnlist Bug!: zmin: " + zmin
-							+ " zmax: " + zmax + " value: " + temph + " SpawnId: " + spawnid + " at: " + geox + " : " + geoy);
+							+ " zmax: " + zmax + " value: " + temph + " SpawnId: " + spawn + " at: " + geox + " : " + geoy);
 				return (short) zmin;
 			}
 		}
@@ -1080,7 +1081,7 @@ public class GeoEngine extends GeoData
 		{
 			if (Config.DEBUG)
 				_log.warning("SpawnHeight Error - Spawnlist z value is wrong or GeoData error: zmin: " + zmin + " zmax: " + zmax
-						+ " value: " + temph + " SpawnId: " + spawnid + " at: " + geox + " : " + geoy);
+						+ " value: " + temph + " SpawnId: " + spawn + " at: " + geox + " : " + geoy);
 			return (short) zmin;
 		}
 		return temph;

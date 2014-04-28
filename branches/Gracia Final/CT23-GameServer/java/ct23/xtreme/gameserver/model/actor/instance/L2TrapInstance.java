@@ -14,11 +14,16 @@
  */
 package ct23.xtreme.gameserver.model.actor.instance;
 
+import java.util.List;
+
+import javolution.util.FastList;
 import ct23.xtreme.gameserver.model.L2Skill;
 import ct23.xtreme.gameserver.model.actor.L2Character;
 import ct23.xtreme.gameserver.model.actor.L2Playable;
 import ct23.xtreme.gameserver.model.actor.L2Trap;
 import ct23.xtreme.gameserver.model.olympiad.Olympiad;
+import ct23.xtreme.gameserver.model.quest.Quest;
+import ct23.xtreme.gameserver.model.quest.Quest.TrapAction;
 import ct23.xtreme.gameserver.network.SystemMessageId;
 import ct23.xtreme.gameserver.network.serverpackets.SystemMessage;
 import ct23.xtreme.gameserver.templates.chars.L2NpcTemplate;
@@ -28,6 +33,7 @@ public class L2TrapInstance extends L2Trap
 	private L2PcInstance _owner;
 	private int _level;
 	private boolean _isInArena = false;
+	private final List<Integer> _playersWhoDetectedMe = new FastList<Integer>();
 	
 	/**
 	 * @param objectId
@@ -44,6 +50,21 @@ public class L2TrapInstance extends L2Trap
 		
 		_owner = owner;
 		_level = owner.getLevel();
+	}
+	
+	public L2TrapInstance(int objectId, L2NpcTemplate template,
+			int instanceId, int lifeTime, L2Skill skill)
+	{
+		super(objectId, template, lifeTime, skill);
+		setInstanceType(InstanceType.L2TrapInstance);
+		
+		setInstanceId(instanceId);
+		
+		_owner = null;
+		if (skill != null)
+			_level = skill.getLevel();
+		else
+			_level = 1;
 	}
 
 	@Override
@@ -69,6 +90,7 @@ public class L2TrapInstance extends L2Trap
 	{
 		super.onSpawn();
 		_isInArena = isInsideZone(ZONE_PVP) && !isInsideZone(ZONE_SIEGE);
+		_playersWhoDetectedMe.clear();
 	}
 
 	@Override
@@ -137,6 +159,9 @@ public class L2TrapInstance extends L2Trap
 	@Override
 	public boolean canSee(L2Character cha)
 	{
+		if (cha != null && _playersWhoDetectedMe.contains(cha.getObjectId()))
+			return true;
+		
 		if (_owner == null || cha == null)
 			return false;
 
@@ -162,6 +187,10 @@ public class L2TrapInstance extends L2Trap
 		if (_owner == null || (_owner.getPvpFlag() == 0 && _owner.getKarma() == 0))
 			return;
 
+		_playersWhoDetectedMe.add(detector.getObjectId());
+		if (getTemplate().getEventQuests(Quest.QuestEventType.ON_TRAP_ACTION) != null)
+			for (Quest quest : getTemplate().getEventQuests(Quest.QuestEventType.ON_TRAP_ACTION))
+				quest.notifyTrapAction(this, detector, TrapAction.TRAP_DETECTED);
 		super.setDetected(detector);
 	}
 

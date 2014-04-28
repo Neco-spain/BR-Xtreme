@@ -32,6 +32,7 @@ import ct23.xtreme.L2DatabaseFactory;
 import ct23.xtreme.gameserver.ThreadPoolManager;
 import ct23.xtreme.gameserver.cache.HtmCache;
 import ct23.xtreme.gameserver.datatables.NpcTable;
+import ct23.xtreme.gameserver.idfactory.IdFactory;
 import ct23.xtreme.gameserver.instancemanager.QuestManager;
 import ct23.xtreme.gameserver.instancemanager.ZoneManager;
 import ct23.xtreme.gameserver.model.L2Object;
@@ -40,7 +41,10 @@ import ct23.xtreme.gameserver.model.L2Skill;
 import ct23.xtreme.gameserver.model.L2Spawn;
 import ct23.xtreme.gameserver.model.actor.L2Character;
 import ct23.xtreme.gameserver.model.actor.L2Npc;
+import ct23.xtreme.gameserver.model.actor.L2Trap;
+import ct23.xtreme.gameserver.model.actor.instance.L2MonsterInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
+import ct23.xtreme.gameserver.model.actor.instance.L2TrapInstance;
 import ct23.xtreme.gameserver.model.zone.L2ZoneType;
 import ct23.xtreme.gameserver.network.serverpackets.ActionFailed;
 import ct23.xtreme.gameserver.network.serverpackets.NpcHtmlMessage;
@@ -49,6 +53,7 @@ import ct23.xtreme.gameserver.network.serverpackets.PlaySound;
 import ct23.xtreme.gameserver.scripting.ManagedScript;
 import ct23.xtreme.gameserver.scripting.ScriptManager;
 import ct23.xtreme.gameserver.templates.chars.L2NpcTemplate;
+import ct23.xtreme.gameserver.util.MinionList;
 import ct23.xtreme.util.Rnd;
 import ct23.xtreme.util.Util;
 
@@ -290,6 +295,13 @@ public class Quest extends ManagedScript
 		
 	}
 	
+	public static enum TrapAction
+	{
+		TRAP_TRIGGERED,
+		TRAP_DETECTED,
+		TRAP_DISARMED
+	}
+	
 	public static enum QuestEventType
 	{
 		ON_FIRST_TALK(false), // control the first dialog shown by NPCs when they are clicked (some quests must override the default npc action)
@@ -304,7 +316,8 @@ public class Quest extends ManagedScript
 		ON_SPELL_FINISHED(true), // on spell finished action when npc finish casting skill
 		ON_SKILL_LEARN(false), // control the AcquireSkill dialog from quest script
 		ON_ENTER_ZONE(true), // on zone enter
-		ON_EXIT_ZONE(true); // on zone exit
+		ON_EXIT_ZONE(true), // on zone exit
+		ON_TRAP_ACTION(true); // on zone exit
 
 		
 		// control whether this event type is allowed for the same npc template in multiple quests
@@ -806,6 +819,25 @@ public class Quest extends ManagedScript
 		return true;
 	}
 	
+	public final boolean notifyTrapAction(L2Trap trap, L2Character trigger, TrapAction action)
+	{
+		String res = null;
+		try
+		{
+			res = onTrapAction(trap, trigger, action);
+		}
+		catch (Exception e)
+		{
+			if (trigger.getActingPlayer() != null)
+				return showError(trigger.getActingPlayer(), e);
+			_log.log(Level.WARNING, "Exception on onTrapAction() in notifyTrapAction(): " + e.getMessage(), e);
+			return true;
+		}
+		if (trigger.getActingPlayer() != null)
+			return showResult(trigger.getActingPlayer(), res);
+		return false;
+	}
+	
 	// these are methods that java calls to invoke scripts
 	public String onAttack(L2Npc npc, L2PcInstance attacker, int damage, boolean isPet)
 	{
@@ -877,6 +909,11 @@ public class Quest extends ManagedScript
 	}
 	
 	public String onSpellFinished(L2Npc npc, L2PcInstance player, L2Skill skill)
+	{
+		return null;
+	}
+	
+	public String onTrapAction(L2Trap trap, L2Character trigger, TrapAction action)
 	{
 		return null;
 	}
@@ -1534,6 +1571,11 @@ public class Quest extends ManagedScript
 		}
 	}
 	
+	public L2NpcTemplate addTrapActionId(int trapId)
+	{
+		return addEventId(trapId, Quest.QuestEventType.ON_TRAP_ACTION);
+	}
+	
 	// returns a random party member's L2PcInstance for the passed player's party
 	// returns the passed player if he has no party.
 	public L2PcInstance getRandomPartyMember(L2PcInstance player)
@@ -1818,6 +1860,25 @@ public class Quest extends ManagedScript
 		}
 		
 		return null;
+	}
+	
+	public L2Trap addTrap(int trapId, int x, int y, int z, int heading, L2Skill skill, int instanceId)
+	{
+		L2NpcTemplate TrapTemplate = NpcTable.getInstance().getTemplate(trapId);
+		L2Trap trap = new L2TrapInstance(IdFactory.getInstance().getNextId(), TrapTemplate, instanceId, -1, skill);
+		trap.setCurrentHp(trap.getMaxHp());
+		trap.setCurrentMp(trap.getMaxMp());
+		trap.setIsInvul(true);
+		trap.setHeading(heading);
+		//L2World.getInstance().storeObject(trap);
+		trap.spawnMe(x, y, z);
+		
+		return trap;
+	}
+	
+	public L2Npc addMinion(L2MonsterInstance master, int minionId)
+	{
+		return MinionList.spawnMinion(master, minionId);
 	}
 	
 	public int[] getRegisteredItemIds()

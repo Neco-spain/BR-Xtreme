@@ -260,4 +260,68 @@ public class MinionList
 		if (Config.DEBUG)
 			_log.fine("Spawned minion template " + minionTemplate.npcId + " with objid: " + monster.getObjectId() + " to boss " + master.getObjectId() + " ,at: " + monster.getX() + " x, " + monster.getY() + " y, " + monster.getZ() + " z");
 	}
+	
+	public static final L2MonsterInstance spawnMinion(L2MonsterInstance master, int minionId)
+	{
+		// Get the template of the Minion to spawn
+		L2NpcTemplate minionTemplate = NpcTable.getInstance().getTemplate(minionId);
+		if (minionTemplate == null)
+		{
+			return null;
+		}
+		
+		// Create and Init the Minion and generate its Identifier
+		L2MonsterInstance minion = new L2MonsterInstance(IdFactory.getInstance().getNextId(), minionTemplate);
+		return initializeNpcInstance(master, minion);
+	}
+	
+	protected static final L2MonsterInstance initializeNpcInstance(L2MonsterInstance master, L2MonsterInstance minion)
+	{
+		minion.stopAllEffects();
+		minion.setIsDead(false);
+		minion.setDecayed(false);
+		
+		// Set the Minion HP, MP and Heading
+		minion.setCurrentHpMp(minion.getMaxHp(), minion.getMaxMp());
+		minion.setHeading(master.getHeading());
+		
+		// Set the Minion leader to this RaidBoss
+		minion.setLeader(master);
+		
+		// move monster to masters instance
+		minion.setInstanceId(master.getInstanceId());
+		
+		// Init the position of the Minion and add it in the world as a visible object
+		final int offset = 200;
+		final int minRadius = (int) master.getCollisionRadius() + 30;
+		
+		int newX = Rnd.get(minRadius * 2, offset * 2); // x
+		int newY = Rnd.get(newX, offset * 2); // distance
+		newY = (int) Math.sqrt((newY * newY) - (newX * newX)); // y
+		if (newX > (offset + minRadius))
+		{
+			newX = (master.getX() + newX) - offset;
+		}
+		else
+		{
+			newX = (master.getX() - newX) + minRadius;
+		}
+		if (newY > (offset + minRadius))
+		{
+			newY = (master.getY() + newY) - offset;
+		}
+		else
+		{
+			newY = (master.getY() - newY) + minRadius;
+		}
+		
+		minion.spawnMe(newX, newY, master.getZ());
+		
+		if (Config.DEBUG)
+		{
+			_log.fine("Spawned minion template " + minion.getNpcId() + " with objid: " + minion.getObjectId() + " to boss " + master.getObjectId() + " ,at: " + minion.getX() + " x, " + minion.getY() + " y, " + minion.getZ() + " z");
+		}
+		
+		return minion;
+	}
 }
