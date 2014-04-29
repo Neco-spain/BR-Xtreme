@@ -29,29 +29,27 @@ import ct23.xtreme.gameserver.network.serverpackets.ExEnchantSkillInfoDetail;
  */
 public final class RequestExEnchantSkillInfoDetail extends L2GameClientPacket
 {
-	protected static final Logger _log = Logger.getLogger(RequestExEnchantSkillInfoDetail.class.getName());
-
-	private static final int TYPE_NORMAL_ENCHANT = 0;
+    protected static final Logger _log = Logger.getLogger(RequestExEnchantSkillInfoDetail.class.getName());
+    
+    private static final int TYPE_NORMAL_ENCHANT = 0;
     private static final int TYPE_SAFE_ENCHANT = 1;
     private static final int TYPE_UNTRAIN_ENCHANT = 2;
     private static final int TYPE_CHANGE_ENCHANT = 3;
     
-	private int _type;
-	@SuppressWarnings("unused")
-	private int _skillId;
-	private int _skillLvl;
-
+    private int _type;
+    @SuppressWarnings("unused")
+    private int _skillId;
+    private int _skillLvl;
+	
 	@Override
-	protected void readImpl()
+    protected void readImpl()
 	{
-		_type = readD();
+        _type = readD();
 		_skillId = readD();
 		_skillLvl = readD();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see ct23.xtreme.gameserver.clientpackets.ClientBasePacket#runImpl()
 	 */
 	@Override
@@ -63,13 +61,13 @@ public final class RequestExEnchantSkillInfoDetail extends L2GameClientPacket
             return;
         
         int bookId = 0;
-        int reqCount = 0;
+        long reqCount = 0;
         // require book for first level
         int enchantLevel = _skillLvl%100;
-        // if going to first level OR going to Original level(untraining) 
-        // OR changing route OR safe enchant then require book
-        if ((_skillLvl > 100 && enchantLevel == 1) || (_skillLvl < 100) 
-                || _type == TYPE_CHANGE_ENCHANT || _type == TYPE_SAFE_ENCHANT)
+        // if going to first level
+        // OR changing route OR safe enchant OR untraining then require book
+        if ((_skillLvl > 100 && enchantLevel == 1)
+                || _type == TYPE_CHANGE_ENCHANT || _type == TYPE_SAFE_ENCHANT || _type == TYPE_UNTRAIN_ENCHANT)
         {
             switch (_type)
             {

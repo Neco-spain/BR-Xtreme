@@ -31,6 +31,7 @@ import ct23.xtreme.gameserver.model.actor.instance.L2NpcInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import ct23.xtreme.gameserver.model.base.Experience;
 import ct23.xtreme.gameserver.network.SystemMessageId;
+import ct23.xtreme.gameserver.network.serverpackets.ExBrExtraUserInfo;
 import ct23.xtreme.gameserver.network.serverpackets.ShortCutRegister;
 import ct23.xtreme.gameserver.network.serverpackets.SystemMessage;
 import ct23.xtreme.gameserver.network.serverpackets.UserInfo;
@@ -73,6 +74,7 @@ public final class RequestExEnchantSkill extends L2GameClientPacket
         
         L2Npc trainer = player.getLastFolkNPC();
         if (!(trainer instanceof L2NpcInstance))
+            return;
         		
         if (!trainer.canInteract(player) && !player.isGM())
             return;
@@ -155,10 +157,12 @@ public final class RequestExEnchantSkill extends L2GameClientPacket
                     }
 
         			player.sendPacket(new UserInfo(player));
+                    player.sendPacket(new ExBrExtraUserInfo(player));
 
         			SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_SUCCEEDED_IN_ENCHANTING_THE_SKILL_S1);
         			sm.addSkillName(_skillId);
         			player.sendPacket(sm);
+        			
         		}
         		else
         		{
@@ -191,7 +195,7 @@ public final class RequestExEnchantSkill extends L2GameClientPacket
         }
     }
     
-    private void updateSkillShortcuts(L2PcInstance player)
+	private void updateSkillShortcuts(L2PcInstance player)
     {
         // update all the shortcuts to this skill
         L2ShortCut[] allShortCuts = player.getAllShortCuts();
@@ -200,7 +204,7 @@ public final class RequestExEnchantSkill extends L2GameClientPacket
         {
             if (sc.getId() == _skillId && sc.getType() == L2ShortCut.TYPE_SKILL)
             {
-            	L2ShortCut newsc = new L2ShortCut(sc.getSlot(), sc.getPage(), sc.getType(), sc.getId(), _skillLvl, 1);
+                L2ShortCut newsc = new L2ShortCut(sc.getSlot(), sc.getPage(), sc.getType(), sc.getId(), player.getSkillLevel(_skillId), 1);
                 player.sendPacket(new ShortCutRegister(newsc));
                 player.registerShortCut(newsc);
             }

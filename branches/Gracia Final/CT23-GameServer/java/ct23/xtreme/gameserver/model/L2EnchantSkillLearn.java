@@ -29,6 +29,7 @@ public final class L2EnchantSkillLearn
 {
 	private final int _id;
 	private final int _baseLvl;
+	
 	private List<EnchantSkillDetail>[] _enchantDetails = new List[0];
 
 	public L2EnchantSkillLearn(int id, int baseLvl)
@@ -112,6 +113,7 @@ public final class L2EnchantSkillLearn
         private final int _minSkillLevel;
         private final int _exp;
         private final byte _rate76,_rate77,_rate78,_rate79,_rate80,_rate81,_rate82,_rate83,_rate84,_rate85;
+        
         
         public EnchantSkillDetail(int lvl, int minSkillLvl, int cost, int exp, byte rate76, byte rate77, byte rate78, byte rate79, byte rate80, byte rate81, byte rate82, byte rate83, byte rate84, byte rate85)
         {

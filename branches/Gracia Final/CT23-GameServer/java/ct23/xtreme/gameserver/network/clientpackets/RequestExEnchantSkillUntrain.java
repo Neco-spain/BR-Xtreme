@@ -29,8 +29,8 @@ import ct23.xtreme.gameserver.model.L2Skill;
 import ct23.xtreme.gameserver.model.actor.L2Npc;
 import ct23.xtreme.gameserver.model.actor.instance.L2NpcInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
-import ct23.xtreme.gameserver.model.base.Experience;
 import ct23.xtreme.gameserver.network.SystemMessageId;
+import ct23.xtreme.gameserver.network.serverpackets.ExBrExtraUserInfo;
 import ct23.xtreme.gameserver.network.serverpackets.ShortCutRegister;
 import ct23.xtreme.gameserver.network.serverpackets.SystemMessage;
 import ct23.xtreme.gameserver.network.serverpackets.UserInfo;
@@ -77,114 +77,92 @@ public final class RequestExEnchantSkillUntrain extends L2GameClientPacket
 		if (!trainer.canInteract(player) && !player.isGM())
 			return;
 		
-        if (player.getClassId().level() < 3) // requires to have 3rd class quest completed
-	        return;
-        
-        if (player.getLevel() < 76) 
-	        return;
-
-        L2Skill skill = SkillTable.getInstance().getInfo(_skillId, _skillLvl);
+		if (player.getClassId().level() < 3) // requires to have 3rd class quest completed
+			return;
+		
+		if (player.getLevel() < 76)
+			return;
+		
+		L2Skill skill = SkillTable.getInstance().getInfo(_skillId, _skillLvl);
 		if (skill == null)
 			return;
 		
 		int reqItemId = SkillTreeTable.UNTRAIN_ENCHANT_BOOK;
 		
-        L2EnchantSkillLearn s = SkillTreeTable.getInstance().getSkillEnchantmentBySkillId(_skillId);
+		L2EnchantSkillLearn s = SkillTreeTable.getInstance().getSkillEnchantmentBySkillId(_skillId);
 		if (s == null)
 			return;
 		
 		int currentLevel = player.getSkillLevel(_skillId);
-        if (currentLevel - 1 != _skillLvl && (currentLevel%100 != 1 || _skillLvl != s.getBaseLevel()))
-        {
-            return;
-        }
+		if (currentLevel - 1 != _skillLvl && (currentLevel % 100 != 1 || _skillLvl != s.getBaseLevel()))
+			return;
 		
 		EnchantSkillDetail esd = s.getEnchantSkillDetail(currentLevel);
 		
 		int requiredSp = esd.getSpCost();
-        int requiredExp = esd.getExp();
-        //int rate = esd.getRate(player);
+		int requiredExp = esd.getExp();
 		
-        if (player.getSp() >= requiredSp)
-        {
-            long expAfter = player.getExp() - requiredExp;
-            if (player.getExp() >= requiredExp && expAfter >= Experience.LEVEL[player.getLevel()])
-            {
-                // only first lvl requires book
-                boolean usesBook = _skillLvl == s.getBaseLevel();
-                
-                L2ItemInstance spb = player.getInventory().getItemByItemId(reqItemId);
-                if (Config.ES_SP_BOOK_NEEDED && usesBook) 
-                {
-                    if (spb == null)// Haven't spellbook
-                    {
-                        player.sendPacket(new SystemMessage(SystemMessageId.YOU_DONT_HAVE_ALL_OF_THE_ITEMS_NEEDED_TO_ENCHANT_THAT_SKILL));
-                        return;
-                    }
-                }	
+		L2ItemInstance spb = player.getInventory().getItemByItemId(reqItemId);
+		if (Config.ES_SP_BOOK_NEEDED)
+		{
+			if (spb == null) // Haven't spellbook
+			{
+				player.sendPacket(new SystemMessage(SystemMessageId.YOU_DONT_HAVE_ALL_OF_THE_ITEMS_NEEDED_TO_ENCHANT_THAT_SKILL));
+				return;
+			}
+		}
 		
-                boolean check;
-                check = player.getStat().removeExpAndSp(requiredExp, requiredSp);
-                if (Config.ES_SP_BOOK_NEEDED && usesBook) 
-                {
-                    check &= player.destroyItem("Consume", spb.getObjectId(), 1, trainer, true);
-                }
+		boolean check;
+		check = player.getStat().addSp((int)(requiredSp * 0.8));
+		if (Config.ES_SP_BOOK_NEEDED)
+		{
+			check &= player.destroyItem("Consume", spb.getObjectId(), 1, trainer, true);
+		}
+		
+		if (!check)
+		{
+			player.sendPacket(new SystemMessage(SystemMessageId.YOU_DONT_HAVE_ALL_OF_THE_ITEMS_NEEDED_TO_ENCHANT_THAT_SKILL));
+			return;
+		}
+		
+		if (_skillLvl % 100 == 0)
+		{
+			_skillLvl = s.getBaseLevel();
+		}
 
-                if (!check)
-                {
-                    player.sendPacket(new SystemMessage(SystemMessageId.YOU_DONT_HAVE_ALL_OF_THE_ITEMS_NEEDED_TO_ENCHANT_THAT_SKILL));
-                    return;
-                }
-                
-                if (_skillLvl%100 == 0)
-                {
-                    _skillLvl = s.getBaseLevel();
-                }
-		
-                if (Config.LOG_SKILL_ENCHANTS)
-                {
-                	LogRecord record = new LogRecord(Level.INFO, "Untrain");
-                	record.setParameters(new Object[]{player, skill, spb});
-                	record.setLoggerName("skill");
-                	_logEnchant.log(record);
-                }
+		if (Config.LOG_SKILL_ENCHANTS)
+		{
+	        LogRecord record = new LogRecord(Level.INFO, "Untrain");
+			record.setParameters(new Object[]{player, skill, spb});
+			record.setLoggerName("skill");
+			_logEnchant.log(record);
+		}
 
-                player.addSkill(skill, true);
+		player.addSkill(skill, true);
 		
-                if (Config.DEBUG)
-                {
-                	_log.fine("Learned skill ID: "+_skillId+" Level: "+_skillLvl+" for "+requiredSp+" SP, "+requiredExp+" EXP.");
-                }
+		if (Config.DEBUG)
+		{
+			_log.fine("Learned skill ID: " + _skillId + " Level: " + _skillLvl + " for " + requiredSp + " SP, " + requiredExp + " EXP.");
+		}
 		
-                player.sendPacket(new UserInfo(player));
+		player.sendPacket(new UserInfo(player));
+		player.sendPacket(new ExBrExtraUserInfo(player));
 		
-                if (_skillLvl > 100)
-                {
-                	SystemMessage sm = new SystemMessage(SystemMessageId.UNTRAIN_SUCCESSFUL_SKILL_S1_ENCHANT_LEVEL_DECREASED_BY_ONE);
-                	sm.addSkillName(_skillId);
-                	player.sendPacket(sm);
-                }
-                else
-                {
-                	SystemMessage sm = new SystemMessage(SystemMessageId.UNTRAIN_SUCCESSFUL_SKILL_S1_ENCHANT_LEVEL_RESETED);
-                	sm.addSkillName(_skillId);
-                	player.sendPacket(sm);
-                }
-                
-                ((L2NpcInstance)trainer).showEnchantUntrainSkillList(player, player.getClassId());
-                this.updateSkillShortcuts(player);
-            }
-            else
-            {
-                SystemMessage sm = new SystemMessage(SystemMessageId.YOU_DONT_HAVE_ENOUGH_EXP_TO_ENCHANT_THAT_SKILL);
-                player.sendPacket(sm);
-            }
-        }
-        else
-        {
-            SystemMessage sm = new SystemMessage(SystemMessageId.YOU_DONT_HAVE_ENOUGH_SP_TO_ENCHANT_THAT_SKILL);
-            player.sendPacket(sm);
-        }
+		if (_skillLvl > 100)
+		{
+			SystemMessage sm = new SystemMessage(SystemMessageId.UNTRAIN_SUCCESSFUL_SKILL_S1_ENCHANT_LEVEL_DECREASED_BY_ONE);
+			sm.addSkillName(_skillId);
+			player.sendPacket(sm);
+		}
+		else
+		{
+			SystemMessage sm = new SystemMessage(SystemMessageId.UNTRAIN_SUCCESSFUL_SKILL_S1_ENCHANT_LEVEL_RESETED);
+			sm.addSkillName(_skillId);
+			player.sendPacket(sm);
+		}
+		
+		((L2NpcInstance)trainer).showEnchantUntrainSkillList(player, player.getClassId());
+		this.updateSkillShortcuts(player);
 	}
 	
 	private void updateSkillShortcuts(L2PcInstance player)

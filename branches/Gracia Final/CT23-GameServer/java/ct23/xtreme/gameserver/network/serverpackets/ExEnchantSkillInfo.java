@@ -15,7 +15,6 @@
 package ct23.xtreme.gameserver.network.serverpackets;
 
 import javolution.util.FastList;
-
 import ct23.xtreme.gameserver.datatables.SkillTreeTable;
 import ct23.xtreme.gameserver.model.L2EnchantSkillLearn.EnchantSkillDetail;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
@@ -80,12 +79,10 @@ public final class ExEnchantSkillInfo extends L2GameServerPacket
         _routes.add(new SkillEnchantDetailElement(level, rate, spCost, expCost));
     }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see ct23.xtreme.gameserver.serverpackets.ServerBasePacket#writeImpl()
-	 */
-	@Override
+    /* (non-Javadoc)
+     * @see ct23.xtreme.gameserver.serverpackets.ServerBasePacket#writeImpl()
+     */
+    @Override
 	protected void writeImpl()
     {
         writeC(0xfe);
@@ -101,7 +98,7 @@ public final class ExEnchantSkillInfo extends L2GameServerPacket
             writeD(sede._rate);
             writeD(sede._spCost * _xpSpCostMultiplier);
             writeQ(sede._expCost * _xpSpCostMultiplier);
-            writeD(0); // required item count
+            writeQ(0); // required item count
             writeD(0); // req type?
             writeD(0); // required itemId
             writeD(0); // ?

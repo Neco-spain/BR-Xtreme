@@ -386,19 +386,19 @@ public class L2NpcInstance extends L2Npc
 	{  
 		if (command.startsWith("EnchantSkillList"))
 		{
-			this.showEnchantSkillList(player, false);
+			showEnchantSkillList(player, false);
 		}
 		else if (command.startsWith("SafeEnchantSkillList"))
 		{
-			this.showEnchantSkillList(player, true);
+			showEnchantSkillList(player, true);
 		}
 		else if (command.startsWith("ChangeEnchantSkillList"))
 		{
-			this.showEnchantChangeSkillList(player);
+			showEnchantChangeSkillList(player);
 		}
 		else if (command.startsWith("UntrainEnchantSkillList"))
 		{
-			this.showEnchantUntrainSkillList(player, player.getClassId());
+			showEnchantUntrainSkillList(player, player.getClassId());
 		}
 		else
 		{
