@@ -56,4 +56,9 @@ public class FortUpdater implements Runnable
 			e.printStackTrace();
 		}
 	}
+	
+	public int getRunCount()
+	{
+		return _runCount;
+	}
 }

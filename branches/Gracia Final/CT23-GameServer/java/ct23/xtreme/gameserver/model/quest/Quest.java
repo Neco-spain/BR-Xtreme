@@ -1983,4 +1983,38 @@ public class Quest extends ManagedScript
 		else
 			return false;
 	}
+	
+	/**
+	 * Get a random integer from 0 (inclusive) to {@code max} (exclusive).<br>
+	 * Use this method instead of importing {@link com.l2jserver.util.Rnd} utility.
+	 * @param max the maximum value for randomization
+	 * @return a random integer number from 0 to {@code max - 1}
+	 */
+	public static int getRandom(int max)
+	{
+		return Rnd.get(max);
+	}
+	
+	/**
+	 * Get a random integer from {@code min} (inclusive) to {@code max} (inclusive).<br>
+	 * Use this method instead of importing {@link com.l2jserver.util.Rnd} utility.
+	 * @param min the minimum value for randomization
+	 * @param max the maximum value for randomization
+	 * @return a random integer number from {@code min} to {@code max}
+	 */
+	public static int getRandom(int min, int max)
+	{
+		return Rnd.get(min, max);
+	}
+	
+	/**
+	 * Get a random boolean.<br>
+	 * Use this method instead of importing {@link com.l2jserver.util.Rnd} utility.
+	 * @return {@code true} or {@code false} randomly
+	 */
+	public static boolean getRandomBoolean()
+	{
+		return Rnd.nextBoolean();
+	}
+	
 }

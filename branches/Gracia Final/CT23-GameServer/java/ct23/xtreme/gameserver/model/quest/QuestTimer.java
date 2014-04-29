@@ -30,15 +30,20 @@ public class QuestTimer
 	// Schedule Task
 	public class ScheduleTimerTask implements Runnable
 	{
+		@Override
 		public void run()
 		{
-			if (this == null || !getIsActive())
+			if (!getIsActive())
+			{
 				return;
+			}
 			
 			try
 			{
 				if (!getIsRepeating())
-					cancel();
+				{
+					cancelAndRemove();
+				}
 				getQuest().notifyEvent(getName(), getNpc(), getPlayer());
 			}
 			catch (Exception e)
@@ -93,6 +98,15 @@ public class QuestTimer
 			_schedular.cancel(false);
 		
 		getQuest().removeQuestTimer(this);
+	}
+	
+	/**
+	 * Cancel this quest timer and remove it from the associated quest.
+	 */
+	public void cancelAndRemove()
+	{
+		cancel();
+		_quest.removeQuestTimer(this);
 	}
 	
 	/**

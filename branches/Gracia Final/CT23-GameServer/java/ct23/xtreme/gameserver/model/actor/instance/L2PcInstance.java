@@ -255,11 +255,10 @@ import ct23.xtreme.gameserver.util.Util;
 import ct23.xtreme.util.Point3D;
 import ct23.xtreme.util.Rnd;
 
+
 /**
- * This class represents all player characters in the world.
- * There is always a client-thread connected to this (except if a player-store is activated upon logout).<BR><BR>
- *
- * @version $Revision: 1.66.2.41.2.33 $ $Date: 2005/04/11 10:06:09 $
+ * This class represents all player characters in the world.<br>
+ * There is always a client-thread connected to this (except if a player-store is activated upon logout).
  */
 public final class L2PcInstance extends L2Playable
 {
@@ -14104,13 +14103,15 @@ public final class L2PcInstance extends L2Playable
     
     public void teleportBookmarkGo(int Id)
     {
-    	if(!teleportBookmarkCondition(0) || this == null)
-    		return;
-    	if (getInventory().getInventoryItemCount(13016, 0) == 0)
-    	{
-    		sendPacket(new SystemMessage(2359));
-    		return;
-    	}
+		if (!teleportBookmarkCondition(0))
+		{
+			return;
+		}
+		if (getInventory().getInventoryItemCount(13016, 0) == 0)
+		{
+			sendPacket(SystemMessageId.YOU_CANNOT_TELEPORT_BECAUSE_YOU_DO_NOT_HAVE_A_TELEPORT_ITEM);
+			return;
+		}
     	SystemMessage sm = new SystemMessage(SystemMessageId.S1_DISAPPEARED);
     	sm.addItemName(13016);
     	sendPacket(sm);
