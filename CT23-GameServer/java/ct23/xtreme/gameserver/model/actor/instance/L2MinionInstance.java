@@ -53,6 +53,7 @@ public class L2MinionInstance extends L2MonsterInstance
 	/**
 	 * Return the master of this L2MinionInstance.<BR><BR>
 	 */
+	@Override
 	public L2MonsterInstance getLeader()
 	{
 		return _master;
@@ -85,6 +86,7 @@ public class L2MinionInstance extends L2MonsterInstance
 	 * @param leader The L2Character that leads this L2MinionInstance
 	 *
 	 */
+	@Override
 	public void setLeader(L2MonsterInstance leader)
 	{
 		_master = leader;
