@@ -73,7 +73,7 @@ public final class RequestExEnchantSkillInfo extends L2GameClientPacket
         if (activeChar.getLevel() < 76)
             return;
 
-       L2Npc trainer = activeChar.getLastFolkNPC();
+        L2Npc trainer = activeChar.getLastFolkNPC();
         if (!(trainer instanceof L2NpcInstance))
         	return;
 
@@ -84,6 +84,7 @@ public final class RequestExEnchantSkillInfo extends L2GameClientPacket
         
         if (skill == null || skill.getId() != _skillId)
         {
+        	activeChar.sendMessage("This skill doesn't yet have enchant info in Datapack");
             return;
         }
 
@@ -122,7 +123,7 @@ public final class RequestExEnchantSkillInfo extends L2GameClientPacket
             if (_skillLvl > 100)
             {
                 // get detail for next level
-            	EnchantSkillDetail esd = enchantLearn.getEnchantSkillDetail(_skillLvl + 1);
+                EnchantSkillDetail esd = enchantLearn.getEnchantSkillDetail(_skillLvl + 1);
                 
                 // if it exists add it
                 if (esd != null)
@@ -134,6 +135,8 @@ public final class RequestExEnchantSkillInfo extends L2GameClientPacket
             {
                 for (List<EnchantSkillDetail> esd : enchantLearn.getEnchantRoutes())
                 {
+                	if (esd == null)
+                		continue;
                     // add first level (+1) of all routes
                     asi.addEnchantSkillDetail(activeChar, esd.get(0));
                 }
@@ -142,7 +145,7 @@ public final class RequestExEnchantSkillInfo extends L2GameClientPacket
         }
     }
     
-    public void showChangeEnchantInfo(L2PcInstance activeChar)
+	public void showChangeEnchantInfo(L2PcInstance activeChar)
     {
         ExEnchantSkillInfo asi = new ExEnchantSkillInfo(EnchantSkillType.CHANGE_ROUTE, _skillId);
         
@@ -164,6 +167,9 @@ public final class RequestExEnchantSkillInfo extends L2GameClientPacket
                     if (i != currentType)
                     {
                         route = routes[i];
+                        if (route == null)
+                        	continue;
+
                         EnchantSkillDetail esd = route.get(L2EnchantSkillLearn.getEnchantIndex(_skillLvl));
                         if (esd != null)
                         {
@@ -182,7 +188,7 @@ public final class RequestExEnchantSkillInfo extends L2GameClientPacket
         }
     }
     
-    public void showUntrainEnchantInfo(L2PcInstance activeChar)
+	public void showUntrainEnchantInfo(L2PcInstance activeChar)
     {
         ExEnchantSkillInfo asi = new ExEnchantSkillInfo(EnchantSkillType.UNTRAIN, _skillId);
         
@@ -199,7 +205,7 @@ public final class RequestExEnchantSkillInfo extends L2GameClientPacket
                     // no previous enchant level, return to original
                     if (_skillLvl%100 == 1)
                     {
-                        asi.addEnchantSkillDetail(enchantLearn.getBaseLevel(), 100, currentLevelDetail.getSpCost(), currentLevelDetail.getExp());
+                        asi.addEnchantSkillDetail(enchantLearn.getBaseLevel(), 100, (int) (currentLevelDetail.getSpCost() * 0.8), currentLevelDetail.getExp());
                     }
                     else
                     {
@@ -209,7 +215,7 @@ public final class RequestExEnchantSkillInfo extends L2GameClientPacket
                         // if it exists add it
                         if (esd != null)
                         {
-                            asi.addEnchantSkillDetail(esd.getLevel(), 100, currentLevelDetail.getSpCost(), currentLevelDetail.getExp());
+                            asi.addEnchantSkillDetail(esd.getLevel(), 100, (int) (currentLevelDetail.getSpCost() * 0.8), currentLevelDetail.getExp());
                         }
                     }
                 }
