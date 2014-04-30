@@ -107,29 +107,30 @@ public class GraciaSeedsManager
 		// Seed of Destruction variables
 		if (GlobalVariablesManager.getInstance().hasVariable("SoDState"))
 		{
-			_SoDState = GlobalVariablesManager.getInstance().getInt("SoDState", 1);
-			_SoDTiatKilled = GlobalVariablesManager.getInstance().getInt("SoDTiatKilled", 0);
-			_SoDLastStateChangeDate.setTimeInMillis(GlobalVariablesManager.getInstance().getLong("SoDLSCDate",0L));
-			_SoDResetDate.setTimeInMillis(GlobalVariablesManager.getInstance().getLong("SoDResetDate", 0L));
+			_SoDState = GlobalVariablesManager.getInstance().getInt("SoDState");
+			_SoDTiatKilled = GlobalVariablesManager.getInstance().getInt("SoDTiatKilled");
+			_SoDLastStateChangeDate.setTimeInMillis(GlobalVariablesManager.getInstance().getLong("SoDLSCDate"));
+			_SoDResetDate.setTimeInMillis(GlobalVariablesManager.getInstance().getLong("SoDResetDate"));
 		}
-        else
-        {
-            // save Initial values
-            saveData(SODTYPE);
-        }
+		else
+		{
+			// save Initial values
+			saveData(SODTYPE);
+		}
+		
 		// Seed 0f Infinity variables
 		if (GlobalVariablesManager.getInstance().hasVariable("SoIState"))
 		{
-			_SoIState = GlobalVariablesManager.getInstance().getInt("SoIState", 1);
-			_SoIKilled = GlobalVariablesManager.getInstance().getInt("SoIKilled", 0);
-			_SoINextData.setTimeInMillis(GlobalVariablesManager.getInstance().getLong("SoINextData",0L));
+			_SoIState = GlobalVariablesManager.getInstance().getInt("SoIState");
+			_SoIKilled = GlobalVariablesManager.getInstance().getInt("SoIKilled");
+			_SoINextData.setTimeInMillis(GlobalVariablesManager.getInstance().getLong("SoINextData"));
 		}
-        else 
-        {
-            // save Initial values
-            saveData(SOITYPE);
-        }
-	}	
+		else
+		{
+			// save Initial values
+			saveData(SOITYPE);
+		}
+	}
 
 	private void handleSodStages()
 	{
