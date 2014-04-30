@@ -87,7 +87,7 @@ public class GraciaSeedsManager
 				// Destruction
 				GlobalVariablesManager.getInstance().set("SoDState", _SoDState);
 				GlobalVariablesManager.getInstance().set("SoDTiatKilled", _SoDTiatKilled);
-				GlobalVariablesManager.getInstance().set("SoDLastStateChangeDate", _SoDLastStateChangeDate.getTimeInMillis());
+				GlobalVariablesManager.getInstance().set("SoDLSCDate", _SoDLastStateChangeDate.getTimeInMillis());
 				GlobalVariablesManager.getInstance().set("SoDResetDate", _SoDResetDate.getTimeInMillis());
 				break;
 			case SOITYPE:
@@ -105,21 +105,30 @@ public class GraciaSeedsManager
 	public void loadData()
 	{
 		// Seed of Destruction variables
-		if (GlobalVariablesManager.getInstance().hasVariable("SoDState"));
+		if (GlobalVariablesManager.getInstance().hasVariable("SoDState"))
 		{
 			_SoDState = GlobalVariablesManager.getInstance().getInt("SoDState", 1);
 			_SoDTiatKilled = GlobalVariablesManager.getInstance().getInt("SoDTiatKilled", 0);
-			_SoDLastStateChangeDate.setTimeInMillis(GlobalVariablesManager.getInstance().getLong("SoDLastStateChangeDate", 0L));
+			_SoDLastStateChangeDate.setTimeInMillis(GlobalVariablesManager.getInstance().getLong("SoDLSCDate",0L));
 			_SoDResetDate.setTimeInMillis(GlobalVariablesManager.getInstance().getLong("SoDResetDate", 0L));
 		}
-		
+        else
+        {
+            // save Initial values
+            saveData(SODTYPE);
+        }
 		// Seed 0f Infinity variables
-		if (GlobalVariablesManager.getInstance().hasVariable("SoIState"));
+		if (GlobalVariablesManager.getInstance().hasVariable("SoIState"))
 		{
 			_SoIState = GlobalVariablesManager.getInstance().getInt("SoIState", 1);
 			_SoIKilled = GlobalVariablesManager.getInstance().getInt("SoIKilled", 0);
-			_SoINextData.setTimeInMillis(GlobalVariablesManager.getInstance().getLong("SoINextData", 0L));
+			_SoINextData.setTimeInMillis(GlobalVariablesManager.getInstance().getLong("SoINextData",0L));
 		}
+        else 
+        {
+            // save Initial values
+            saveData(SOITYPE);
+        }
 	}	
 
 	private void handleSodStages()
