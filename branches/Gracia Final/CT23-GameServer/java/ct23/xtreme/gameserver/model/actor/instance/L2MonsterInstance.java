@@ -315,4 +315,60 @@ public class L2MonsterInstance extends L2Attackable
 	{
 		_enableMinions = b;
 	}
+	
+	private int _aggroRangeOverride = 0;
+	private String _clanOverride = null;
+	
+	public void setIsAggresiveOverride(int aggroR)
+	{
+		_aggroRangeOverride = aggroR;
+	}
+	
+	public void setClanOverride(String newClan)
+	{
+		_clanOverride = newClan;
+	}
+	
+	@Override
+	public int getAggroRange()
+	{
+		//Aggresive override for special mobs
+		if (_aggroRangeOverride > 0)
+			return _aggroRangeOverride;
+		
+		return super.getAggroRange();
+	}
+	
+	@Override
+	public String getClan()
+	{
+		//Clan name override for special mobs
+		if (_clanOverride != null)
+			return _clanOverride;
+		
+		return super.getClan();
+	}
+	
+	@Override
+	public int getClanRange()
+	{
+		//Default faction range 500
+		if (_clanOverride != null)
+			return 500;
+		
+		return super.getClanRange();
+	}
+	
+	private boolean _canAgroWhileMoving = false;
+	  
+	public final boolean canAgroWhileMoving() 
+	{
+		return _canAgroWhileMoving;
+	}
+
+	public final void setCanAgroWhileMoving() 
+	{
+		_canAgroWhileMoving = true;
+	}
+	
 }

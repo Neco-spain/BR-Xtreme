@@ -2360,7 +2360,7 @@ public final class L2PcInstance extends L2Playable
 	{
 		if (!Config.EXPERTISE_PENALTY)
 			return;
-		
+		final int expertiseLevel = getExpertiseLevel();
 		int armorPenalty = 0;
 		int weaponPenalty = 0;
 		
@@ -2371,12 +2371,16 @@ public final class L2PcInstance extends L2Playable
 			{
 				int crystaltype = item.getItem().getCrystalType();
 				
-				if (crystaltype > getExpertiseIndex())
+				if (crystaltype > expertiseLevel)
 				{
-					if (item.isWeapon() && crystaltype > weaponPenalty)
+					if (item.isWeapon() && (crystaltype > weaponPenalty))
+					{
 						weaponPenalty = crystaltype;
+					}
 					else if (crystaltype > armorPenalty)
+					{
 						armorPenalty = crystaltype;
+					}
 				}
 			}
 		}
@@ -11189,7 +11193,20 @@ public final class L2PcInstance extends L2Playable
 	{
 		return _expertiseIndex;
 	}
-
+	/**
+	 * Expertise of the L2PcInstance (None=0, D=1, C=2, B=3, A=4, S=5, S80=6, S84=7)
+	 * @return int Expertise skill level.
+	 */
+	public int getExpertiseLevel()
+	{
+		int level = getSkillLevel(239);
+		if (level < 0)
+		{
+			level = 0;
+		}
+		return level;
+	}
+	
 	@Override
 	public void teleToLocation(int x, int y, int z, int heading, boolean allowRandomOffset)
 	{
