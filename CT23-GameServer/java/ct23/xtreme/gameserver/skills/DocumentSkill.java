@@ -35,7 +35,7 @@ import ct23.xtreme.gameserver.templates.skills.L2SkillType;
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-class DocumentSkill extends DocumentBase {
+public class DocumentSkill extends DocumentBase {
 
     public class Skill
     {
