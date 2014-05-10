@@ -115,28 +115,72 @@
 		<set name="operateType" val="OP_PASSIVE" />
 	</skill>
 	<skill id="5715" levels="1" name="Electric Flame">
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
+		<!-- Confirmed CT2.3 retail -->
+		<set name="element" val="0" /> <!-- Fire -->
+		<set name="elementPower" val="20" />
 		<set name="hitTime" val="2500" />
+		<set name="isDebuff" val="true" />
+		<set name="isMagic" val="true" />
+		<set name="lvlDepend" val="1" />
+		<set name="magicLvl" val="73" />
+		<set name="operateType" val="OP_ACTIVE" />
+		<set name="power" val="213" />
+		<set name="reuseDelay" val="5000" />
+		<set name="saveVs" val="MEN" />
+		<set name="skillRadius" val="400" />
+		<set name="skillType" val="MDAM" />
+		<set name="target" val="TARGET_AURA" />
+		<for>
+			<!-- 55HP * 5 During 30 seconds -->
+			<effect count="6" name="DamOverTime" abnormalTime="5" val="275" abnormal="bleed" effectPower="80" effectType="BLEED" abnormalLvl="1" abnormalType="fire_dot">
+				<mul order="0x30" stat="runSpd" val="0.77" />
+			</effect>
+		</for>
 	</skill>
 	<skill id="5716" levels="1" name="Stun">
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
-		<set name="hitTime" val="3000" />
+		<!-- Confirmed CT2.3 retail -->
+		<set name="power" val="80"/>
+		<set name="target" val="TARGET_ONE"/>
+		<set name="isDebuff" val="true"/>
+		<set name="reuseDelay" val="3000"/>
+		<set name="hitTime" val="3000"/>
+		<set name="skillType" val="STUN"/>
+		<set name="operateType" val="OP_ACTIVE"/>
+		<set name="castRange" val="1500"/>
+		<set name="effectRange" val="2000"/>
+		<for>
+			<effect name="Stun" time="9" val="0" effectPower="90" effectType="STUN" stackOrder="1" stackType="Stun"/> <!-- Guessing power -->
+		</for>
 	</skill>
 	<skill id="5717" levels="1" name="Fire Breath">
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
-		<set name="hitTime" val="1500" />
+		<!-- Confirmed CT2.3 retail -->
+		<set name="power" val="100"/>
+		<set name="target" val="TARGET_ONE"/>
+		<set name="element" val="0"/> <!-- Fire -->
+		<set name="elementPower" val="20"/>
+		<set name="skillType" val="MDAM"/>
+		<set name="isMagic" val="true"/>
+		<set name="operateType" val="OP_ACTIVE"/>
+		<set name="reuseDelay" val="5000"/>
+		<set name="hitTime" val="1500"/>
+		<set name="castRange" val="1500"/>
+		<set name="effectRange" val="1800"/>
 	</skill>
 	<skill id="5718" levels="1" name="Anger">
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
-		<set name="hitTime" val="1500" />
+		<!-- Confirmed CT2.3 retail -->
+		<set name="power" val="120"/>
+		<set name="target" val="TARGET_SELF"/>
+		<set name="skillType" val="BUFF"/>
+		<set name="isMagic" val="true"/>
+		<set name="operateType" val="OP_ACTIVE"/>
+		<set name="reuseDelay" val="30000"/>
+		<set name="hitTime" val="1500"/>
+		<for>
+			<effect name="Buff" time="30" val="0" stackOrder="1" stackType="pinch">
+				<mul order="0x30" stat="pAtk" val="2.1"/>
+				<mul order="0x30" stat="pDef" val="0.5"/>
+			</effect>
+		</for>
 	</skill>
 	<skill id="5719" levels="1" name="Kamabion Susceptibility">
 		<set name="target" val="TARGET_NONE" />
@@ -370,10 +414,12 @@
 		<set name="operateType" val="OP_PASSIVE" />
 	</skill>
 	<skill id="5759" levels="1" name="Presentation - The Rise of Latana">
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
-		<set name="hitTime" val="9700" />
+		<!-- Confirmed CT2.3 retail -->
+		<set name="target" val="TARGET_SELF" />
+		<set name="skillType" val="DUMMY" />
+		<set name="operateType" val="OP_ACTIVE" />
+		<set name="staticHitTime" val="true"/>
+		<set name="hitTime" val="9700"/>
 	</skill>
 	<skill id="5760" levels="9" name="Critical Hit">
 		<set name="target" val="TARGET_NONE" />

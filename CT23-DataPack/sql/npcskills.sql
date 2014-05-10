@@ -22097,266 +22097,306 @@ INSERT INTO `npcskills` VALUES
 (18634,4414,2),
 (18634,4415,7),
 (18634,4416,1),
+
 -- Varka Silenos Recruit
-(18635,4408,1),
-(18635,4409,1),
-(18635,4410,11),
-(18635,4411,11),
-(18635,4412,11),
-(18635,4413,11),
-(18635,4414,2),
-(18635,4415,13),
-(18635,4416,6),
+(18635,4416,6), -- s_npc_prop_race_humanoid
+(18635,4408,1), -- s_npc_prop_hp_lv_p0
+(18635,4409,1), -- s_npc_prop_mp_lv_p0
+(18635,4410,11), -- s_npc_prop_pa_lv_p0
+(18635,4411,11), -- s_npc_prop_ma_lv_p0
+(18635,4412,11), -- s_npc_prop_pd_lv_p0
+(18635,4413,11), -- s_npc_prop_md_lv_p0
+(18635,4414,2), -- s_npc_prop_armor_type_n
+(18635,4415,13), -- s_npc_prop_weapon_type_2hsword
+(18635,4563,7), -- s_npc_solar_flare_magic_only7
+(18635,4560,7), -- s_npc_fire_burn7
 -- Varka Silenos Footman
-(18636,4408,1),
-(18636,4409,1),
-(18636,4410,11),
-(18636,4411,11),
-(18636,4412,11),
-(18636,4413,11),
-(18636,4414,2),
-(18636,4415,13),
-(18636,4416,6),
+(18636,4416,6), -- s_npc_prop_race_humanoid
+(18636,4408,1), -- s_npc_prop_hp_lv_p0
+(18636,4409,1), -- s_npc_prop_mp_lv_p0
+(18636,4410,11), -- s_npc_prop_pa_lv_p0
+(18636,4411,11), -- s_npc_prop_ma_lv_p0
+(18636,4412,11), -- s_npc_prop_pd_lv_p0
+(18636,4413,11), -- s_npc_prop_md_lv_p0
+(18636,4414,2), -- s_npc_prop_armor_type_n
+(18636,4415,13), -- s_npc_prop_weapon_type_2hsword
+(18636,4563,7), -- s_npc_solar_flare_magic_only7
 -- Grazing Antelope
-(18637,4408,1),
-(18637,4409,1),
-(18637,4410,11),
-(18637,4411,11),
-(18637,4412,11),
-(18637,4413,11),
-(18637,4414,2),
-(18637,4415,3),
-(18637,4416,4),
+(18637,4416,4), -- s_npc_prop_race_animal
+(18637,4408,1), -- s_npc_prop_hp_lv_p0
+(18637,4409,1), -- s_npc_prop_mp_lv_p0
+(18637,4410,11), -- s_npc_prop_pa_lv_p0
+(18637,4411,11), -- s_npc_prop_ma_lv_p0
+(18637,4412,11), -- s_npc_prop_pd_lv_p0
+(18637,4413,11), -- s_npc_prop_md_lv_p0
+(18637,4414,2), -- s_npc_prop_armor_type_n
+(18637,4415,3), -- s_npc_prop_weapon_type_sword
+(18637,4067,7), -- s_npc_blow7
 -- Varka Silenos Scout
-(18638,4408,1),
-(18638,4409,1),
-(18638,4410,11),
-(18638,4411,11),
-(18638,4412,11),
-(18638,4413,11),
-(18638,4414,2),
-(18638,4415,13),
-(18638,4416,6),
+(18638,4416,6), -- s_npc_prop_race_humanoid
+(18638,4408,1), -- s_npc_prop_hp_lv_p0
+(18638,4409,1), -- s_npc_prop_mp_lv_p0
+(18638,4410,11), -- s_npc_prop_pa_lv_p0
+(18638,4411,11), -- s_npc_prop_ma_lv_p0
+(18638,4412,11), -- s_npc_prop_pd_lv_p0
+(18638,4413,11), -- s_npc_prop_md_lv_p0
+(18638,4414,2), -- s_npc_prop_armor_type_n
+(18638,4415,13), -- s_npc_prop_weapon_type_2hsword
+(18638,4563,7), -- s_npc_solar_flare_magic_only7
 -- Varka Silenos Hunter
-(18639,4408,1),
-(18639,4409,1),
-(18639,4410,11),
-(18639,4411,11),
-(18639,4412,11),
-(18639,4413,11),
-(18639,4414,2),
-(18639,4415,9),
-(18639,4416,6),
+(18639,4416,6), -- s_npc_prop_race_humanoid
+(18639,4408,1), -- s_npc_prop_hp_lv_p0
+(18639,4409,1), -- s_npc_prop_mp_lv_p0
+(18639,4410,11), -- s_npc_prop_pa_lv_p0
+(18639,4411,11), -- s_npc_prop_ma_lv_p0
+(18639,4412,11), -- s_npc_prop_pd_lv_p0
+(18639,4413,11), -- s_npc_prop_md_lv_p0
+(18639,4414,2), -- s_npc_prop_armor_type_n
+(18639,4415,9), -- s_npc_prop_weapon_type_bow
+(18639,4563,7), -- s_npc_solar_flare_magic_only7
 -- Varka Silenos Shaman
-(18640,4408,1),
-(18640,4409,1),
-(18640,4410,11),
-(18640,4411,11),
-(18640,4412,11),
-(18640,4413,11),
-(18640,4414,3),
-(18640,4415,6),
-(18640,4416,6),
+(18640,4416,6), -- s_npc_prop_race_humanoid
+(18640,4408,1), -- s_npc_prop_hp_lv_p0
+(18640,4409,1), -- s_npc_prop_mp_lv_p0
+(18640,4410,11), -- s_npc_prop_pa_lv_p0
+(18640,4411,11), -- s_npc_prop_ma_lv_p0
+(18640,4412,11), -- s_npc_prop_pd_lv_p0
+(18640,4413,11), -- s_npc_prop_md_lv_p0
+(18640,4414,3), -- s_npc_prop_armor_type_light
+(18640,4415,6), -- s_npc_prop_weapon_type_blunt2
+(18640,4563,7), -- s_npc_solar_flare_magic_only7
+(18640,4160,8), -- s_npc_aura_burn_magic_only8
 -- Varka Silenos Priest
-(18641,4408,1),
-(18641,4409,1),
-(18641,4410,11),
-(18641,4411,11),
-(18641,4412,11),
-(18641,4413,11),
-(18641,4414,2),
-(18641,4415,3),
-(18641,4416,6),
+(18641,4416,6), -- s_npc_prop_race_humanoid
+(18641,4408,1), -- s_npc_prop_hp_lv_p0
+(18641,4409,1), -- s_npc_prop_mp_lv_p0
+(18641,4410,11), -- s_npc_prop_pa_lv_p0
+(18641,4411,11), -- s_npc_prop_ma_lv_p0
+(18641,4412,11), -- s_npc_prop_pd_lv_p0
+(18641,4413,11), -- s_npc_prop_md_lv_p0
+(18641,4414,2), -- s_npc_prop_armor_type_n
+(18641,4415,3), -- s_npc_prop_weapon_type_sword
+(18641,4563,7), -- s_npc_solar_flare_magic_only7
+(18641,4560,7), -- s_npc_fire_burn7
 -- Varka Silenos Warrior
-(18642,4408,1),
-(18642,4409,1),
-(18642,4410,11),
-(18642,4411,11),
-(18642,4412,11),
-(18642,4413,11),
-(18642,4414,2),
-(18642,4415,13),
-(18642,4416,6),
+(18642,4416,6), -- s_npc_prop_race_humanoid
+(18642,4408,1), -- s_npc_prop_hp_lv_p0
+(18642,4409,1), -- s_npc_prop_mp_lv_p0
+(18642,4410,11), -- s_npc_prop_pa_lv_p0
+(18642,4411,11), -- s_npc_prop_ma_lv_p0
+(18642,4412,11), -- s_npc_prop_pd_lv_p0
+(18642,4413,11), -- s_npc_prop_md_lv_p0
+(18642,4414,2), -- s_npc_prop_armor_type_n
+(18642,4415,13), -- s_npc_prop_weapon_type_2hsword
+(18642,4563,7), -- s_npc_solar_flare_magic_only7
 -- Grazing Antelope
-(18643,4408,1),
-(18643,4409,1),
-(18643,4410,11),
-(18643,4411,11),
-(18643,4412,11),
-(18643,4413,11),
-(18643,4414,2),
-(18643,4415,3),
-(18643,4416,4),
+(18643,4416,4), -- s_npc_prop_race_animal
+(18643,4408,1), -- s_npc_prop_hp_lv_p0
+(18643,4409,1), -- s_npc_prop_mp_lv_p0
+(18643,4410,11), -- s_npc_prop_pa_lv_p0
+(18643,4411,11), -- s_npc_prop_ma_lv_p0
+(18643,4412,11), -- s_npc_prop_pd_lv_p0
+(18643,4413,11), -- s_npc_prop_md_lv_p0
+(18643,4414,2), -- s_npc_prop_armor_type_n
+(18643,4415,3), -- s_npc_prop_weapon_type_sword
+(18643,4067,7), -- s_npc_blow7
 -- Varka Silenos Medium
-(18644,4408,1),
-(18644,4409,1),
-(18644,4410,11),
-(18644,4411,11),
-(18644,4412,11),
-(18644,4413,11),
-(18644,4414,3),
-(18644,4415,6),
-(18644,4416,6),
+(18644,4416,6), -- s_npc_prop_race_humanoid
+(18644,4408,1), -- s_npc_prop_hp_lv_p0
+(18644,4409,1), -- s_npc_prop_mp_lv_p0
+(18644,4410,11), -- s_npc_prop_pa_lv_p0
+(18644,4411,11), -- s_npc_prop_ma_lv_p0
+(18644,4412,11), -- s_npc_prop_pd_lv_p0
+(18644,4413,11), -- s_npc_prop_md_lv_p0
+(18644,4414,3), -- s_npc_prop_armor_type_light
+(18644,4415,6), -- s_npc_prop_weapon_type_blunt2
+(18644,4563,7), -- s_npc_solar_flare_magic_only7
+(18644,4160,7), -- s_npc_aura_burn_magic_only7
 -- Varka Silenos Magus
-(18645,4408,1),
-(18645,4409,1),
-(18645,4410,11),
-(18645,4411,11),
-(18645,4412,11),
-(18645,4413,11),
-(18645,4414,2),
-(18645,4415,5),
-(18645,4416,6),
+(18645,4416,6), -- s_npc_prop_race_humanoid
+(18645,4408,1), -- s_npc_prop_hp_lv_p0
+(18645,4409,1), -- s_npc_prop_mp_lv_p0
+(18645,4410,11), -- s_npc_prop_pa_lv_p0
+(18645,4411,11), -- s_npc_prop_ma_lv_p0
+(18645,4412,11), -- s_npc_prop_pd_lv_p0
+(18645,4413,11), -- s_npc_prop_md_lv_p0
+(18645,4414,2), -- s_npc_prop_armor_type_n
+(18645,4415,5), -- s_npc_prop_weapon_type_blunt
+(18645,4563,7), -- s_npc_solar_flare_magic_only7
+(18645,4160,7), -- s_npc_aura_burn_magic_only7
 -- Varka Silenos Officer
-(18646,4408,1),
-(18646,4409,1),
-(18646,4410,11),
-(18646,4411,11),
-(18646,4412,11),
-(18646,4413,11),
-(18646,4414,2),
-(18646,4415,13),
-(18646,4416,6),
+(18646,4416,6), -- s_npc_prop_race_humanoid
+(18646,4408,1), -- s_npc_prop_hp_lv_p0
+(18646,4409,1), -- s_npc_prop_mp_lv_p0
+(18646,4410,11), -- s_npc_prop_pa_lv_p0
+(18646,4411,11), -- s_npc_prop_ma_lv_p0
+(18646,4412,11), -- s_npc_prop_pd_lv_p0
+(18646,4413,11), -- s_npc_prop_md_lv_p0
+(18646,4414,2), -- s_npc_prop_armor_type_n
+(18646,4415,13), -- s_npc_prop_weapon_type_2hsword
+(18646,4563,7), -- s_npc_solar_flare_magic_only7
 -- Grazing Flava
-(18647,4408,1),
-(18647,4409,1),
-(18647,4410,11),
-(18647,4411,11),
-(18647,4412,11),
-(18647,4413,11),
-(18647,4414,2),
-(18647,4415,3),
-(18647,4416,5),
+(18647,4416,5), -- s_npc_prop_race_plant
+(18647,4408,1), -- s_npc_prop_hp_lv_p0
+(18647,4409,1), -- s_npc_prop_mp_lv_p0
+(18647,4410,11), -- s_npc_prop_pa_lv_p0
+(18647,4411,11), -- s_npc_prop_ma_lv_p0
+(18647,4412,11), -- s_npc_prop_pd_lv_p0
+(18647,4413,11), -- s_npc_prop_md_lv_p0
+(18647,4414,2), -- s_npc_prop_armor_type_n
+(18647,4415,3), -- s_npc_prop_weapon_type_sword
+(18647,4032,7), -- s_npc_strike7
 -- Varka Silenos Seer
-(18648,4408,1),
-(18648,4409,1),
-(18648,4410,11),
-(18648,4411,11),
-(18648,4412,11),
-(18648,4413,11),
-(18648,4414,3),
-(18648,4415,6),
-(18648,4416,6),
+(18648,4416,6), -- s_npc_prop_race_humanoid
+(18648,4408,1), -- s_npc_prop_hp_lv_p0
+(18648,4409,1), -- s_npc_prop_mp_lv_p0
+(18648,4410,11), -- s_npc_prop_pa_lv_p0
+(18648,4411,11), -- s_npc_prop_ma_lv_p0
+(18648,4412,11), -- s_npc_prop_pd_lv_p0
+(18648,4413,11), -- s_npc_prop_md_lv_p0
+(18648,4414,3), -- s_npc_prop_armor_type_light
+(18648,4415,6), -- s_npc_prop_weapon_type_blunt2
+(18648,4563,7), -- s_npc_solar_flare_magic_only7
+(18648,4160,9), -- s_npc_aura_burn_magic_only9
 -- Varka Silenos Great Magus
-(18649,4408,1),
-(18649,4409,1),
-(18649,4410,11),
-(18649,4411,11),
-(18649,4412,11),
-(18649,4413,11),
-(18649,4414,2),
-(18649,4415,13),
-(18649,4416,6),
+(18649,4416,6), -- s_npc_prop_race_humanoid
+(18649,4408,1), -- s_npc_prop_hp_lv_p0
+(18649,4409,1), -- s_npc_prop_mp_lv_p0
+(18649,4410,11), -- s_npc_prop_pa_lv_p0
+(18649,4411,11), -- s_npc_prop_ma_lv_p0
+(18649,4412,11), -- s_npc_prop_pd_lv_p0
+(18649,4413,11), -- s_npc_prop_md_lv_p0
+(18649,4414,2), -- s_npc_prop_armor_type_n
+(18649,4415,13), -- s_npc_prop_weapon_type_2hsword
+(18649,4563,7), -- s_npc_solar_flare_magic_only7
 -- Varka Silenos General
-(18650,4408,1),
-(18650,4409,1),
-(18650,4410,11),
-(18650,4411,11),
-(18650,4412,11),
-(18650,4413,11),
-(18650,4414,2),
-(18650,4415,13),
-(18650,4416,6),
+(18650,4416,6), -- s_npc_prop_race_humanoid
+(18650,4408,1), -- s_npc_prop_hp_lv_p0
+(18650,4409,1), -- s_npc_prop_mp_lv_p0
+(18650,4410,11), -- s_npc_prop_pa_lv_p0
+(18650,4411,11), -- s_npc_prop_ma_lv_p0
+(18650,4412,11), -- s_npc_prop_pd_lv_p0
+(18650,4413,11), -- s_npc_prop_md_lv_p0
+(18650,4414,2), -- s_npc_prop_armor_type_n
+(18650,4415,13), -- s_npc_prop_weapon_type_2hsword
+(18650,4563,7), -- s_npc_solar_flare_magic_only7
+(18650,4560,7), -- s_npc_fire_burn7
 -- Grazing Elder Antelope
-(18651,4408,1),
-(18651,4409,1),
-(18651,4410,11),
-(18651,4411,11),
-(18651,4412,11),
-(18651,4413,11),
-(18651,4414,2),
-(18651,4415,5),
-(18651,4416,4),
+(18651,4416,4), -- s_npc_prop_race_animal
+(18651,4408,1), -- s_npc_prop_hp_lv_p0
+(18651,4409,1), -- s_npc_prop_mp_lv_p0
+(18651,4410,11), -- s_npc_prop_pa_lv_p0
+(18651,4411,11), -- s_npc_prop_ma_lv_p0
+(18651,4412,11), -- s_npc_prop_pd_lv_p0
+(18651,4413,11), -- s_npc_prop_md_lv_p0
+(18651,4414,2), -- s_npc_prop_armor_type_n
+(18651,4415,5), -- s_npc_prop_weapon_type_blunt
+(18651,4580,7), -- s_npc_weakness_strike7
 -- Varka Silenos Great Seer
-(18652,4408,1),
-(18652,4409,1),
-(18652,4410,11),
-(18652,4411,11),
-(18652,4412,11),
-(18652,4413,11),
-(18652,4414,3),
-(18652,4415,6),
-(18652,4416,6),
--- Varkas Elite Guard
-(18653,4408,1),
-(18653,4409,1),
-(18653,4410,11),
-(18653,4411,11),
-(18653,4412,11),
-(18653,4413,11),
-(18653,4414,2),
-(18653,4415,13),
-(18653,4416,6),
--- Varkas Commander
-(18654,4408,1),
-(18654,4409,1),
-(18654,4410,11),
-(18654,4411,11),
-(18654,4412,11),
-(18654,4413,11),
-(18654,4414,2),
-(18654,4415,13),
-(18654,4416,6),
--- Varkas Head Guard
-(18655,4408,1),
-(18655,4409,1),
-(18655,4410,11),
-(18655,4411,11),
-(18655,4412,11),
-(18655,4413,11),
-(18655,4414,2),
-(18655,4415,13),
-(18655,4416,6),
--- Varkas Head Magus
-(18656,4408,1),
-(18656,4409,1),
-(18656,4410,11),
-(18656,4411,11),
-(18656,4412,11),
-(18656,4413,11),
-(18656,4414,3),
-(18656,4415,6),
-(18656,4416,6),
+(18652,4416,6), -- s_npc_prop_race_humanoid
+(18652,4408,1), -- s_npc_prop_hp_lv_p0
+(18652,4409,1), -- s_npc_prop_mp_lv_p0
+(18652,4410,11), -- s_npc_prop_pa_lv_p0
+(18652,4411,11), -- s_npc_prop_ma_lv_p0
+(18652,4412,11), -- s_npc_prop_pd_lv_p0
+(18652,4413,11), -- s_npc_prop_md_lv_p0
+(18652,4414,3), -- s_npc_prop_armor_type_light
+(18652,4415,6), -- s_npc_prop_weapon_type_blunt2
+(18652,4563,7), -- s_npc_solar_flare_magic_only7
+(18652,4160,7), -- s_npc_aura_burn_magic_only7
+-- Varka\'s Elite Guard
+(18653,4416,6), -- s_npc_prop_race_humanoid
+(18653,4408,1), -- s_npc_prop_hp_lv_p0
+(18653,4409,1), -- s_npc_prop_mp_lv_p0
+(18653,4410,11), -- s_npc_prop_pa_lv_p0
+(18653,4411,11), -- s_npc_prop_ma_lv_p0
+(18653,4412,11), -- s_npc_prop_pd_lv_p0
+(18653,4413,11), -- s_npc_prop_md_lv_p0
+(18653,4414,2), -- s_npc_prop_armor_type_n
+(18653,4415,13), -- s_npc_prop_weapon_type_2hsword
+(18653,4563,7), -- s_npc_solar_flare_magic_only7
+-- Varka\'s Commander
+(18654,4416,6), -- s_npc_prop_race_humanoid
+(18654,4408,1), -- s_npc_prop_hp_lv_p0
+(18654,4409,1), -- s_npc_prop_mp_lv_p0
+(18654,4410,11), -- s_npc_prop_pa_lv_p0
+(18654,4411,11), -- s_npc_prop_ma_lv_p0
+(18654,4412,11), -- s_npc_prop_pd_lv_p0
+(18654,4413,11), -- s_npc_prop_md_lv_p0
+(18654,4414,2), -- s_npc_prop_armor_type_n
+(18654,4415,13), -- s_npc_prop_weapon_type_2hsword
+(18654,4563,7), -- s_npc_solar_flare_magic_only7
+-- Varka\'s Head Guard
+(18655,4416,6), -- s_npc_prop_race_humanoid
+(18655,4408,1), -- s_npc_prop_hp_lv_p0
+(18655,4409,1), -- s_npc_prop_mp_lv_p0
+(18655,4410,11), -- s_npc_prop_pa_lv_p0
+(18655,4411,11), -- s_npc_prop_ma_lv_p0
+(18655,4412,11), -- s_npc_prop_pd_lv_p0
+(18655,4413,11), -- s_npc_prop_md_lv_p0
+(18655,4414,2), -- s_npc_prop_armor_type_n
+(18655,4415,13), -- s_npc_prop_weapon_type_2hsword
+(18655,4563,7), -- s_npc_solar_flare_magic_only7
+-- Varka\'s Head Magus
+(18656,4416,6), -- s_npc_prop_race_humanoid
+(18656,4408,1), -- s_npc_prop_hp_lv_p0
+(18656,4409,1), -- s_npc_prop_mp_lv_p0
+(18656,4410,11), -- s_npc_prop_pa_lv_p0
+(18656,4411,11), -- s_npc_prop_ma_lv_p0
+(18656,4412,11), -- s_npc_prop_pd_lv_p0
+(18656,4413,11), -- s_npc_prop_md_lv_p0
+(18656,4414,3), -- s_npc_prop_armor_type_light
+(18656,4415,6), -- s_npc_prop_weapon_type_blunt2
+(18656,4563,7), -- s_npc_solar_flare_magic_only7
 -- Prophet Guard
-(18657,4408,1),
-(18657,4409,1),
-(18657,4410,11),
-(18657,4411,11),
-(18657,4412,11),
-(18657,4413,11),
-(18657,4414,2),
-(18657,4415,13),
-(18657,4416,6),
+(18657,4416,6), -- s_npc_prop_race_humanoid
+(18657,4408,1), -- s_npc_prop_hp_lv_p0
+(18657,4409,1), -- s_npc_prop_mp_lv_p0
+(18657,4410,11), -- s_npc_prop_pa_lv_p0
+(18657,4411,11), -- s_npc_prop_ma_lv_p0
+(18657,4412,11), -- s_npc_prop_pd_lv_p0
+(18657,4413,11), -- s_npc_prop_md_lv_p0
+(18657,4414,2), -- s_npc_prop_armor_type_n
+(18657,4415,13), -- s_npc_prop_weapon_type_2hsword
+(18657,4563,7), -- s_npc_solar_flare_magic_only7
 -- Disciple of Prophet
-(18658,4408,1),
-(18658,4409,1),
-(18658,4410,11),
-(18658,4411,11),
-(18658,4412,11),
-(18658,4413,11),
-(18658,4414,2),
-(18658,4415,3),
-(18658,4416,6),
--- Varkas Prophet
-(18659,4408,1),
-(18659,4409,1),
-(18659,4410,11),
-(18659,4411,11),
-(18659,4412,11),
-(18659,4413,11),
-(18659,4414,2),
-(18659,4415,6),
-(18659,4416,6),
+(18658,4416,6), -- s_npc_prop_race_humanoid
+(18658,4408,1), -- s_npc_prop_hp_lv_p0
+(18658,4409,1), -- s_npc_prop_mp_lv_p0
+(18658,4410,11), -- s_npc_prop_pa_lv_p0
+(18658,4411,11), -- s_npc_prop_ma_lv_p0
+(18658,4412,11), -- s_npc_prop_pd_lv_p0
+(18658,4413,11), -- s_npc_prop_md_lv_p0
+(18658,4414,2), -- s_npc_prop_armor_type_n
+(18658,4415,3), -- s_npc_prop_weapon_type_sword
+(18658,4563,7), -- s_npc_solar_flare_magic_only7
+-- Varka\'s Prophet
+(18659,4416,6), -- s_npc_prop_race_humanoid
+(18659,4408,1), -- s_npc_prop_hp_lv_p0
+(18659,4409,1), -- s_npc_prop_mp_lv_p0
+(18659,4410,11), -- s_npc_prop_pa_lv_p0
+(18659,4411,11), -- s_npc_prop_ma_lv_p0
+(18659,4412,11), -- s_npc_prop_pd_lv_p0
+(18659,4413,11), -- s_npc_prop_md_lv_p0
+(18659,4414,2), -- s_npc_prop_armor_type_n
+(18659,4415,6), -- s_npc_prop_weapon_type_blunt2
+(18659,4563,7), -- s_npc_solar_flare_magic_only7
+(18659,4160,9), -- s_npc_aura_burn_magic_only9
 -- Latana
-(18660,4408,1),
-(18660,4409,1),
-(18660,4410,11),
-(18660,4411,11),
-(18660,4412,11),
-(18660,4413,11),
-(18660,4414,2),
-(18660,4415,3),
-(18660,4416,10),
+(18660,4416,10), -- s_npc_prop_race_dragon
+(18660,4408,1), -- s_npc_prop_hp_lv_p0
+(18660,4409,1), -- s_npc_prop_mp_lv_p0
+(18660,4410,11), -- s_npc_prop_pa_lv_p0
+(18660,4411,11), -- s_npc_prop_ma_lv_p0
+(18660,4412,11), -- s_npc_prop_pd_lv_p0
+(18660,4413,11), -- s_npc_prop_md_lv_p0
+(18660,4414,2), -- s_npc_prop_armor_type_n
+(18660,4415,3), -- s_npc_prop_weapon_type_sword
+(18660,5715,1), -- s_eletric_flame
+(18660,5716,1), -- s_npc_stun
+(18660,5717,1), -- s_skill_fire_breath
+(18660,5718,1), -- s_buff_anger
+(18660,5759,1), -- s_presentation_the_rise_of_latana
 -- 
 (18661,4408,1),
 (18661,4409,1),
@@ -23557,41 +23597,41 @@ INSERT INTO `npcskills` VALUES
 (18775,4416,2),
 (18775,5462,1),
 -- Obelisk
-(18776,4045,1),
-(18776,4408,10),
-(18776,4409,1),
-(18776,4410,11),
-(18776,4411,11),
-(18776,4412,11),
-(18776,4413,11),
-(18776,4414,2),
-(18776,4415,3),
-(18776,4416,2),
-(18776,5462,1),
+(18776,4416,2), -- s_npc_prop_race_construct
+(18776,5462,1), -- s_npc_prop_attribute_fire1
+(18776,4408,10), -- s_npc_prop_hp_lv_m2
+(18776,4409,1), -- s_npc_prop_mp_lv_p0
+(18776,4410,11), -- s_npc_prop_pa_lv_p0
+(18776,4411,11), -- s_npc_prop_ma_lv_p0
+(18776,4412,11), -- s_npc_prop_pd_lv_p0
+(18776,4413,11), -- s_npc_prop_md_lv_p0
+(18776,4414,2), -- s_npc_prop_armor_type_n
+(18776,4415,3), -- s_npc_prop_weapon_type_sword
+(18776,4045,1), -- s_full_magic_defence
 -- Great Powerful Device
-(18777,4045,1),
-(18777,4408,10),
-(18777,4409,1),
-(18777,4410,11),
-(18777,4411,11),
-(18777,4412,11),
-(18777,4413,11),
-(18777,4414,2),
-(18777,4415,3),
-(18777,4416,2),
-(18777,5462,1),
+(18777,4416,2), -- s_npc_prop_race_construct
+(18777,5462,1), -- s_npc_prop_attribute_fire1
+(18777,4408,10), -- s_npc_prop_hp_lv_m2
+(18777,4409,1), -- s_npc_prop_mp_lv_p0
+(18777,4410,11), -- s_npc_prop_pa_lv_p0
+(18777,4411,11), -- s_npc_prop_ma_lv_p0
+(18777,4412,11), -- s_npc_prop_pd_lv_p0
+(18777,4413,11), -- s_npc_prop_md_lv_p0
+(18777,4414,2), -- s_npc_prop_armor_type_n
+(18777,4415,3), -- s_npc_prop_weapon_type_sword
+(18777,4045,1), -- s_full_magic_defence
 -- Throne of Destruction Powerful Device
-(18778,4045,1),
-(18778,4408,10),
-(18778,4409,1),
-(18778,4410,11),
-(18778,4411,11),
-(18778,4412,11),
-(18778,4413,11),
-(18778,4414,2),
-(18778,4415,3),
-(18778,4416,2),
-(18778,5462,1),
+(18778,4416,2), -- s_npc_prop_race_construct
+(18778,5462,1), -- s_npc_prop_attribute_fire1
+(18778,4408,10), -- s_npc_prop_hp_lv_m2
+(18778,4409,1), -- s_npc_prop_mp_lv_p0
+(18778,4410,11), -- s_npc_prop_pa_lv_p0
+(18778,4411,11), -- s_npc_prop_ma_lv_p0
+(18778,4412,11), -- s_npc_prop_pd_lv_p0
+(18778,4413,11), -- s_npc_prop_md_lv_p0
+(18778,4414,2), -- s_npc_prop_armor_type_n
+(18778,4415,3), -- s_npc_prop_weapon_type_sword
+(18778,4045,1), -- s_full_magic_defence
 -- 
 (18779,4408,1),
 (18779,4409,1),
@@ -52357,194 +52397,242 @@ INSERT INTO `npcskills` VALUES
 (22535,4416,1),
 (22535,5465,1),
 -- Royal Guard Captain
-(22536,4408,10),
-(22536,4409,1),
-(22536,4410,14),
-(22536,4411,9),
-(22536,4412,14),
-(22536,4413,9),
-(22536,4414,2),
-(22536,4415,11),
-(22536,4416,10),
-(22536,5462,1),
+(22536,4416,10), -- s_npc_prop_race_dragon
+(22536,5462,1), -- s_npc_prop_attribute_fire1
+(22536,4408,10), -- s_npc_prop_hp_lv_m2
+(22536,4409,1), -- s_npc_prop_mp_lv_p0
+(22536,4410,14), -- s_npc_prop_pa_lv_p3
+(22536,4411,9), -- s_npc_prop_ma_lv_n2
+(22536,4412,14), -- s_npc_prop_pd_lv_p3
+(22536,4413,9), -- s_npc_prop_md_lv_n2
+(22536,4414,2), -- s_npc_prop_armor_type_n
+(22536,4415,11), -- s_npc_prop_weapon_type_pole
+(22536,5274,5), -- s_npc_party30_p_long_shot5
+(22536,5826,1), -- s_seed_of_destruction_breath1
+(22536,4072,10), -- s_npc_thunder_storm10
 -- Dragon Steed Troop Grand Magician
-(22537,4408,9),
-(22537,4409,1),
-(22537,4410,11),
-(22537,4411,12),
-(22537,4412,11),
-(22537,4413,11),
-(22537,4414,2),
-(22537,4415,3),
-(22537,4416,10),
-(22537,5462,1),
+(22537,4416,10), -- s_npc_prop_race_dragon
+(22537,5462,1), -- s_npc_prop_attribute_fire1
+(22537,4408,9), -- s_npc_prop_hp_lv_mh
+(22537,4409,1), -- s_npc_prop_mp_lv_p0
+(22537,4410,11), -- s_npc_prop_pa_lv_p0
+(22537,4411,12), -- s_npc_prop_ma_lv_p1
+(22537,4412,11), -- s_npc_prop_pd_lv_p0
+(22537,4413,11), -- s_npc_prop_md_lv_p0
+(22537,4414,2), -- s_npc_prop_armor_type_n
+(22537,4415,3), -- s_npc_prop_weapon_type_sword
+(22537,5328,5), -- s_npc_party30_m_long_dd_unholy5
+(22537,5829,1), -- s_seed_of_destruction_fire_flare1
+(22537,5826,1), -- s_seed_of_destruction_breath1
 -- Dragon Steed Troop Commander
-(22538,4408,9),
-(22538,4409,1),
-(22538,4410,11),
-(22538,4411,11),
-(22538,4412,11),
-(22538,4413,11),
-(22538,4414,2),
-(22538,4415,11),
-(22538,4416,10),
-(22538,5462,1),
+(22538,4416,10), -- s_npc_prop_race_dragon
+(22538,5462,1), -- s_npc_prop_attribute_fire1
+(22538,4408,9), -- s_npc_prop_hp_lv_mh
+(22538,4409,1), -- s_npc_prop_mp_lv_p0
+(22538,4410,11), -- s_npc_prop_pa_lv_p0
+(22538,4411,11), -- s_npc_prop_ma_lv_p0
+(22538,4412,11), -- s_npc_prop_pd_lv_p0
+(22538,4413,11), -- s_npc_prop_md_lv_p0
+(22538,4414,2), -- s_npc_prop_armor_type_n
+(22538,4415,11), -- s_npc_prop_weapon_type_pole
+(22538,5830,1), -- s_seed_of_destruction_polearm_thrust1
+(22538,5827,5), -- s_seed_of_destruction_fire_ball5
+(22538,5831,1), -- s_seed_of_destruction_polearm_swing1
 -- Dragon Steed Troops No 1 Battalion Commander
-(22539,4408,9),
-(22539,4409,1),
-(22539,4410,11),
-(22539,4411,11),
-(22539,4412,11),
-(22539,4413,11),
-(22539,4414,2),
-(22539,4415,11),
-(22539,4416,10),
-(22539,5462,1),
+(22539,4416,10), -- s_npc_prop_race_dragon
+(22539,5462,1), -- s_npc_prop_attribute_fire1
+(22539,4408,9), -- s_npc_prop_hp_lv_mh
+(22539,4409,1), -- s_npc_prop_mp_lv_p0
+(22539,4410,11), -- s_npc_prop_pa_lv_p0
+(22539,4411,11), -- s_npc_prop_ma_lv_p0
+(22539,4412,11), -- s_npc_prop_pd_lv_p0
+(22539,4413,11), -- s_npc_prop_md_lv_p0
+(22539,4414,2), -- s_npc_prop_armor_type_n
+(22539,4415,11), -- s_npc_prop_weapon_type_pole
+(22539,5830,1), -- s_seed_of_destruction_polearm_thrust1
+(22539,5827,4), -- s_seed_of_destruction_fire_ball4
+(22539,5831,1), -- s_seed_of_destruction_polearm_swing1
 -- White Dragon Leader
-(22540,4408,9),
-(22540,4409,1),
-(22540,4410,11),
-(22540,4411,11),
-(22540,4412,14),
-(22540,4413,15),
-(22540,4414,2),
-(22540,4415,3),
-(22540,4416,10),
-(22540,5462,1),
+(22540,4416,10), -- s_npc_prop_race_dragon
+(22540,5462,1), -- s_npc_prop_attribute_fire1
+(22540,4408,9), -- s_npc_prop_hp_lv_mh
+(22540,4409,1), -- s_npc_prop_mp_lv_p0
+(22540,4410,11), -- s_npc_prop_pa_lv_p0
+(22540,4411,11), -- s_npc_prop_ma_lv_p0
+(22540,4412,14), -- s_npc_prop_pd_lv_p3
+(22540,4413,15), -- s_npc_prop_md_lv_p4
+(22540,4414,2), -- s_npc_prop_armor_type_n
+(22540,4415,3), -- s_npc_prop_weapon_type_sword
+(22540,5274,5), -- s_npc_party30_p_long_shot5
+(22540,5827,4), -- s_seed_of_destruction_fire_ball4
+(22540,5832,1), -- s_seed_of_destruction_hate_aura1
 -- Dragon Steed Troop Infantry
-(22541,4408,9),
-(22541,4409,1),
-(22541,4410,11),
-(22541,4411,11),
-(22541,4412,14),
-(22541,4413,15),
-(22541,4414,2),
-(22541,4415,3),
-(22541,4416,10),
-(22541,5462,1),
+(22541,4416,10), -- s_npc_prop_race_dragon
+(22541,5462,1), -- s_npc_prop_attribute_fire1
+(22541,4408,9), -- s_npc_prop_hp_lv_mh
+(22541,4409,1), -- s_npc_prop_mp_lv_p0
+(22541,4410,11), -- s_npc_prop_pa_lv_p0
+(22541,4411,11), -- s_npc_prop_ma_lv_p0
+(22541,4412,14), -- s_npc_prop_pd_lv_p3
+(22541,4413,15), -- s_npc_prop_md_lv_p4
+(22541,4414,2), -- s_npc_prop_armor_type_n
+(22541,4415,3), -- s_npc_prop_weapon_type_sword
+(22541,5274,5), -- s_npc_party30_p_long_shot5
+(22541,5827,3), -- s_seed_of_destruction_fire_ball3
+(22541,5832,1), -- s_seed_of_destruction_hate_aura1
 -- Dragon Steed Troop Magic Leader
-(22542,4408,1),
-(22542,4409,1),
-(22542,4410,11),
-(22542,4411,13),
-(22542,4412,11),
-(22542,4413,11),
-(22542,4414,2),
-(22542,4415,3),
-(22542,4416,10),
-(22542,5462,1),
+(22542,4416,10), -- s_npc_prop_race_dragon
+(22542,5462,1), -- s_npc_prop_attribute_fire1
+(22542,4408,1), -- s_npc_prop_hp_lv_p0
+(22542,4409,1), -- s_npc_prop_mp_lv_p0
+(22542,4410,11), -- s_npc_prop_pa_lv_p0
+(22542,4411,13), -- s_npc_prop_ma_lv_p2
+(22542,4412,11), -- s_npc_prop_pd_lv_p0
+(22542,4413,11), -- s_npc_prop_md_lv_p0
+(22542,4414,2), -- s_npc_prop_armor_type_n
+(22542,4415,3), -- s_npc_prop_weapon_type_sword
+(22542,5312,5), -- s_npc_party30_m_long_dd_fire5
+(22542,5829,5), -- s_seed_of_destruction_fire_flare5
+(22542,5827,4), -- s_seed_of_destruction_fire_ball4
+(22542,5833,1), -- s_seed_of_destruction_clan_shield1
 -- Dragon Steed Troop Magician
-(22543,4408,9),
-(22543,4409,1),
-(22543,4410,11),
-(22543,4411,11),
-(22543,4412,11),
-(22543,4413,11),
-(22543,4414,2),
-(22543,4415,3),
-(22543,4416,10),
-(22543,5462,1),
+(22543,4416,10), -- s_npc_prop_race_dragon
+(22543,5462,1), -- s_npc_prop_attribute_fire1
+(22543,4408,9), -- s_npc_prop_hp_lv_mh
+(22543,4409,1), -- s_npc_prop_mp_lv_p0
+(22543,4410,11), -- s_npc_prop_pa_lv_p0
+(22543,4411,11), -- s_npc_prop_ma_lv_p0
+(22543,4412,11), -- s_npc_prop_pd_lv_p0
+(22543,4413,11), -- s_npc_prop_md_lv_p0
+(22543,4414,2), -- s_npc_prop_armor_type_n
+(22543,4415,3), -- s_npc_prop_weapon_type_sword
+(22543,5312,5), -- s_npc_party30_m_long_dd_fire5
+(22543,5829,4), -- s_seed_of_destruction_fire_flare4
+(22543,5827,4), -- s_seed_of_destruction_fire_ball4
+(22543,5833,1), -- s_seed_of_destruction_clan_shield1
 -- Dragon Steed Troop Magic Soldier
-(22544,4408,9),
-(22544,4409,1),
-(22544,4410,11),
-(22544,4411,11),
-(22544,4412,11),
-(22544,4413,11),
-(22544,4414,2),
-(22544,4415,3),
-(22544,4416,10),
-(22544,5462,1),
+(22544,4416,10), -- s_npc_prop_race_dragon
+(22544,5462,1), -- s_npc_prop_attribute_fire1
+(22544,4408,9), -- s_npc_prop_hp_lv_mh
+(22544,4409,1), -- s_npc_prop_mp_lv_p0
+(22544,4410,11), -- s_npc_prop_pa_lv_p0
+(22544,4411,11), -- s_npc_prop_ma_lv_p0
+(22544,4412,11), -- s_npc_prop_pd_lv_p0
+(22544,4413,11), -- s_npc_prop_md_lv_p0
+(22544,4414,2), -- s_npc_prop_armor_type_n
+(22544,4415,3), -- s_npc_prop_weapon_type_sword
+(22544,5312,5), -- s_npc_party30_m_long_dd_fire5
+(22544,5829,4), -- s_seed_of_destruction_fire_flare4
+(22544,5827,3), -- s_seed_of_destruction_fire_ball3
+(22544,5834,1), -- s_seed_of_destruction_clan_magical_barrier1
 -- Wife of the Dragon of Darkness
-(22545,4045,1),
-(22545,4408,1),
-(22545,4409,1),
-(22545,4410,11),
-(22545,4411,11),
-(22545,4412,16),
-(22545,4413,11),
-(22545,4414,2),
-(22545,4415,3),
-(22545,4416,10),
-(22545,5467,1),
+(22545,4416,10), -- s_npc_prop_race_dragon
+(22545,5467,1), -- s_npc_prop_attribute_unholy1
+(22545,4408,1), -- s_npc_prop_hp_lv_p0
+(22545,4409,1), -- s_npc_prop_mp_lv_p0
+(22545,4410,11), -- s_npc_prop_pa_lv_p0
+(22545,4411,11), -- s_npc_prop_ma_lv_p0
+(22545,4412,16), -- s_npc_prop_pd_lv_p5
+(22545,4413,11), -- s_npc_prop_md_lv_p0
+(22545,4414,2), -- s_npc_prop_armor_type_n
+(22545,4415,3), -- s_npc_prop_weapon_type_sword
+(22545,4045,1), -- s_full_magic_defence
+(22545,5328,5), -- s_npc_party30_m_long_dd_unholy5
+(22545,5828,1), -- s_seed_of_destruction_unholy_flare1
+(22545,5827,5), -- s_seed_of_destruction_fire_ball5
 -- Warrior of Light
-(22546,4408,9),
-(22546,4409,1),
-(22546,4410,15),
-(22546,4411,11),
-(22546,4412,6),
-(22546,4413,6),
-(22546,4414,2),
-(22546,4415,1),
-(22546,4416,10),
-(22546,5462,1),
+(22546,4416,10), -- s_npc_prop_race_dragon
+(22546,5462,1), -- s_npc_prop_attribute_fire1
+(22546,4408,9), -- s_npc_prop_hp_lv_mh
+(22546,4409,1), -- s_npc_prop_mp_lv_p0
+(22546,4410,15), -- s_npc_prop_pa_lv_p4
+(22546,4411,11), -- s_npc_prop_ma_lv_p0
+(22546,4412,6), -- s_npc_prop_pd_lv_n5
+(22546,4413,6), -- s_npc_prop_md_lv_n5
+(22546,4414,2), -- s_npc_prop_armor_type_n
+(22546,4415,1), -- s_npc_prop_weapon_type_fist
+(22546,5274,5), -- s_npc_party30_p_long_shot5
+(22546,4211,9), -- s_self_range_might_boss_a_9
 -- Dragon Steed Troop Healer
-(22547,4408,9),
-(22547,4409,1),
-(22547,4410,11),
-(22547,4411,11),
-(22547,4412,11),
-(22547,4413,11),
-(22547,4414,2),
-(22547,4415,3),
-(22547,4416,10),
-(22547,5462,1),
+(22547,4416,10), -- s_npc_prop_race_dragon
+(22547,5462,1), -- s_npc_prop_attribute_fire1
+(22547,4408,9), -- s_npc_prop_hp_lv_mh
+(22547,4409,1), -- s_npc_prop_mp_lv_p0
+(22547,4410,11), -- s_npc_prop_pa_lv_p0
+(22547,4411,11), -- s_npc_prop_ma_lv_p0
+(22547,4412,11), -- s_npc_prop_pd_lv_p0
+(22547,4413,11), -- s_npc_prop_md_lv_p0
+(22547,4414,2), -- s_npc_prop_armor_type_n
+(22547,4415,3), -- s_npc_prop_weapon_type_sword
+(22547,5835,1), -- s_seed_of_destruction_major_heal1
+(22547,5836,1), -- s_seed_of_destruction_greater_group_heal1
+(22547,4608,2), -- s_clan_berserker2
 -- Dragon Steed Troop Javelin Thrower
-(22548,4408,9),
-(22548,4409,1),
-(22548,4410,11),
-(22548,4411,11),
-(22548,4412,9),
-(22548,4413,9),
-(22548,4414,2),
-(22548,4415,9),
-(22548,4416,10),
-(22548,5462,1),
+(22548,4416,10), -- s_npc_prop_race_dragon
+(22548,5462,1), -- s_npc_prop_attribute_fire1
+(22548,4408,9), -- s_npc_prop_hp_lv_mh
+(22548,4409,1), -- s_npc_prop_mp_lv_p0
+(22548,4410,11), -- s_npc_prop_pa_lv_p0
+(22548,4411,11), -- s_npc_prop_ma_lv_p0
+(22548,4412,9), -- s_npc_prop_pd_lv_n2
+(22548,4413,9), -- s_npc_prop_md_lv_n2
+(22548,4414,2), -- s_npc_prop_armor_type_n
+(22548,4415,9), -- s_npc_prop_weapon_type_bow
+(22548,5837,1), -- s_seed_of_destruction_double_throwing_javelin1
+(22548,5838,1), -- s_seed_of_destruction_throwing_javelin1
 -- Dragon Steed Troop Javelin Thrower
-(22549,4408,9),
-(22549,4409,1),
-(22549,4410,11),
-(22549,4411,11),
-(22549,4412,9),
-(22549,4413,9),
-(22549,4414,2),
-(22549,4415,9),
-(22549,4416,10),
-(22549,4441,5),
-(22549,5462,1),
+(22549,4416,10), -- s_npc_prop_race_dragon
+(22549,5462,1), -- s_npc_prop_attribute_fire1
+(22549,4408,9), -- s_npc_prop_hp_lv_mh
+(22549,4409,1), -- s_npc_prop_mp_lv_p0
+(22549,4410,11), -- s_npc_prop_pa_lv_p0
+(22549,4411,11), -- s_npc_prop_ma_lv_p0
+(22549,4412,9), -- s_npc_prop_pd_lv_n2
+(22549,4413,9), -- s_npc_prop_md_lv_n2
+(22549,4414,2), -- s_npc_prop_armor_type_n
+(22549,4415,9), -- s_npc_prop_weapon_type_bow
+(22549,4441,5), -- s_npc_resist_derangement_ex5
+(22549,5837,1), -- s_seed_of_destruction_double_throwing_javelin1
+(22549,5838,1), -- s_seed_of_destruction_throwing_javelin1
 -- Savage Warrior
-(22550,4408,9),
-(22550,4409,1),
-(22550,4410,11),
-(22550,4411,11),
-(22550,4412,11),
-(22550,4413,11),
-(22550,4414,2),
-(22550,4415,5),
-(22550,4416,6),
-(22550,5467,1),
+(22550,4416,6), -- s_npc_prop_race_humanoid
+(22550,5467,1), -- s_npc_prop_attribute_unholy1
+(22550,4408,9), -- s_npc_prop_hp_lv_mh
+(22550,4409,1), -- s_npc_prop_mp_lv_p0
+(22550,4410,11), -- s_npc_prop_pa_lv_p0
+(22550,4411,11), -- s_npc_prop_ma_lv_p0
+(22550,4412,11), -- s_npc_prop_pd_lv_p0
+(22550,4413,11), -- s_npc_prop_md_lv_p0
+(22550,4414,2), -- s_npc_prop_armor_type_n
+(22550,4415,5), -- s_npc_prop_weapon_type_blunt
+(22550,5274,5), -- s_npc_party30_p_long_shot5
+(22550,5309,5), -- s_npc_party30_p_long_shot_bleed5
+(22550,5202,9), -- s_npc_mass_stun9
 -- Priest of Darkness
-(22551,4408,9),
-(22551,4409,1),
-(22551,4410,11),
-(22551,4411,11),
-(22551,4412,11),
-(22551,4413,11),
-(22551,4414,2),
-(22551,4415,3),
-(22551,4416,6),
-(22551,5467,1),
+(22551,4416,6), -- s_npc_prop_race_humanoid
+(22551,5467,1), -- s_npc_prop_attribute_unholy1
+(22551,4408,9), -- s_npc_prop_hp_lv_mh
+(22551,4409,1), -- s_npc_prop_mp_lv_p0
+(22551,4410,11), -- s_npc_prop_pa_lv_p0
+(22551,4411,11), -- s_npc_prop_ma_lv_p0
+(22551,4412,11), -- s_npc_prop_pd_lv_p0
+(22551,4413,11), -- s_npc_prop_md_lv_p0
+(22551,4414,2), -- s_npc_prop_armor_type_n
+(22551,4415,3), -- s_npc_prop_weapon_type_sword
+(22551,5328,5), -- s_npc_party30_m_long_dd_unholy5
+(22551,5828,1), -- s_seed_of_destruction_unholy_flare1
 -- Mutation Drake
-(22552,4408,9),
-(22552,4409,1),
-(22552,4410,11),
-(22552,4411,11),
-(22552,4412,11),
-(22552,4413,11),
-(22552,4414,2),
-(22552,4415,3),
-(22552,4416,10),
-(22552,5462,1),
+(22552,4416,10), -- s_npc_prop_race_dragon
+(22552,5462,1), -- s_npc_prop_attribute_fire1
+(22552,4408,9), -- s_npc_prop_hp_lv_mh
+(22552,4409,1), -- s_npc_prop_mp_lv_p0
+(22552,4410,11), -- s_npc_prop_pa_lv_p0
+(22552,4411,11), -- s_npc_prop_ma_lv_p0
+(22552,4412,11), -- s_npc_prop_pd_lv_p0
+(22552,4413,11), -- s_npc_prop_md_lv_p0
+(22552,4414,2), -- s_npc_prop_armor_type_n
+(22552,4415,3), -- s_npc_prop_weapon_type_sword
+(22552,5274,5), -- s_npc_party30_p_long_shot5
 -- Large Crystal Core
 (22553,4408,1),
 (22553,4409,1),
@@ -52607,343 +52695,433 @@ INSERT INTO `npcskills` VALUES
 (22558,4414,2),
 (22558,4415,3),
 (22558,4416,2),
--- Soldiers of Bravery (Tiats Bodyguard)
-(22569,4408,1),
-(22569,4409,1),
-(22569,4410,12),
-(22569,4411,11),
-(22569,4412,11),
-(22569,4413,11),
-(22569,4414,2),
-(22569,4415,11),
-(22569,4416,10),
-(22569,5462,1),
+-- Soldiers of Bravery
+(22569,4416,10), -- s_npc_prop_race_dragon
+(22569,5462,1), -- s_npc_prop_attribute_fire1
+(22569,4408,1), -- s_npc_prop_hp_lv_p0
+(22569,4409,1), -- s_npc_prop_mp_lv_p0
+(22569,4410,12), -- s_npc_prop_pa_lv_p1
+(22569,4411,11), -- s_npc_prop_ma_lv_p0
+(22569,4412,11), -- s_npc_prop_pd_lv_p0
+(22569,4413,11), -- s_npc_prop_md_lv_p0
+(22569,4414,2), -- s_npc_prop_armor_type_n
+(22569,4415,11), -- s_npc_prop_weapon_type_pole
+(22569,5309,5), -- s_npc_party30_p_long_shot_bleed5
+(22569,5826,1), -- s_seed_of_destruction_breath1
+(22569,5203,10), -- s_npc_mass_fear10
 -- Royal Guard Captain
-(22570,4408,10),
-(22570,4409,1),
-(22570,4410,13),
-(22570,4411,11),
-(22570,4412,11),
-(22570,4413,11),
-(22570,4414,2),
-(22570,4415,3),
-(22570,4416,10),
-(22570,5462,1),
+(22570,4416,10), -- s_npc_prop_race_dragon
+(22570,5462,1), -- s_npc_prop_attribute_fire1
+(22570,4408,10), -- s_npc_prop_hp_lv_m2
+(22570,4409,1), -- s_npc_prop_mp_lv_p0
+(22570,4410,13), -- s_npc_prop_pa_lv_p2
+(22570,4411,11), -- s_npc_prop_ma_lv_p0
+(22570,4412,11), -- s_npc_prop_pd_lv_p0
+(22570,4413,11), -- s_npc_prop_md_lv_p0
+(22570,4414,2), -- s_npc_prop_armor_type_n
+(22570,4415,3), -- s_npc_prop_weapon_type_sword
+(22570,5274,5), -- s_npc_party30_p_long_shot5
+(22570,5826,1), -- s_seed_of_destruction_breath1
+(22570,4072,10), -- s_npc_thunder_storm10
 -- Dragon Steed Troop Grand Magician
-(22571,4408,10),
-(22571,4409,1),
-(22571,4410,11),
-(22571,4411,13),
-(22571,4412,11),
-(22571,4413,11),
-(22571,4414,2),
-(22571,4415,3),
-(22571,4416,10),
-(22571,5462,1),
+(22571,4416,10), -- s_npc_prop_race_dragon
+(22571,5462,1), -- s_npc_prop_attribute_fire1
+(22571,4408,10), -- s_npc_prop_hp_lv_m2
+(22571,4409,1), -- s_npc_prop_mp_lv_p0
+(22571,4410,11), -- s_npc_prop_pa_lv_p0
+(22571,4411,13), -- s_npc_prop_ma_lv_p2
+(22571,4412,11), -- s_npc_prop_pd_lv_p0
+(22571,4413,11), -- s_npc_prop_md_lv_p0
+(22571,4414,2), -- s_npc_prop_armor_type_n
+(22571,4415,3), -- s_npc_prop_weapon_type_sword
+(22571,5328,5), -- s_npc_party30_m_long_dd_unholy5
+(22571,5829,6), -- s_seed_of_destruction_fire_flare6
+(22571,5826,1), -- s_seed_of_destruction_breath1
 -- Dragon Steed Troop Commander
-(22572,4408,10),
-(22572,4409,1),
-(22572,4410,13),
-(22572,4411,11),
-(22572,4412,11),
-(22572,4413,11),
-(22572,4414,2),
-(22572,4415,11),
-(22572,4416,10),
-(22572,5462,1),
+(22572,4416,10), -- s_npc_prop_race_dragon
+(22572,5462,1), -- s_npc_prop_attribute_fire1
+(22572,4408,10), -- s_npc_prop_hp_lv_m2
+(22572,4409,1), -- s_npc_prop_mp_lv_p0
+(22572,4410,13), -- s_npc_prop_pa_lv_p2
+(22572,4411,11), -- s_npc_prop_ma_lv_p0
+(22572,4412,11), -- s_npc_prop_pd_lv_p0
+(22572,4413,11), -- s_npc_prop_md_lv_p0
+(22572,4414,2), -- s_npc_prop_armor_type_n
+(22572,4415,11), -- s_npc_prop_weapon_type_pole
+(22572,5830,1), -- s_seed_of_destruction_polearm_thrust1
+(22572,5826,1), -- s_seed_of_destruction_breath1
+(22572,5831,1), -- s_seed_of_destruction_polearm_swing1
 -- Dragon Steed Troops No 1 Battalion Commander
-(22573,4408,9),
-(22573,4409,1),
-(22573,4410,11),
-(22573,4411,11),
-(22573,4412,11),
-(22573,4413,11),
-(22573,4414,2),
-(22573,4415,11),
-(22573,4416,10),
-(22573,5462,1),
+(22573,4416,10), -- s_npc_prop_race_dragon
+(22573,5462,1), -- s_npc_prop_attribute_fire1
+(22573,4408,9), -- s_npc_prop_hp_lv_mh
+(22573,4409,1), -- s_npc_prop_mp_lv_p0
+(22573,4410,11), -- s_npc_prop_pa_lv_p0
+(22573,4411,11), -- s_npc_prop_ma_lv_p0
+(22573,4412,11), -- s_npc_prop_pd_lv_p0
+(22573,4413,11), -- s_npc_prop_md_lv_p0
+(22573,4414,2), -- s_npc_prop_armor_type_n
+(22573,4415,11), -- s_npc_prop_weapon_type_pole
+(22573,5830,1), -- s_seed_of_destruction_polearm_thrust1
+(22573,5826,1), -- s_seed_of_destruction_breath1
+(22573,5831,1), -- s_seed_of_destruction_polearm_swing1
 -- White Dragon Leader
-(22574,4408,9),
-(22574,4409,1),
-(22574,4410,11),
-(22574,4411,11),
-(22574,4412,14),
-(22574,4413,15),
-(22574,4414,2),
-(22574,4415,3),
-(22574,4416,10),
-(22574,5462,1),
+(22574,4416,10), -- s_npc_prop_race_dragon
+(22574,5462,1), -- s_npc_prop_attribute_fire1
+(22574,4408,9), -- s_npc_prop_hp_lv_mh
+(22574,4409,1), -- s_npc_prop_mp_lv_p0
+(22574,4410,11), -- s_npc_prop_pa_lv_p0
+(22574,4411,11), -- s_npc_prop_ma_lv_p0
+(22574,4412,14), -- s_npc_prop_pd_lv_p3
+(22574,4413,15), -- s_npc_prop_md_lv_p4
+(22574,4414,2), -- s_npc_prop_armor_type_n
+(22574,4415,3), -- s_npc_prop_weapon_type_sword
+(22574,5274,5), -- s_npc_party30_p_long_shot5
+(22574,5826,1), -- s_seed_of_destruction_breath1
+(22574,5832,1), -- s_seed_of_destruction_hate_aura1
 -- Dragon Steed Troop Infantry
-(22575,4408,9),
-(22575,4409,1),
-(22575,4410,11),
-(22575,4411,11),
-(22575,4412,14),
-(22575,4413,15),
-(22575,4414,2),
-(22575,4415,3),
-(22575,4416,10),
-(22575,5462,1),
+(22575,4416,10), -- s_npc_prop_race_dragon
+(22575,5462,1), -- s_npc_prop_attribute_fire1
+(22575,4408,9), -- s_npc_prop_hp_lv_mh
+(22575,4409,1), -- s_npc_prop_mp_lv_p0
+(22575,4410,11), -- s_npc_prop_pa_lv_p0
+(22575,4411,11), -- s_npc_prop_ma_lv_p0
+(22575,4412,14), -- s_npc_prop_pd_lv_p3
+(22575,4413,15), -- s_npc_prop_md_lv_p4
+(22575,4414,2), -- s_npc_prop_armor_type_n
+(22575,4415,3), -- s_npc_prop_weapon_type_sword
+(22575,5274,5), -- s_npc_party30_p_long_shot5
+(22575,5826,1), -- s_seed_of_destruction_breath1
+(22575,5832,1), -- s_seed_of_destruction_hate_aura1
 -- Dragon Steed Troop Magic Leader
-(22576,4408,9),
-(22576,4409,1),
-(22576,4410,11),
-(22576,4411,13),
-(22576,4412,11),
-(22576,4413,11),
-(22576,4414,2),
-(22576,4415,3),
-(22576,4416,10),
-(22576,5462,1),
+(22576,4416,10), -- s_npc_prop_race_dragon
+(22576,5462,1), -- s_npc_prop_attribute_fire1
+(22576,4408,9), -- s_npc_prop_hp_lv_mh
+(22576,4409,1), -- s_npc_prop_mp_lv_p0
+(22576,4410,11), -- s_npc_prop_pa_lv_p0
+(22576,4411,13), -- s_npc_prop_ma_lv_p2
+(22576,4412,11), -- s_npc_prop_pd_lv_p0
+(22576,4413,11), -- s_npc_prop_md_lv_p0
+(22576,4414,2), -- s_npc_prop_armor_type_n
+(22576,4415,3), -- s_npc_prop_weapon_type_sword
+(22576,5312,5), -- s_npc_party30_m_long_dd_fire5
+(22576,5829,5), -- s_seed_of_destruction_fire_flare5
+(22576,5826,1), -- s_seed_of_destruction_breath1
+(22576,5833,1), -- s_seed_of_destruction_clan_shield1
 -- Dragon Steed Troop Magician
-(22577,4408,9),
-(22577,4409,1),
-(22577,4410,11),
-(22577,4411,11),
-(22577,4412,11),
-(22577,4413,11),
-(22577,4414,2),
-(22577,4415,3),
-(22577,4416,10),
-(22577,5462,1),
+(22577,4416,10), -- s_npc_prop_race_dragon
+(22577,5462,1), -- s_npc_prop_attribute_fire1
+(22577,4408,9), -- s_npc_prop_hp_lv_mh
+(22577,4409,1), -- s_npc_prop_mp_lv_p0
+(22577,4410,11), -- s_npc_prop_pa_lv_p0
+(22577,4411,11), -- s_npc_prop_ma_lv_p0
+(22577,4412,11), -- s_npc_prop_pd_lv_p0
+(22577,4413,11), -- s_npc_prop_md_lv_p0
+(22577,4414,2), -- s_npc_prop_armor_type_n
+(22577,4415,3), -- s_npc_prop_weapon_type_sword
+(22577,5312,5), -- s_npc_party30_m_long_dd_fire5
+(22577,5829,4), -- s_seed_of_destruction_fire_flare4
+(22577,5826,1), -- s_seed_of_destruction_breath1
+(22577,5833,1), -- s_seed_of_destruction_clan_shield1
 -- Dragon Steed Troop Magic Soldier
-(22578,4408,9),
-(22578,4409,1),
-(22578,4410,11),
-(22578,4411,11),
-(22578,4412,11),
-(22578,4413,11),
-(22578,4414,2),
-(22578,4415,3),
-(22578,4416,10),
-(22578,5462,1),
+(22578,4416,10), -- s_npc_prop_race_dragon
+(22578,5462,1), -- s_npc_prop_attribute_fire1
+(22578,4408,9), -- s_npc_prop_hp_lv_mh
+(22578,4409,1), -- s_npc_prop_mp_lv_p0
+(22578,4410,11), -- s_npc_prop_pa_lv_p0
+(22578,4411,11), -- s_npc_prop_ma_lv_p0
+(22578,4412,11), -- s_npc_prop_pd_lv_p0
+(22578,4413,11), -- s_npc_prop_md_lv_p0
+(22578,4414,2), -- s_npc_prop_armor_type_n
+(22578,4415,3), -- s_npc_prop_weapon_type_sword
+(22578,5312,5), -- s_npc_party30_m_long_dd_fire5
+(22578,5829,4), -- s_seed_of_destruction_fire_flare4
+(22578,5826,1), -- s_seed_of_destruction_breath1
+(22578,5834,1), -- s_seed_of_destruction_clan_magical_barrier1
 -- Warrior of Light
-(22579,4408,9),
-(22579,4409,1),
-(22579,4410,11),
-(22579,4411,11),
-(22579,4412,11),
-(22579,4413,11),
-(22579,4414,2),
-(22579,4415,1),
-(22579,4416,10),
-(22579,5462,1),
+(22579,4416,10), -- s_npc_prop_race_dragon
+(22579,5462,1), -- s_npc_prop_attribute_fire1
+(22579,4408,9), -- s_npc_prop_hp_lv_mh
+(22579,4409,1), -- s_npc_prop_mp_lv_p0
+(22579,4410,11), -- s_npc_prop_pa_lv_p0
+(22579,4411,11), -- s_npc_prop_ma_lv_p0
+(22579,4412,11), -- s_npc_prop_pd_lv_p0
+(22579,4413,11), -- s_npc_prop_md_lv_p0
+(22579,4414,2), -- s_npc_prop_armor_type_n
+(22579,4415,1), -- s_npc_prop_weapon_type_fist
+(22579,5274,5), -- s_npc_party30_p_long_shot5
+(22579,4211,9), -- s_self_range_might_boss_a_9
 -- Dragon Steed Troop Healer
-(22580,4408,9),
-(22580,4409,1),
-(22580,4410,11),
-(22580,4411,11),
-(22580,4412,11),
-(22580,4413,11),
-(22580,4414,2),
-(22580,4415,3),
-(22580,4416,10),
-(22580,5462,1),
+(22580,4416,10), -- s_npc_prop_race_dragon
+(22580,5462,1), -- s_npc_prop_attribute_fire1
+(22580,4408,9), -- s_npc_prop_hp_lv_mh
+(22580,4409,1), -- s_npc_prop_mp_lv_p0
+(22580,4410,11), -- s_npc_prop_pa_lv_p0
+(22580,4411,11), -- s_npc_prop_ma_lv_p0
+(22580,4412,11), -- s_npc_prop_pd_lv_p0
+(22580,4413,11), -- s_npc_prop_md_lv_p0
+(22580,4414,2), -- s_npc_prop_armor_type_n
+(22580,4415,3), -- s_npc_prop_weapon_type_sword
+(22580,5835,1), -- s_seed_of_destruction_major_heal1
+(22580,5836,1), -- s_seed_of_destruction_greater_group_heal1
+(22580,4608,2), -- s_clan_berserker2
 -- Dragon Steed Troop Javelin Thrower
-(22581,4408,9),
-(22581,4409,1),
-(22581,4410,11),
-(22581,4411,11),
-(22581,4412,11),
-(22581,4413,11),
-(22581,4414,2),
-(22581,4415,9),
-(22581,4416,10),
-(22581,5462,1),
+(22581,4416,10), -- s_npc_prop_race_dragon
+(22581,5462,1), -- s_npc_prop_attribute_fire1
+(22581,4408,9), -- s_npc_prop_hp_lv_mh
+(22581,4409,1), -- s_npc_prop_mp_lv_p0
+(22581,4410,11), -- s_npc_prop_pa_lv_p0
+(22581,4411,11), -- s_npc_prop_ma_lv_p0
+(22581,4412,11), -- s_npc_prop_pd_lv_p0
+(22581,4413,11), -- s_npc_prop_md_lv_p0
+(22581,4414,2), -- s_npc_prop_armor_type_n
+(22581,4415,9), -- s_npc_prop_weapon_type_bow
+(22581,5837,1), -- s_seed_of_destruction_double_throwing_javelin1
+(22581,5838,1), -- s_seed_of_destruction_throwing_javelin1
 -- Dragon Steed Troop Javelin Thrower
-(22582,4408,9),
-(22582,4409,1),
-(22582,4410,11),
-(22582,4411,11),
-(22582,4412,11),
-(22582,4413,11),
-(22582,4414,2),
-(22582,4415,9),
-(22582,4416,10),
-(22582,4441,5),
-(22582,5462,1),
+(22582,4416,10), -- s_npc_prop_race_dragon
+(22582,5462,1), -- s_npc_prop_attribute_fire1
+(22582,4408,9), -- s_npc_prop_hp_lv_mh
+(22582,4409,1), -- s_npc_prop_mp_lv_p0
+(22582,4410,11), -- s_npc_prop_pa_lv_p0
+(22582,4411,11), -- s_npc_prop_ma_lv_p0
+(22582,4412,11), -- s_npc_prop_pd_lv_p0
+(22582,4413,11), -- s_npc_prop_md_lv_p0
+(22582,4414,2), -- s_npc_prop_armor_type_n
+(22582,4415,9), -- s_npc_prop_weapon_type_bow
+(22582,4441,5), -- s_npc_resist_derangement_ex5
+(22582,5837,1), -- s_seed_of_destruction_double_throwing_javelin1
+(22582,5838,1), -- s_seed_of_destruction_throwing_javelin1
 -- Dragon Steed Troop Magic Leader
-(22583,4408,9),
-(22583,4409,1),
-(22583,4410,11),
-(22583,4411,11),
-(22583,4412,11),
-(22583,4413,11),
-(22583,4414,2),
-(22583,4415,3),
-(22583,4416,10),
-(22583,4441,5),
-(22583,5462,1),
+(22583,4416,10), -- s_npc_prop_race_dragon
+(22583,5462,1), -- s_npc_prop_attribute_fire1
+(22583,4408,9), -- s_npc_prop_hp_lv_mh
+(22583,4409,1), -- s_npc_prop_mp_lv_p0
+(22583,4410,11), -- s_npc_prop_pa_lv_p0
+(22583,4411,11), -- s_npc_prop_ma_lv_p0
+(22583,4412,11), -- s_npc_prop_pd_lv_p0
+(22583,4413,11), -- s_npc_prop_md_lv_p0
+(22583,4414,2), -- s_npc_prop_armor_type_n
+(22583,4415,3), -- s_npc_prop_weapon_type_sword
+(22583,4441,5), -- s_npc_resist_derangement_ex5
+(22583,5312,5), -- s_npc_party30_m_long_dd_fire5
+(22583,5829,5), -- s_seed_of_destruction_fire_flare5
+(22583,5827,4), -- s_seed_of_destruction_fire_ball4
+(22583,5833,1), -- s_seed_of_destruction_clan_shield1
 -- Dragon Steed Troop Magician
-(22584,4408,9),
-(22584,4409,1),
-(22584,4410,11),
-(22584,4411,11),
-(22584,4412,11),
-(22584,4413,11),
-(22584,4414,2),
-(22584,4415,3),
-(22584,4416,10),
-(22584,4441,5),
-(22584,5462,1),
+(22584,4416,10), -- s_npc_prop_race_dragon
+(22584,5462,1), -- s_npc_prop_attribute_fire1
+(22584,4408,9), -- s_npc_prop_hp_lv_mh
+(22584,4409,1), -- s_npc_prop_mp_lv_p0
+(22584,4410,11), -- s_npc_prop_pa_lv_p0
+(22584,4411,11), -- s_npc_prop_ma_lv_p0
+(22584,4412,11), -- s_npc_prop_pd_lv_p0
+(22584,4413,11), -- s_npc_prop_md_lv_p0
+(22584,4414,2), -- s_npc_prop_armor_type_n
+(22584,4415,3), -- s_npc_prop_weapon_type_sword
+(22584,4441,5), -- s_npc_resist_derangement_ex5
+(22584,5312,5), -- s_npc_party30_m_long_dd_fire5
+(22584,5829,4), -- s_seed_of_destruction_fire_flare4
+(22584,5827,4), -- s_seed_of_destruction_fire_ball4
+(22584,5833,1), -- s_seed_of_destruction_clan_shield1
 -- Dragon Steed Troop Magic Soldier
-(22585,4408,9),
-(22585,4409,1),
-(22585,4410,11),
-(22585,4411,11),
-(22585,4412,11),
-(22585,4413,11),
-(22585,4414,2),
-(22585,4415,3),
-(22585,4416,10),
-(22585,4441,5),
-(22585,5462,1),
+(22585,4416,10), -- s_npc_prop_race_dragon
+(22585,5462,1), -- s_npc_prop_attribute_fire1
+(22585,4408,9), -- s_npc_prop_hp_lv_mh
+(22585,4409,1), -- s_npc_prop_mp_lv_p0
+(22585,4410,11), -- s_npc_prop_pa_lv_p0
+(22585,4411,11), -- s_npc_prop_ma_lv_p0
+(22585,4412,11), -- s_npc_prop_pd_lv_p0
+(22585,4413,11), -- s_npc_prop_md_lv_p0
+(22585,4414,2), -- s_npc_prop_armor_type_n
+(22585,4415,3), -- s_npc_prop_weapon_type_sword
+(22585,4441,5), -- s_npc_resist_derangement_ex5
+(22585,5312,5), -- s_npc_party30_m_long_dd_fire5
+(22585,5829,4), -- s_seed_of_destruction_fire_flare4
+(22585,5827,3), -- s_seed_of_destruction_fire_ball3
+(22585,5834,1), -- s_seed_of_destruction_clan_magical_barrier1
 -- Dragon Steed Troop Commander
-(22586,4071,5),
-(22586,4408,10),
-(22586,4409,1),
-(22586,4410,13),
-(22586,4411,11),
-(22586,4412,11),
-(22586,4413,15),
-(22586,4414,2),
-(22586,4415,11),
-(22586,4416,10),
-(22586,5462,1),
+(22586,4416,10), -- s_npc_prop_race_dragon
+(22586,5462,1), -- s_npc_prop_attribute_fire1
+(22586,4408,10), -- s_npc_prop_hp_lv_m2
+(22586,4409,1), -- s_npc_prop_mp_lv_p0
+(22586,4410,13), -- s_npc_prop_pa_lv_p2
+(22586,4411,11), -- s_npc_prop_ma_lv_p0
+(22586,4412,11), -- s_npc_prop_pd_lv_p0
+(22586,4413,15), -- s_npc_prop_md_lv_p4
+(22586,4414,2), -- s_npc_prop_armor_type_n
+(22586,4415,11), -- s_npc_prop_weapon_type_pole
+(22586,4071,5), -- s_npc_resist_bow5
+(22586,5830,1), -- s_seed_of_destruction_polearm_thrust1
+(22586,5827,5), -- s_seed_of_destruction_fire_ball5
+(22586,5831,1), -- s_seed_of_destruction_polearm_swing1
 -- Dragon Steed Troop Captain #1
-(22587,4071,5),
-(22587,4408,9),
-(22587,4409,1),
-(22587,4410,11),
-(22587,4411,11),
-(22587,4412,11),
-(22587,4413,15),
-(22587,4414,2),
-(22587,4415,11),
-(22587,4416,10),
-(22587,5462,1),
+(22587,4416,10), -- s_npc_prop_race_dragon
+(22587,5462,1), -- s_npc_prop_attribute_fire1
+(22587,4408,9), -- s_npc_prop_hp_lv_mh
+(22587,4409,1), -- s_npc_prop_mp_lv_p0
+(22587,4410,11), -- s_npc_prop_pa_lv_p0
+(22587,4411,11), -- s_npc_prop_ma_lv_p0
+(22587,4412,11), -- s_npc_prop_pd_lv_p0
+(22587,4413,15), -- s_npc_prop_md_lv_p4
+(22587,4414,2), -- s_npc_prop_armor_type_n
+(22587,4415,11), -- s_npc_prop_weapon_type_pole
+(22587,4071,5), -- s_npc_resist_bow5
+(22587,5830,1), -- s_seed_of_destruction_polearm_thrust1
+(22587,5827,4), -- s_seed_of_destruction_fire_ball4
+(22587,5831,1), -- s_seed_of_destruction_polearm_swing1
 -- White Dragon Leader
-(22588,4071,5),
-(22588,4408,9),
-(22588,4409,1),
-(22588,4410,11),
-(22588,4411,11),
-(22588,4412,11),
-(22588,4413,15),
-(22588,4414,2),
-(22588,4415,3),
-(22588,4416,10),
-(22588,4441,5),
-(22588,5462,1),
+(22588,4416,10), -- s_npc_prop_race_dragon
+(22588,5462,1), -- s_npc_prop_attribute_fire1
+(22588,4408,9), -- s_npc_prop_hp_lv_mh
+(22588,4409,1), -- s_npc_prop_mp_lv_p0
+(22588,4410,11), -- s_npc_prop_pa_lv_p0
+(22588,4411,11), -- s_npc_prop_ma_lv_p0
+(22588,4412,11), -- s_npc_prop_pd_lv_p0
+(22588,4413,15), -- s_npc_prop_md_lv_p4
+(22588,4414,2), -- s_npc_prop_armor_type_n
+(22588,4415,3), -- s_npc_prop_weapon_type_sword
+(22588,4441,5), -- s_npc_resist_derangement_ex5
+(22588,4071,5), -- s_npc_resist_bow5
+(22588,5274,5), -- s_npc_party30_p_long_shot5
+(22588,5827,4), -- s_seed_of_destruction_fire_ball4
+(22588,5832,1), -- s_seed_of_destruction_hate_aura1
 -- Dragon Steed Troop Infantry
-(22589,4071,5),
-(22589,4408,9),
-(22589,4409,1),
-(22589,4410,11),
-(22589,4411,11),
-(22589,4412,11),
-(22589,4413,15),
-(22589,4414,2),
-(22589,4415,3),
-(22589,4416,10),
-(22589,4441,5),
-(22589,5462,1),
+(22589,4416,10), -- s_npc_prop_race_dragon
+(22589,5462,1), -- s_npc_prop_attribute_fire1
+(22589,4408,9), -- s_npc_prop_hp_lv_mh
+(22589,4409,1), -- s_npc_prop_mp_lv_p0
+(22589,4410,11), -- s_npc_prop_pa_lv_p0
+(22589,4411,11), -- s_npc_prop_ma_lv_p0
+(22589,4412,11), -- s_npc_prop_pd_lv_p0
+(22589,4413,15), -- s_npc_prop_md_lv_p4
+(22589,4414,2), -- s_npc_prop_armor_type_n
+(22589,4415,3), -- s_npc_prop_weapon_type_sword
+(22589,4441,5), -- s_npc_resist_derangement_ex5
+(22589,4071,5), -- s_npc_resist_bow5
+(22589,5274,5), -- s_npc_party30_p_long_shot5
+(22589,5827,3), -- s_seed_of_destruction_fire_ball3
+(22589,5832,1), -- s_seed_of_destruction_hate_aura1
 -- 
-(22590,4408,9),
-(22590,4409,1),
-(22590,4410,11),
-(22590,4411,11),
-(22590,4412,11),
-(22590,4413,11),
-(22590,4414,2),
-(22590,4415,3),
-(22590,4416,2),
-(22590,5462,1),
+(22590,4416,2), -- s_npc_prop_race_construct
+(22590,5462,1), -- s_npc_prop_attribute_fire1
+(22590,4408,9), -- s_npc_prop_hp_lv_mh
+(22590,4409,1), -- s_npc_prop_mp_lv_p0
+(22590,4410,11), -- s_npc_prop_pa_lv_p0
+(22590,4411,11), -- s_npc_prop_ma_lv_p0
+(22590,4412,11), -- s_npc_prop_pd_lv_p0
+(22590,4413,11), -- s_npc_prop_md_lv_p0
+(22590,4414,2), -- s_npc_prop_armor_type_n
+(22590,4415,3), -- s_npc_prop_weapon_type_sword
 -- Dragon Steed Troop Magic Leader
-(22591,4408,9),
-(22591,4409,1),
-(22591,4410,11),
-(22591,4411,13),
-(22591,4412,11),
-(22591,4413,11),
-(22591,4414,2),
-(22591,4415,3),
-(22591,4416,10),
-(22591,5462,1),
+(22591,4416,10), -- s_npc_prop_race_dragon
+(22591,5462,1), -- s_npc_prop_attribute_fire1
+(22591,4408,9), -- s_npc_prop_hp_lv_mh
+(22591,4409,1), -- s_npc_prop_mp_lv_p0
+(22591,4410,11), -- s_npc_prop_pa_lv_p0
+(22591,4411,13), -- s_npc_prop_ma_lv_p2
+(22591,4412,11), -- s_npc_prop_pd_lv_p0
+(22591,4413,11), -- s_npc_prop_md_lv_p0
+(22591,4414,2), -- s_npc_prop_armor_type_n
+(22591,4415,3), -- s_npc_prop_weapon_type_sword
+(22591,5312,5), -- s_npc_party30_m_long_dd_fire5
+(22591,5829,5), -- s_seed_of_destruction_fire_flare5
+(22591,5827,4), -- s_seed_of_destruction_fire_ball4
+(22591,5833,1), -- s_seed_of_destruction_clan_shield1
 -- Dragon Steed Troop Magician
-(22592,4408,9),
-(22592,4409,1),
-(22592,4410,11),
-(22592,4411,11),
-(22592,4412,11),
-(22592,4413,11),
-(22592,4414,2),
-(22592,4415,3),
-(22592,4416,10),
-(22592,5462,1),
+(22592,4416,10), -- s_npc_prop_race_dragon
+(22592,5462,1), -- s_npc_prop_attribute_fire1
+(22592,4408,9), -- s_npc_prop_hp_lv_mh
+(22592,4409,1), -- s_npc_prop_mp_lv_p0
+(22592,4410,11), -- s_npc_prop_pa_lv_p0
+(22592,4411,11), -- s_npc_prop_ma_lv_p0
+(22592,4412,11), -- s_npc_prop_pd_lv_p0
+(22592,4413,11), -- s_npc_prop_md_lv_p0
+(22592,4414,2), -- s_npc_prop_armor_type_n
+(22592,4415,3), -- s_npc_prop_weapon_type_sword
+(22592,5312,5), -- s_npc_party30_m_long_dd_fire5
+(22592,5829,4), -- s_seed_of_destruction_fire_flare4
+(22592,5827,4), -- s_seed_of_destruction_fire_ball4
+(22592,5833,1), -- s_seed_of_destruction_clan_shield1
 -- Dragon Steed Troop Magic Soldier
-(22593,4408,9),
-(22593,4409,1),
-(22593,4410,11),
-(22593,4411,11),
-(22593,4412,11),
-(22593,4413,11),
-(22593,4414,2),
-(22593,4415,3),
-(22593,4416,10),
-(22593,5462,1),
+(22593,4416,10), -- s_npc_prop_race_dragon
+(22593,5462,1), -- s_npc_prop_attribute_fire1
+(22593,4408,9), -- s_npc_prop_hp_lv_mh
+(22593,4409,1), -- s_npc_prop_mp_lv_p0
+(22593,4410,11), -- s_npc_prop_pa_lv_p0
+(22593,4411,11), -- s_npc_prop_ma_lv_p0
+(22593,4412,11), -- s_npc_prop_pd_lv_p0
+(22593,4413,11), -- s_npc_prop_md_lv_p0
+(22593,4414,2), -- s_npc_prop_armor_type_n
+(22593,4415,3), -- s_npc_prop_weapon_type_sword
+(22593,5312,5), -- s_npc_party30_m_long_dd_fire5
+(22593,5829,4), -- s_seed_of_destruction_fire_flare4
+(22593,5827,3), -- s_seed_of_destruction_fire_ball3
+(22593,5834,1), -- s_seed_of_destruction_clan_magical_barrier1
 -- Dragon Steed Troop Commander
-(22594,4071,5),
-(22594,4408,10),
-(22594,4409,1),
-(22594,4410,13),
-(22594,4411,11),
-(22594,4412,11),
-(22594,4413,15),
-(22594,4414,2),
-(22594,4415,11),
-(22594,4416,10),
-(22594,4441,5),
-(22594,5462,1),
+(22594,4416,10), -- s_npc_prop_race_dragon
+(22594,5462,1), -- s_npc_prop_attribute_fire1
+(22594,4408,10), -- s_npc_prop_hp_lv_m2
+(22594,4409,1), -- s_npc_prop_mp_lv_p0
+(22594,4410,13), -- s_npc_prop_pa_lv_p2
+(22594,4411,11), -- s_npc_prop_ma_lv_p0
+(22594,4412,11), -- s_npc_prop_pd_lv_p0
+(22594,4413,15), -- s_npc_prop_md_lv_p4
+(22594,4414,2), -- s_npc_prop_armor_type_n
+(22594,4415,11), -- s_npc_prop_weapon_type_pole
+(22594,4441,5), -- s_npc_resist_derangement_ex5
+(22594,4071,5), -- s_npc_resist_bow5
+(22594,5830,1), -- s_seed_of_destruction_polearm_thrust1
+(22594,5827,5), -- s_seed_of_destruction_fire_ball5
+(22594,5831,1), -- s_seed_of_destruction_polearm_swing1
 -- Dragon Steed Troops No 1 Battalion Commander
-(22595,4071,5),
-(22595,4408,10),
-(22595,4409,1),
-(22595,4410,11),
-(22595,4411,11),
-(22595,4412,11),
-(22595,4413,15),
-(22595,4414,2),
-(22595,4415,11),
-(22595,4416,10),
-(22595,4441,5),
-(22595,5462,1),
+(22595,4416,10), -- s_npc_prop_race_dragon
+(22595,5462,1), -- s_npc_prop_attribute_fire1
+(22595,4408,10), -- s_npc_prop_hp_lv_m2
+(22595,4409,1), -- s_npc_prop_mp_lv_p0
+(22595,4410,11), -- s_npc_prop_pa_lv_p0
+(22595,4411,11), -- s_npc_prop_ma_lv_p0
+(22595,4412,11), -- s_npc_prop_pd_lv_p0
+(22595,4413,15), -- s_npc_prop_md_lv_p4
+(22595,4414,2), -- s_npc_prop_armor_type_n
+(22595,4415,11), -- s_npc_prop_weapon_type_pole
+(22595,4441,5), -- s_npc_resist_derangement_ex5
+(22595,4071,5), -- s_npc_resist_bow5
+(22595,5830,1), -- s_seed_of_destruction_polearm_thrust1
+(22595,5827,4), -- s_seed_of_destruction_fire_ball4
+(22595,5831,1), -- s_seed_of_destruction_polearm_swing1
 -- White Dragon Leader
-(22596,4071,5),
-(22596,4408,9),
-(22596,4409,1),
-(22596,4410,11),
-(22596,4411,11),
-(22596,4412,14),
-(22596,4413,15),
-(22596,4414,2),
-(22596,4415,3),
-(22596,4416,10),
-(22596,4441,5),
-(22596,5462,1),
+(22596,4416,10), -- s_npc_prop_race_dragon
+(22596,5462,1), -- s_npc_prop_attribute_fire1
+(22596,4408,9), -- s_npc_prop_hp_lv_mh
+(22596,4409,1), -- s_npc_prop_mp_lv_p0
+(22596,4410,11), -- s_npc_prop_pa_lv_p0
+(22596,4411,11), -- s_npc_prop_ma_lv_p0
+(22596,4412,14), -- s_npc_prop_pd_lv_p3
+(22596,4413,15), -- s_npc_prop_md_lv_p4
+(22596,4414,2), -- s_npc_prop_armor_type_n
+(22596,4415,3), -- s_npc_prop_weapon_type_sword
+(22596,4441,5), -- s_npc_resist_derangement_ex5
+(22596,4071,5), -- s_npc_resist_bow5
+(22596,5274,5), -- s_npc_party30_p_long_shot5
+(22596,5827,4), -- s_seed_of_destruction_fire_ball4
+(22596,5832,1), -- s_seed_of_destruction_hate_aura1
 -- Dragon Steed Troop Infantry
-(22597,4071,5),
-(22597,4408,9),
-(22597,4409,1),
-(22597,4410,11),
-(22597,4411,11),
-(22597,4412,14),
-(22597,4413,15),
-(22597,4414,2),
-(22597,4415,3),
-(22597,4416,10),
-(22597,4441,5),
-(22597,5462,1),
+(22597,4416,10), -- s_npc_prop_race_dragon
+(22597,5462,1), -- s_npc_prop_attribute_fire1
+(22597,4408,9), -- s_npc_prop_hp_lv_mh
+(22597,4409,1), -- s_npc_prop_mp_lv_p0
+(22597,4410,11), -- s_npc_prop_pa_lv_p0
+(22597,4411,11), -- s_npc_prop_ma_lv_p0
+(22597,4412,14), -- s_npc_prop_pd_lv_p3
+(22597,4413,15), -- s_npc_prop_md_lv_p4
+(22597,4414,2), -- s_npc_prop_armor_type_n
+(22597,4415,3), -- s_npc_prop_weapon_type_sword
+(22597,4441,5), -- s_npc_resist_derangement_ex5
+(22597,4071,5), -- s_npc_resist_bow5
+(22597,5274,5), -- s_npc_party30_p_long_shot5
+(22597,5827,3), -- s_seed_of_destruction_fire_ball3
+(22597,5832,1), -- s_seed_of_destruction_hate_aura1
 -- Mutant - Bird
 (22602,4408,1),
 (22602,4409,1),
@@ -68450,32 +68628,40 @@ INSERT INTO `npcskills` VALUES
 (29161,4414,2),
 (29161,4415,3),
 (29161,4416,1),
--- Soldiers of Bravery (Tiats Bodyguards)
-(29162,4408,1),
-(29162,4409,1),
-(29162,4410,11),
-(29162,4411,11),
-(29162,4412,11),
-(29162,4413,11),
-(29162,4414,2),
-(29162,4415,11),
-(29162,4416,10),
-(29162,5462,1),
--- Tiat (Witch of the Dragon of Darkness)
-(29163,4045,1),
-(29163,4071,3),
-(29163,4116,5),
-(29163,4408,1),
-(29163,4409,1),
-(29163,4410,11),
-(29163,4411,11),
-(29163,4412,11),
-(29163,4413,11),
-(29163,4414,2),
-(29163,4415,4),
-(29163,4416,10),
-(29163,5462,1),
-(29163,6127,1),
+-- Soldiers of Bravery
+(29162,4416,10), -- s_npc_prop_race_dragon
+(29162,5462,1), -- s_npc_prop_attribute_fire1
+(29162,4408,1), -- s_npc_prop_hp_lv_p0
+(29162,4409,1), -- s_npc_prop_mp_lv_p0
+(29162,4410,11), -- s_npc_prop_pa_lv_p0
+(29162,4411,11), -- s_npc_prop_ma_lv_p0
+(29162,4412,11), -- s_npc_prop_pd_lv_p0
+(29162,4413,11), -- s_npc_prop_md_lv_p0
+(29162,4414,2), -- s_npc_prop_armor_type_n
+(29162,4415,11), -- s_npc_prop_weapon_type_pole
+(29162,5309,5), -- s_npc_party30_p_long_shot_bleed5
+(29162,5826,1), -- s_seed_of_destruction_breath1
+(29162,5203,10), -- s_npc_mass_fear10
+-- Tiat
+(29163,4416,10), -- s_npc_prop_race_dragon
+(29163,5462,1), -- s_npc_prop_attribute_fire1
+(29163,4408,1), -- s_npc_prop_hp_lv_p0
+(29163,4409,1), -- s_npc_prop_mp_lv_p0
+(29163,4410,11), -- s_npc_prop_pa_lv_p0
+(29163,4411,11), -- s_npc_prop_ma_lv_p0
+(29163,4412,11), -- s_npc_prop_pd_lv_p0
+(29163,4413,11), -- s_npc_prop_md_lv_p0
+(29163,4414,2), -- s_npc_prop_armor_type_n
+(29163,4415,4), -- s_npc_prop_weapon_type_sword2
+(29163,4045,1), -- s_full_magic_defence
+(29163,4071,3), -- s_npc_resist_bow3
+(29163,4116,5), -- s_npc_resist_magical_dmg5
+(29163,6127,1), -- s_anti_limit
+(29163,5839,1), -- s_tiat_breath1
+(29163,5840,1), -- s_tiat_fire_breath1
+(29163,5841,1), -- s_tiat_muliti_defence1
+(29163,5842,1), -- s_tiat_spinning_slasher1
+(29163,5843,1), -- s_tiat_mass_fear1
 -- 
 (29164,4408,1),
 (29164,4409,1),

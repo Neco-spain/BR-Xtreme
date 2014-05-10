@@ -17,6 +17,7 @@ package ai.engines;
 import java.util.Map;
 
 import javolution.util.FastMap;
+
 import ct23.xtreme.Config;
 import ct23.xtreme.gameserver.ThreadPoolManager;
 import ct23.xtreme.gameserver.datatables.DoorTable;
@@ -25,7 +26,6 @@ import ct23.xtreme.gameserver.instancemanager.GraciaSeedsManager.GraciaSeedTypes
 import ct23.xtreme.gameserver.instancemanager.ZoneManager;
 import ct23.xtreme.gameserver.model.L2Object;
 import ct23.xtreme.gameserver.model.L2Skill;
-import ct23.xtreme.gameserver.model.L2World;
 import ct23.xtreme.gameserver.model.actor.L2Character;
 import ct23.xtreme.gameserver.model.actor.L2Npc;
 import ct23.xtreme.gameserver.model.actor.instance.L2DoorInstance;
@@ -52,7 +52,7 @@ public class EnergySeeds extends L2AttackableAIScript implements IL2Seed
 	private static final int RATE = 1;
 	private static final int RESPAWN = 480000;
 	private static final int RANDOM_RESPAWN_OFFSET = 180000;
-	private static Map<Integer, ESSpawn> _spawns = new FastMap<Integer, ESSpawn>();
+	private static Map<Integer, ESSpawn> _spawns = new FastMap<>();
 	private static Map<L2Npc, Integer> _spawnedNpcs = new FastMap<L2Npc, Integer>().shared();
 	
 	private static final int TEMPORARY_TELEPORTER = 32602;
@@ -122,18 +122,12 @@ public class EnergySeeds extends L2AttackableAIScript implements IL2Seed
 		{ return _respawnRnd;}
 	}
 	
-	@SuppressWarnings("deprecation")
-	public EnergySeeds(int questId, String name, String descr)
+	private EnergySeeds(int questId, String name, String descr)
 	{
 		super(questId, name, descr);
+		
 		GraciaSeedsManager.getInstance().registerSeed(this);
-		//set mobs not random walk on start server
-		for (L2Object obj : L2World.getInstance().getAllVisibleObjects().values())
-		{
-			if (obj instanceof L2Npc && contains(SEEDIDS, ((L2Npc)obj).getNpcId()))
-				((L2Npc)obj).setIsNoRndWalk(true);
-		}
-
+		
 		registerMobs(SEEDIDS);
 		for(int i : SEEDIDS)
 			addFirstTalkId(i);
@@ -717,6 +711,6 @@ public class EnergySeeds extends L2AttackableAIScript implements IL2Seed
 	
 	public static void main(String[] args)
 	{
-		new EnergySeeds(-1, qn, "instances");
+		new EnergySeeds(-1, qn, "engines");
 	}
 }

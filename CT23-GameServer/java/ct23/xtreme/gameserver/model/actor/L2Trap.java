@@ -22,6 +22,8 @@ import ct23.xtreme.gameserver.model.L2ItemInstance;
 import ct23.xtreme.gameserver.model.L2Skill;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import ct23.xtreme.gameserver.model.actor.knownlist.TrapKnownList;
+import ct23.xtreme.gameserver.model.quest.Quest;
+import ct23.xtreme.gameserver.model.quest.Quest.TrapAction;
 import ct23.xtreme.gameserver.network.serverpackets.AbstractNpcInfo;
 import ct23.xtreme.gameserver.network.serverpackets.L2GameServerPacket;
 import ct23.xtreme.gameserver.network.serverpackets.SocialAction;
@@ -41,6 +43,7 @@ public class L2Trap extends L2Character
 	private final L2Skill _skill;
 	private final int _lifeTime;
 	private int _timeRemaining;
+	private boolean _hasLifeTime;
 
 	/**
 	 * @param objectId
@@ -52,15 +55,20 @@ public class L2Trap extends L2Character
 		setInstanceType(InstanceType.L2Trap);
 		setName(template.name);
 		setIsInvul(false);
-
+		
 		_isTriggered = false;
 		_skill = skill;
+		_hasLifeTime = true;
 		if (lifeTime != 0)
 			_lifeTime = lifeTime;
 		else
 			_lifeTime = 30000;
 		_timeRemaining = _lifeTime;
-		ThreadPoolManager.getInstance().scheduleGeneral(new TrapTask(), TICK);
+		if (lifeTime < 0)
+			_hasLifeTime = false;
+		
+		if (skill != null)
+			ThreadPoolManager.getInstance().scheduleGeneral(new TrapTask(), TICK);
 	}
 	
 	/**
@@ -284,42 +292,46 @@ public class L2Trap extends L2Character
 
 	private class TrapTask implements Runnable
 	{
+		@Override
 		public void run()
 		{
 			try
 			{
 				if (!_isTriggered)
 				{
-					_timeRemaining -= TICK;
-					if (_timeRemaining < _lifeTime - 15000)
+					if (_hasLifeTime)
 					{
-						SocialAction sa = new SocialAction(getObjectId(), 2);
-						broadcastPacket(sa);
-					}
-					if (_timeRemaining < 0)
-					{
-						switch (getSkill().getTargetType())
+						_timeRemaining -= TICK;
+						if (_timeRemaining < _lifeTime - 15000)
 						{
-							case TARGET_AURA:
-							case TARGET_FRONT_AURA:
-							case TARGET_BEHIND_AURA:
-								trigger(L2Trap.this);
-								break;
-							default:
-								unSummon();
+							SocialAction sa = new SocialAction(getObjectId(), 2);
+							broadcastPacket(sa);
 						}
-						return;
+						if (_timeRemaining < 0)
+						{
+							switch (getSkill().getTargetType())
+							{
+								case TARGET_AURA:
+								case TARGET_FRONT_AURA:
+								case TARGET_BEHIND_AURA:
+									trigger(L2Trap.this);
+									break;
+								default:
+									unSummon();
+							}
+							return;
+						}
 					}
-
+					
 					for (L2Character target : getKnownList().getKnownCharactersInRadius(_skill.getSkillRadius()))
 					{
 						if (!checkTarget(target))
 							continue;
-
+						
 						trigger(target);
 						return;
 					}
-
+					
 					ThreadPoolManager.getInstance().scheduleGeneral(new TrapTask(), TICK);
 				}
 			}
@@ -340,12 +352,17 @@ public class L2Trap extends L2Character
 		_isTriggered = true;
 		broadcastPacket(new AbstractNpcInfo.TrapInfo(this, null));
 		setTarget(target);
-
+		
+		if (getTemplate().getEventQuests(Quest.QuestEventType.ON_TRAP_ACTION) != null)
+			for (Quest quest : getTemplate().getEventQuests(Quest.QuestEventType.ON_TRAP_ACTION))
+				quest.notifyTrapAction(this, target, TrapAction.TRAP_TRIGGERED);
+		
 		ThreadPoolManager.getInstance().scheduleGeneral(new TriggerTask(), 300);
 	}
 
 	private class TriggerTask implements Runnable
 	{
+		@Override
 		public void run()
 		{
 			try
@@ -359,22 +376,23 @@ public class L2Trap extends L2Character
 			}
 		}
 	}
-
+	
 	private class UnsummonTask implements Runnable
 	{
+		@Override
 		public void run()
 		{
 			unSummon();
 		}
 	}
-
+	
 	@Override
-    public void sendInfo(L2PcInstance activeChar)
-    {
+	public void sendInfo(L2PcInstance activeChar)
+	{
 		if (_isTriggered || canSee(activeChar))
 			activeChar.sendPacket(new AbstractNpcInfo.TrapInfo(this, activeChar));
-    }
-
+	}
+	
 	@Override
 	public void broadcastPacket(L2GameServerPacket mov)
 	{
@@ -383,7 +401,7 @@ public class L2Trap extends L2Character
 			if (player != null && (_isTriggered || canSee(player)))
 				player.sendPacket(mov);
 	}
-
+	
 	@Override
 	public void broadcastPacket(L2GameServerPacket mov, int radiusInKnownlist)
 	{

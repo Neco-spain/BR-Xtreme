@@ -3008,6 +3008,9 @@
 		<stat name="reuse" val="6000" />
 	</zone>
 
+	<!-- Seed of Destruction Waiting Boss Zone --> 
+	<zone id="25253" type="ScriptZone" shape="NPoly" minZ="-12000" maxZ="-11000" />
+
 	<!-- Pagans mark -->
 	<zone id="30100" type="PaganZone" shape="NPoly" minZ="-10735" maxZ="-10720" />
 
@@ -3132,6 +3135,9 @@
 
 	<zone id="60000" type="PeaceZone" shape="Cylinder" minZ="-12960" maxZ="-12600" rad="800" /> <!-- Death Gate -->
 	<zone id="60001" type="NoSummonZone" shape="Cylinder" minZ="-12960" maxZ="-12600" rad="800" /> <!-- Death Gate (No Summon Friend zone) -->
+	
+	<!-- Seed of Destruction -->
+	<zone id="60009" type="ScriptZone" shape="Cuboid" minZ="-14065" maxZ="-6500" />
 
 	<!-- Castle No HQ Zones -->
 	<zone id="112000" type="NoHqZone" shape="NPoly" minZ="-4448" maxZ="30000" />
