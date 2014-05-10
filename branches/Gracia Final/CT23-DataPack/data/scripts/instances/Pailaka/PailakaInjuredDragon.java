@@ -54,7 +54,6 @@ public class PailakaInjuredDragon extends Quest
 	private static final int EXIT_TIME   = 5;
 	private static final int INSTANCE_ID = 45;
 	private static final int[] TELEPORT  = { 125757, -40928, -3736 };
-	//private static final int ZONE = ???;
 	
 	// NO EXIT ZONES
 	private static final Map<Integer, int[]> NOEXIT_ZONES = new FastMap<Integer,  int[]>();
@@ -114,7 +113,6 @@ public class PailakaInjuredDragon extends Quest
 	private static final int LASTSPEAR = 13054;
 	private static final int STAGE1    = 13056;
 	private static final int STAGE2    = 13057;
-	
 	private static final int SHIELD_POTION = 13032;
 	private static final int HEAL_POTION   = 13033;
 
@@ -307,7 +305,7 @@ public class PailakaInjuredDragon extends Quest
 			{
 				st.set("cond","1");
 				st.setState(State.STARTED);
-				st.playSound("ItemSound.quest_accept");
+				st.playSound(QuestSound.ITEMSOUND_QUEST_ACCEPT);
 			}
 		}
 		else if (event.equalsIgnoreCase("32499-05.htm"))
@@ -315,7 +313,7 @@ public class PailakaInjuredDragon extends Quest
 			if (cond == 1)
 			{
 				st.set("cond","2");
-				st.playSound("ItemSound.quest_accept"); // double quest accept ???
+				st.playSound(QuestSound.ITEMSOUND_QUEST_ACCEPT); // double quest accept ???
 			}
 		}
 		else if (event.equalsIgnoreCase("32502-05.htm"))
@@ -326,7 +324,7 @@ public class PailakaInjuredDragon extends Quest
 				if (!st.hasQuestItems(SPEAR))
 				{
 					st.giveItems(SPEAR,1);
-					st.playSound("ItemSound.quest_itemget");
+					st.playSound(QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				}
 			}
 		}
@@ -342,7 +340,7 @@ public class PailakaInjuredDragon extends Quest
 					st.takeItems(SPEAR,1);
 				    st.takeItems(STAGE1,1);
 				    st.giveItems(ENCHSPEAR,1);
-				    st.playSound("ItemSound.quest_itemget");
+				    st.playSound(QuestSound.ITEMSOUND_QUEST_ITEMGET);
 					return "32509-02.htm";
 				case 5:
 					return "32509-01.htm";
@@ -351,7 +349,7 @@ public class PailakaInjuredDragon extends Quest
 					st.takeItems(ENCHSPEAR,1);
 				    st.takeItems(STAGE2,1);
 				    st.giveItems(LASTSPEAR,1);
-				    st.playSound("ItemSound.quest_itemget");
+				    st.playSound(QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				    
 				    // Spawns Latana
 				    addSpawn(LATANA, 105732, -41787, -1782, 35742, false, 0, false, npc.getInstanceId());
@@ -370,7 +368,7 @@ public class PailakaInjuredDragon extends Quest
 		else if (event.equalsIgnoreCase("32512-02.htm"))
 		{
 			st.unset("cond");
-			st.playSound("ItemSound.quest_finish");
+			st.playSound(QuestSound.ITEMSOUND_QUEST_FINISH);
 			st.exitQuest(false);
 
 			Instance inst = InstanceManager.getInstance().getInstance(npc.getInstanceId());
@@ -493,7 +491,7 @@ public class PailakaInjuredDragon extends Quest
 				{
 					st.set("cond","4");
 					st.giveItems(STAGE1,1);
-					st.playSound("ItemSound.quest_itemget");
+					st.playSound(QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				}
 
 				// Spawns Mage Type silenos behind the one that was killed
@@ -508,7 +506,7 @@ public class PailakaInjuredDragon extends Quest
 				{
 					st.set("cond","4");
 					st.giveItems(STAGE1,1);
-					st.playSound("ItemSound.quest_itemget");
+					st.playSound(QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				}
 
 				// Spawns Mage Type silenos behind the one that was killed
@@ -523,7 +521,7 @@ public class PailakaInjuredDragon extends Quest
 				{
 					st.set("cond","4");
 					st.giveItems(STAGE1,1);
-					st.playSound("ItemSound.quest_itemget");
+					st.playSound(QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				}
 
 				// Spawns Mage Type silenos behind the one that was killed
@@ -539,7 +537,7 @@ public class PailakaInjuredDragon extends Quest
 				{
 					st.set("cond","4");
 					st.giveItems(STAGE1,1);
-					st.playSound("ItemSound.quest_itemget");
+					st.playSound(QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				}
 				
 				// Spawns Mage Type silenos behind the one that was killed
@@ -555,7 +553,7 @@ public class PailakaInjuredDragon extends Quest
 				{
 					st.set("cond","6");
 					st.giveItems(STAGE2,1);
-					st.playSound("ItemSound.quest_itemget");
+					st.playSound(QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				}
 
 				// Spawns Mage Type silenos behind the one that was killed
@@ -570,7 +568,7 @@ public class PailakaInjuredDragon extends Quest
 				{
 					st.set("cond","6");
 					st.giveItems(STAGE2,1);
-					st.playSound("ItemSound.quest_itemget");
+					st.playSound(QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				}
 
 				// Spawns Mage Type silenos behind the one that was killed
@@ -585,7 +583,7 @@ public class PailakaInjuredDragon extends Quest
 				{
 					st.set("cond","6");
 					st.giveItems(STAGE2,1);
-					st.playSound("ItemSound.quest_itemget");
+					st.playSound(QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				}
 				
 				// Spawns Mage Type silenos behind the one that was killed
@@ -600,7 +598,7 @@ public class PailakaInjuredDragon extends Quest
 				{
 					st.set("cond","6");
 					st.giveItems(STAGE2,1);
-					st.playSound("ItemSound.quest_itemget");
+					st.playSound(QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				}
 				
 				// Spawns Mage Type silenos behind the one that was killed
@@ -611,7 +609,7 @@ public class PailakaInjuredDragon extends Quest
 				break;
 			case LATANA:
 				st.set("cond","8");
-				st.playSound("ItemSound.quest_middle");
+				st.playSound(QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				
 				// Spawns Ketra Orc Supporter
 				addSpawn(KETRA_ORC_SUPPORTER2, npc.getX(), npc.getY(), npc.getZ(), npc.getHeading(), false, 0, false, npc.getInstanceId());
@@ -826,8 +824,8 @@ public class PailakaInjuredDragon extends Quest
 				if (mobId == npc.getNpcId())
 				{
 					final L2MonsterInstance monster = (L2MonsterInstance)npc;
-					monster.setIsAggresiveOverride(900);
-					monster.setClanOverride("pailaka_clan");
+					monster.setIsAggresiveOverride(800);
+					monster.setClanOverride("varkas_silenos_clan");
 					monster.setIsImmobilized(true);
 					break;
 				}
@@ -839,17 +837,6 @@ public class PailakaInjuredDragon extends Quest
 	@Override
 	public String onExitZone(L2Character character, L2ZoneType zone)
 	{
-		/**
-		if (character instanceof L2PcInstance
-				&& !character.isDead()
-				&& !character.isTeleporting()
-				&& ((L2PcInstance)character).isOnline())
-		{
-			InstanceWorld world = InstanceManager.getInstance().getWorld(character.getInstanceId());
-			if (world != null && world.templateId == INSTANCE_ID)
-				ThreadPoolManager.getInstance().scheduleGeneral(new Teleport(character, world.instanceId), 1000);
-		}
-		*/
 		if (character instanceof L2Playable
 				&& !character.isDead()
 				&& !character.isTeleporting()

@@ -4546,6 +4546,13 @@ INSERT INTO `zone_vertices` VALUES
 (20448,2,211652,-110812),
 (20448,3,211420,-110828);
 
+-- Seed of Destruction (Tiat Battle Waiting Zone)
+INSERT INTO `zone_vertices` VALUES
+(25253,0,-251280,211765),
+(25253,1,-250599,211765),
+(25253,2,-250599,211571),
+(25253,3,-251280,211571);
+
 -- Pagan's Mark Zone
 INSERT INTO `zone_vertices` VALUES
 (30100,0,-16100,-36620),
@@ -4823,6 +4830,11 @@ INSERT INTO zone_vertices VALUES
 INSERT INTO `zone_vertices` VALUES
 (60000,0,-183319,206306),
 (60001,0,-183319,206306);
+
+-- Seed of Destruction
+INSERT INTO `zone_vertices` VALUES
+(60009,0,-237600,221168),
+(60009,1,-253900,204849);
 
 -- Castle NoHq Zones
 -- Gludio Castle

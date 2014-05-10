@@ -46,11 +46,14 @@ import ct23.xtreme.gameserver.util.Util;
 import ct23.xtreme.util.Rnd;
 
 /*
-//TODO >> test Instance HallOfSuffering reworked Freya Script to Gracia Final
-reworked by @ MrBrowser
-Contributing authors: Gigiikun, ZakaX, Didldak
+//TODO:
+- after 15mins mobs are despawned
+- bound instance to quests
+Test depply increased points for next stage in Gracia Seeds Manager
+Break Through The Hall of Suffering Quest implemented in Hall script
+Contributing authors: Browser, Gigiikun, ZakaX, Didldak
 Please maintain consistency between the Seed scripts.
- */
+*/
 public class HallOfSuffering extends Quest
 {
 	
@@ -406,7 +409,7 @@ public class HallOfSuffering extends Quest
 	
 	private String getPtLeaderText(L2PcInstance player, HSWorld world)
 	{
-		String htmltext = HtmCache.getInstance().getHtm(player.getHtmlPrefix(),"/data/scripts/instances/SeedOfInfinity/32530-10.htm");
+		String htmltext = HtmCache.getInstance().getHtm(player.getHtmlPrefix(),"/data/scripts/instances/HallOfSuffering/32530-10.htm");
 		htmltext = htmltext.replaceAll("%ptLeader%", String.valueOf(world.ptLeaderName));
 		return htmltext;
 	}

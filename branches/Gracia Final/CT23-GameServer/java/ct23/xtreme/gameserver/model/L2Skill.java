@@ -53,6 +53,7 @@ import ct23.xtreme.gameserver.templates.StatsSet;
 import ct23.xtreme.gameserver.templates.effects.EffectTemplate;
 import ct23.xtreme.gameserver.templates.skills.L2SkillType;
 import ct23.xtreme.gameserver.util.Util;
+
 import javolution.util.FastList;
 
 /**
@@ -117,7 +118,8 @@ public abstract class L2Skill implements IChanceSkillTrigger
         TARGET_OWNER_PET,
         TARGET_GROUND,
         TARGET_PARTY_NOTME,
-        TARGET_AREA_SUMMON
+        TARGET_AREA_SUMMON,
+        TARGET_CLAN_MEMBER
     }
     
     //conditional values
@@ -2250,13 +2252,45 @@ public abstract class L2Skill implements IChanceSkillTrigger
 				}
 				return targetList.toArray(new L2Character[targetList.size()]);
 			}
-            default:
-            {
-                activeChar.sendMessage("Target type of skill is not currently handled");
-                return _emptyTargetList;
-            }
-        }//end switch
-    }
+			// npc only for now - untested
+			case TARGET_CLAN_MEMBER:
+			{
+				if (activeChar instanceof L2Npc)
+					{
+					// for buff purposes, returns friendly mobs nearby and mob itself
+					final L2Npc npc = (L2Npc) activeChar;
+					if (npc.getFactionId() == null || npc.getFactionId().isEmpty())
+					{
+						return new L2Character[]{activeChar};
+					}
+					final Collection<L2Object> objs = activeChar.getKnownList().getKnownObjects().values();
+					for (L2Object newTarget : objs)
+					{
+						if (newTarget instanceof L2Npc
+								&& npc.getFactionId().equals(((L2Npc) newTarget).getFactionId()))
+						{
+							if (!Util.checkIfInRange(getCastRange(), activeChar, newTarget, true))
+								continue;
+							if (((L2Npc) newTarget).getFirstEffect(this) != null)
+								continue;
+							targetList.add((L2Npc) newTarget);
+							break; // found
+						}
+					}
+					if (targetList.isEmpty())
+						targetList.add(npc);
+				}
+				else
+					return _emptyTargetList;
+				return targetList.toArray(new L2Character[targetList.size()]);
+				}
+				default:
+			{
+				activeChar.sendMessage("Target type of skill is not currently handled");
+				return _emptyTargetList;
+			}
+		}//end switch
+	}
 
     public final L2Object[] getTargetList(L2Character activeChar)
     {

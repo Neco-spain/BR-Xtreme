@@ -16,6 +16,7 @@ package ct23.xtreme.gameserver.model.actor.knownlist;
 
 import ct23.xtreme.gameserver.ai.CtrlEvent;
 import ct23.xtreme.gameserver.ai.CtrlIntention;
+import ct23.xtreme.gameserver.ai.L2CharacterAI;
 import ct23.xtreme.gameserver.model.L2Object;
 import ct23.xtreme.gameserver.model.actor.L2Character;
 import ct23.xtreme.gameserver.model.actor.instance.L2MonsterInstance;
@@ -33,13 +34,15 @@ public class MonsterKnownList extends AttackableKnownList
 	{
 		if (!super.addKnownObject(object))
 			return false;
+		
+		final L2CharacterAI ai = getActiveChar().getAI(); // force AI creation
 
 		// Set the L2MonsterInstance Intention to AI_INTENTION_ACTIVE if the state was AI_INTENTION_IDLE
 		if (object instanceof L2PcInstance
-				&& getActiveChar().hasAI()
-				&& getActiveChar().getAI().getIntention() == CtrlIntention.AI_INTENTION_IDLE)
-			getActiveChar().getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE, null);
-
+				&& ai != null
+				&& ai.getIntention() == CtrlIntention.AI_INTENTION_IDLE)
+			ai.setIntention(CtrlIntention.AI_INTENTION_ACTIVE, null);
+		
 		return true;
 	}
 
