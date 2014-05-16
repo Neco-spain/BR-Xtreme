@@ -52,7 +52,8 @@ public class GraciaSeedsManager
 	private static ScheduledFuture<?> 		_resetTask = null;
 	
 	// Seed of Infinity
-	private static int						_SoIUndeadKilled = 0;
+	private static int						_SoITwinKilled = 0;
+	private static int						_SoICohemenesKilled = 0;
 	private static int						_SoIEkimusKilled = 0;
 	private static int						_SoIState = 1;
 	private static Calendar					_SoINextData;
@@ -98,7 +99,8 @@ public class GraciaSeedsManager
 				break;
 			case SOITYPE:
 				// Seed of Infinity
-				GlobalVariablesManager.getInstance().set("SoIUndeadKilled", _SoIUndeadKilled);
+				GlobalVariablesManager.getInstance().set("SoITwinKilled", _SoITwinKilled);
+				GlobalVariablesManager.getInstance().set("SoICohemenesKilled", _SoICohemenesKilled);
 				GlobalVariablesManager.getInstance().set("SoIEkimusKilled", _SoIEkimusKilled);
 				GlobalVariablesManager.getInstance().set("SoIState", _SoIState);
 				GlobalVariablesManager.getInstance().set("SoINextData", _SoINextData.getTimeInMillis());
@@ -129,7 +131,8 @@ public class GraciaSeedsManager
 		if (GlobalVariablesManager.getInstance().hasVariable("SoIState"))
 		{
 			_SoIState = GlobalVariablesManager.getInstance().getInt("SoIState");
-			_SoIUndeadKilled = GlobalVariablesManager.getInstance().getInt("SoIUndeadKilled");
+			_SoITwinKilled = GlobalVariablesManager.getInstance().getInt("SoITwinKilled");
+			_SoICohemenesKilled = GlobalVariablesManager.getInstance().getInt("SoICohemenesKilled");
 			_SoIEkimusKilled = GlobalVariablesManager.getInstance().getInt("SoIEkimusKilled");
 			_SoINextData.setTimeInMillis(GlobalVariablesManager.getInstance().getLong("SoINextData"));
 		}
@@ -324,9 +327,10 @@ public class GraciaSeedsManager
 		switch (getSoIState()) 
 		{
 		case 1:
-			if (getUndeadKillCounts() >= Config.SOI_UNDEAD_KILL_COUNT)
+			if (getCohemenesKillCounts() >= Config.SOI_COHEMENES_KILL_COUNT && getTwinKillCounts() >= Config.SOI_TWIN_KILL_COUNT)
 			{
-				_SoIUndeadKilled = 0;
+				_SoICohemenesKilled = 0;
+				_SoITwinKilled = 0;
 				setSoIStage(2, true);
 			}
 			break;
@@ -349,7 +353,7 @@ public class GraciaSeedsManager
 			}
 			else
 			{
-				_SoIUndeadKilled = 0;
+				_SoITwinKilled = 0;
 				_SoINextData.setTimeInMillis(System.currentTimeMillis() + timeStep);
 				if (_scheduleSOINextStage != null)
 					_scheduleSOINextStage.cancel(false);
@@ -358,41 +362,18 @@ public class GraciaSeedsManager
 			}
 			break;
 		case 4:
-			if (onLoad)
+			if (getCohemenesKillCounts() >= Config.SOI_COHEMENES_KILL_COUNT && getTwinKillCounts() >= Config.SOI_TWIN_KILL_COUNT)
 			{
-				if (_SoINextData.getTimeInMillis() <= System.currentTimeMillis())
-					ThreadPoolManager.getInstance().scheduleEffect(new UpdateSoIStateTask(5), 1000);
-				else
-					ThreadPoolManager.getInstance().scheduleEffect(new UpdateSoIStateTask(5), _SoINextData.getTimeInMillis() - System.currentTimeMillis());
-					
-			}
-			else
-			{
-				_SoIUndeadKilled = 0;
-				_SoINextData.setTimeInMillis(System.currentTimeMillis() + timeStep);
-				if (_scheduleSOINextStage != null)
-					_scheduleSOINextStage.cancel(false);
-				ThreadPoolManager.getInstance().scheduleEffect(new UpdateSoIStateTask(5), timeStep);
-				saveData(SOITYPE);
+				_SoITwinKilled = 0;
+				_SoICohemenesKilled = 0;
+				setSoIStage(5, true);
 			}
 			break;
 		case 5:
-			if (onLoad)
-			{
-				if (_SoINextData.getTimeInMillis() <= System.currentTimeMillis())
-					ThreadPoolManager.getInstance().scheduleEffect(new UpdateSoIStateTask(1), 1000);
-				else
-					ThreadPoolManager.getInstance().scheduleEffect(new UpdateSoIStateTask(1), _SoINextData.getTimeInMillis() - System.currentTimeMillis());
-					
-			}
-			else
+			if (getEkimusKillCounts() >= Config.SOI_EKIMUS_KILL_COUNT)
 			{
 				_SoIEkimusKilled = 0;
-				_SoINextData.setTimeInMillis(System.currentTimeMillis() + timeStep);
-				if (_scheduleSOINextStage != null)
-					_scheduleSOINextStage.cancel(false);
-				ThreadPoolManager.getInstance().scheduleEffect(new UpdateSoIStateTask(1), timeStep);
-				saveData(SOITYPE);
+				setSoIStage(1, true);
 			}
 			break;
 		default:
@@ -408,8 +389,9 @@ public class GraciaSeedsManager
 		// If stage 1, clear all values
 		if (_SoIState == 1)
 		{
+			_SoITwinKilled = 0;
+			_SoICohemenesKilled = 0;
 			_SoIEkimusKilled = 0;
-			_SoIUndeadKilled = 0;
 		}
 		if (save)
 		{
@@ -422,9 +404,14 @@ public class GraciaSeedsManager
 		return _SoIState;
 	}
 	
-	public int getUndeadKillCounts()
+	public int getTwinKillCounts()
 	{ 
-		return _SoIUndeadKilled;
+		return _SoITwinKilled;
+	}
+	
+	public int getCohemenesKillCounts()
+	{ 
+		return _SoICohemenesKilled;
 	}
 	
 	public int getEkimusKillCounts()
@@ -444,29 +431,30 @@ public class GraciaSeedsManager
 			quest.notifyEvent("StopSoIAi", null, null);
 		}
 	}
-	
-	public void addUndeadKill()
+			
+	public void addTwinKill()
 	{
-		if (_SoIState == 1)
+		_SoITwinKilled++;
+		handleSoIStages(false);
 		{
-			_SoIUndeadKilled++;
-			if (_SoIUndeadKilled >= Config.SOI_UNDEAD_KILL_COUNT)
-			{
-				setSoIStage(2, false);
-			}
+			saveData(SOITYPE);
 		}
-		saveData(SOITYPE);
+	}
+	
+	public void addCohemenesKill()
+	{
+		_SoICohemenesKilled++;
+		handleSoIStages(false);
+		{
+			saveData(SOITYPE);
+		}
 	}
 	
 	public void addEkimusKill()
 	{
-		if (_SoIState == 2)
+		_SoIEkimusKilled++;
+		handleSoIStages(false);
 		{
-			_SoIEkimusKilled++;
-			if (_SoIEkimusKilled >= Config.SOI_EKIMUS_KILL_COUNT)
-			{
-				setSoIStage(3, false);
-			}
 			saveData(SOITYPE);
 			// Start Energy Seeds AI
 			Quest esQuest = QuestManager.getInstance().getQuest(ENERGY_SEEDS);
@@ -492,9 +480,9 @@ public class GraciaSeedsManager
 			case 3:
 				return (_SoINextData.getTimeInMillis() - System.currentTimeMillis());
 			case 4:
-				return (_SoINextData.getTimeInMillis() - System.currentTimeMillis());
+				return -1;
 			case 5:
-				return (_SoINextData.getTimeInMillis() - System.currentTimeMillis());
+				return -1;
 			default:
 				// this should not happen!
 				return -1;
