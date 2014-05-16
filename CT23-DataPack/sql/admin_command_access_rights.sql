@@ -296,6 +296,14 @@ INSERT IGNORE INTO `admin_command_access_rights` VALUES
 -- GM
 ('admin_gm','1'),
 
+-- ADMIN GRACIA SEEDS
+('admin_gracia_seeds','1'),
+('admin_kill_tiat','1'),
+('admin_set_sodstate','1'),
+('admin_set_soistate','1'),
+('admin_kill_undead','1'),
+('admin_kill_ekimus','1'),
+
 -- GM CHAT
 ('admin_gmchat','1'),
 ('admin_snoop','1'),
