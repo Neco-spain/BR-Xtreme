@@ -22,7 +22,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javolution.util.FastMap;
-
 import ct23.xtreme.Config;
 import ct23.xtreme.L2DatabaseFactory;
 import ct23.xtreme.gameserver.GameTimeController;
@@ -518,6 +517,81 @@ public final class QuestState
 		}
 
 		return varint;
+	}
+	
+	/**
+	 * Sets the quest state progress ({@code cond}) to the specified step.
+	 * @param value the new value of the quest state progress
+	 * @return this {@link QuestState} object
+	 * @see #set(String var, String val)
+	 * @see #setCond(int, boolean)
+	 */
+	public QuestState setCond(int value)
+	{
+		if (isStarted())
+		{
+			set("cond", String.valueOf(value));
+		}
+		return this;
+	}
+	
+	/**
+	 * @return the current quest progress ({@code cond})
+	 */
+	public int getCond()
+	{
+		if (isStarted())
+		{
+			return getInt("cond");
+		}
+		return 0;
+	}
+	
+	/**
+	 * Check if a given variable is set for this quest.
+	 * @param variable the variable to check
+	 * @return {@code true} if the variable is set, {@code false} otherwise
+	 * @see #get(String)
+	 * @see #getInt(String)
+	 * @see #getCond()
+	 */
+	public boolean isSet(String variable)
+	{
+		return (get(variable) != null);
+	}
+	
+	/**
+	 * Checks if the quest state progress ({@code cond}) is at the specified step.
+	 * @param condition the condition to check against
+	 * @return {@code true} if the quest condition is equal to {@code condition}, {@code false} otherwise
+	 * @see #getInt(String var)
+	 */
+	public boolean isCond(int condition)
+	{
+		return (getInt("cond") == condition);
+	}
+	
+	/**
+	 * Sets the quest state progress ({@code cond}) to the specified step.
+	 * @param value the new value of the quest state progress
+	 * @param playQuestMiddle if {@code true}, plays "ItemSound.quest_middle"
+	 * @return this {@link QuestState} object
+	 * @see #setCond(int value)
+	 * @see #set(String var, String val)
+	 */
+	public QuestState setCond(int value, boolean playQuestMiddle)
+	{
+		if (!isStarted())
+		{
+			return this;
+		}
+		set("cond", String.valueOf(value));
+		
+		if (playQuestMiddle)
+		{
+			playSound(QuestSound.ITEMSOUND_QUEST_MIDDLE);
+		}
+		return this;
 	}
 	
 	/**

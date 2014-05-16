@@ -27,10 +27,10 @@ package handlers.admincommandhandlers;
 import java.util.Calendar;
 import java.util.StringTokenizer;
 
-import ct25.xtreme.gameserver.handler.IAdminCommandHandler;
-import ct25.xtreme.gameserver.instancemanager.GraciaSeedsManager;
-import ct25.xtreme.gameserver.model.actor.instance.L2PcInstance;
-import ct25.xtreme.gameserver.network.serverpackets.NpcHtmlMessage;
+import ct23.xtreme.gameserver.handler.IAdminCommandHandler;
+import ct23.xtreme.gameserver.instancemanager.GraciaSeedsManager;
+import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
+import ct23.xtreme.gameserver.network.serverpackets.NpcHtmlMessage;
 
 public class AdminGraciaSeeds implements IAdminCommandHandler
 {
@@ -50,9 +50,6 @@ public class AdminGraciaSeeds implements IAdminCommandHandler
 	 */
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
-		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
-			return false;
-		
 		StringTokenizer st = new StringTokenizer(command, " ");
 		String actualCommand = st.nextToken(); // Get actual command
 		

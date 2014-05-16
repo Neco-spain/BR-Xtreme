@@ -14,7 +14,7 @@
  */
 package ct23.xtreme.gameserver.model.interfaces;
 
-import ct23.xtreme.gameserver.instancemanager.GraciaSeedsManager.GraciaSeedTypes;
+import ct23.xtreme.gameserver.instancemanager.GraciaSeedsManager.GraciaSeeds;
 
 /**
  * 
@@ -23,7 +23,7 @@ import ct23.xtreme.gameserver.instancemanager.GraciaSeedsManager.GraciaSeedTypes
 public interface IL2Seed 
 {
 	abstract public void startAI();
-	abstract public void startAI(GraciaSeedTypes type);
-	abstract public void stopAI(GraciaSeedTypes type);
+	abstract public void startAI(GraciaSeeds type);
+	abstract public void stopAI(GraciaSeeds type);
 	abstract public String getName();
 }

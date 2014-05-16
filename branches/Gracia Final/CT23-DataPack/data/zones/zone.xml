@@ -3139,6 +3139,8 @@
 	<!-- Seed of Destruction -->
 	<zone id="60009" type="ScriptZone" shape="Cuboid" minZ="-14065" maxZ="-6500" />
 
+	<zone id="60010" type="ScriptZone" shape="NPoly" minZ="-16233" maxZ="-6233" />
+
 	<!-- Castle No HQ Zones -->
 	<zone id="112000" type="NoHqZone" shape="NPoly" minZ="-4448" maxZ="30000" />
 	<zone id="112010" type="NoHqZone" shape="NPoly" minZ="-4642" maxZ="30000" />

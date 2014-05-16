@@ -27,6 +27,7 @@ import java.util.logging.Logger;
 
 import javolution.util.FastList;
 import javolution.util.FastMap;
+
 import ct23.xtreme.Config;
 import ct23.xtreme.L2DatabaseFactory;
 import ct23.xtreme.gameserver.ThreadPoolManager;
@@ -39,6 +40,7 @@ import ct23.xtreme.gameserver.model.L2Object;
 import ct23.xtreme.gameserver.model.L2Party;
 import ct23.xtreme.gameserver.model.L2Skill;
 import ct23.xtreme.gameserver.model.L2Spawn;
+import ct23.xtreme.gameserver.model.Location;
 import ct23.xtreme.gameserver.model.actor.L2Character;
 import ct23.xtreme.gameserver.model.actor.L2Npc;
 import ct23.xtreme.gameserver.model.actor.L2Trap;
@@ -1779,6 +1781,18 @@ public class Quest extends ManagedScript
 	public L2Npc addSpawn(int npcId, L2Character cha)
 	{
 		return addSpawn(npcId, cha.getX(), cha.getY(), cha.getZ(), cha.getHeading(), false, 0, false);
+	}
+	
+	/**
+	 * @param npcId
+	 * @param loc
+	 * @param randomOffSet
+	 * @param despawnDelay
+	 * @return
+	 */
+	public L2Npc addSpawn(int npcId, Location loc, boolean randomOffSet, long despawnDelay)
+	{
+		return addSpawn(npcId, loc.getX(), loc.getY(), loc.getZ(), loc.getHeading(), randomOffSet, despawnDelay, false, 0);
 	}
 	
 	/**
