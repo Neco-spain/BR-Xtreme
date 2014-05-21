@@ -45,8 +45,7 @@ public class EtcStatusUpdate extends L2GameServerPacket
 		writeD(_activeChar.getWeightPenalty()); // 1-4 weight penalty, lvl (1=50%, 2=66.6%, 3=80%, 4=100%)
 		writeD((_activeChar.getMessageRefusal() || _activeChar.isChatBanned() || _activeChar.isSilenceMode()) ? 1 : 0); // 1 = block all chat 
 		writeD(_activeChar.isInsideZone(L2Character.ZONE_DANGERAREA) ? 1 : 0); // 1 = danger area
-		writeD(_activeChar.getExpertiseWeaponPenalty()); // Weapon Grade Penalty [1-4]
-		writeD(_activeChar.getExpertiseArmorPenalty()); // Armor Grade Penalty [1-4]
+		writeD(Math.min(_activeChar.getExpertisePenalty(),1)); // 1 = grade penalty 
 		writeD(_activeChar.getCharmOfCourage() ? 1 : 0); // 1 = charm of courage (allows resurrection on the same spot upon death on the siege battlefield)
 		writeD(_activeChar.getDeathPenaltyBuffLevel()); // 1-15 death penalty, lvl (combat ability decreased due to death)
         	writeD(_activeChar.getSouls());

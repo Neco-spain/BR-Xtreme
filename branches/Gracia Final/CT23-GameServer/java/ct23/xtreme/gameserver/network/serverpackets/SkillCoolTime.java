@@ -15,7 +15,6 @@
 package ct23.xtreme.gameserver.network.serverpackets;
 
 import java.util.Collection;
-import java.util.Iterator;
 
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance.TimeStamp;
@@ -32,12 +31,6 @@ public class SkillCoolTime extends L2GameServerPacket
     public SkillCoolTime(L2PcInstance cha)
     {
         _reuseTimeStamps = cha.getReuseTimeStamps();
-        Iterator<TimeStamp> iter = _reuseTimeStamps.iterator();
-        while (iter.hasNext())
-        {
-        	if (!iter.next().hasNotPassed()) // remove expired timestamps
-        		iter.remove();
-        }
     }
     
     /**

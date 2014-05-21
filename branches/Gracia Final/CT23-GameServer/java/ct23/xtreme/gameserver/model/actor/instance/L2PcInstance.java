@@ -35,6 +35,7 @@ import java.util.logging.Level;
 import javolution.util.FastList;
 import javolution.util.FastMap;
 import javolution.util.FastSet;
+
 import ct23.xtreme.Config;
 import ct23.xtreme.L2DatabaseFactory;
 import ct23.xtreme.gameserver.Announcements;
@@ -703,8 +704,7 @@ public final class L2PcInstance extends L2Playable
 
 	/** The current higher Expertise of the L2PcInstance (None=0, D=1, C=2, B=3, A=4, S=5, S80=6, S84=7)*/
 	private int _expertiseIndex; // index in EXPERTISE_LEVELS
-	private int _expertiseArmorPenalty = 0;
-	private int _expertiseWeaponPenalty = 0;
+	private int _expertisePenalty = 0;
 
 	private boolean _isEnchanting = false;
 	private L2ItemInstance _activeEnchantItem = null;
@@ -2286,14 +2286,9 @@ public final class L2PcInstance extends L2Playable
 		return (int)calcStat(Stats.MAX_LOAD, baseLoad*Config.ALT_WEIGHT_LIMIT, this, null);
 	}
 
-	public int getExpertiseArmorPenalty()
+	public int getExpertisePenalty()
 	{
-		return _expertiseArmorPenalty;
-	}
-
-	public int getExpertiseWeaponPenalty()
-	{
-		return _expertiseWeaponPenalty;
+		return _expertisePenalty;
 	}
 
 	public int getWeightPenalty()
@@ -2360,9 +2355,8 @@ public final class L2PcInstance extends L2Playable
 	{
 		if (!Config.EXPERTISE_PENALTY)
 			return;
-		final int expertiseLevel = getExpertiseLevel();
-		int armorPenalty = 0;
-		int weaponPenalty = 0;
+		
+		int newPenalty = 0;
 		
 		for (L2ItemInstance item : getInventory().getItems())
 		{
@@ -2371,63 +2365,27 @@ public final class L2PcInstance extends L2Playable
 			{
 				int crystaltype = item.getItem().getCrystalType();
 				
-				if (crystaltype > expertiseLevel)
-				{
-					if (item.isWeapon() && (crystaltype > weaponPenalty))
-					{
-						weaponPenalty = crystaltype;
-					}
-					else if (crystaltype > armorPenalty)
-					{
-						armorPenalty = crystaltype;
-					}
-				}
+				if (crystaltype > newPenalty)
+					newPenalty = crystaltype;
 			}
 		}
 		
-		boolean changed = false;
+		newPenalty = newPenalty - getExpertiseIndex();
+
+		if (newPenalty <= 0)
+            newPenalty = 0;
 		
-		// calc armor penalty
-		armorPenalty = armorPenalty - getExpertiseIndex();
-		
-		if (armorPenalty < 0)
-			armorPenalty = 0;
-		else if (armorPenalty > 4)
-			armorPenalty = 4;
-		
-		if (getExpertiseArmorPenalty() != armorPenalty || getSkillLevel(6213) != armorPenalty)
+		if (getExpertisePenalty() != newPenalty)
 		{
-			_expertiseArmorPenalty = armorPenalty;
-			
-			if (_expertiseArmorPenalty > 0)
-				super.addSkill(SkillTable.getInstance().getInfo(6213, _expertiseArmorPenalty)); // level used to be newPenalty
+			_expertisePenalty = newPenalty;
+
+			if (newPenalty > 0)
+				super.addSkill(SkillTable.getInstance().getInfo(4267, 1)); // level used to be newPenalty
 			else
-				super.removeSkill(getKnownSkill(6213));
-			
-			changed = true;
-		}
-		
-		// calc weapon penalty
-		weaponPenalty = weaponPenalty - getExpertiseIndex();
-		if (weaponPenalty < 0)
-			weaponPenalty = 0;
-		else if (weaponPenalty > 4)
-			weaponPenalty = 4;
-		
-		if (getExpertiseWeaponPenalty() != weaponPenalty || getSkillLevel(6209) != weaponPenalty)
-		{
-			_expertiseWeaponPenalty = weaponPenalty;
-			
-			if (_expertiseWeaponPenalty > 0)
-				super.addSkill(SkillTable.getInstance().getInfo(6209, _expertiseWeaponPenalty)); // level used to be newPenalty
-			else
-				super.removeSkill(getKnownSkill(6209));
-			
-			changed = true;
-		}
-		
-		if (changed)
+                super.removeSkill(getKnownSkill(4267));
+
 			sendPacket(new EtcStatusUpdate(this));
+		}
 	}
 	
 	public void checkIfWeaponIsAllowed()
