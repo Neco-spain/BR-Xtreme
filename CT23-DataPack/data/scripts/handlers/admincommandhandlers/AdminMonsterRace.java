@@ -32,8 +32,6 @@ import ct23.xtreme.gameserver.network.serverpackets.SystemMessage;
  */
 public class AdminMonsterRace implements IAdminCommandHandler
 {
-	//private static Logger _log = Logger.getLogger(AdminMonsterRace.class.getName());
-	
 	private static final String[] ADMIN_COMMANDS =
 	{
 		"admin_mons"
@@ -43,6 +41,9 @@ public class AdminMonsterRace implements IAdminCommandHandler
 	
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		if (command.equalsIgnoreCase("admin_mons"))
 		{
 			handleSendPacket(activeChar);

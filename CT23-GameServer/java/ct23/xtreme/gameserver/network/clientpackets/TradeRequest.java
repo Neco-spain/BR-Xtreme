@@ -16,7 +16,12 @@ package ct23.xtreme.gameserver.network.clientpackets;
 
 import java.util.logging.Logger;
 
+//import com.l2jserver.gameserver.model.effects.AbstractEffect;
+//import com.l2jserver.gameserver.model.skills.AbnormalType;
+//import com.l2jserver.gameserver.model.skills.BuffInfo;
+
 import ct23.xtreme.Config;
+//import ct23.xtreme.gameserver.datatables.BotReportTable;
 import ct23.xtreme.gameserver.model.BlockList;
 import ct23.xtreme.gameserver.model.L2Object;
 import ct23.xtreme.gameserver.model.L2World;
@@ -60,6 +65,20 @@ public final class TradeRequest extends L2GameClientPacket
 			return;
 		}
 		
+		/*BuffInfo info = player.getEffectList().getBuffInfoByAbnormalType(AbnormalType.BOT_PENALTY);
+		if (info != null)
+		{
+			for (AbstractEffect effect : info.getEffects())
+			{
+				if (!effect.checkCondition(BotReportTable.TRADE_ACTION_BLOCK_ID))
+				{
+					player.sendPacket(SystemMessageId.YOU_HAVE_BEEN_REPORTED_SO_ACTIONS_NOT_ALLOWED);
+					player.sendPacket(ActionFailed.STATIC_PACKET);
+					return;
+				}
+			}
+		}*/
+		
 		L2Object target = L2World.getInstance().findObject(_objectId);
 		if (target == null || !player.getKnownList().knowsObject(target) || !(target instanceof L2PcInstance))
 		{
@@ -84,6 +103,22 @@ public final class TradeRequest extends L2GameClientPacket
 			player.sendMessage("You or your target cant request trade in Olympiad mode");
 			return;
 		}
+		
+		/*info = partner.getEffectList().getBuffInfoByAbnormalType(AbnormalType.BOT_PENALTY);
+		if (info != null)
+		{
+			for (AbstractEffect effect : info.getEffects())
+			{
+				if (!effect.checkCondition(BotReportTable.TRADE_ACTION_BLOCK_ID))
+				{
+					final SystemMessage sm = SystemMessage.getSystemMessage(SystemMessageId.C1_REPORTED_AND_IS_BEING_INVESTIGATED);
+					sm.addCharName(partner);
+					player.sendPacket(sm);
+					player.sendPacket(ActionFailed.STATIC_PACKET);
+					return;
+				}
+			}
+		}*/
 		
 		// Alt game - Karma punishment
 		if (!Config.ALT_GAME_KARMA_PLAYER_CAN_TRADE && (player.getKarma() > 0 || partner.getKarma() > 0))

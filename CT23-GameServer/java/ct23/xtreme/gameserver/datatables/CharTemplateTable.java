@@ -14,7 +14,7 @@
  */
 package ct23.xtreme.gameserver.datatables;
 
-import gnu.trove.TIntObjectHashMap;
+import gnu.trove.map.hash.TIntObjectHashMap;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -141,7 +141,7 @@ public class CharTemplateTable
 				{
 					if (classId == -1)
 					{
-						for (Object pct : _templates.getValues())
+						for (Object pct : _templates.values())
 						{
 							((L2PcTemplate) pct).addItem(itemId, amount, equipped);
 						}

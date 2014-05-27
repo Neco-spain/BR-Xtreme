@@ -23,6 +23,7 @@ import ct23.xtreme.gameserver.ai.L2SummonAI;
 import ct23.xtreme.gameserver.datatables.PetSkillsTable;
 import ct23.xtreme.gameserver.datatables.SkillTable;
 import ct23.xtreme.gameserver.instancemanager.AirShipManager;
+import ct23.xtreme.gameserver.instancemanager.BotManager;
 import ct23.xtreme.gameserver.instancemanager.CastleManager;
 import ct23.xtreme.gameserver.instancemanager.TerritoryWarManager;
 import ct23.xtreme.gameserver.model.L2CharPosition;
@@ -363,8 +364,29 @@ public final class RequestActionUse extends L2GameClientPacket
 				activeChar.tryOpenPrivateSellStore(true);
 				break;
 			case 65: // Bot Report Button
-				activeChar.sendMessage("Action not handled yet.");
-				break;
+				if(Config.ENABLE_BOTREPORT)
+				{
+					if(activeChar.getTarget() instanceof L2PcInstance)
+					{
+						L2PcInstance reported = (L2PcInstance) activeChar.getTarget();
+						if(!BotManager.getInstance().validateBot(reported, activeChar))
+							return;
+						if(!BotManager.getInstance().validateReport(activeChar))
+							return;
+						try
+						{
+							BotManager.getInstance().reportBot(reported, activeChar);
+						}
+						catch (Exception e)
+						{
+							e.printStackTrace();
+						}
+					}
+					else
+						activeChar.sendMessage("Your target is not a player!");
+				}
+				else
+					activeChar.sendMessage("Action disabled.");
 			case 67: // Steer
 				if (activeChar.isInAirShip())
 					if (activeChar.getAirShip().setCaptain(activeChar))

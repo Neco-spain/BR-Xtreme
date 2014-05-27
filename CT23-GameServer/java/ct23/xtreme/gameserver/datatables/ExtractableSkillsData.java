@@ -21,17 +21,17 @@
 
 package ct23.xtreme.gameserver.datatables;
 
-import gnu.trove.TIntObjectHashMap;
+import gnu.trove.map.hash.TIntObjectHashMap;
 
 import java.io.File;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import javolution.util.FastList;
 import ct23.xtreme.Config;
 import ct23.xtreme.gameserver.model.L2ExtractableProductItem;
 import ct23.xtreme.gameserver.model.L2ExtractableSkill;
 import ct23.xtreme.gameserver.model.L2Skill;
-import javolution.util.FastList;
 
 public class ExtractableSkillsData
 {

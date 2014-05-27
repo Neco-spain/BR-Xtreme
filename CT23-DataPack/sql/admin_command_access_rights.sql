@@ -68,6 +68,12 @@ INSERT IGNORE INTO `admin_command_access_rights` VALUES
 ('admin_areacancel','1'),
 ('admin_removereuse','1'),
 
+-- BOT REPORT
+('admin_checkBots', '1'),
+('admin_readBot', '1'),
+('admin_markBotReaded', '1'),
+('admin_punish_bot', '1'),
+
 -- CACHE
 ('admin_cache_htm_rebuild','1'),
 ('admin_cache_htm_reload','1'),
@@ -563,7 +569,8 @@ INSERT IGNORE INTO `admin_command_access_rights` VALUES
 ('admin_tvt_remove','1'),
 ('admin_tvt_advance','1'),
 
--- UNBLOCK IP
+-- UNBLOCK AND BLOCK IP
+('admin_blockip','1'),
 ('admin_unblockip','1'),
 
 -- VITALITY

@@ -37,6 +37,9 @@ public class AdminGeoEditor implements IAdminCommandHandler
 	
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		if (!Config.ACCEPT_GEOEDITOR_CONN)
 		{
 			activeChar.sendMessage("Server do not accepts geoeditor connections now.");

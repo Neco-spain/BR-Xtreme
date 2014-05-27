@@ -17,8 +17,8 @@ package handlers.admincommandhandlers;
 import java.util.Collection;
 import java.util.List;
 import java.util.StringTokenizer;
-
 import javolution.text.TextBuilder;
+
 import ct23.xtreme.Config;
 import ct23.xtreme.gameserver.Announcements;
 import ct23.xtreme.gameserver.cache.HtmCache;
@@ -44,7 +44,6 @@ import ct23.xtreme.util.StringUtil;
  */
 public class AdminAnnouncements implements IAdminCommandHandler
 {
-	
 	private static final String[] ADMIN_COMMANDS =
 	{
 		"admin_list_announcements",
@@ -62,6 +61,9 @@ public class AdminAnnouncements implements IAdminCommandHandler
 	
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		if (command.equals("admin_list_announcements"))
 		{
 			Announcements.getInstance().listAnnouncements(activeChar);

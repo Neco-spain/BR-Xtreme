@@ -37,8 +37,6 @@ import ct23.xtreme.util.StringUtil;
  */
 public class AdminFortSiege implements IAdminCommandHandler
 {
-	//private static Logger _log = Logger.getLogger(AdminFortSiege.class.getName());
-	
 	private static final String[] ADMIN_COMMANDS =
 	{
 		"admin_fortsiege",
@@ -54,6 +52,9 @@ public class AdminFortSiege implements IAdminCommandHandler
 	
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		StringTokenizer st = new StringTokenizer(command, " ");
 		command = st.nextToken(); // Get actual command
 		

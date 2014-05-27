@@ -48,7 +48,7 @@ public class AdminQuest implements IAdminCommandHandler
 	 */
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
-		if (activeChar == null)
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
 			return false;
 		
 		// syntax will either be:

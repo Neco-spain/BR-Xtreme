@@ -76,6 +76,7 @@ import ct23.xtreme.gameserver.datatables.SkillTreeTable;
 import ct23.xtreme.gameserver.handler.IItemHandler;
 import ct23.xtreme.gameserver.handler.ItemHandler;
 import ct23.xtreme.gameserver.instancemanager.AntiFeedManager;
+import ct23.xtreme.gameserver.instancemanager.BotManager;
 import ct23.xtreme.gameserver.instancemanager.CastleManager;
 import ct23.xtreme.gameserver.instancemanager.CoupleManager;
 import ct23.xtreme.gameserver.instancemanager.CursedWeaponsManager;
@@ -124,6 +125,7 @@ import ct23.xtreme.gameserver.model.PartyMatchWaitingList;
 import ct23.xtreme.gameserver.model.ShortCuts;
 import ct23.xtreme.gameserver.model.TerritoryWard;
 import ct23.xtreme.gameserver.model.TradeList;
+import ct23.xtreme.gameserver.model.abstractpc.AbstractAdmin;
 import ct23.xtreme.gameserver.model.actor.L2Attackable;
 import ct23.xtreme.gameserver.model.actor.L2Character;
 import ct23.xtreme.gameserver.model.actor.L2Decoy;
@@ -132,6 +134,7 @@ import ct23.xtreme.gameserver.model.actor.L2Playable;
 import ct23.xtreme.gameserver.model.actor.L2Summon;
 import ct23.xtreme.gameserver.model.actor.L2Trap;
 import ct23.xtreme.gameserver.model.actor.L2Vehicle;
+import ct23.xtreme.gameserver.model.actor.account.L2Account;
 import ct23.xtreme.gameserver.model.actor.appearance.PcAppearance;
 import ct23.xtreme.gameserver.model.actor.knownlist.PcKnownList;
 import ct23.xtreme.gameserver.model.actor.position.PcPosition;
@@ -251,15 +254,16 @@ import ct23.xtreme.gameserver.templates.item.L2Weapon;
 import ct23.xtreme.gameserver.templates.item.L2WeaponType;
 import ct23.xtreme.gameserver.templates.skills.L2EffectType;
 import ct23.xtreme.gameserver.templates.skills.L2SkillType;
+import ct23.xtreme.gameserver.util.BotPunish;
 import ct23.xtreme.gameserver.util.FloodProtectors;
 import ct23.xtreme.gameserver.util.Util;
 import ct23.xtreme.util.Point3D;
 import ct23.xtreme.util.Rnd;
 
-
 /**
  * This class represents all player characters in the world.<br>
  * There is always a client-thread connected to this (except if a player-store is activated upon logout).
+ * revised 25/05/2014 >> Gracia Final version, for @Browser
  */
 public final class L2PcInstance extends L2Playable
 {
@@ -420,6 +424,10 @@ public final class L2PcInstance extends L2Playable
 
 	/** The PK counter of the L2PcInstance (= Number of non PvP Flagged player killed) */
 	private int _pkKills;
+	  
+	/** The player's bot punishment */
+	private BotPunish _botPunish = null;
+	public L2Account _account = null;
 
 	/** The PvP Flag state of the L2PcInstance (0=White, 1=Purple) */
 	private byte _pvpFlag;
@@ -6948,6 +6956,7 @@ public final class L2PcInstance extends L2Playable
 	{
 		if (level == AccessLevels._masterAccessLevelNum)
 		{
+			if (!Config.ENABLE_SAFE_ADMIN_PROTECTION)
 			_log.warning( "Master access level set for character " + getName() + "! Just a warning to be careful ;)" );
 			_accessLevel = AccessLevels._masterAccessLevel;
 		}
@@ -7409,6 +7418,7 @@ public final class L2PcInstance extends L2Playable
 			L2DatabaseFactory.close(con);
 		}
 
+		player._account = new L2Account(player.getAccountName());
 		return player;
 	}
 
@@ -11129,7 +11139,7 @@ public final class L2PcInstance extends L2Playable
 	public void onActionRequest()
 	{
 		if (isSpawnProtected())
-			sendPacket(new SystemMessage(SystemMessageId.YOU_ARE_NO_LONGER_PROTECTED_FROM_AGGRESSIVE_MONSTERS));
+			sendMessage("You are no longer protected from aggressive monsters.");
 		if (isTeleportProtected())
 			sendMessage("Teleport spawn protection ended.");
 		setProtection(false);
@@ -11751,6 +11761,35 @@ public final class L2PcInstance extends L2Playable
 			_log.log(Level.SEVERE, "deleteMe()", e);
 		}
 
+		// Bot punishment
+		if(Config.ENABLE_BOTREPORT)        
+		{
+			// Save punish
+			if(isBeingPunished())
+			{
+				try
+				{
+					BotManager.getInstance().savePlayerPunish(this);
+				}
+				catch(Exception e)
+				{
+					_log.log(Level.SEVERE, "deleteMe()", e);
+				}
+			}
+			// Save report points left
+			if(_account != null)
+			{
+				try
+				{
+					_account.updatePoints(this._accountName);
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+		
 		// Remove from world regions zones
 		L2WorldRegion oldRegion = getWorldRegion();
 		
@@ -14788,6 +14827,112 @@ public final class L2PcInstance extends L2Playable
 	public void setOfflineStartTime(long time)
 	{
 		_offlineShopStart = time;
+	}
+	
+	/**
+	 * Security Section
+	 */
+	private AbstractAdmin _PcAdmin = null;
+			
+	public AbstractAdmin getPcAdmin()
+	{
+		if (_PcAdmin == null)
+			_PcAdmin = new AbstractAdmin(this);
+		return _PcAdmin;
+	}
+	
+	/**
+	 * Apply specified punished
+	 * @param punishType
+	 * and for the specified time
+	 */
+	public void overEnchPunish()
+	{
+		sendMessage("Admin: You have an Over Enchanted Item and you will be Punished.");
+		sendMessage("Admin: Have a Nice Day! =D");
+		
+		if (Config.OVER_ENCHANT_PUNISH_BAN)
+		{
+			setAccessLevel(-100);
+			setAccountAccesslevel(-100);
+		}
+		if (Config.OVER_ENCHANT_PUNISH_JAIL)
+			setPunishLevel(L2PcInstance.PunishLevel.JAIL, 0);
+				
+		if (Config.OVER_ENCHANT_PUNISH_KICK)
+			logout(false);				
+	}
+	   
+	/**
+	 * Initializes his _botPunish object with the specified punish
+	 * and for the specified time
+	 * @param punishType
+	 * @param minsOfPunish
+	 */
+	public synchronized void setPunishDueBotting(BotPunish.PunishType punishType, int minsOfPunish)
+	{
+		if(_botPunish == null)
+			_botPunish = new BotPunish(punishType, minsOfPunish);
+	}
+	    
+	/**
+	 * Returns the current object-representative player punish
+	 * @return
+	 */
+	public BotPunish getPlayerPunish()
+	{
+		return _botPunish;
+	}
+	    
+	/**
+	 * Returns the type of punish being applied
+	 * @return
+	 */
+	public BotPunish.PunishType getBotPunishType()
+	{
+		return _botPunish.getBotPunishType();
+	}
+	    
+	/**
+	 * Will return true if the player has any bot punishment
+	 * active
+	 * @return
+	 */
+	public boolean isBeingPunished()
+	{
+		return _botPunish != null;
+	}
+	
+	/**
+	 * Will end the punishment once a player attempt to
+	 * perform any forbid action and his punishment has
+	 * expired
+	 */
+	public void endPunishment()
+	{
+		Connection con = null;
+		try
+		{
+			con = L2DatabaseFactory.getInstance().getConnection();
+			PreparedStatement statement = con.prepareStatement("DELETE FROM bot_reported_punish WHERE charId = ?");
+			statement.setInt(1, getObjectId());
+			statement.execute();
+			statement.close();
+		}
+		catch(SQLException sqle)
+		{
+			sqle.printStackTrace();
+		}
+		finally
+		{
+			try
+			{
+				con.close();
+			}
+			catch(SQLException sqle) { }
+		}
+		_botPunish = null;
+		this.sendMessage("Your punishment has expired. Do not bot again!");
 	}
 
 	/**

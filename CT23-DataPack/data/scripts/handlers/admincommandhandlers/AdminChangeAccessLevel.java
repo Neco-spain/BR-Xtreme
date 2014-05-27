@@ -43,6 +43,9 @@ public class AdminChangeAccessLevel implements IAdminCommandHandler
 	
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		handleChangeLevel(command, activeChar);
 		return true;
 	}

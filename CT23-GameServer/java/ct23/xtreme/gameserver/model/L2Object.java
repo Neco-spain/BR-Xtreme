@@ -89,6 +89,7 @@ public abstract class L2Object
 		L2StaticObjectInstance(L2Character),
 		L2DoorInstance(L2Character),
 		L2NpcWalkerInstance(L2Npc),
+		L2TerrainObjectInstance(L2Npc),
 		L2EffectPointInstance(L2Npc),
 		// Summons, Pets, Decoys and Traps
 		L2SummonInstance(L2Summon),

@@ -14,7 +14,7 @@
  */
 package ct23.xtreme.gameserver.model.zone.type;
 
-import gnu.trove.TIntIntHashMap;
+import gnu.trove.map.hash.TIntIntHashMap;
 
 import java.util.Collection;
 import java.util.concurrent.Future;

@@ -24,6 +24,7 @@ import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import ct23.xtreme.gameserver.network.SystemMessageId;
 import ct23.xtreme.gameserver.network.serverpackets.AskJoinParty;
 import ct23.xtreme.gameserver.network.serverpackets.SystemMessage;
+import ct23.xtreme.gameserver.util.BotPunish;
 
 
 /**
@@ -35,7 +36,7 @@ import ct23.xtreme.gameserver.network.serverpackets.SystemMessage;
  *  format  cdd
  *
  *
- * @version $Revision: 1.7.4.4 $ $Date: 2005/03/27 15:29:30 $
+ * @version $Revision: 1.7.4.4 $ $Date: 2014/05/25 15:29:30 $
  */
 public final class RequestJoinParty extends L2GameClientPacket
 {
@@ -65,6 +66,52 @@ public final class RequestJoinParty extends L2GameClientPacket
 		{
 			requestor.sendPacket(new SystemMessage(SystemMessageId.FIRST_SELECT_USER_TO_INVITE_TO_PARTY));
 			return;
+		}
+		
+		// Check for bot punishment on target
+		if(target.isBeingPunished())
+		{
+		    // Check conditions
+		    if(target.getPlayerPunish().canJoinParty() && target.getBotPunishType() == BotPunish.PunishType.PARTYBAN)
+		    {
+		        target.endPunishment();
+		    }
+		    else
+		    {
+		        // Inform the player cannot join party
+		        requestor.sendPacket(new SystemMessage(SystemMessageId.C1_REPORTED_AND_CANNOT_PARTY));
+		        return;
+		    }
+		        
+		}
+		
+		// Check for bot punishment on requestor
+		if(requestor.isBeingPunished())
+		{
+		    // Check conditions
+		    if(requestor.getPlayerPunish().canJoinParty() && requestor.getBotPunishType() == BotPunish.PunishType.PARTYBAN)
+		    {
+		        requestor.endPunishment();
+		    }
+		    else
+		    {
+		        SystemMessageId msgId = null;
+		        switch(requestor.getPlayerPunish().getDuration())
+		        {
+		            case 3600:
+		                msgId = SystemMessageId.YOU_HAVE_BEEN_REPORTED_60_MIN_PARTY_BLOCKED;
+		                break;
+		            case 7200:
+		                msgId = SystemMessageId.YOU_HAVE_BEEN_REPORTED_120_MIN_PARTY_BLOCKED;
+		                break;
+		            case 10800:
+		                msgId = SystemMessageId.YOU_HAVE_BEEN_REPORTED_180_MIN_PARTY_BLOCKED;
+		                break;
+		                default:
+		        }    
+		        requestor.sendPacket(new SystemMessage(msgId));
+		        return;
+		    }    
 		}
 		
 		if (target.getAppearance().getInvisible())

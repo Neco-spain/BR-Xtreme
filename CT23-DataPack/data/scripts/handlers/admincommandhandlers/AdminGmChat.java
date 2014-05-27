@@ -33,7 +33,6 @@ import ct23.xtreme.gameserver.network.serverpackets.SystemMessage;
  */
 public class AdminGmChat implements IAdminCommandHandler
 {
-	
 	private static final String[] ADMIN_COMMANDS =
 	{
 		"admin_gmchat",
@@ -43,6 +42,9 @@ public class AdminGmChat implements IAdminCommandHandler
 	
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		if (command.startsWith("admin_gmchat"))
 			handleGmChat(command, activeChar);
 		else if (command.startsWith("admin_snoop"))

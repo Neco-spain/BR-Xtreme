@@ -47,6 +47,8 @@ public class AdminCache implements IAdminCommandHandler
 	
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
 		
 		if (command.startsWith("admin_cache_htm_rebuild") || command.equals("admin_cache_htm_reload"))
 		{

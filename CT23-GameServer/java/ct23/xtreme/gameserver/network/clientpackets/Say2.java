@@ -27,6 +27,7 @@ import ct23.xtreme.gameserver.model.L2World;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import ct23.xtreme.gameserver.network.SystemMessageId;
 import ct23.xtreme.gameserver.network.serverpackets.SystemMessage;
+import ct23.xtreme.gameserver.util.BotPunish;
 import ct23.xtreme.gameserver.util.Util;
 
 
@@ -115,6 +116,23 @@ public final class Say2 extends L2GameClientPacket
 		L2PcInstance activeChar = getClient().getActiveChar();
 		if (activeChar == null)
 			return;
+		
+		// Check for bot punishment
+		if(activeChar.isBeingPunished())
+		{
+		    // Check if punishment expired
+		    if(activeChar.getPlayerPunish().canTalk() && activeChar.getBotPunishType() == BotPunish.PunishType.CHATBAN)
+		    {
+		        activeChar.endPunishment();
+		    }
+		    // Else, apply it
+		    else
+		    {
+		        // Inform player
+		        activeChar.sendPacket(new SystemMessage(SystemMessageId.YOU_HAVE_BEEN_REPORTED_10_MIN_CHAT_BLOCKED));
+		        return;
+		    }            
+		}
 		
 		if (_type < 0 || _type >= CHAT_NAMES.length)
 		{

@@ -78,6 +78,9 @@ public class AdminEditNpc implements IAdminCommandHandler
 	
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		//TODO: Tokenize and protect arguments parsing. Externalize HTML.
 		if (command.startsWith("admin_showShop "))
 		{

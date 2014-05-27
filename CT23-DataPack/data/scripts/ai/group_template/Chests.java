@@ -15,6 +15,7 @@
 package ai.group_template;
 
 import ai.engines.L2AttackableAIScript;
+
 import ct23.xtreme.gameserver.ai.CtrlIntention;
 import ct23.xtreme.gameserver.model.L2Object;
 import ct23.xtreme.gameserver.model.L2Skill;
@@ -22,7 +23,6 @@ import ct23.xtreme.gameserver.model.actor.L2Character;
 import ct23.xtreme.gameserver.model.actor.L2Npc;
 import ct23.xtreme.gameserver.model.actor.instance.L2ChestInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
-import ct23.xtreme.util.Rnd;
 
 /**
  * Chest AI implementation.
@@ -84,7 +84,7 @@ public class Chests extends L2AttackableAIScript
 	        if (!chest.isInteracted())
 	        {
 	            chest.setInteracted();
-	            if (Rnd.get(100) < IS_BOX)
+	            if (getRandom(100) < IS_BOX)
 	            {
 	                // if it's a box, either it will be successfully openned by a proper key, or instantly disappear
 	                if (skillId == SKILL_DELUXE_KEY)
@@ -97,7 +97,7 @@ public class Chests extends L2AttackableAIScript
 	                    int chance = BASE_CHANCE - keyLevelNeeded * LEVEL_DECREASE;
 	
 	                    // success, pretend-death with rewards:  chest.reduceCurrentHp(99999999, player)
-	                    if (Rnd.get(100) < chance)
+	                    if (getRandom(100) < chance)
 	                    {
 	                        chest.setMustRewardExpSp(false);
 	                        chest.setSpecialDrop();
@@ -138,7 +138,7 @@ public class Chests extends L2AttackableAIScript
 	        if (!chest.isInteracted())
 	        {
 	            chest.setInteracted();
-	            if (Rnd.get(100) < IS_BOX)
+	            if (getRandom(100) < IS_BOX)
 	            {
 	            	chest.getSpawn().decreaseCount(chest);
 	                chest.deleteMe();

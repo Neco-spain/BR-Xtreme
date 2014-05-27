@@ -35,7 +35,6 @@ import ct23.xtreme.gameserver.network.serverpackets.SystemMessage;
  */
 public class AdminMammon implements IAdminCommandHandler
 {
-	
 	private static final String[] ADMIN_COMMANDS =
 	{
 		"admin_mammon_find",
@@ -48,6 +47,9 @@ public class AdminMammon implements IAdminCommandHandler
 	
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		int npcId = 0;
 		int teleportIndex = -1;
 		AutoSpawnInstance blackSpawnInst = AutoSpawnHandler.getInstance().getAutoSpawnInstance(SevenSigns.MAMMON_BLACKSMITH_ID, false);

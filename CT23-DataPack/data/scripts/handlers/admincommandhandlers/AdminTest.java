@@ -60,6 +60,9 @@ public class AdminTest implements IAdminCommandHandler
 	 */
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		if (command.equals("admin_stats"))
 		{
 			for (String line : ThreadPoolManager.getInstance().getStats())

@@ -40,6 +40,9 @@ public class AdminPForge implements IAdminCommandHandler
 	
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		if (command.equals("admin_forge"))
 		{
 			showMainPage(activeChar);

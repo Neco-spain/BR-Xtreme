@@ -44,6 +44,8 @@ public class AdminUnblockIp implements IAdminCommandHandler
 	 */
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
 		
 		if (command.startsWith("admin_unblockip "))
 		{

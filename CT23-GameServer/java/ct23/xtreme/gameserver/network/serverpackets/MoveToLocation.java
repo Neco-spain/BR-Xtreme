@@ -14,7 +14,11 @@
  */
 package ct23.xtreme.gameserver.network.serverpackets;
 
+import ct23.xtreme.Config;
 import ct23.xtreme.gameserver.model.actor.L2Character;
+import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
+import ct23.xtreme.gameserver.network.SystemMessageId;
+import ct23.xtreme.gameserver.util.BotPunish;
 
 /**
  * 0000: 01  7a 73 10 4c  b2 0b 00 00  a3 fc 00 00  e8 f1 ff    .zs.L...........
@@ -23,15 +27,17 @@ import ct23.xtreme.gameserver.model.actor.L2Character;
  *
  * ddddddd
  *
- * @version $Revision: 1.3.4.3 $ $Date: 2005/03/27 15:29:57 $
+ * @version $Revision: 1.3.4.3 $ $Date: 2014/05/25 18:57:30 $
  */
 public final class MoveToLocation extends L2GameServerPacket
 {
 	private static final String _S__01_CHARMOVETOLOCATION = "[S] 2f MoveToLocation";
 	private int _charObjId, _x, _y, _z, _xDst, _yDst, _zDst;
+	private L2Character _cha;
 
 	public MoveToLocation(L2Character cha)
 	{
+		_cha = cha;
 		_charObjId = cha.getObjectId();
 		_x = cha.getX();
 		_y = cha.getY();
@@ -44,6 +50,24 @@ public final class MoveToLocation extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
+		// Bot punishment restriction
+		if(_cha instanceof L2PcInstance && Config.ENABLE_BOTREPORT)
+		{
+		    L2PcInstance actor = (L2PcInstance) _cha;
+		    if(actor.isBeingPunished())
+		    {
+		        if(actor.getPlayerPunish().canWalk() && actor.getPlayerPunish().getBotPunishType() == BotPunish.PunishType.MOVEBAN)
+		        {
+		            actor.endPunishment();
+		        }
+		        else
+		        {
+		            actor.sendPacket(new SystemMessage(SystemMessageId.YOU_HAVE_BEEN_REPORTED_120_MIN_MOVEMENT_BLOCKED));
+		            return;
+		        }
+		    }
+		}
+		
 		writeC(0x2f);
 
 		writeD(_charObjId);

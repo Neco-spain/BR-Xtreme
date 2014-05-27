@@ -48,6 +48,9 @@ public class AdminPolymorph implements IAdminCommandHandler
 	
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		if (activeChar.isMounted())
 		{
 			activeChar.sendMessage("You can't transform while mounted, please dismount and try again.");

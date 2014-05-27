@@ -19,7 +19,7 @@
 
 package ct23.xtreme.gameserver.model.olympiad;
 
-import gnu.trove.TIntIntHashMap;
+import gnu.trove.map.hash.TIntIntHashMap;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -37,6 +37,7 @@ import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
+import javolution.util.FastMap;
 import ct23.xtreme.Config;
 import ct23.xtreme.L2DatabaseFactory;
 import ct23.xtreme.gameserver.Announcements;
@@ -52,7 +53,6 @@ import ct23.xtreme.gameserver.network.serverpackets.NpcHtmlMessage;
 import ct23.xtreme.gameserver.network.serverpackets.SystemMessage;
 import ct23.xtreme.gameserver.templates.StatsSet;
 import ct23.xtreme.util.L2FastList;
-import javolution.util.FastMap;
 
 public class Olympiad
 {

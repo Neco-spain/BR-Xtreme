@@ -16,11 +16,12 @@
 package handlers.admincommandhandlers;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javolution.text.TextBuilder;
+
 import ct23.xtreme.L2DatabaseFactory;
 import ct23.xtreme.gameserver.handler.IAdminCommandHandler;
 import ct23.xtreme.gameserver.instancemanager.QuestManager;
@@ -50,6 +51,9 @@ public class AdminShowQuests implements IAdminCommandHandler
 
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		String[] cmdParams = command.split(" ");
 		L2PcInstance target = null;
 		L2Object targetObject = null;

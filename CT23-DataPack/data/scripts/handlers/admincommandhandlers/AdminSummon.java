@@ -48,6 +48,9 @@ public class AdminSummon implements IAdminCommandHandler
 	 */
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		int id;
 		int count=1;
 		String[] data = command.split(" ");

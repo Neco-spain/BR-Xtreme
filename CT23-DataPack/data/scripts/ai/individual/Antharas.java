@@ -14,14 +14,16 @@
  */
 package ai.individual;
 
-import gnu.trove.TIntObjectHashMap;
+import gnu.trove.map.hash.TIntObjectHashMap;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ScheduledFuture;
 
 import javolution.util.FastList;
+
 import ai.engines.L2AttackableAIScript;
+
 import ct23.xtreme.Config;
 import ct23.xtreme.gameserver.GeoData;
 import ct23.xtreme.gameserver.ThreadPoolManager;

@@ -39,6 +39,9 @@ public class AdminGeodata implements IAdminCommandHandler
 	
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		if (Config.GEODATA < 1)
 		{
 			activeChar.sendMessage("Geo Engine is Turned Off!");

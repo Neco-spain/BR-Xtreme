@@ -14,7 +14,7 @@
  */
 package ct23.xtreme.gameserver.model.entity;
 
-import gnu.trove.TIntIntHashMap;
+import gnu.trove.map.hash.TIntIntHashMap;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -38,12 +38,12 @@ import ct23.xtreme.gameserver.datatables.DoorTable;
 import ct23.xtreme.gameserver.datatables.ResidentialSkillTable;
 import ct23.xtreme.gameserver.instancemanager.CastleManager;
 import ct23.xtreme.gameserver.instancemanager.CastleManorManager;
-import ct23.xtreme.gameserver.instancemanager.FortManager;
-import ct23.xtreme.gameserver.instancemanager.TerritoryWarManager;
-import ct23.xtreme.gameserver.instancemanager.ZoneManager;
 import ct23.xtreme.gameserver.instancemanager.CastleManorManager.CropProcure;
 import ct23.xtreme.gameserver.instancemanager.CastleManorManager.SeedProduction;
+import ct23.xtreme.gameserver.instancemanager.FortManager;
+import ct23.xtreme.gameserver.instancemanager.TerritoryWarManager;
 import ct23.xtreme.gameserver.instancemanager.TerritoryWarManager.Territory;
+import ct23.xtreme.gameserver.instancemanager.ZoneManager;
 import ct23.xtreme.gameserver.model.L2Clan;
 import ct23.xtreme.gameserver.model.L2Manor;
 import ct23.xtreme.gameserver.model.L2Object;

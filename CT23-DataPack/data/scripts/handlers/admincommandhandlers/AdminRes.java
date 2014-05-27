@@ -45,6 +45,9 @@ public class AdminRes implements IAdminCommandHandler
 	
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		if (command.startsWith("admin_res "))
 			handleRes(activeChar, command.split(" ")[1]);
 		else if (command.equals("admin_res"))

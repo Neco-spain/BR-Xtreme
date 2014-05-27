@@ -14,7 +14,7 @@
  */
 package ct23.xtreme.gameserver.datatables;
 
-import gnu.trove.TIntIntHashMap;
+import gnu.trove.map.hash.TIntIntHashMap;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

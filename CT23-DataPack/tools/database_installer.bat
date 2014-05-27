@@ -710,6 +710,8 @@ auction_watch.sql
 auto_announcements.sql
 auto_chat.sql
 auto_chat_text.sql
+bot_report.sql
+bot_reported_punish.sql
 castle.sql
 castle_door.sql
 castle_doorupgrade.sql

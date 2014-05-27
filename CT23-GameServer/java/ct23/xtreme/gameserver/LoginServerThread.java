@@ -33,8 +33,12 @@ import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
+
+
+
 import javolution.util.FastList;
 import javolution.util.FastMap;
+
 import ct23.xtreme.Config;
 import ct23.xtreme.gameserver.model.L2World;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
@@ -42,6 +46,7 @@ import ct23.xtreme.gameserver.network.L2GameClient;
 import ct23.xtreme.gameserver.network.SystemMessageId;
 import ct23.xtreme.gameserver.network.L2GameClient.GameClientState;
 import ct23.xtreme.gameserver.network.gameserverpackets.AuthRequest;
+import ct23.xtreme.gameserver.network.gameserverpackets.BlockAddress;
 import ct23.xtreme.gameserver.network.gameserverpackets.BlowFishKey;
 import ct23.xtreme.gameserver.network.gameserverpackets.ChangeAccessLevel;
 import ct23.xtreme.gameserver.network.gameserverpackets.PlayerAuthRequest;
@@ -49,6 +54,7 @@ import ct23.xtreme.gameserver.network.gameserverpackets.PlayerInGame;
 import ct23.xtreme.gameserver.network.gameserverpackets.PlayerLogout;
 import ct23.xtreme.gameserver.network.gameserverpackets.PlayerTracert;
 import ct23.xtreme.gameserver.network.gameserverpackets.ServerStatus;
+import ct23.xtreme.gameserver.network.gameserverpackets.UnblockAddress;
 import ct23.xtreme.gameserver.network.loginserverpackets.AuthResponse;
 import ct23.xtreme.gameserver.network.loginserverpackets.InitLS;
 import ct23.xtreme.gameserver.network.loginserverpackets.KickPlayer;
@@ -495,7 +501,35 @@ public class LoginServerThread extends Thread
 		}
 	}
 	
-
+	public void sendBlockAddress(String address, long expiration)
+	{
+		BlockAddress ba = new BlockAddress(address, expiration);
+		
+		try
+		{
+			sendPacket(ba);
+		}
+		catch (IOException e)
+		{
+			if (Config.DEBUG)
+				e.printStackTrace();
+		}
+	}
+	
+	public void sendUnblockAddress(String address)
+	{
+		UnblockAddress ua = new UnblockAddress(address);
+		
+		try
+		{
+			sendPacket(ua);
+		}
+		catch (IOException e)
+		{
+			if (Config.DEBUG)
+				e.printStackTrace();
+		}
+	}	
 	
 	/**
 	 * @param sl

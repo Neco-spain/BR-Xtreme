@@ -44,7 +44,8 @@ import ct23.xtreme.gameserver.util.GMAudit;
  *
  * @version $Revision: 1.1.6.3 $ $Date: 2005/04/11 10:06:06 $
  */
-public class AdminBan implements IAdminCommandHandler {
+public class AdminBan implements IAdminCommandHandler
+{
 	private static final String[] ADMIN_COMMANDS = 
 	{
 		"admin_ban", // returns ban commands
@@ -61,6 +62,9 @@ public class AdminBan implements IAdminCommandHandler {
 
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		StringTokenizer st = new StringTokenizer(command);
 		st.nextToken();
 		String player = "";

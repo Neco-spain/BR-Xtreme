@@ -30,6 +30,7 @@ import ct23.xtreme.gameserver.datatables.AdminCommandAccessRights;
 import ct23.xtreme.gameserver.datatables.GMSkillTable;
 import ct23.xtreme.gameserver.datatables.MapRegionTable;
 import ct23.xtreme.gameserver.datatables.SkillTable;
+import ct23.xtreme.gameserver.instancemanager.BotManager;
 import ct23.xtreme.gameserver.instancemanager.CastleManager;
 import ct23.xtreme.gameserver.instancemanager.ClanHallManager;
 import ct23.xtreme.gameserver.instancemanager.CoupleManager;
@@ -83,6 +84,8 @@ import ct23.xtreme.gameserver.network.serverpackets.ShortCutInit;
 import ct23.xtreme.gameserver.network.serverpackets.SkillCoolTime;
 import ct23.xtreme.gameserver.network.serverpackets.SystemMessage;
 import ct23.xtreme.gameserver.network.serverpackets.UserInfo;
+import ct23.xtreme.gameserver.templates.item.L2Item;
+import ct23.xtreme.gameserver.templates.item.L2Weapon;
 
 
 /**
@@ -159,6 +162,22 @@ public class EnterWorld extends L2GameClientPacket
 		// Apply special GM properties to the GM when entering
 		if (activeChar.isGM())
 		{
+			if (Config.ENABLE_SAFE_ADMIN_PROTECTION)
+			{
+				if (Config.SAFE_ADMIN_NAMES.contains(activeChar.getName()))
+				{
+					activeChar.getPcAdmin().setIsSafeAdmin(true);
+					if (Config.SAFE_ADMIN_SHOW_ADMIN_ENTER)
+						_log.info("Safe Admin: " + activeChar.getName() + "(" + activeChar.getObjectId() + ") has been logged in.");
+				}
+				else
+				{
+					activeChar.getPcAdmin().punishUnSafeAdmin();
+					_log.warning("WARNING: Unsafe Admin: " + activeChar.getName() + "(" + activeChar.getObjectId() + ") as been logged in.");
+					_log.warning("If you have enabled some punishment, He will be punished.");
+				}
+			}
+			
 			if (Config.GM_STARTUP_INVULNERABLE && AdminCommandAccessRights.getInstance().hasAccess("admin_invul", activeChar.getAccessLevel()))
 				activeChar.setIsInvul(true);
 
@@ -183,6 +202,10 @@ public class EnterWorld extends L2GameClientPacket
 				GMSkillTable.getInstance().addSkills(activeChar);
 		}
 
+		// Bot manager punishment
+		if(Config.ENABLE_BOTREPORT)
+			BotManager.getInstance().onEnter(activeChar);
+		
 		// Set dead status if applies
 		if (activeChar.getCurrentHp() < 0.5)
 			activeChar.setIsDead(true);
@@ -490,8 +513,69 @@ public class EnterWorld extends L2GameClientPacket
 			sm.addString(Integer.toString(birthday));
 			activeChar.sendPacket(sm);
 		}
+		
+		if (!activeChar.isGM() && Config.ENABLE_OVER_ENCHANT_PROTECTION) 
+		{
+			for (L2ItemInstance item : activeChar.getInventory().getItems())
+			{
+				if (item == null && !activeChar.isGM() && Config.ENABLE_OVER_ENCHANT_PROTECTION)
+					return;
+				
+				if (item.getItem() instanceof L2Weapon)
+				{
+					if (item.getEnchantLevel() > Config.OVER_ENCHANT_PROTECTION_MAX_WEAPON)
+					{
+						activeChar.getInventory().destroyItem("Over Enchant Protection", item, activeChar, null);
+						activeChar.overEnchPunish();
+						_log.warning("Anti-OverEnchant System: Player " + activeChar.getName() + "(" + activeChar.getObjectId() + ") was whit a Weapon Over Enchanted.");
+						return;
+					}
+				}
+				
+				switch (item.getItem().getBodyPart())
+				{
+					case L2Item.SLOT_R_EAR:
+					case L2Item.SLOT_L_EAR:
+					case L2Item.SLOT_LR_EAR:
+					case L2Item.SLOT_NECK:
+					case L2Item.SLOT_L_FINGER:
+					case L2Item.SLOT_LR_FINGER:
+					case L2Item.SLOT_R_FINGER:
+					{
+						if (item.getEnchantLevel() > Config.OVER_ENCHANT_PROTECTION_MAX_JEWEL)
+						{
+							activeChar.getInventory().destroyItem("Over Enchant Protection", item, activeChar, null);
+							activeChar.overEnchPunish();
+							_log.warning("Anti-OverEnchant System: Player " + activeChar.getName() + "(" + activeChar.getObjectId() + ") was whit a Jewel Over Enchanted.");
+						}
+					}
+					case L2Item.SLOT_UNDERWEAR:
+					case L2Item.SLOT_HEAD:
+					case L2Item.SLOT_GLOVES:
+					case L2Item.SLOT_CHEST:
+					case L2Item.SLOT_LEGS:
+					case L2Item.SLOT_FEET:
+					case L2Item.SLOT_BACK:
+					case L2Item.SLOT_FULL_ARMOR:
+					case L2Item.SLOT_HAIR:
+					case L2Item.SLOT_ALLDRESS:
+					case L2Item.SLOT_HAIR2:
+					case L2Item.SLOT_HAIRALL:
+					case L2Item.SLOT_DECO:
+					case L2Item.SLOT_BELT:
+					{
+						if (item.getEnchantLevel() > Config.OVER_ENCHANT_PROTECTION_MAX_ARMOR)
+						{
+							activeChar.getInventory().destroyItem("Over Enchant Protection", item, activeChar, null);
+							activeChar.overEnchPunish();
+							_log.warning("Anti-OverEnchant System: Player " + activeChar.getName() + "(" + activeChar.getObjectId() + ") was whit an Armor Over Enchanted.");
+						}
+					}
+				}
+			}
+		}
 	}
-
+	
 	/**
 	* @param activeChar
 	*/
