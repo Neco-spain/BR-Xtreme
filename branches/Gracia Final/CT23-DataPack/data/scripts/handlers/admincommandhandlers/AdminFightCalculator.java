@@ -49,6 +49,9 @@ public class AdminFightCalculator implements IAdminCommandHandler
 	//TODO: remove from gm list etc etc
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		try
 		{
 			if (command.startsWith("admin_fight_calculator_show"))

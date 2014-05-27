@@ -51,7 +51,6 @@ import ct23.xtreme.util.StringUtil;
  */
 public class AdminEventEngine implements IAdminCommandHandler
 {
-	
 	private static final String[] ADMIN_COMMANDS =
 	{
 		"admin_event",
@@ -84,6 +83,9 @@ public class AdminEventEngine implements IAdminCommandHandler
 	
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		if (command.equals("admin_event"))
 			showMainPage(activeChar);
 		

@@ -83,6 +83,7 @@ import ct23.xtreme.gameserver.idfactory.IdFactory;
 import ct23.xtreme.gameserver.instancemanager.AirShipManager;
 import ct23.xtreme.gameserver.instancemanager.AuctionManager;
 import ct23.xtreme.gameserver.instancemanager.BoatManager;
+import ct23.xtreme.gameserver.instancemanager.BotManager;
 import ct23.xtreme.gameserver.instancemanager.CastleManager;
 import ct23.xtreme.gameserver.instancemanager.CastleManorManager;
 import ct23.xtreme.gameserver.instancemanager.ClanHallManager;
@@ -239,6 +240,8 @@ public class GameServer
 		AdminCommandAccessRights.getInstance();
 		GmListTable.getInstance();
 		PetDataTable.getInstance().loadPetsData();
+	     if(Config.ENABLE_BOTREPORT)
+	    	BotManager.getInstance();
 		
 		printSection("Clans");
 		ClanTable.getInstance();

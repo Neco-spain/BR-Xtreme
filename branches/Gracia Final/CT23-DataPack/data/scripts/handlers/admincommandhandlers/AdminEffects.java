@@ -110,6 +110,9 @@ public class AdminEffects implements IAdminCommandHandler
 	
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		StringTokenizer st = new StringTokenizer(command);
 		st.nextToken();
 		

@@ -48,6 +48,9 @@ public class AdminElement implements IAdminCommandHandler
 
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		int armorType = -1;
 
 		if (command.startsWith("admin_setlh"))

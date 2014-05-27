@@ -56,6 +56,9 @@ public class AdminMenu implements IAdminCommandHandler
 	
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		if (command.equals("admin_char_manage"))
 			showMainPage(activeChar);
 		else if (command.startsWith("admin_teleport_character_to_menu"))

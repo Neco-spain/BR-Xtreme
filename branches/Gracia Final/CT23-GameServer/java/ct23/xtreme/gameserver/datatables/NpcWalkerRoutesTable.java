@@ -14,7 +14,7 @@
  */
 package ct23.xtreme.gameserver.datatables;
 
-import gnu.trove.TIntObjectHashMap;
+import gnu.trove.map.hash.TIntObjectHashMap;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -91,7 +91,7 @@ public class NpcWalkerRoutesTable
 			rset.close();
 			statement.close();
 			
-			for (Object list : _routes.getValues())
+			for (Object list : _routes.values())
 				((ArrayList<?>)list).trimToSize();
 			
 			_log.info("WalkerRoutesTable: Loaded " + _routes.size() + " Npc Walker Routes.");

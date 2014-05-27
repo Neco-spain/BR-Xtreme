@@ -16,6 +16,8 @@ DROP TABLE IF EXISTS auction_bid;
 DROP TABLE IF EXISTS auction_watch;
 DROP TABLE IF EXISTS auto_announcements;
 DROP TABLE IF EXISTS auto_chat_text;
+DROP TABLE IF EXISTS bot_report;
+DROP TABLE IF EXISTS bot_reported_punish;
 DROP TABLE IF EXISTS auto_chat;
 DROP TABLE IF EXISTS castle;
 DROP TABLE IF EXISTS castle_door;

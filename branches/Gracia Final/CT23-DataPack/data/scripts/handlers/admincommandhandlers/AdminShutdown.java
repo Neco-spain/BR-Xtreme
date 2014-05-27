@@ -34,8 +34,6 @@ import ct23.xtreme.gameserver.network.serverpackets.NpcHtmlMessage;
  */
 public class AdminShutdown implements IAdminCommandHandler
 {
-	//private static Logger _log = Logger.getLogger(AdminShutdown.class.getName());
-	
 	private static final String[] ADMIN_COMMANDS =
 	{
 		"admin_server_shutdown",
@@ -45,6 +43,9 @@ public class AdminShutdown implements IAdminCommandHandler
 	
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		if (command.startsWith("admin_server_shutdown"))
 		{
 			try

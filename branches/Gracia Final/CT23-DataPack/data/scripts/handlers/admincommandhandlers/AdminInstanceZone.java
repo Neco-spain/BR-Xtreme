@@ -22,6 +22,9 @@ public class AdminInstanceZone implements IAdminCommandHandler
 
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		String target = (activeChar.getTarget() != null) ? activeChar.getTarget().getName() : "no-target";
 		GMAudit.auditGMAction(activeChar.getName(), command, target, "");
 

@@ -28,6 +28,9 @@ public class AdminCamera implements IAdminCommandHandler
 
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		try
 		{
 			final L2Character target = (L2Character)activeChar.getTarget();

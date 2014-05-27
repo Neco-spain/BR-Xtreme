@@ -50,7 +50,7 @@ public class AdminZone implements IAdminCommandHandler
 	 */
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
-		if (activeChar == null)
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
 			return false;
 		
 		StringTokenizer st = new StringTokenizer(command, " ");

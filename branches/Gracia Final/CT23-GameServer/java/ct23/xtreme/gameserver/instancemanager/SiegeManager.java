@@ -14,7 +14,7 @@
  */
 package ct23.xtreme.gameserver.instancemanager;
 
-import gnu.trove.TIntObjectHashMap;
+import gnu.trove.map.hash.TIntObjectHashMap;
 
 import java.io.File;
 import java.io.FileInputStream;

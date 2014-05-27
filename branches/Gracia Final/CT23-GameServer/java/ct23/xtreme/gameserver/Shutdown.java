@@ -554,7 +554,7 @@ public class Shutdown extends Thread
 			ItemsOnGroundManager.getInstance().cleanUp();
 			_log.info("ItemsOnGroundManager: All items on ground saved!!");
 		}
-		
+				
 		try
 		{
 			int delay = 5000;

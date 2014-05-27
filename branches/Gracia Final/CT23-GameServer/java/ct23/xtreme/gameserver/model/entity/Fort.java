@@ -14,7 +14,7 @@
  */
 package ct23.xtreme.gameserver.model.entity;
 
-import gnu.trove.TIntIntHashMap;
+import gnu.trove.map.hash.TIntIntHashMap;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,6 +28,7 @@ import java.util.logging.Logger;
 
 import javolution.util.FastList;
 import javolution.util.FastMap;
+
 import ct23.xtreme.Config;
 import ct23.xtreme.L2DatabaseFactory;
 import ct23.xtreme.gameserver.FortUpdater;

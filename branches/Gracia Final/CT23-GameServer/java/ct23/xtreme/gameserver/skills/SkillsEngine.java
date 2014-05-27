@@ -14,12 +14,14 @@
  */
 package ct23.xtreme.gameserver.skills;
 
-import gnu.trove.TIntObjectHashMap;
+import gnu.trove.map.hash.TIntObjectHashMap;
 
 import java.io.File;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
+
+import javolution.util.FastList;
 
 import ct23.xtreme.Config;
 import ct23.xtreme.gameserver.Item;
@@ -30,7 +32,6 @@ import ct23.xtreme.gameserver.templates.item.L2EtcItem;
 import ct23.xtreme.gameserver.templates.item.L2EtcItemType;
 import ct23.xtreme.gameserver.templates.item.L2Item;
 import ct23.xtreme.gameserver.templates.item.L2Weapon;
-import javolution.util.FastList;
 
 /**
  * @author mkizub

@@ -1,6 +1,6 @@
 package ct23.xtreme.gameserver.datatables;
 
-import gnu.trove.TIntObjectHashMap;
+import gnu.trove.map.hash.TIntObjectHashMap;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,9 +8,9 @@ import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javolution.util.FastList;
 import ct23.xtreme.L2DatabaseFactory;
 import ct23.xtreme.gameserver.model.L2Skill;
-import javolution.util.FastList;
 
 /**
  * Warning: must be loaded after loading SkillTable

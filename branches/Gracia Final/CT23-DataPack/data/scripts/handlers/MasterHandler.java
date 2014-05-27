@@ -76,10 +76,12 @@ public class MasterHandler
 		AdminCommandHandler.getInstance().registerAdminCommandHandler(new AdminAnnouncements());
 		AdminCommandHandler.getInstance().registerAdminCommandHandler(new AdminBan());
 		AdminCommandHandler.getInstance().registerAdminCommandHandler(new AdminBBS());
+		AdminCommandHandler.getInstance().registerAdminCommandHandler(new AdminBlockIp());
 		AdminCommandHandler.getInstance().registerAdminCommandHandler(new AdminBuffs());
 		AdminCommandHandler.getInstance().registerAdminCommandHandler(new AdminCache());
 		AdminCommandHandler.getInstance().registerAdminCommandHandler(new AdminCamera());
 		AdminCommandHandler.getInstance().registerAdminCommandHandler(new AdminChangeAccessLevel());
+		AdminCommandHandler.getInstance().registerAdminCommandHandler(new AdminCheckBot());
 		AdminCommandHandler.getInstance().registerAdminCommandHandler(new AdminCreateItem());
 		AdminCommandHandler.getInstance().registerAdminCommandHandler(new AdminCursedWeapons());
 		AdminCommandHandler.getInstance().registerAdminCommandHandler(new AdminDelete());

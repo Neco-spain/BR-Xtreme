@@ -119,6 +119,9 @@ public class AdminEditChar implements IAdminCommandHandler
 	
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		if (command.equals("admin_current_player"))
 		{
 			showCharacterInfo(activeChar, null);

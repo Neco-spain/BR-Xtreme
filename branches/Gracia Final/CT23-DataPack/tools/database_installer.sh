@@ -354,6 +354,8 @@ $MYG < ../sql/auction_watch.sql &> /dev/null
 $MYG < ../sql/auto_announcements.sql &> /dev/null
 $MYG < ../sql/auto_chat.sql &> /dev/null
 $MYG < ../sql/auto_chat_text.sql &> /dev/null
+$MYG < ../sql/bot_report.sql &> /dev/null
+$MYG < ../sql/bot_reported_punish.sql &> /dev/null
 $MYG < ../sql/castle.sql &> /dev/null
 $MYG < ../sql/castle_door.sql &> /dev/null
 $MYG < ../sql/castle_doorupgrade.sql &> /dev/null

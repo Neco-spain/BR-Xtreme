@@ -17,6 +17,8 @@ package ct23.xtreme.gameserver.network;
 /**
  *
  * @author  Noctarius & Nille02 & crion
+ * revised and update in 25/05/14 by @Browser
+ * Add missing msg Ids 
  */
 public enum SystemMessageId
 {
@@ -13875,6 +13877,54 @@ public enum SystemMessageId
 	TIME_LIMITED_ITEM_DELETED(2366),
 	
 	/**
+	 * ID: 2371<br>
+	 * Message: $c1 was reported as a BOT
+	 */
+	C1_WAS_REPORTED_AS_BOT(2371),
+	
+	/**
+	 * ID: 2377<br>
+	 * Message: You cannot report a character who is in a peace zone or a battlefield
+	 */
+	YOU_CANNOT_REPORT_CHARACTER_IN_PEACE_OR_BATTLE_ZONE(2377),
+	
+	/**
+	 * ID: 2378<br>
+	 * Message: You cannot report when a clan war has been declared
+	 */
+	YOU_CANNOT_REPORT_CLAN_WAR_ENEMY(2378),
+	
+	/**
+	 * ID: 2379<br>
+	 * Message: You cannot report a character who has not acquired any Exp. after connecting
+	 */
+	YOU_CANNOT_REPORT_CHAR_WHO_ACQUIRED_XP(2379),
+	
+	/**
+	 * ID 2380<br>
+	 * Message: You cannot report this person again at this time
+	 */
+	YOU_CANNOT_REPORT_CHAR_AT_THIS_TIME_1(2380),
+	
+	/**
+	 * ID 2381<br>
+	 * Message: You cannot report this person again at this time
+	 */
+	YOU_CANNOT_REPORT_CHAR_AT_THIS_TIME_2(2381),
+	
+	/**
+	 * ID 2382<br>
+	 * Message: You cannot report this person again at this time
+	 */
+	YOU_CANNOT_REPORT_CHAR_AT_THIS_TIME_3(2382),
+	
+	/**
+	 * ID 2383<br>
+	 * Message: You cannot report this person again at this time
+	 */
+	YOU_CANNOT_REPORT_CHAR_AT_THIS_TIME_4(2383),
+	
+	/**
 	* ID: 2390<br>
 	* Message: Your number of My Teleports slots has reached its maximum limit.
 	*/
@@ -13957,6 +14007,12 @@ public enum SystemMessageId
 	* Message: The collection has failed.
 	*/
 	THE_COLLECTION_HAS_FAILED(2424),
+	
+	/**
+	 * ID: 2447<br>
+	 * Message: You can make another report in $s1-minute(s). You have $s2 points remaining on this account
+	 */
+	YOU_CAN_REPORT_IN_S1_MINS_YOU_HAVE_S2_POINTS_LEFT(2447),
 	
 	/**
 	 * ID: 2448
@@ -14049,6 +14105,126 @@ public enum SystemMessageId
 	OLYMPIAD_3VS3_CONFIRM(2465),
 
 	/**
+	 * ID: 2468<br>
+	 * Message: You have used a report point on $c1. You have $s2 points remaining on this account
+	 */
+	YOU_HAVE_USED_REPORT_POINT_ON_C1_YOU_HAVE_C2_POINTS_LEFT(2468),
+	
+	/**
+	 * ID: 2469<br>
+	 * Message: You have used all available points. Points are reset everyday at noon
+	 */
+	YOU_HAVE_USED_ALL_POINTS_POINTS_ARE_RESET_AT_NOON(2469),
+	
+	/**
+	 * ID: 2470<br>
+	 * Message: This character cannot make a report. You cannot make a report while located inside a peace zone or a battlefield, while you are an opposing clan member during a clan war, or while participating in the Olympiad
+	 */
+	TARGET_NOT_REPORT_CANNOT_REPORT_PEACE_PVP_ZONE_OR_OLYMPIAD_OR_CLAN_WAR_ENEMY(2470),
+	
+	/**
+	 * ID: 2471<br>
+	 * Message: This character cannot make a report. The target has already been reported by either your clan or alliance, or has already been reported from your current IP
+	 */
+	CANNOT_REPORT_TARGET_ALREDY_REPORTED_BY_CLAN_ALLY_MEMBER_OR_SAME_IP(2471),
+	
+	/**
+	 * ID: 2472<br>
+	 * Message: This character cannot make a report because another character from this account has already done so
+	 */
+	CANNOT_REPORT_ALREDY_REPORED_FROM_THIS_ACCOUNT(2472),
+	
+	/**
+	 * ID: 2473<br>
+	 * Message: You have been reported as an illegal program user, so your chatting will be blocked for 10 minutes
+	 */
+	YOU_HAVE_BEEN_REPORTED_10_MIN_CHAT_BLOCKED(2473),
+	
+	/**
+	 * ID: 2474<br>
+	 * Message: You have been reported as an illegal program user, so your party participation will be blocked for 60 minutes
+	 */
+	YOU_HAVE_BEEN_REPORTED_60_MIN_PARTY_BLOCKED(2474),
+	
+	/**
+	 * ID: 2475<br>
+	 * Message: You have been reported as an illegal program user, so your party participation will be blocked for 120 minutes
+	 */
+	YOU_HAVE_BEEN_REPORTED_120_MIN_PARTY_BLOCKED(2475),
+	
+	/**
+	 * ID: 2476<br>
+	 * Message: You have been reported as an illegal program user, so your party participation will be blocked for 180 minutes
+	 */
+	YOU_HAVE_BEEN_REPORTED_180_MIN_PARTY_BLOCKED(2476),
+	
+	/**
+	 * ID: 2477<br>
+	 * Message: You have been reported as an illegal program user, so your actions will be restricted for 120 minutes
+	 */
+	YOU_HAVE_BEEN_REPORTED_120_MIN_ACTION_BLOCKED(2477),
+	
+	/**
+	 * ID: 2478<br>
+	 * Message: You have been reported as an illegal program user, so your actions will be restricted for 180 minutes
+	 */
+	YOU_HAVE_BEEN_REPORTED_180_MIN_ACTION_BLOCKED(2478),
+	
+	/**
+	 * ID: 2479<br>
+	 * Message: You have been reported as an illegal program user, so your actions will be restricted for 180 minutes
+	 */
+	YOU_HAVE_BEEN_REPORTED_180_MIN_ACTION_BLOCKED_2(2479),
+	
+	/**
+	 * ID: 2480<br>
+	 * Message: You have been reported as an illegal program user, so movement is prohibited for 120 minutes
+	 */
+	YOU_HAVE_BEEN_REPORTED_120_MIN_MOVEMENT_BLOCKED(2480),
+	
+	/**
+	 * ID: 2481<br>
+	 * Message: $c1 has been reported as an illegal program user and is currently being investigated
+	 */
+	C1_REPORTED_AND_IS_BEING_INVESTIGATED(2481),
+	
+	/**
+	 * ID: 2482<br>
+	 * Message: $c1 has been reported as an illegal program user and cannot join a party
+	 */
+	C1_REPORTED_AND_CANNOT_PARTY(2482),
+	
+	/**
+	 * ID: 2483<br>
+	 * Message: You have been reported as an illegal program user, so chatting is not allowed
+	 */
+	YOU_HAVE_BEEN_REPORTED_SO_CHATTING_NOT_ALLOWED(2483),
+	
+	/**
+	 * ID: 2484<br>
+	 * Message: You have been reported as an illegal program user, so participating in a party is not allowed
+	 */
+	YOU_HAVE_BEEN_REPORTED_SO_PARTY_NOT_ALLOWED(2484),
+	
+	/**
+	 * ID: 2485<br>
+	 * Message: You have been reported as an illegal program user so your actions have been restricted
+	 */
+	YOU_HAVE_BEEN_REPORTED_SO_ACTIONS_NOT_ALLOWED(2485),
+	
+	/**
+	 * ID: 2486<br>
+	 * Message: You have been blocked due to verification that you are using a third party program. Subsequent violations may result in termination of your account rather than a penalty within the game
+	 */
+	YOU_HAVE_BEEN_BLOCKED_SUBSEQUENT_VIOLATIONS_RESULT_ACCOUNT_TERMINATION(2486),
+	
+	/**
+	 * ID: 2487<br>
+	 * Message: You have been reported as an illegal program user, and your connection has been ended. Please contact our CS team to confirm your identity.
+	 */
+	YOU_HAVE_BEEN_REPORTED_AS_BOT_CONTACT_OUR_CS_TEAM(2487),
+	
+	/**
 	 * ID: 2491
 	 * Message: Your ship cannot teleport because it does not have enough fuel for the trip.
 	 */
@@ -14115,6 +14291,12 @@ public enum SystemMessageId
 	YOU_CANNOT_MOUNT_NOT_MEET_REQUEIREMENTS(2727),
 	
 	/**
+	 * ID: 2748<br>
+	 * Message: You have been reported as an illegal program user and cannot report other users
+	 */
+	YOU_HAVE_BEEN_REPORTED_AND_CANNOT_REPORT(2748),
+	
+	/**
 	* ID: 2750<br>
 	* Message: The $s1 ward has been destroyed! $c2 now has the territory ward.
 	*/
@@ -14179,6 +14361,13 @@ public enum SystemMessageId
 	* Message: Seed of Destruction Defense in Progress.
 	*/
 	SEED_OF_DESTRUCTION_DEFENSE_IN_PROGRESS(2773),
+	
+	/**
+	 * ID: 2774
+	 * Message: You can make another report in $s1-minute(s). You have $s2 points remaining on this account.
+	 */
+	YOU_CAN_REPORT_IN_S1_MINUTES_S2_REPORT_POINTS_REMAIN_IN_ACCOUNT(2774),
+
 
 	/**
 	 * ID: 2777<br>
@@ -14611,12 +14800,6 @@ public enum SystemMessageId
 	* Message: You cannot send mail to any character that has blocked you.
 	*/
 	YOU_CANNOT_SEND_MAIL_TO_CHAR_BLOCK_YOU(3082),
-
-	/**
-	* ID: 3108<br>
-	* Message: You are no longer protected from aggressive monsters.
-	*/
-	YOU_ARE_NO_LONGER_PROTECTED_FROM_AGGRESSIVE_MONSTERS(3108),
 
 	/** 
 	* ID: 6501<br>

@@ -33,6 +33,9 @@ public class AdminBBS implements IAdminCommandHandler
 	 */
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		AdminBBSManager.getInstance().parsecmd(command, activeChar);
 		return true;
 	}

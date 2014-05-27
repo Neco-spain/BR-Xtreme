@@ -22836,45 +22836,48 @@ INSERT INTO `npcskills` VALUES
 (18703,4414,2),
 (18703,4415,3),
 (18703,4416,2),
+
 -- Tumor of Death
-(18704,4045,1),
-(18704,4408,9),
-(18704,4409,1),
-(18704,4410,11),
-(18704,4411,15),
-(18704,4412,14),
-(18704,4413,11),
-(18704,4414,2),
-(18704,4415,3),
-(18704,4416,2),
-(18704,5465,1),
-(18704,7028,1),
+(18704,4416,2), -- s_npc_prop_race_construct
+(18704,5465,1), -- s_npc_prop_attribute_earth1
+(18704,4408,9), -- s_npc_prop_hp_lv_mh
+(18704,4409,1), -- s_npc_prop_mp_lv_p0
+(18704,4410,11), -- s_npc_prop_pa_lv_p0
+(18704,4411,15), -- s_npc_prop_ma_lv_p4
+(18704,4412,14), -- s_npc_prop_pd_lv_p3
+(18704,4413,11), -- s_npc_prop_md_lv_p0
+(18704,4414,2), -- s_npc_prop_armor_type_n
+(18704,4415,3), -- s_npc_prop_weapon_type_sword
+(18704,4045,1), -- s_full_magic_defence
+(18704,7028,1), -- s_holding_npc_p
+
 -- Destroyed Tumor
-(18705,4045,1),
-(18705,4408,9),
-(18705,4409,1),
-(18705,4410,11),
-(18705,4411,15),
-(18705,4412,14),
-(18705,4413,11),
-(18705,4414,2),
-(18705,4415,3),
-(18705,4416,2),
-(18705,5465,1),
-(18705,7028,1),
+(18705,4416,2), -- s_npc_prop_race_construct
+(18705,5465,1), -- s_npc_prop_attribute_earth1
+(18705,4408,9), -- s_npc_prop_hp_lv_mh
+(18705,4409,1), -- s_npc_prop_mp_lv_p0
+(18705,4410,11), -- s_npc_prop_pa_lv_p0
+(18705,4411,15), -- s_npc_prop_ma_lv_p4
+(18705,4412,14), -- s_npc_prop_pd_lv_p3
+(18705,4413,11), -- s_npc_prop_md_lv_p0
+(18705,4414,2), -- s_npc_prop_armor_type_n
+(18705,4415,3), -- s_npc_prop_weapon_type_sword
+(18705,4045,1), -- s_full_magic_defence
+(18705,7028,1), -- s_holding_npc_p
+
 -- Soul Coffin
-(18706,4045,1),
-(18706,4408,8),
-(18706,4409,1),
-(18706,4410,11),
-(18706,4411,15),
-(18706,4412,16),
-(18706,4413,11),
-(18706,4414,2),
-(18706,4415,3),
-(18706,4416,2),
-(18706,5465,1),
-(18706,7028,1),
+(18706,4416,2), -- s_npc_prop_race_construct
+(18706,5465,1), -- s_npc_prop_attribute_earth1
+(18706,4408,8), -- s_npc_prop_hp_lv_mq
+(18706,4409,1), -- s_npc_prop_mp_lv_p0
+(18706,4410,11), -- s_npc_prop_pa_lv_p0
+(18706,4411,15), -- s_npc_prop_ma_lv_p4
+(18706,4412,16), -- s_npc_prop_pd_lv_p5
+(18706,4413,11), -- s_npc_prop_md_lv_p0
+(18706,4414,2), -- s_npc_prop_armor_type_n
+(18706,4415,3), -- s_npc_prop_weapon_type_sword
+(18706,4045,1), -- s_full_magic_defence
+(18706,7028,1), -- s_holding_npc_p
 -- 
 (18707,4045,1),
 (18707,4408,1),
@@ -52091,84 +52094,112 @@ INSERT INTO `npcskills` VALUES
 (22508,4414,2),
 (22508,4415,3),
 (22508,4416,1),
+
 -- Fanatic of Infinity
-(22509,4408,16),
-(22509,4409,1),
-(22509,4410,7),
-(22509,4411,8),
-(22509,4412,17),
-(22509,4413,14),
-(22509,4414,2),
-(22509,4415,3),
-(22509,4416,6),
-(22509,5467,1),
+(22509,4416,6), -- s_npc_prop_race_humanoid
+(22509,5467,1), -- s_npc_prop_attribute_unholy1
+(22509,4408,16), -- s_npc_prop_hp_lv_m8
+(22509,4409,1), -- s_npc_prop_mp_lv_p0
+(22509,4410,7), -- s_npc_prop_pa_lv_n4
+(22509,4411,8), -- s_npc_prop_ma_lv_n3
+(22509,4412,17), -- s_npc_prop_pd_lv_p6
+(22509,4413,14), -- s_npc_prop_md_lv_p3
+(22509,4414,2), -- s_npc_prop_armor_type_n
+(22509,4415,3), -- s_npc_prop_weapon_type_sword
+(22509,5884,1), -- s_undying_weaked_sweep_a1
+(22509,5886,1), -- s_undying_ground_shaker1
+(22509,5889,1), -- s_undying_tainted_shackle1
+
 -- Rotten Messenger
-(22510,4408,16),
-(22510,4409,1),
-(22510,4410,7),
-(22510,4411,8),
-(22510,4412,16),
-(22510,4413,15),
-(22510,4414,2),
-(22510,4415,3),
-(22510,4416,1),
-(22510,5467,1),
+(22510,4416,1), -- s_npc_prop_race_undead
+(22510,5467,1), -- s_npc_prop_attribute_unholy1
+(22510,4408,16), -- s_npc_prop_hp_lv_m8
+(22510,4409,1), -- s_npc_prop_mp_lv_p0
+(22510,4410,7), -- s_npc_prop_pa_lv_n4
+(22510,4411,8), -- s_npc_prop_ma_lv_n3
+(22510,4412,16), -- s_npc_prop_pd_lv_p5
+(22510,4413,15), -- s_npc_prop_md_lv_p4
+(22510,4414,2), -- s_npc_prop_armor_type_n
+(22510,4415,3), -- s_npc_prop_weapon_type_sword
+(22510,5878,1), -- s_undying_cruel_puncture1
+(22510,5894,1), -- s_undying_mark_of_despair1
+(22510,5879,1), -- s_undying_cruel_expunge1
+
 -- Zealot of Infinity
-(22511,4408,16),
-(22511,4409,1),
-(22511,4410,7),
-(22511,4411,8),
-(22511,4412,17),
-(22511,4413,16),
-(22511,4414,2),
-(22511,4415,3),
-(22511,4416,6),
-(22511,5467,1),
+(22511,4416,6), -- s_npc_prop_race_humanoid
+(22511,5467,1), -- s_npc_prop_attribute_unholy1
+(22511,4408,16), -- s_npc_prop_hp_lv_m8
+(22511,4409,1), -- s_npc_prop_mp_lv_p0
+(22511,4410,7), -- s_npc_prop_pa_lv_n4
+(22511,4411,8), -- s_npc_prop_ma_lv_n3
+(22511,4412,17), -- s_npc_prop_pd_lv_p6
+(22511,4413,16), -- s_npc_prop_md_lv_p5
+(22511,4414,2), -- s_npc_prop_armor_type_n
+(22511,4415,3), -- s_npc_prop_weapon_type_sword
+(22511,5897,1), -- s_undying_spite_of_anchor1
+(22511,5904,1), -- s_undying_mist_of_souleater1
+
 -- Body Severer
-(22512,4408,16),
-(22512,4409,1),
-(22512,4410,8),
-(22512,4411,8),
-(22512,4412,17),
-(22512,4413,15),
-(22512,4414,2),
-(22512,4415,3),
-(22512,4416,1),
-(22512,5467,1),
+(22512,4416,1), -- s_npc_prop_race_undead
+(22512,5467,1), -- s_npc_prop_attribute_unholy1
+(22512,4408,16), -- s_npc_prop_hp_lv_m8
+(22512,4409,1), -- s_npc_prop_mp_lv_p0
+(22512,4410,8), -- s_npc_prop_pa_lv_n3
+(22512,4411,8), -- s_npc_prop_ma_lv_n3
+(22512,4412,17), -- s_npc_prop_pd_lv_p6
+(22512,4413,15), -- s_npc_prop_md_lv_p4
+(22512,4414,2), -- s_npc_prop_armor_type_n
+(22512,4415,3), -- s_npc_prop_weapon_type_sword
+(22512,5884,1), -- s_undying_weaked_sweep_a1
+(22512,5898,1), -- s_undying_blast_of_anchor1
+(22512,5895,1), -- s_undying_mark_of_cowardice1
+
 -- Body Harvester
-(22513,4408,14),
-(22513,4409,1),
-(22513,4410,11),
-(22513,4411,11),
-(22513,4412,14),
-(22513,4413,14),
-(22513,4414,2),
-(22513,4415,3),
-(22513,4416,1),
-(22513,5465,1),
+(22513,4416,1), -- s_npc_prop_race_undead
+(22513,5465,1), -- s_npc_prop_attribute_earth1
+(22513,4408,14), -- s_npc_prop_hp_lv_m6
+(22513,4409,1), -- s_npc_prop_mp_lv_p0
+(22513,4410,11), -- s_npc_prop_pa_lv_p0
+(22513,4411,11), -- s_npc_prop_ma_lv_p0
+(22513,4412,14), -- s_npc_prop_pd_lv_p3
+(22513,4413,14), -- s_npc_prop_md_lv_p3
+(22513,4414,2), -- s_npc_prop_armor_type_n
+(22513,4415,3), -- s_npc_prop_weapon_type_sword
+(22513,5882,1), -- s_undying_weaked_pommel1
+(22513,5883,1), -- s_undying_magling_injury1
+(22513,5889,1), -- s_undying_tainted_shackle1
+
 -- Soul Exploiter
-(22514,4408,16),
-(22514,4409,1),
-(22514,4410,7),
-(22514,4411,8),
-(22514,4412,17),
-(22514,4413,16),
-(22514,4414,2),
-(22514,4415,3),
-(22514,4416,1),
-(22514,5467,1),
+(22514,4416,1), -- s_npc_prop_race_undead
+(22514,5467,1), -- s_npc_prop_attribute_unholy1
+(22514,4408,16), -- s_npc_prop_hp_lv_m8
+(22514,4409,1), -- s_npc_prop_mp_lv_p0
+(22514,4410,7), -- s_npc_prop_pa_lv_n4
+(22514,4411,8), -- s_npc_prop_ma_lv_n3
+(22514,4412,17), -- s_npc_prop_pd_lv_p6
+(22514,4413,16), -- s_npc_prop_md_lv_p5
+(22514,4414,2), -- s_npc_prop_armor_type_n
+(22514,4415,3), -- s_npc_prop_weapon_type_sword
+(22514,5892,1), -- s_undying_cunning_coercion1
+(22514,5905,1), -- s_undying_confusing_nerve1
+(22514,5903,1), -- s_undying_burst_of_misplace1
+
 -- Soul Devourer
-(22515,4408,16),
-(22515,4409,1),
-(22515,4410,7),
-(22515,4411,8),
-(22515,4412,16),
-(22515,4413,15),
-(22515,4414,2),
-(22515,4415,3),
-(22515,4416,1),
-(22515,5465,1),
-(22515,5918,8),
+(22515,4416,1), -- s_npc_prop_race_undead
+(22515,5465,1), -- s_npc_prop_attribute_earth1
+(22515,4408,16), -- s_npc_prop_hp_lv_m8
+(22515,4409,1), -- s_npc_prop_mp_lv_p0
+(22515,4410,7), -- s_npc_prop_pa_lv_n4
+(22515,4411,8), -- s_npc_prop_ma_lv_n3
+(22515,4412,16), -- s_npc_prop_pd_lv_p5
+(22515,4413,15), -- s_npc_prop_md_lv_p4
+(22515,4414,2), -- s_npc_prop_armor_type_n
+(22515,4415,3), -- s_npc_prop_weapon_type_sword
+(22515,5918,8), -- s_npc_weakness_root_physically8
+(22515,5888,1), -- s_undying_earth_shaker1
+(22515,5899,1), -- s_undying_burst_of_pain1
+(22515,5937,1), -- s_npc_self_stun1
+
 -- Butcher of Infinity
 (22516,4408,12),
 (22516,4409,1),
@@ -62503,30 +62534,45 @@ INSERT INTO `npcskills` VALUES
 (25664,4415,1),
 (25664,4416,8),
 (25664,4460,2),
+
 -- Yehan Klodekus (Soul Destroyer)
-(25665,4045,1),
-(25665,4408,1),
-(25665,4409,1),
-(25665,4410,11),
-(25665,4411,11),
-(25665,4412,11),
-(25665,4413,11),
-(25665,4414,2),
-(25665,4415,11),
-(25665,4416,1),
-(25665,5465,1),
+(25665,4494,1), -- s_npc_raid_boss_reward
+(25665,6062,1), -- s_raid_boss_is1_clodecus
+(25665,4416,1), -- s_npc_prop_race_undead
+(25665,5465,1), -- s_npc_prop_attribute_earth1
+(25665,4408,1), -- s_npc_prop_hp_lv_p0
+(25665,4409,1), -- s_npc_prop_mp_lv_p0
+(25665,4410,11), -- s_npc_prop_pa_lv_p0
+(25665,4411,11), -- s_npc_prop_ma_lv_p0
+(25665,4412,11), -- s_npc_prop_pd_lv_p0
+(25665,4413,11), -- s_npc_prop_md_lv_p0
+(25665,4414,2), -- s_npc_prop_armor_type_n
+(25665,4415,11), -- s_npc_prop_weapon_type_pole
+(25665,4045,1), -- s_full_magic_defence
+(25665,5933,1), -- s_echimus_dark_blade2
+(25665,5936,1), -- s_echimus_earth_ring1
+(25665,5934,1), -- s_hero_against_dark_soul1
+(25665,5931,1), -- s_echimus_ultimate_shield1
+
 -- Yehan Klanikus (Guide of Darkness)
-(25666,4045,1),
-(25666,4408,1),
-(25666,4409,1),
-(25666,4410,11),
-(25666,4411,11),
-(25666,4412,11),
-(25666,4413,11),
-(25666,4414,2),
-(25666,4415,13),
-(25666,4416,1),
-(25666,5467,1),
+(25666,4494,1), -- s_npc_raid_boss_reward
+(25666,6063,1), -- s_raid_boss_is1_clanicus
+(25666,4416,1), -- s_npc_prop_race_undead
+(25666,5467,1), -- s_npc_prop_attribute_unholy1
+(25666,4408,1), -- s_npc_prop_hp_lv_p0
+(25666,4409,1), -- s_npc_prop_mp_lv_p0
+(25666,4410,11), -- s_npc_prop_pa_lv_p0
+(25666,4411,11), -- s_npc_prop_ma_lv_p0
+(25666,4412,11), -- s_npc_prop_pd_lv_p0
+(25666,4413,11), -- s_npc_prop_md_lv_p0
+(25666,4414,2), -- s_npc_prop_armor_type_n
+(25666,4415,13), -- s_npc_prop_weapon_type_2hsword
+(25666,4045,1), -- s_full_magic_defence
+(25666,5932,1), -- s_echimus_dark_blade1
+(25666,5935,1), -- s_echimus_dark_ring1
+(25666,5934,1), -- s_hero_against_dark_soul1
+(25666,5931,1), -- s_echimus_ultimate_shield1
+
 -- Orc Sniper
 (27001,4408,1),
 (27001,4409,1),

@@ -41,6 +41,9 @@ public class AdminRepairChar implements IAdminCommandHandler
 	
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		handleRepair(command);
 		return true;
 	}

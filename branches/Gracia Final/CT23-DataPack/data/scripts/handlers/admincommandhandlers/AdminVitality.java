@@ -27,7 +27,6 @@ import ct23.xtreme.gameserver.model.actor.stat.PcStat;
 
 public class AdminVitality implements IAdminCommandHandler
 {
-	
 	private static final String[]	ADMIN_COMMANDS	=
 	{ 
 		"admin_set_vitality",
@@ -39,7 +38,7 @@ public class AdminVitality implements IAdminCommandHandler
 
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
-		if (activeChar == null)
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
 			return false;
 
 		if (!Config.ENABLE_VITALITY)

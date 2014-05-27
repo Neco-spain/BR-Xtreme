@@ -44,6 +44,7 @@ public class PcStat extends PlayableStat
 	private int _oldMaxCp; // stats watch
 	private float _vitalityPoints = 1;
 	private byte _vitalityLevel = 0;
+	private long _startingXp;
 	
 	public static final int VITALITY_LEVELS[] = { 240, 2000, 13000, 17000, 20000 };
 	public static final int MAX_VITALITY_POINTS = VITALITY_LEVELS[4];
@@ -296,6 +297,27 @@ public class PcStat extends PlayableStat
 			getActiveChar().getSubClasses().get(getActiveChar().getClassIndex()).setExp(value);
 		else
 			super.setExp(value);
+	}
+	   
+	/**
+    * Sets exp holded by the character on log in
+    * @param current exp
+    */
+    public void setFirstExp(long value)
+    {
+        _startingXp = value;
+    }
+	    
+    /**
+     * Will return true if the player has gained exp
+     * since logged in
+     * @return
+     */
+    public boolean hasEarnedExp()
+    {
+    	if(getExp() - _startingXp != 0)
+    		return true;
+    	return false;
 	}
 	
 	@Override

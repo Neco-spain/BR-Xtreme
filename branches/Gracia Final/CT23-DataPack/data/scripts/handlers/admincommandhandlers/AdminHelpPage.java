@@ -27,7 +27,6 @@ import ct23.xtreme.gameserver.network.serverpackets.NpcHtmlMessage;
  */
 public class AdminHelpPage implements IAdminCommandHandler
 {
-	
 	private static final String[] ADMIN_COMMANDS =
 	{
 		"admin_help"
@@ -35,6 +34,8 @@ public class AdminHelpPage implements IAdminCommandHandler
 	
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
 		
 		if (command.startsWith("admin_help"))
 		{

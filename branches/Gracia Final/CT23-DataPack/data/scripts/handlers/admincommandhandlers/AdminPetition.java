@@ -41,6 +41,9 @@ public class AdminPetition implements IAdminCommandHandler
 	
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		int petitionId = -1;
 		
 		try

@@ -144,10 +144,11 @@
 		<set name="hitTime" val="2500" />
 	</skill>
 	<skill id="5824" levels="1" name="Presentation - District1 Boss Arise">
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
+		<set name="target" val="TARGET_SELF" />
+		<set name="skillType" val="DUMMY" />
+		<set name="operateType" val="OP_ACTIVE" />
 		<set name="hitTime" val="2500" />
+		<set name="staticHitTime" val="true" />
 	</skill>
 	<skill id="5825" levels="1" name="Presentation - Algraia Exit">
 		<set name="target" val="TARGET_NONE" />
@@ -648,82 +649,196 @@
 		<set name="hitTime" val="1000" />
 	</skill>
 	<skill id="5878" levels="1" name="Cruel Puncture">
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
 		<set name="hitTime" val="1000" />
+		<set name="isDebuff" val="true" />
+		<set name="lvlDepend" val="2" />
+		<set name="magicLvl" val="80" />
+		<set name="mpConsume" val="83" />
+		<set name="operateType" val="OP_ACTIVE" />
+		<set name="power" val="33" /> <!-- Base Land Rate -->
+		<set name="ignoreResists" val="true" />
+		<set name="castRange" val="40" />
+		<set name="effectRange" val="400" />
+		<set name="reuseDelay" val="1000" />
+		<set name="skillType" val="DEBUFF" />
+		<set name="target" val="TARGET_ONE" />
+		<set name="saveVs" val="MEN" />
+		<for>
+			<effect count="7" name="DamOverTime" abnormalTime="3" val="250" abnormalLvl="3" abnormalType="casting_time_up">
+				<mul order="0x30" stat="mAtkSpd" val="0.8" />
+			</effect>
+		</for>
 	</skill>
 	<skill id="5879" levels="1" name="Cruel Expunge">
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
+		<set name="magicLvl" val="80" />
+		<set name="mpConsume" val="165" />
+		<set name="power" val="90" /> <!-- Base Land Rate -->
+		<set name="target" val="TARGET_ONE" />
 		<set name="hitTime" val="1000" />
+		<set name="lvlDepend" val="2" />
+		<set name="isDebuff" val="true" />
+		<set name="skillType" val="BLEED" />
+		<set name="operateType" val="OP_ACTIVE" />
+		<set name="reuseDelay" val="1000" />
+		<set name="castRange" val="40" />
+		<set name="effectRange" val="400" />
+		<set name="saveVs" val="CON" />
+		<for>
+			<effect count="7" name="DamOverTime" abnormalTime="3" val="105" abnormalLvl="9" abnormalType="bleeding" abnormal="bleed" />
+		</for>
 	</skill>
 	<skill id="5880" levels="2" name="Vicious Mutilation">
 		<set name="target" val="TARGET_NONE" />
 		<set name="skillType" val="NOTDONE" />
 		<set name="operateType" val="OP_PASSIVE" />
 		<set name="hitTime" val="1000" />
+		<set name="lvlDepend" val="1" />
+		<set name="reuseDelay" val="1000" />
+		<set name="saveVs" val="MEN" />
 	</skill>
 	<skill id="5881" levels="2" name="Vicious Mutilation">
 		<set name="target" val="TARGET_NONE" />
 		<set name="skillType" val="NOTDONE" />
 		<set name="operateType" val="OP_PASSIVE" />
+		<set name="lvlDepend" val="1" />
 		<set name="hitTime" val="1000" />
+		<set name="reuseDelay" val="1000" />
+		<set name="saveVs" val="MEN" />
 	</skill>
 	<skill id="5882" levels="2" name="Weakened Pommel">
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
+		<table name="#mpConsume"> 79 82 </table>
+		<set name="magicLvl" val="80" />
+		<set name="mpConsume" val="#mpConsume" />
+		<set name="lvlDepend" val="1" />
+		<set name="power" val="873" />
+		<set name="target" val="TARGET_ONE" />
+		<set name="skillRadius" val="150" />
+		<set name="reuseDelay" val="1000" />
 		<set name="hitTime" val="1000" />
+		<set name="skillType" val="PDAM" />
+		<set name="operateType" val="OP_ACTIVE" />
+		<set name="isDebuff" val="true" />
+		<set name="castRange" val="40" />
+		<set name="effectRange" val="400" />
+		<set name="saveVs" val="CON" />
+		<for>
+			<effect name="Stun" abnormalTime="9" val="0" effectPower="30" effectType="STUN" abnormalLvl="1" abnormalType="stun" />
+		</for>
 	</skill>
 	<skill id="5883" levels="1" name="Meggling Injury">
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
+		<set name="magicLvl" val="80" />
+		<set name="mpConsume" val="165" />
+		<set name="lvlDepend" val="2" />
+		<set name="power" val="90" /> <!-- Base Land Rate -->
+		<set name="target" val="TARGET_ONE" />
 		<set name="hitTime" val="1000" />
+		<set name="isDebuff" val="true" />
+		<set name="skillType" val="BLEED" />
+		<set name="reuseDelay" val="1000" />
+		<set name="operateType" val="OP_ACTIVE" />
+		<set name="castRange" val="40" />
+		<set name="effectRange" val="400" />
+		<set name="saveVs" val="CON" />
+		<for>
+			<effect count="7" name="DamOverTime" abnormalTime="3" val="105" abnormalLvl="9" abnormalType="bleeding" abnormal="bleed" />
+		</for>
 	</skill>
 	<skill id="5884" levels="2" name="Weakened Sweep">
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
 		<set name="hitTime" val="1500" />
+		<set name="isDebuff" val="true" />
+		<set name="magicLvl" val="80" />
+		<set name="mpConsume" val="165" />
+		<set name="operateType" val="OP_ACTIVE" />
+		<set name="power" val="33" /> <!-- Base Land Rate -->
+		<set name="ignoreResists" val="true" />
+		<set name="castRange" val="40" />
+		<set name="effectRange" val="400" />
+		<set name="reuseDelay" val="1000" />
+		<set name="skillType" val="DISARM" />
+		<set name="target" val="TARGET_ONE" />
+		<set name="lvlDepend" val="1" />
+		<set name="saveVs" val="STR" />
+		<for>
+			<effect name="Disarm" abnormalTime="5" val="0" abnormalLvl="1" abnormalType="disarm" />
+		</for>
 	</skill>
 	<skill id="5885" levels="2" name="Weakened Sweep">
 		<set name="target" val="TARGET_NONE" />
 		<set name="skillType" val="NOTDONE" />
+		<set name="lvlDepend" val="1" />
 		<set name="operateType" val="OP_PASSIVE" />
 		<set name="hitTime" val="1000" />
+		<set name="reuseDelay" val="1000" />
+		<set name="saveVs" val="CON" />
 	</skill>
 	<skill id="5886" levels="1" name="Ground Shaker">
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
+		<set name="mpConsume" val="165" />
 		<set name="hitTime" val="1000" />
+		<set name="isDebuff" val="true" />
+		<set name="magicLvl" val="80" />
+		<set name="lvlDepend" val="1" />
+		<set name="operateType" val="OP_ACTIVE" />
+		<set name="power" val="33" /> <!-- Base Land Rate -->
+		<set name="ignoreResists" val="true" />
+		<set name="castRange" val="600" />
+		<set name="effectRange" val="1100" />
+		<set name="reuseDelay" val="1000" />
+		<set name="skillType" val="DEBUFF" />
+		<set name="target" val="TARGET_ONE" />
+		<set name="saveVs" val="MEN" />
+		<for>
+			<effect name="Debuff" abnormalTime="30" val="0" abnormalLvl="3" abnormalType="speed_down">
+				<sub order="0x40" stat="rEvas" val="10" />
+				<mul order="0x30" stat="runSpd" val="0.8" />
+			</effect>
+		</for>
 	</skill>
 	<skill id="5887" levels="1" name="Howl from Beyond">
 		<set name="target" val="TARGET_NONE" />
 		<set name="skillType" val="NOTDONE" />
 		<set name="operateType" val="OP_PASSIVE" />
 		<set name="hitTime" val="1000" />
+		<set name="reuseDelay" val="1000" />
+		<set name="lvlDepend" val="2" />
+		<set name="saveVs" val="MEN" />
 	</skill>
 	<skill id="5888" levels="2" name="Earth Shaker">
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
+		<table name="#mpConsume"> 82 83 </table>
+		<set name="mpConsume" val="#mpConsume" />
 		<set name="hitTime" val="1000" />
+		<set name="isDebuff" val="true" />
+		<set name="magicLvl" val="80" />
+		<set name="operateType" val="OP_ACTIVE" />
+		<set name="power" val="33" /> <!-- Base Land Rate -->
+		<set name="ignoreResists" val="true" />
+		<set name="castRange" val="40" />
+		<set name="effectRange" val="400" />
+		<set name="reuseDelay" val="1000" />
+		<set name="lvlDepend" val="1" />
+		<set name="skillType" val="DEBUFF" />
+		<set name="target" val="TARGET_ONE" />
+		<set name="saveVs" val="CON" />
+		<for>
+			<effect name="RemoveTarget" noicon="1" val="9" abnormalLvl="1" abnormalType="stun" effectType="STUN" />
+		</for>
 	</skill>
 	<skill id="5889" levels="3" name="Tainted Shackle">
 		<set name="target" val="TARGET_NONE" />
 		<set name="skillType" val="NOTDONE" />
 		<set name="operateType" val="OP_PASSIVE" />
 		<set name="hitTime" val="1000" />
+		<set name="reuseDelay" val="1000" />
+		<set name="lvlDepend" val="2" />
+		<set name="saveVs" val="MEN" />
 	</skill>
 	<skill id="5890" levels="3" name="Tainted Mass Shackle">
 		<set name="target" val="TARGET_NONE" />
 		<set name="skillType" val="NOTDONE" />
 		<set name="operateType" val="OP_PASSIVE" />
 		<set name="hitTime" val="1000" />
+		<set name="reuseDelay" val="1000" />
+		<set name="lvlDepend" val="2" />
+		<set name="saveVs" val="MEN" />
 	</skill>
 	<skill id="5891" levels="1" name="Threatening Bellow">
 		<set name="target" val="TARGET_NONE" />
@@ -733,10 +848,23 @@
 	</skill>
 	<skill id="5892" levels="2" name="Cunning Coercion">
 		<table name="#hitTime"> 1000 11470 </table>
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
+		<set name="mpConsume" val="70" />
 		<set name="hitTime" val="#hitTime" />
+		<set name="isDebuff" val="true" />
+		<set name="lvlDepend" val="1" />
+		<set name="magicLvl" val="80" />
+		<set name="operateType" val="OP_ACTIVE" />
+		<set name="power" val="33" /> <!-- Base Land Rate -->
+		<set name="ignoreResists" val="true" />
+		<set name="castRange" val="40" />
+		<set name="effectRange" val="400" />
+		<set name="reuseDelay" val="1000" />
+		<set name="skillType" val="DEBUFF" />
+		<set name="target" val="TARGET_ONE" />
+		<set name="saveVs" val="MEN" />
+		<for>
+			<effect name="Bluff" val="9" effectType="STUN" abnormalLvl="1" abnormalType="stun" />
+		</for>
 	</skill>
 	<skill id="5893" levels="1" name="Ritual of Cannibalism">
 		<set name="target" val="TARGET_NONE" />
@@ -745,16 +873,61 @@
 		<set name="hitTime" val="1000" />
 	</skill>
 	<skill id="5894" levels="1" name="Mark of Despair">
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
+		<set name="mpConsume" val="145" />
 		<set name="hitTime" val="2000" />
+		<set name="isDebuff" val="true" />
+		<set name="lvlDepend" val="1" />
+		<set name="magicLvl" val="80" />
+		<set name="operateType" val="OP_ACTIVE" />
+		<set name="power" val="33" /> <!-- Base Land Rate -->
+		<set name="ignoreResists" val="true" />
+		<set name="castRange" val="300" />
+		<set name="effectRange" val="500" />
+		<set name="skillType" val="DEBUFF" />
+		<set name="target" val="TARGET_ONE" />
+		<set name="isMagic" val="true" />
+		<set name="saveVs" val="MEN" />
+		<for>
+			<effect name="Debuff" abnormalTime="30" val="0" abnormalLvl="1" abnormalType="multi_debuff_a">
+				<mul order="0x30" stat="pDef" val="0.8" />
+				<mul order="0x30" stat="mDef" val="0.8" />
+				<sub order="0x40" stat="rEvas" val="10" />
+				<mul order="0x30" stat="maxHp" val="0.8" />
+				<mul order="0x30" stat="regHp" val="0.5" />
+				<mul order="0x30" stat="pAtk" val="1.2" />
+				<mul order="0x30" stat="mAtk" val="1.2" />
+				<mul order="0x30" stat="pAtkSpd" val="1.1" />
+				<add order="0x40" stat="accCombat" val="10" />
+				<mul order="0x30" stat="cAtk" val="1.2" />
+				<basemul order="0x30" stat="rCrit" val="1.2" />
+			</effect>
+		</for>
 	</skill>
 	<skill id="5895" levels="1" name="Mark of Cowardice">
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
+		<set name="mpConsume" val="150" />
 		<set name="hitTime" val="2000" />
+		<set name="isDebuff" val="true" />
+		<set name="lvlDepend" val="1" />
+		<set name="magicLvl" val="80" />
+		<set name="operateType" val="OP_ACTIVE" />
+		<set name="power" val="33" /> <!-- Base Land Rate -->
+		<set name="ignoreResists" val="true" />
+		<set name="castRange" val="300" />
+		<set name="effectRange" val="500" />
+		<set name="skillType" val="DEBUFF" />
+		<set name="target" val="TARGET_ONE" />
+		<set name="isMagic" val="true" />
+		<set name="saveVs" val="MEN" />
+		<for>
+			<effect name="Debuff" abnormalTime="10" val="0" abnormalLvl="1" abnormalType="multi_debuff_b">
+				<mul order="0x30" stat="pDef" val="0.8" />
+				<mul order="0x30" stat="mDef" val="0.8" />
+				<sub order="0x40" stat="rEvas" val="10" />
+				<mul order="0x30" stat="maxHp" val="0.8" />
+				<mul order="0x30" stat="regHp" val="0.1" />
+				<mul order="0x30" stat="runSpd" val="1.25" />
+			</effect>
+		</for>
 	</skill>
 	<skill id="5896" levels="2" name="Soulless">
 		<table name="#hitTime"> 2000 22940 </table>
@@ -764,23 +937,65 @@
 		<set name="hitTime" val="#hitTime" />
 	</skill>
 	<skill id="5897" levels="1" name="Spike of Anger">
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
+		<set name="mpConsume" val="70" />
+		<set name="isDebuff" val="true" />
+		<set name="magicLvl" val="80" />
+		<set name="operateType" val="OP_ACTIVE" />
+		<set name="power" val="33" /> <!-- Base Land Rate -->
+		<set name="ignoreResists" val="true" />
+		<set name="castRange" val="600" />
+		<set name="effectRange" val="1100" />
+		<set name="lvlDepend" val="1" />
+		<set name="skillType" val="DEBUFF" />
+		<set name="target" val="TARGET_ONE" />
 		<set name="hitTime" val="2000" />
+		<set name="isMagic" val="true" />
+		<set name="saveVs" val="MEN" />
+		<for>
+			<effect name="Debuff" abnormalTime="10" val="0" abnormalLvl="1" abnormalType="speed_down">
+				<sub order="0x40" stat="rEvas" val="5" />
+				<mul order="0x30" stat="runSpd" val="0.9" />
+				<mul order="0x30" stat="pDef" val="0.9" />
+				<mul order="0x30" stat="mDef" val="0.9" />
+			</effect>
+		</for>
 	</skill>
 	<skill id="5898" levels="2" name="Blast of Anger">
 		<table name="#hitTime"> 2000 22940 </table>
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
+		<table name="#mpConsume"> 140 150 </table>
+		<set name="mpConsume" val="#mpConsume" />
+		<set name="isDebuff" val="true" />
+		<set name="magicLvl" val="80" />
+		<set name="operateType" val="OP_ACTIVE" />
+		<set name="lvlDepend" val="1" />
+		<set name="power" val="33" /> <!-- Base Land Rate -->
+		<set name="ignoreResists" val="true" />
+		<set name="castRange" val="600" />
+		<set name="effectRange" val="1100" />
+		<set name="skillType" val="DEBUFF" />
+		<set name="target" val="TARGET_ONE" />
 		<set name="hitTime" val="#hitTime" />
+		<set name="isMagic" val="true" />
+		<set name="saveVs" val="MEN" />
+		<for>
+			<effect name="Debuff" abnormalTime="10" val="0" abnormalLvl="1" abnormalType="speed_down">
+				<sub order="0x40" stat="rEvas" val="10" />
+				<mul order="0x30" stat="runSpd" val="0.8" />
+				<mul order="0x30" stat="pDef" val="0.8" />
+				<mul order="0x30" stat="mDef" val="0.8" />
+			</effect>
+		</for>
 	</skill>
 	<skill id="5899" levels="2" name="Burst of Pain">
 		<table name="#hitTime"> 2000 22940 </table>
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
+		<set name="mpConsume" val="224" />
+		<set name="power" val="3000" />
+		<set name="target" val="TARGET_ONE" />
+		<set name="skillType" val="PDAM" />
+		<set name="operateType" val="OP_ACTIVE" />
+		<set name="castRange" val="40" />
+		<set name="effectRange" val="400" />
 		<set name="hitTime" val="#hitTime" />
+		<set name="isMagic" val="true" />
 	</skill>
 </list>

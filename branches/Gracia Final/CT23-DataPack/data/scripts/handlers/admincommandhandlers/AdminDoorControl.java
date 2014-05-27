@@ -52,6 +52,9 @@ public class AdminDoorControl implements IAdminCommandHandler
 	
 	public boolean useAdminCommand(String command, L2PcInstance activeChar)
 	{
+		if (activeChar == null || !activeChar.getPcAdmin().canUseAdminCommand())
+			return false;
+		
 		try
 		{
 			if (command.startsWith("admin_open "))
