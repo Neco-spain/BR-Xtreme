@@ -4,19 +4,18 @@ import ct23.xtreme.gameserver.datatables.SkillTable;
 import ct23.xtreme.gameserver.instancemanager.TransformationManager;
 import ct23.xtreme.gameserver.model.L2Transformation;
 
-public class Kadomas extends L2Transformation
+public class Frog extends L2Transformation
 {
-	private static final int[] SKILLS = {23154,619};
-	public Kadomas()
+	public Frog()
 	{
 		// id, colRadius, colHeight
-		super(20000, 24.5, 14);
+		super(111, 20, 9);
 	}
 
 	@Override
 	public void onTransform()
 	{
-		if (getPlayer().getTransformationId() != 20000 || getPlayer().isCursedWeaponEquipped())
+		if (getPlayer().getTransformationId() != 111 || getPlayer().isCursedWeaponEquipped())
 			return;
 
 		transformedSkills();
@@ -24,12 +23,12 @@ public class Kadomas extends L2Transformation
 
 	public void transformedSkills()
 	{
-		//Kadomas Special Skill - Fireworks
-		getPlayer().addSkill(SkillTable.getInstance().getInfo(23154, 1), false);
-		// Transform Dispel
+		// Decrease Bow/Crossbow Attack Speed
+		getPlayer().addSkill(SkillTable.getInstance().getInfo(5491, 1), false);
+		// Transfrom Dispel
 		getPlayer().addSkill(SkillTable.getInstance().getInfo(619, 1), false);
 
-		getPlayer().setTransformAllowedSkills(SKILLS);
+		getPlayer().setTransformAllowedSkills(new int[]{5491,619});
 	}
 
 	@Override
@@ -40,16 +39,16 @@ public class Kadomas extends L2Transformation
 
 	public void removeSkills()
 	{
-		//Kadomas Special Skill - Fireworks
-		getPlayer().removeSkill(SkillTable.getInstance().getInfo(23154, 1), false);
-		// Transform Dispel
+		// Decrease Bow/Crossbow Attack Speed
+		getPlayer().removeSkill(SkillTable.getInstance().getInfo(5491, 1), false);
+		// Transfrom Dispel
 		getPlayer().removeSkill(SkillTable.getInstance().getInfo(619, 1), false);
 
-		getPlayer().setTransformAllowedSkills(EMPTY_ARRAY);
+		getPlayer().setTransformAllowedSkills(new int[]{});
 	}
 
 	public static void main(String[] args)
 	{
-		TransformationManager.getInstance().registerTransformation(new Kadomas());
+		TransformationManager.getInstance().registerTransformation(new Frog());
 	}
 }

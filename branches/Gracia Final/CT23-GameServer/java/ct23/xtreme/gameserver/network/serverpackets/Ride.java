@@ -48,7 +48,6 @@ public final class Ride extends L2GameServerPacket
 			case 16038: // red strider of wind
 			case 16039: // red strider of star
 			case 16040: // red strider of dusk
-			case 16068: // Guardian Strider
 				_rideType = 1;
 				break;
 			case 12621: // Wyvern
@@ -59,7 +58,6 @@ public final class Ride extends L2GameServerPacket
 			case 16042: // White Fenrir Wolf
 				_rideType = 3;
 				break;
-			case 32:    //Jet Bike
 			case 13130: // Light Purple Maned Horse
 			case 13146: // Tawny-Maned Lion
 			case 13147: // Steam Sledge

@@ -37,7 +37,7 @@ public class ExBrExtraUserInfo extends L2GameServerPacket
 	{
 		
 		writeC(0xfe);
-		writeH(0xbe);
+		writeH(0xac);
 		writeD(_charObjId); //object ID of Player
 		writeD(_val);		// event effect id
 		//writeC(0x00);		// Event flag, added only if event is active
@@ -50,6 +50,6 @@ public class ExBrExtraUserInfo extends L2GameServerPacket
 	@Override
 	public String getType()
 	{
-		return "[S] FE:BE ExBrExtraUSerInfo";
+		return "[S] FE:8D ExBrExtraUSerInfo";
 	}
 }

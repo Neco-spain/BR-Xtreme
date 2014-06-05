@@ -55,6 +55,9 @@ public class GMViewItemList extends L2GameServerPacket
 		
 		for (L2ItemInstance temp : _items)
 		{
+			if (temp == null || temp.getItem() == null)
+				continue;
+			
 			writeH(temp.getItem().getType1());
 			
 			writeD(temp.getObjectId());
@@ -77,14 +80,11 @@ public class GMViewItemList extends L2GameServerPacket
 			writeH(temp.getAttackElementType());
 			writeH(temp.getAttackElementPower());
 			for (byte i = 0; i < 6; i++)
+			{
 				writeH(temp.getElementDefAttr(i));
-
+			}
 			// T2
 			writeD(temp.isTimeLimitedItem() ? (int) (temp.getRemainingTime()/1000) : -1);
-
-			writeH(0x00); // Enchant effect 1
-			writeH(0x00); // Enchant effect 2
-			writeH(0x00); // Enchant effect 3 
 		}
 	}
 	

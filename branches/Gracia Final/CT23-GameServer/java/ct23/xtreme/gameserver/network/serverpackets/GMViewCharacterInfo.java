@@ -65,7 +65,7 @@ public class GMViewCharacterInfo extends L2GameServerPacket
 		writeD(_activeChar.getINT());
 		writeD(_activeChar.getWIT());
 		writeD(_activeChar.getMEN());
-		writeD(_activeChar.getMaxVisibleHp());
+		writeD(_activeChar.getMaxHp());
 		writeD((int) _activeChar.getCurrentHp());
 		writeD(_activeChar.getMaxMp());
 		writeD((int)_activeChar.getCurrentMp());
@@ -217,8 +217,8 @@ public class GMViewCharacterInfo extends L2GameServerPacket
         writeD(_walkSpd);
 		writeF(moveMultiplier);
 		writeF(_activeChar.getAttackSpeedMultiplier()); //2.9);//
-		writeF(_activeChar.getCollisionRadius());  // scale
-		writeF(_activeChar.getCollisionHeight()); // y offset ??!? fem dwarf 4033
+		writeF(_activeChar.getTemplate().collisionRadius);  // scale
+		writeF(_activeChar.getTemplate().collisionHeight); // y offset ??!? fem dwarf 4033
 		writeD(_activeChar.getAppearance().getHairStyle());
 		writeD(_activeChar.getAppearance().getHairColor());
 		writeD(_activeChar.getAppearance().getFace());

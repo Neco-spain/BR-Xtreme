@@ -57,7 +57,7 @@ public class PetInfo extends L2GameServerPacket
 		_walkSpd =  _summon.isMountable() ? 45 : 30;
 		_swimRunSpd = _flRunSpd = _flyRunSpd = _runSpd;
 		_swimWalkSpd = _flWalkSpd = _flyWalkSpd = _walkSpd;
-		_maxHp = _summon.getMaxVisibleHp();
+		_maxHp = _summon.getMaxHp();
 		_maxMp = _summon.getMaxMp();
 		_val = val;
 		if (_summon instanceof L2PetInstance)
@@ -177,7 +177,7 @@ public class PetInfo extends L2GameServerPacket
         		form = 1;
         }
         writeD(form);//CT1.5 Pet form and skills
-        writeD(_summon.getSpecialEffect());
+        writeD(0x00);
 	}
 
 	/* (non-Javadoc)
