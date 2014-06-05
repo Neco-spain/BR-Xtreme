@@ -26,7 +26,7 @@ import ct23.xtreme.gameserver.SevenSigns;
  */
 public class ShowMiniMap extends L2GameServerPacket
 {
-	private static final String _S__A3_SHOWMINIMAP = "[S] a3 ShowMiniMap";
+	private static final String _S__B6_SHOWMINIMAP = "[S] a3 ShowMiniMap";
 	private int _mapId;
 
 	/**
@@ -41,7 +41,7 @@ public class ShowMiniMap extends L2GameServerPacket
 	{
 		writeC(0xa3);
 		writeD(_mapId);
-		writeC(SevenSigns.getInstance().getCurrentPeriod());
+		writeD(SevenSigns.getInstance().getCurrentPeriod());
 	}
 
 	/* (non-Javadoc)
@@ -50,6 +50,6 @@ public class ShowMiniMap extends L2GameServerPacket
 	@Override
 	public String getType()
 	{
-		return _S__A3_SHOWMINIMAP;
+		return _S__B6_SHOWMINIMAP;
 	}
 }

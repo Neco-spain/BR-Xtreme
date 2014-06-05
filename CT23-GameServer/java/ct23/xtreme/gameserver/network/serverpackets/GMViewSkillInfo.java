@@ -15,7 +15,6 @@
 
 package ct23.xtreme.gameserver.network.serverpackets;
 
-import ct23.xtreme.gameserver.datatables.SkillTable;
 import ct23.xtreme.gameserver.model.L2Skill;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 
@@ -40,17 +39,12 @@ public class GMViewSkillInfo extends L2GameServerPacket
 		writeS(_activeChar.getName());
 		writeD(_skills.length);
 
-		boolean isDisabled = false;
-		if (_activeChar.getClan() != null)
-			isDisabled = _activeChar.getClan().getReputationScore() < 0;
-
 		for (L2Skill skill: _skills)
 		{
 			writeD(skill.isPassive() ? 1 : 0);
 			writeD(skill.getLevel());
 			writeD(skill.getId());
-			writeC(isDisabled && skill.isClanSkill() ? 1 : 0);
-			writeC(SkillTable.getInstance().isEnchantable(skill.getId()) ? 1 : 0);
+            writeC(0x00); //c5
 		}
 	}
 

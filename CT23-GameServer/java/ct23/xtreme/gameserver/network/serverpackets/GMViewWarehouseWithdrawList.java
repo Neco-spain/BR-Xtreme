@@ -17,6 +17,7 @@ package ct23.xtreme.gameserver.network.serverpackets;
 import ct23.xtreme.gameserver.model.L2Clan;
 import ct23.xtreme.gameserver.model.L2ItemInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
+import ct23.xtreme.gameserver.templates.item.L2Weapon;
 
 /**
  * Sdh(h dddhh [dhhh] d)
@@ -57,36 +58,51 @@ public class GMViewWarehouseWithdrawList extends L2GameServerPacket
 		for (L2ItemInstance item : _items)
 		{
 			writeH(item.getItem().getType1());
+			
 			writeD(item.getObjectId());
 			writeD(item.getItemId());
 			writeQ(item.getCount());
 			writeH(item.getItem().getType2());
 			writeH(item.getCustomType1());
-			writeD(item.getItem().getBodyPart());
-			writeH(item.getEnchantLevel());
-			writeH(0x00);
-			writeH(item.getCustomType2());
-			writeD(item.getObjectId());
-			if (item.isAugmented())
-			{
-				writeD(0x0000FFFF & item.getAugmentation().getAugmentationId());
-				writeD(item.getAugmentation().getAugmentationId() >> 16);
-			}
-			else
-				writeQ(0x00);
 			
-			writeH(item.getAttackElementType());
-			writeH(item.getAttackElementPower());
-			for (byte i = 0; i < 6; i++)
-				writeH(item.getElementDefAttr(i));
+			if (item.getItem().isEquipable())
+			{
+				writeD(item.getItem().getBodyPart());
+				writeH(item.getEnchantLevel());
+				
+				if (item.getItem() instanceof L2Weapon)
+				{
+					writeH(((L2Weapon) item.getItem()).getSoulShotCount());
+					writeH(((L2Weapon) item.getItem()).getSpiritShotCount());
+				}
+				else
+				{
+					writeH(0x00);
+					writeH(0x00);
+				}
+				
+				if (item.isAugmented())
+				{
+					writeD(0x0000FFFF & item.getAugmentation().getAugmentationId());
+					writeD(item.getAugmentation().getAugmentationId() >> 16);
+				}
+				else
+				{
+					writeQ(0);
+				}
+				writeD(item.getObjectId());
+				
+				writeH(item.getAttackElementType());
+				writeH(item.getAttackElementPower());
+				for (byte i = 0; i < 6; i++)
+				{
+					writeH(item.getElementDefAttr(i));
+				}
+			}
 			
 			writeD(item.getMana());
 			// T2
 			writeD(item.isTimeLimitedItem() ? (int) (item.getRemainingTime()/1000) : -1);
-
-			writeH(0x00); // Enchant effect 1
-			writeH(0x00); // Enchant effect 2
-			writeH(0x00); // Enchant effect 3 
 		}
 	}
 	

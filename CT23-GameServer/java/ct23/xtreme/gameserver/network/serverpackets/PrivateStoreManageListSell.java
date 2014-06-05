@@ -17,6 +17,7 @@ package ct23.xtreme.gameserver.network.serverpackets;
 import ct23.xtreme.gameserver.model.TradeList;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 
+
 /**
  * 3 section to this packet
  * 1)playerinfo which is always sent
@@ -38,7 +39,7 @@ public class PrivateStoreManageListSell extends L2GameServerPacket
 	private boolean _packageSale;
 	private TradeList.TradeItem[] _itemList;
 	private TradeList.TradeItem[] _sellList;
-	
+
 	public PrivateStoreManageListSell(L2PcInstance player, boolean isPackageSale)
 	{
 		_objId = player.getObjectId();
@@ -48,7 +49,7 @@ public class PrivateStoreManageListSell extends L2GameServerPacket
 		_itemList = player.getInventory().getAvailableItems(player.getSellList());
 		_sellList = player.getSellList().getItems();
 	}
-	
+
 	@Override
 	protected final void writeImpl()
 	{
@@ -57,7 +58,7 @@ public class PrivateStoreManageListSell extends L2GameServerPacket
 		writeD(_objId);
 		writeD(_packageSale ? 1 : 0); // Package sell
 		writeQ(_playerAdena);
-		
+
 		//section2
 		writeD(_itemList.length); //for potential sells
 		for (TradeList.TradeItem item : _itemList)
@@ -76,11 +77,9 @@ public class PrivateStoreManageListSell extends L2GameServerPacket
 			writeH(item.getAttackElementType());
 			writeH(item.getAttackElementPower());
 			for (byte i = 0; i < 6; i++)
+			{
 				writeH(item.getElementDefAttr(i));
-			
-			writeH(0x00); // Enchant effect 1
-			writeH(0x00); // Enchant effect 2
-			writeH(0x00); // Enchant effect 3 
+			}
 		}
 		//section 3
 		writeD(_sellList.length); //count for any items already added for sell
@@ -106,7 +105,7 @@ public class PrivateStoreManageListSell extends L2GameServerPacket
 			}
 		}
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see ct23.xtreme.gameserver.serverpackets.ServerBasePacket#getType()
 	 */

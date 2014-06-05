@@ -73,7 +73,6 @@ public final class RelationChanged extends L2GameServerPacket
 	protected final void writeImpl()
 	{
 		writeC(0xce);
-		writeD(1); // CT24 unknown
 		writeD(_objId);
 		writeD(_relation);
 		writeD(_autoAttackable);

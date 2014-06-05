@@ -35,22 +35,20 @@ public final class PartySmallWindowAll extends L2GameServerPacket
 	private static final String _S__63_PARTYSMALLWINDOWALL = "[S] 4e PartySmallWindowAll";
 	private L2Party _party;
 	private L2PcInstance _exclude;
-	private int _dist, _LeaderOID;
 	
 	public PartySmallWindowAll(L2PcInstance exclude, L2Party party)
 	{
 		_exclude = exclude;
 		_party = party;
-		_LeaderOID = _party.getPartyLeaderOID();
-		_dist = _party.getLootDistribution();
 	}
 	
 	@Override
 	protected final void writeImpl()
 	{
 		writeC(0x4e);
-		writeD(_LeaderOID);
-		writeD(_dist);
+		writeD(_party.getPartyLeaderOID());
+		writeD(_party.getLootDistribution());
+
 		writeD(_party.getMemberCount() - 1);
 		
 		for (L2PcInstance member : _party.getPartyMembers())
@@ -64,7 +62,7 @@ public final class PartySmallWindowAll extends L2GameServerPacket
 				writeD(member.getMaxCp()); // c4
 				
 				writeD((int) member.getCurrentHp());
-				writeD(member.getMaxVisibleHp());
+				writeD(member.getMaxHp());
 				writeD((int) member.getCurrentMp());
 				writeD(member.getMaxMp());
 				writeD(member.getLevel());
@@ -77,7 +75,6 @@ public final class PartySmallWindowAll extends L2GameServerPacket
 				{
 					writeD(member.getPet().getObjectId());
 					writeD(member.getPet().getNpcId() + 1000000);
-					writeD(member.getPet().getSummonType());
 					writeS(member.getPet().getName());
 					writeD((int) member.getPet().getCurrentHp());
 					writeD(member.getPet().getMaxHp());

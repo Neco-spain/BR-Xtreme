@@ -128,12 +128,6 @@ public class Die extends L2GameServerPacket
             writeD(_access.allowFixedRes() ? 0x01: 0x00);                  // 6d 04 00 00 00 - to FIXED
             writeD(0x00);    // 6d 05 00 00 00 - to fortress
         }
-        //TODO: protocol 152
-        /*
-        writeC(0); //show die animation
-        writeD(0); //agathion ress button
-        writeD(0); //additional free space
-        */
     }
 
     /* (non-Javadoc)

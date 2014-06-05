@@ -19,6 +19,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javolution.util.FastList;
 import ct23.xtreme.gameserver.RecipeController;
 import ct23.xtreme.gameserver.model.L2ItemInstance;
 import ct23.xtreme.gameserver.model.L2RecipeList;
@@ -26,7 +27,6 @@ import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import ct23.xtreme.gameserver.templates.item.L2EtcItemType;
 import ct23.xtreme.gameserver.templates.item.L2Item;
 import ct23.xtreme.gameserver.templates.item.L2WarehouseItem;
-import javolution.util.FastList;
 
 /**
  * 0x42 WarehouseWithdrawalList  dh (h dddhh dhhh d)
@@ -705,8 +705,8 @@ public class SortedWareHouseWithdrawalList extends L2GameServerPacket
 			writeH(item.getCustomType1()); // ?
 			writeD(item.getItem().getBodyPart()); // ?
 			writeH(item.getEnchantLevel()); // enchant level -confirmed
-			writeH(0x00); // ?
 			writeH(item.getCustomType2()); // ?
+			writeH(0x00); // ?
 			writeD(item.getObjectId()); // item id - confimed       
 			if (item.isAugmented())
 			{
@@ -719,15 +719,13 @@ public class SortedWareHouseWithdrawalList extends L2GameServerPacket
 			writeH(item.getAttackElementType());
 			writeH(item.getAttackElementPower());
 			for (byte i = 0; i < 6; i++)
+			{
 				writeH(item.getElementDefAttr(i));
+			}
 			
 			writeD(item.getMana());
 			// T2
 			writeD(item.getTime());
-			
-			writeH(0x00); // Enchant effect 1
-			writeH(0x00); // Enchant effect 2
-			writeH(0x00); // Enchant effect 3 
 		}
 	}
 	
