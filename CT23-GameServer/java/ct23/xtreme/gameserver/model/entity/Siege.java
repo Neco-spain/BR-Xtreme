@@ -813,6 +813,7 @@ public class Siege implements Siegable
 		if (_controlTowerCount < 0)
 			_controlTowerCount = 0;
 	}
+	
 
 	/** Remove the flag that was killed */
 	public void killedFlag(L2Npc flag)
@@ -1601,31 +1602,39 @@ public class Siege implements Siegable
 		//return true;
 		return _flameTowerCount > 0;
 	}
-
-	/* (non-Javadoc)
-	 * @see ct23.xtreme.gameserver.model.entity.Siegable#giveFame()
-	 */
 	@Override
 	public boolean giveFame()
 	{
 		return true;
 	}
-	
-	/* (non-Javadoc)
-	 * @see ct23.xtreme.gameserver.model.entity.Siegable#getFameFrequency()
-	 */
+
 	@Override
 	public int getFameFrequency()
 	{
 		return Config.CASTLE_ZONE_FAME_TASK_FREQUENCY;
 	}
 
-	/* (non-Javadoc)
-	 * @see ct23.xtreme.gameserver.model.entity.Siegable#getFameAmount()
-	 */
 	@Override
 	public int getFameAmount()
 	{
 		return Config.CASTLE_ZONE_FAME_AQUIRE_POINTS;
 	}
+	/**
+	 * TODO: Use it.
+	 * @return the max count of control type towers.
+	 */
+	public int getControlTowerMaxCount()
+	{
+		return _controlTowerMaxCount;
+	}
+	
+	/**
+	 * TODO: Use it.
+	 * @return the max count of flame type towers.
+	 */
+	public int getFlameTowerMaxCount()
+	{
+		return _flameTowerMaxCount;
+	}
+	
 }
