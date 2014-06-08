@@ -107,6 +107,7 @@ public class Q001_LettersOfLove extends Quest
 							htmltext = "30048-10.htm";
 							st.takeItems(BAULROS_POTION, 1);
 							st.giveItems(NECKLACE, 1);
+							st.addExpAndSp(5672, 446);
 							st.playSound(QuestSound.ITEMSOUND_QUEST_FINISH);
 							st.exitQuest(false);
 						}
