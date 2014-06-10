@@ -90,7 +90,7 @@ public class Q605_AllianceWithKetraOrcs extends Quest
 	private static final int Wisdom_Totem = 7220;
 	
 	private static final int Mane = 7233;
-	
+ 	
 	//NPC
 	private static final int Wahkan = 31371;
 	
@@ -250,7 +250,7 @@ public class Q605_AllianceWithKetraOrcs extends Quest
 					if (cond != 2)
 					{
 						htmltext = "31371-04.htm";
-						st.isCond(2);
+						st.set("cond", "2");
 						player.setAllianceWithVarkaKetra(1);
 						st.playSound(QuestSound.ITEMSOUND_QUEST_MIDDLE);
 					}
@@ -267,7 +267,7 @@ public class Q605_AllianceWithKetraOrcs extends Quest
 					if (cond != 3)
 					{
 						htmltext = "31371-05.htm";
-						st.isCond(3);
+						st.set("cond", "3");
 						player.setAllianceWithVarkaKetra(2);
 						st.playSound(QuestSound.ITEMSOUND_QUEST_MIDDLE);
 					}
@@ -284,7 +284,7 @@ public class Q605_AllianceWithKetraOrcs extends Quest
 					if (cond != 4)
 					{
 						htmltext = "31371-06.htm";
-						st.isCond(4);
+						st.set("cond", "4");
 						player.setAllianceWithVarkaKetra(3);
 						st.playSound(QuestSound.ITEMSOUND_QUEST_MIDDLE);
 					}
@@ -301,7 +301,7 @@ public class Q605_AllianceWithKetraOrcs extends Quest
 					if (cond != 5)
 					{
 						htmltext = "31371-07.htm";
-						st.isCond(5);
+						st.set("cond", "5");
 						player.setAllianceWithVarkaKetra(4);
 						st.playSound(QuestSound.ITEMSOUND_QUEST_MIDDLE);
 					}
@@ -328,7 +328,7 @@ public class Q605_AllianceWithKetraOrcs extends Quest
 					if (cond != 6)
 					{
 						htmltext = "31371-18.htm";
-						st.isCond(6);
+						st.set("cond", "6");
 						player.setAllianceWithVarkaKetra(5);
 						st.playSound(QuestSound.ITEMSOUND_QUEST_MIDDLE);
 					}
@@ -363,8 +363,9 @@ public class Q605_AllianceWithKetraOrcs extends Quest
 		}
 		
 		st = partyMember.getQuestState(qn);
-
-		if (st.isCond(6))
+		
+		int cond = st.getInt("cond");
+		if (cond == 6)
 			return null;
 		
 		switch (npcId)
@@ -374,13 +375,13 @@ public class Q605_AllianceWithKetraOrcs extends Quest
 			case 21353:
 			case 21354:
 			case 21355:
-				if (st.isCond(1))
+				if (cond == 1)
 					st.dropItems(Varka_Badge_Soldier, 1, 100, Chance.get(npcId));
-				else if (st.isCond(2))
+				else if (cond == 2)
 					st.dropItems(Varka_Badge_Soldier, 1, 200, Chance.get(npcId));
-				else if (st.isCond(3) || st.isCond(4))
+				else if (cond == 3 || cond == 4)
 					st.dropItems(Varka_Badge_Soldier, 1, 300, Chance.get(npcId));
-				else if (st.isCond(5))
+				else if (cond == 5)
 					st.dropItems(Varka_Badge_Soldier, 1, 400, Chance.get(npcId));
 				break;
 			
@@ -391,13 +392,13 @@ public class Q605_AllianceWithKetraOrcs extends Quest
 			case 21362:
 			case 21369:
 			case 21370:
-				if (st.isCond(2))
+				if (cond == 2)
 					st.dropItems(Varka_Badge_Officer, 1, 100, Chance.get(npcId));
-				else if (st.isCond(3))
+				else if (cond == 3)
 					st.dropItems(Varka_Badge_Officer, 1, 200, Chance.get(npcId));
-				else if (st.isCond(4))
+				else if (cond == 4)
 					st.dropItems(Varka_Badge_Officer, 1, 300, Chance.get(npcId));
-				else if (st.isCond(5))
+				else if (cond == 5)
 					st.dropItems(Varka_Badge_Officer, 1, 400, Chance.get(npcId));
 				break;
 			
@@ -410,9 +411,9 @@ public class Q605_AllianceWithKetraOrcs extends Quest
 			case 21373:
 			case 21374:
 			case 21375:
-				if (st.isCond(3))
+				if (cond == 3)
 					st.dropItems(Varka_Badge_Captain, 1, 100, Chance.get(npcId));
-				else if (st.isCond(4) || st.isCond(5))
+				else if (cond == 4 || cond == 5)
 					st.dropItems(Varka_Badge_Captain, 1, 200, Chance.get(npcId));
 				break;
 		}
