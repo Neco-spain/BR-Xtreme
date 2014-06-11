@@ -81,7 +81,8 @@ public class Q002_WhatWomenWant extends Quest
 		else if (event.equalsIgnoreCase("30223-09.htm"))
 		{
 			st.takeItems(ARUJIEN_LETTER_3, 1);
-			st.rewardItems(57, 450);
+			st.giveItems(57,2300);
+			st.addExpAndSp(4254, 335);
 			st.playSound(QuestSound.ITEMSOUND_QUEST_FINISH);
 			st.exitQuest(false);
 		}
@@ -126,6 +127,8 @@ public class Q002_WhatWomenWant extends Quest
 							htmltext = "30223-10.htm";
 							st.takeItems(GREENIS_LETTER, 1);
 							st.giveItems(MYSTICS_EARRING, 1);
+							st.addExpAndSp(4254, 335);
+							st.giveItems(57, 1850);
 							st.playSound(QuestSound.ITEMSOUND_QUEST_FINISH);
 							st.exitQuest(false);
 						}

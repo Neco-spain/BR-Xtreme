@@ -63,7 +63,7 @@ public class Q019_GoToThePastureland extends Quest
 			{
 				htmltext = "31537-01.htm";
 				st.takeItems(YOUNG_WILD_BEAST_MEAT, 1);
-				st.rewardItems(57, 30000);
+				st.rewardItems(57, 50000);
 				st.addExpAndSp(136766,12688);
 				st.playSound(QuestSound.ITEMSOUND_QUEST_FINISH);
 				st.exitQuest(false);

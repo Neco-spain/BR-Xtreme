@@ -60,7 +60,7 @@ public class Q013_ParcelDelivery extends Quest
 		else if (event.equalsIgnoreCase("31539-1.htm"))
 		{
 			st.takeItems(PACKAGE, 1);
-			st.rewardItems(57, 82656);
+			st.rewardItems(57, 157834);
 			st.addExpAndSp(589092, 58794);
 			st.playSound(QuestSound.ITEMSOUND_QUEST_FINISH);
 			st.exitQuest(false);
