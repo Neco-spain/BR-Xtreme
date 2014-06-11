@@ -101,7 +101,7 @@ public class Q006_StepIntoTheFuture extends Quest
 		switch (st.getState())
 		{
 			case State.CREATED:
-				if (player.getRace() != Race.Human || player.getLevel() < 3)
+				if (player.getRace() != Race.Human || player.getLevel() >= 3)
 					htmltext = "30006-01.htm";
 				else
 					htmltext = "30006-02.htm";

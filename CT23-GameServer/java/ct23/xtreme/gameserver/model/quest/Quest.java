@@ -1475,6 +1475,15 @@ public class Quest extends ManagedScript
 	}
 	
 	/**
+	 * Add the quest to the NPC's first-talk (default action dialog)
+	 * @param npcIds A serie of ids.
+	 */
+	public void addKillId(int... killids)
+	{
+		for (int npcId : killids)
+			addEventId(npcId, Quest.QuestEventType.ON_KILL);
+	}
+	/**
 	 * Add this quest to the list of quests that the passed npc will respond to for Talk Events.<BR><BR>
 	 * @param talkId : ID of the NPC
 	 * @return int : ID of the NPC
