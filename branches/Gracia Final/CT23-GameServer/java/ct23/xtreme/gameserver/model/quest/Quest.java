@@ -2039,5 +2039,4 @@ public class Quest extends ManagedScript
 	{
 		return Rnd.nextBoolean();
 	}
-	
 }

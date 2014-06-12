@@ -66,7 +66,7 @@ public class HeavyMedal extends Quest
 				if (level>0)
 					st.takeItems(BADGES[level-1], -1);
 				st.giveItems(BADGES[level], 1);
-				st.playSound("Itemsound.quest_itemget");
+				st.playSound(QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				level++;
 			}
 			return "31229-"+event.toLowerCase()+"-"+String.valueOf(level)+".htm";
