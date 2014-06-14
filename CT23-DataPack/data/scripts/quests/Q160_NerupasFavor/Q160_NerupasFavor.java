@@ -34,30 +34,24 @@ public class Q160_NerupasFavor extends Quest
 	private static final String qn = "Q160_NerupasFavor";
 	
 	// Items
-    private static final int SILVERY_SPIDERSILK = 1026;
-    private static final int UNOREN_RECEIPT = 1027;
-    private static final int CREAMEES_TICKET = 1028;
-    private static final int NIGHTSHADE_LEAF = 1029;
-
-    // Reward
-    private static final int LESSER_HEALING_POTION = 1060;
-
-    // NPCs
-    private static final int NERUPA = 30370;
-    private static final int UNOREN = 30147;
-    private static final int CREAMEES = 30149;
-    private static final int JULIA = 30152;
+	private static final int SILVERY_SPIDERSILK = 1026;
+	private static final int UNOREN_RECEIPT = 1027;
+	private static final int CREAMEES_TICKET = 1028;
+	private static final int NIGHTSHADE_LEAF = 1029;
+	
+	// Reward
+	private static final int LESSER_HEALING_POTION = 1060;
+	
+	// NPCs
+	private static final int NERUPA = 30370;
+	private static final int UNOREN = 30147;
+	private static final int CREAMEES = 30149;
+	private static final int JULIA = 30152;
 	
 	public Q160_NerupasFavor()
 	{
 		super(160, qn, "Nerupas Favor");
-		questItemIds = new int[]
-		{
-			SILVERY_SPIDERSILK,
-			UNOREN_RECEIPT,
-			CREAMEES_TICKET,
-			NIGHTSHADE_LEAF
-		};
+		questItemIds = new int[] { SILVERY_SPIDERSILK, UNOREN_RECEIPT, CREAMEES_TICKET, NIGHTSHADE_LEAF };
 		
 		addStartNpc(NERUPA);
 		addTalkId(NERUPA, UNOREN, CREAMEES, JULIA);
@@ -105,67 +99,67 @@ public class Q160_NerupasFavor extends Quest
 			case State.COMPLETED:
 				htmltext = getAlreadyCompletedMsg();
 				
-            case State.STARTED:
-                int cond = st.getInt("cond");
-                switch (npc.getNpcId())
-                {
-                    case NERUPA:
-                        if (cond < 4)
-                            htmltext = "30370-05.htm";
-                        else if (cond == 4)
-                        {
-                            htmltext = "30370-06.htm";
-                            st.takeItems(NIGHTSHADE_LEAF, 1);
-                            st.rewardItems(LESSER_HEALING_POTION, 5);
-                            st.addExpAndSp(1000, 0);
-                            st.playSound(QuestSound.ITEMSOUND_QUEST_FINISH);
-                            st.exitQuest(false);
-                        }
-                        break;
-
-                    case UNOREN:
-                        if (cond == 1)
-                        {
-                            htmltext = "30147-01.htm";
-                            st.set("cond", "2");
-                            st.playSound(QuestSound.ITEMSOUND_QUEST_MIDDLE);
-                            st.takeItems(SILVERY_SPIDERSILK, 1);
-                            st.giveItems(UNOREN_RECEIPT, 1);
-                        }
-                        else if (cond == 2)
-                            htmltext = "30147-02.htm";
-                        else if (cond == 4)
-                            htmltext = "30147-03.htm";
-                        break;
-
-                    case CREAMEES:
-                        if (cond == 2)
-                        {
-                            htmltext = "30149-01.htm";
-                            st.set("cond", "3");
-                            st.playSound(QuestSound.ITEMSOUND_QUEST_MIDDLE);
-                            st.takeItems(UNOREN_RECEIPT, 1);
-                            st.giveItems(CREAMEES_TICKET, 1);
-                        }
-                        else if (cond == 3)
-                            htmltext = "30149-02.htm";
-                        else if (cond == 4)
-                            htmltext = "30149-03.htm";
-                        break;
-
-                    case JULIA:
-                        if (cond == 3)
-                        {
-                            htmltext = "30152-01.htm";
-                            st.set("cond", "4");
-                            st.playSound(QuestSound.ITEMSOUND_QUEST_MIDDLE);
-                            st.takeItems(CREAMEES_TICKET, 1);
-                            st.giveItems(NIGHTSHADE_LEAF, 1);
-                        }
-                        else if (cond == 4)
-                            htmltext = "30152-02.htm";
-                        break;
-                }
+			case State.STARTED:
+				int cond = st.getInt("cond");
+				switch (npc.getNpcId())
+				{
+					case NERUPA:
+						if (cond < 4)
+							htmltext = "30370-05.htm";
+						else if (cond == 4)
+						{
+							htmltext = "30370-06.htm";
+							st.takeItems(NIGHTSHADE_LEAF, 1);
+							st.rewardItems(LESSER_HEALING_POTION, 5);
+							st.addExpAndSp(1000, 0);
+							st.playSound(QuestSound.ITEMSOUND_QUEST_FINISH);
+							st.exitQuest(false);
+						}
+						break;
+					
+					case UNOREN:
+						if (cond == 1)
+						{
+							htmltext = "30147-01.htm";
+							st.set("cond", "2");
+							st.playSound(QuestSound.ITEMSOUND_QUEST_MIDDLE);
+							st.takeItems(SILVERY_SPIDERSILK, 1);
+							st.giveItems(UNOREN_RECEIPT, 1);
+						}
+						else if (cond == 2)
+							htmltext = "30147-02.htm";
+						else if (cond == 4)
+							htmltext = "30147-03.htm";
+						break;
+					
+					case CREAMEES:
+						if (cond == 2)
+						{
+							htmltext = "30149-01.htm";
+							st.set("cond", "3");
+							st.playSound(QuestSound.ITEMSOUND_QUEST_MIDDLE);
+							st.takeItems(UNOREN_RECEIPT, 1);
+							st.giveItems(CREAMEES_TICKET, 1);
+						}
+						else if (cond == 3)
+							htmltext = "30149-02.htm";
+						else if (cond == 4)
+							htmltext = "30149-03.htm";
+						break;
+					
+					case JULIA:
+						if (cond == 3)
+						{
+							htmltext = "30152-01.htm";
+							st.set("cond", "4");
+							st.playSound(QuestSound.ITEMSOUND_QUEST_MIDDLE);
+							st.takeItems(CREAMEES_TICKET, 1);
+							st.giveItems(NIGHTSHADE_LEAF, 1);
+						}
+						else if (cond == 4)
+							htmltext = "30152-02.htm";
+						break;
+				}
 		}
 		return htmltext;
 	}
