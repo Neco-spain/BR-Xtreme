@@ -31,7 +31,7 @@ import ct23.xtreme.gameserver.model.quest.State;
  */
 public class Q159_ProtectTheWaterSource extends Quest
 {
-	private static final String qn = "ProtectTheWaterSource ";
+	private static final String qn = "Q159_ProtectTheWaterSource";
 	
 	// Items
 	private static final int PLAGUE_DUST = 1035;
