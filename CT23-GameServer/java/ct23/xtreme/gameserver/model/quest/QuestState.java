@@ -17,6 +17,7 @@ package ct23.xtreme.gameserver.model.quest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Calendar;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,6 +35,7 @@ import ct23.xtreme.gameserver.model.actor.L2Character;
 import ct23.xtreme.gameserver.model.actor.L2Npc;
 import ct23.xtreme.gameserver.model.actor.instance.L2MonsterInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
+import ct23.xtreme.gameserver.model.itemcontainer.PcInventory;
 import ct23.xtreme.gameserver.model.quest.Quest.QuestSound;
 import ct23.xtreme.gameserver.network.SystemMessageId;
 import ct23.xtreme.gameserver.network.serverpackets.ExShowQuestMark;
@@ -48,6 +50,7 @@ import ct23.xtreme.gameserver.network.serverpackets.TutorialShowHtml;
 import ct23.xtreme.gameserver.network.serverpackets.TutorialShowQuestionMark;
 import ct23.xtreme.gameserver.skills.Stats;
 import ct23.xtreme.gameserver.templates.item.L2EtcItemType;
+import ct23.xtreme.gameserver.util.Util;
 import ct23.xtreme.util.Rnd;
 
 /**
@@ -68,7 +71,17 @@ public final class QuestState
 	private byte _state;
 	private Map<String, String> _vars;
 	private boolean _isExitQuestOnCleanUp = false;
-
+	
+	/**
+	 * This enumerate represent the different quest types.
+	 */
+	public static enum QuestType
+	{
+		REPEATABLE,
+		ONE_TIME,
+		DAILY
+	}
+	
 	/**
 	 * Constructor of the QuestState : save the quest in the list of quests of the player.<BR/><BR/>
 	 *
@@ -630,7 +643,26 @@ public final class QuestState
 	{
 		return getPlayer().getInventory().getItemByItemId(itemId) != null;
 	}
-
+	
+	/**
+	 * Check for multiple items in player's inventory.
+	 * @param player the player whose inventory to check for quest items
+	 * @param itemIds a list of item Ids to check for
+	 * @return {@code true} if all items exist in player's inventory, {@code false} otherwise
+	 */
+	public boolean hasQuestItems(L2PcInstance player,int... itemIds)
+	{
+		final PcInventory inv = player.getInventory();
+		for (int itemId : itemIds)
+		{
+			if (inv.getItemByItemId(itemId) == null)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	/**
 	 * Return the level of enchantment on the weapon of the player(Done specifically for weapon SA's)
 	 * @param itemId : ID of the item to check enchantment
@@ -1268,5 +1300,47 @@ public final class QuestState
 	public void dropItem(L2MonsterInstance npc, L2PcInstance player, int itemId, int count)
 	{
 		npc.dropItem(player, itemId, count);
+	}
+	
+	/**
+	 * Set condition to 1, state to STARTED and play the "ItemSound.quest_accept".<br>
+	 * Works only if state is CREATED and the quest is not a custom quest.
+	 * @return the newly created {@code QuestState} object
+	 */
+	public QuestState startQuest()
+	{
+		if (isCreated() && !getQuest().isCustomQuest())
+		{
+			set("cond", "1");
+			setState(State.STARTED);
+			playSound(QuestSound.ITEMSOUND_QUEST_ACCEPT);
+		}
+		return this;
+	}
+	/**
+	 * Set the restart time for the daily quests.<br>
+	 * The time is hardcoded at {@link Quest#getResetHour()} hours, {@link Quest#getResetMinutes()} minutes of the following day.<br>
+	 * It can be overridden in scripts (quests).
+	 */
+	public void setRestartTime()
+	{
+		final Calendar reDo = Calendar.getInstance();
+		if (reDo.get(Calendar.HOUR_OF_DAY) >= getQuest().getResetHour())
+		{
+			reDo.add(Calendar.DATE, 1);
+		}
+		reDo.set(Calendar.HOUR_OF_DAY, getQuest().getResetHour());
+		reDo.set(Calendar.MINUTE, getQuest().getResetMinutes());
+		set("restartTime", String.valueOf(reDo.getTimeInMillis()));
+	}
+	
+	/**
+	 * Check if a daily quest is available to be started over.
+	 * @return {@code true} if the quest is available, {@code false} otherwise.
+	 */
+	public boolean isNowAvailable()
+	{
+		final String val = get("restartTime");
+		return ((val == null) || !Util.isDigit(val)) || (Long.parseLong(val) <= System.currentTimeMillis());
 	}
 }

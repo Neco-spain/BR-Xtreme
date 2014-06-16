@@ -27,7 +27,6 @@ import java.util.logging.Logger;
 
 import javolution.util.FastList;
 import javolution.util.FastMap;
-
 import ct23.xtreme.Config;
 import ct23.xtreme.L2DatabaseFactory;
 import ct23.xtreme.gameserver.ThreadPoolManager;
@@ -80,9 +79,28 @@ public class Quest extends ManagedScript
 	private final byte _initialState = State.CREATED;
 	protected boolean _onEnterWorld = false;
 	public int[] questItemIds = null;
-	
+	private boolean _isCustom = false;
 	private static final String HTML_NONE_AVAILABLE = "<html><body>You are either not on a quest that involves this NPC, or you don't meet this NPC's minimum quest requirements.</body></html>";
 	private static final String HTML_ALREADY_COMPLETED = "<html><body>This quest has already been completed.</body></html>";
+	
+	private static final int RESET_HOUR = 6;
+	private static final int RESET_MINUTES = 30;
+	
+	/**
+	 * @return the reset hour for a daily quest, could be overridden on a script.
+	 */
+	public int getResetHour()
+	{
+		return RESET_HOUR;
+	}
+	
+	/**
+	 * @return the reset minutes for a daily quest, could be overridden on a script.
+	 */
+	public int getResetMinutes()
+	{
+		return RESET_MINUTES;
+	}
 	
 	/**
 	 * This enum contains known sound effects used by quests.<br>
@@ -1615,6 +1633,17 @@ public class Quest extends ManagedScript
 	}
 	
 	/**
+	 * Get a random party member with required cond value.
+	 * @param player the instance of a player whose party is to be searched
+	 * @param cond the value of the "cond" variable that must be matched
+	 * @return a random party member that matches the specified condition, or {@code null} if no match was found
+	 */
+	public L2PcInstance getRandomPartyMember(L2PcInstance player, int cond)
+	{
+		return getRandomPartyMember(player, "cond", String.valueOf(cond));
+	}
+	
+	/**
 	 * Auxilary function for party quests. 
 	 * Note: This function is only here because of how commonly it may be used by quest developers.
 	 * For any variations on this function, the quest script can always handle things on its own
@@ -2038,5 +2067,32 @@ public class Quest extends ManagedScript
 	public static boolean getRandomBoolean()
 	{
 		return Rnd.nextBoolean();
+	}
+	
+	/**
+	 * Registers all items that have to be destroyed in case player abort the quest or finish it.
+	 * @param items
+	 */
+	public void registerQuestItems(int... items)
+	{
+		questItemIds = items;
+	}
+	
+	/**
+	 * If a quest is set as custom, it will display it's name in the NPC Quest List.<br>
+	 * Retail quests are unhardcoded to display the name using a client string.
+	 * @param val if {@code true} the quest script will be set as custom quest.
+	 */
+	public void setIsCustom(boolean val)
+	{
+		_isCustom = val;
+	}
+	
+	/**
+	 * @return {@code true} if the quest script is a custom quest, {@code false} otherwise.
+	 */
+	public boolean isCustomQuest()
+	{
+		return _isCustom;
 	}
 }
