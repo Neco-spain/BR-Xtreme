@@ -2175,6 +2175,19 @@
 	<!-- Pailaka (Forgotten Temple) -->
 	<zone id="20108" type="ScriptZone" shape="NPoly" minZ="-5050" maxZ="-3900" />
 
+	<!-- Pailaka (Devil's Legacy) -->
+	<zone id="20109" type="ScriptZone" shape="NPoly" minZ="-3770" maxZ="-3700" />
+	
+	<!-- Pailaka (Injured Dragon) -->
+	<zone id="20110" type="ScriptZone" shape="NPoly" minZ="-3500" maxZ="-2000" />
+	<zone id="20111" type="ScriptZone" shape="NPoly" minZ="-3500" maxZ="-2000" />
+	<zone id="20112" type="ScriptZone" shape="NPoly" minZ="-3500" maxZ="-2000" />
+	<zone id="20113" type="ScriptZone" shape="NPoly" minZ="-3500" maxZ="-2000" />
+	<zone id="20114" type="ScriptZone" shape="NPoly" minZ="-3000" maxZ="-1500" />
+	<zone id="20115" type="ScriptZone" shape="NPoly" minZ="-3500" maxZ="-2000" />
+	<zone id="20116" type="ScriptZone" shape="NPoly" minZ="-3500" maxZ="-2000" />
+	<zone id="20117" type="ScriptZone" shape="NPoly" minZ="-2500" maxZ="-1500" />
+	
 	<!-- Hot Springs Zones -->
 	<!-- Hot Springs Illusion -->
 	<zone id="20200" type="PoisonZone" shape="NPoly" minZ="-3634" maxZ="-3434"> <!-- [24_14] spa_11 -->

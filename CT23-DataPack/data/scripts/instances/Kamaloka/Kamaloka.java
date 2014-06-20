@@ -25,7 +25,6 @@ import ct23.xtreme.gameserver.model.quest.Quest;
 import ct23.xtreme.gameserver.model.quest.QuestState;
 import ct23.xtreme.gameserver.network.SystemMessageId;
 import ct23.xtreme.gameserver.network.serverpackets.SystemMessage;
-import ct23.xtreme.util.Rnd;
 
 public class Kamaloka extends Quest
 {
@@ -666,7 +665,7 @@ public class Kamaloka extends Quest
 		if (npcs != null)
 		{
 			world.firstRoom = new ArrayList<L2Spawn>(spawns.length - 1);
-			int shaman = Rnd.get(spawns.length); // random position for shaman
+			int shaman = getRandom(spawns.length); // random position for shaman
 
 			for (int i = 0; i < spawns.length; i++)
 			{
