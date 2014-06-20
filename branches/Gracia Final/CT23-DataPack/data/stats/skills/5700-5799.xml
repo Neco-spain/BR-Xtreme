@@ -68,8 +68,11 @@
 	<skill id="5706" levels="1" name="Poison">
 		<set name="target" val="TARGET_NONE" />
 		<set name="skillType" val="NOTDONE" />
+		<set name="reuseDelay" val="8000" />
 		<set name="operateType" val="OP_PASSIVE" />
 		<set name="hitTime" val="2000" />
+		<set name="saveVs" val="CON" />
+		<set name="lvlDepend" val="1" />
 	</skill>
 	<skill id="5707" levels="1" name="Paralysis">
 		<set name="target" val="TARGET_NONE" />
@@ -100,9 +103,14 @@
 		<set name="operateType" val="OP_PASSIVE" />
 	</skill>
 	<skill id="5712" levels="1" name="Energy Ditch">
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
+		<set name="hitTime" val="2000" />
+		<set name="target" val="TARGET_ONE" />
+		<set name="reuseDelay" val="10000" />
+		<set name="skillType" val="HEAL" />
+		<set name="power" val="200" />
+		<set name="isMagic" val="true" />
+		<set name="operateType" val="OP_ACTIVE" />
+		<set name="castRange" val="1300" />
 	</skill>
 	<skill id="5713" levels="5" name="Energy Ditch">
 		<set name="target" val="TARGET_NONE" />
@@ -110,9 +118,11 @@
 		<set name="operateType" val="OP_PASSIVE" />
 	</skill>
 	<skill id="5714" levels="1" name="Boom Up">
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
+		<set name="target" val="TARGET_SELF" />
+		<set name="skillType" val="DUMMY" />
+		<set name="reuseDelay" val="6000" />
+		<set name="operateType" val="OP_ACTIVE" />
+		<set name="hitTime" val="1000" />
 	</skill>
 	<skill id="5715" levels="1" name="Electric Flame">
 		<!-- Confirmed CT2.3 retail -->
@@ -422,9 +432,32 @@
 		<set name="hitTime" val="9700"/>
 	</skill>
 	<skill id="5760" levels="9" name="Critical Hit">
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
+		<!-- CT2.3 Confirmed -->
+		<table name="#stackOrder"> 2 3 4 5 6 7 8 9 10 </table>
+		<table name="#activationChance"> 50 45 40 35 30 25 0 0 0 </table>
+		<table name="#triggeredLevel"> 2 3 4 5 6 7 7 7 7 </table>
+		<table name="#crits"> 0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.4 0.4 </table>
+		<table name="#spd"> 1.1 1.15 1.2 1.25 1.3 1.35 1.4 1.4 1.4 </table>
+		<set name="weaponsAllowed" val="64" /> <!-- Pole -->
+		<set name="magicLvl" val="74" />
+		<set name="target" val="TARGET_SELF" /> 
+		<set name="reuseDelay" val="5000" /> 
+		<set name="skillType" val="BUFF" /> 
+		<set name="operateType" val="OP_ACTIVE" /> 
+		<for> 
+			<effect name="ChanceSkillTrigger" time="180" triggeredId="5760" triggeredLevel="#triggeredLevel" activationChance="#activationChance" chanceType="ON_CRIT" stackOrder="#stackOrder" stackType="critical_hit_up" val="0">
+				<basemul order="0x30" stat="rCrit" val="#crits" >
+					<and>
+						<using kind="Pole" />
+					</and>
+				</basemul>
+				<mul order="0x30" stat="pAtkSpd" val="#spd" >
+					<and>
+						<using kind="Pole" />
+					</and>
+				</mul>
+			</effect> 
+		</for>
 	</skill>
 	<skill id="5761" levels="2" name="Power Strike">
 		<set name="target" val="TARGET_NONE" />

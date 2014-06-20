@@ -1556,7 +1556,7 @@
 		<set name="skillType" val="BUFF" />
 		<set name="operateType" val="OP_PASSIVE" />
 		<for>
-			<add order="0x40" stat="atkCountMax" val="5" />
+			<add order="0x40" stat="atkCountMax" val="4" />
 		</for>
 	</skill>
 </list>

@@ -15,6 +15,9 @@ package instances.CrystalCaverns;
 import java.util.List;
 import java.util.Map;
 
+import javolution.util.FastList;
+import javolution.util.FastMap;
+
 import ct23.xtreme.Config;
 import ct23.xtreme.gameserver.GeoData;
 import ct23.xtreme.gameserver.ai.CtrlIntention;
@@ -53,9 +56,6 @@ import ct23.xtreme.gameserver.network.serverpackets.SystemMessage;
 import ct23.xtreme.gameserver.network.serverpackets.ValidateLocation;
 import ct23.xtreme.gameserver.network.serverpackets.FlyToLocation.FlyType;
 import ct23.xtreme.gameserver.util.Util;
-import ct23.xtreme.util.Rnd;
-import javolution.util.FastList;
-import javolution.util.FastMap;
 
 public class CrystalCaverns extends Quest
 {
@@ -616,7 +616,7 @@ public class CrystalCaverns extends Quest
 
 		for (int[] spawn : SPAWNS)
 		{
-			L2Npc mob = addSpawn(CGMOBS[Rnd.get(CGMOBS.length)], spawn[0], spawn[1], spawn[2], spawn[3], false,0,false,world.instanceId);
+			L2Npc mob = addSpawn(CGMOBS[getRandom(CGMOBS.length)], spawn[0], spawn[1], spawn[2], spawn[3], false,0,false,world.instanceId);
 			world.npcList1.put(mob, false);
 		}
 	}
@@ -808,7 +808,7 @@ public class CrystalCaverns extends Quest
 		if (npc.getNpcId() >= 32275 && npc.getNpcId() <= 32277 && skill.getId() != 2360 && skill.getId() != 2369)
 		{
 			InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(npc.getInstanceId());
-			if (tmpworld instanceof CCWorld && Rnd.get(100) < 15)
+			if (tmpworld instanceof CCWorld && getRandom(100) < 15)
 			{
 				for(L2Npc oracle : ((CCWorld) tmpworld).oracles.keySet())
 					if (oracle != npc)
@@ -864,7 +864,7 @@ public class CrystalCaverns extends Quest
 				{
 					world.dragonScaleNeed--;
 				}
-				if (world.dragonScaleNeed == 0 && Rnd.get(100) < 80)
+				if (world.dragonScaleNeed == 0 && getRandom(100) < 80)
 					npc.setIsInvul(false);
 			}
 		}
@@ -914,7 +914,7 @@ public class CrystalCaverns extends Quest
 
 				int maxHp = npc.getMaxHp();
 				double nowHp = npc.getStatus().getCurrentHp();
-				int rand = Rnd.get(1000);
+				int rand = getRandom(1000);
 
 				if (nowHp < maxHp * 0.4 && rand < 5)
 				{
@@ -1051,7 +1051,7 @@ public class CrystalCaverns extends Quest
 			else if (event.equalsIgnoreCase("spawn_oracle"))
 			{
 				addSpawn(32271,153572,142075,-9728,10800,false,0,false,world.instanceId);
-				addSpawn((Rnd.get(10) < 5 ? 29116:29117),npc.getX(),npc.getY(),npc.getZ(),npc.getHeading(),false,0,false,world.instanceId); // Baylor's Chest
+				addSpawn((getRandom(10) < 5 ? 29116:29117),npc.getX(),npc.getY(),npc.getZ(),npc.getHeading(),false,0,false,world.instanceId); // Baylor's Chest
 				addSpawn(ORACLE_GUIDE_4,153572,142075,-12738,10800,false,0,false,world.instanceId);
 				this.cancelQuestTimer("baylor_despawn", npc, null);
 				this.cancelQuestTimers("baylor_skill");
@@ -1129,7 +1129,7 @@ public class CrystalCaverns extends Quest
 			{
 				if (world._alarm == null)
 				{
-					int[] spawnLoc = ALARMSPAWN[Rnd.get(ALARMSPAWN.length)];
+					int[] spawnLoc = ALARMSPAWN[getRandom(ALARMSPAWN.length)];
 					npc.addSkill(SkillTable.getInstance().getInfo(5244, 1));
 					npc.addSkill(SkillTable.getInstance().getInfo(5245, 1));
 					world._alarm = addSpawn(ALARMID,spawnLoc[0],spawnLoc[1],spawnLoc[2],10800,false,0,false,world.instanceId);
@@ -1148,7 +1148,7 @@ public class CrystalCaverns extends Quest
 				{
 					int maxHp = npc.getMaxHp();
 					double nowHp = npc.getStatus().getCurrentHp();
-					int rand = Rnd.get(100);
+					int rand = getRandom(100);
 
 					if (nowHp < maxHp * 0.2 && world._raidStatus < 3 && npc.getFirstEffect(5224) == null && npc.getFirstEffect(5225) == null)
 					{
@@ -1170,7 +1170,7 @@ public class CrystalCaverns extends Quest
 					}
 					else if (rand < 33)
 					{
-						npc.setTarget(world._raiders.get(Rnd.get(world._raiders.size())));
+						npc.setTarget(world._raiders.get(getRandom(world._raiders.size())));
 						npc.doCast(SkillTable.getInstance().getInfo(5229, 1));
 					}
 				}
@@ -1219,7 +1219,7 @@ public class CrystalCaverns extends Quest
 					startQuestTimer("getFood",2000,npc,null);
 				else
 				{
-					if (Rnd.get(100) < 5)
+					if (getRandom(100) < 5)
 						npc.broadcastPacket(new CreatureSay(npc.getObjectId(),1,npc.getName(),"ah ... I am so hungry ..."));
 					startQuestTimer("autoFood",2000,npc,null);
 				}
@@ -1308,7 +1308,7 @@ public class CrystalCaverns extends Quest
 						st.takeItems(CONT_CRYSTAL, 1);
 						st.giveItems(bossCry, 1);
 					}
-					if (Rnd.get(10) < 5)
+					if (getRandom(10) < 5)
 						st.giveItems(WHITE_SEED, num);
 					else
 						st.giveItems(BLACK_SEED, num);
@@ -1324,7 +1324,7 @@ public class CrystalCaverns extends Quest
 				st.takeItems(CONT_CRYSTAL, 1);
 				st.giveItems(bossCry, 1);
 			}
-			if (Rnd.get(10) < 5)
+			if (getRandom(10) < 5)
 				st.giveItems(WHITE_SEED, num);
 			else
 				st.giveItems(BLACK_SEED, num);
@@ -1683,7 +1683,7 @@ public class CrystalCaverns extends Quest
 					{
 						for (L2PcInstance partyMember : party.getPartyMembers())
 						{
-							int rnd = Rnd.get(100);
+							int rnd = getRandom(100);
 							partyMember.destroyItemByItemId("Quest", (rnd < 33 ? BOSS_CRYSTAL_1:(rnd < 67 ? BOSS_CRYSTAL_2:BOSS_CRYSTAL_3)), 1, partyMember, true);
 							world._raiders.add(partyMember);
 						}

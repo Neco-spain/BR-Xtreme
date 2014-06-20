@@ -646,24 +646,70 @@
 		<set name="effectRange" val="400" />
 	</skill>
 	<skill id="8239" levels="1" name="Critical Up">
+		<!-- Confirmed CT2.3 -->
+		<set name="weaponsAllowed" val="64" /> <!-- Pole -->
 		<set name="mpConsume" val="74" />
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
+		<set name="target" val="TARGET_SELF" />
+		<set name="skillType" val="BUFF" />
 		<set name="hitTime" val="2500" />
+		<set name="reuseDelay" val="5000" />
+		<set name="operateType" val="OP_ACTIVE" />
+		<for>
+			<effect name="ChanceSkillTrigger" time="180" triggeredId="5760" triggeredLevel="1" activationChance="50" chanceType="ON_CRIT" stackOrder="1" stackType="critical_hit_up" val="0">
+				<basemul order="0x30" stat="rCrit" val="0.05" >
+					<and>
+						<using kind="Pole" />
+					</and>
+				</basemul>
+				<mul order="0x30" stat="pAtkSpd" val="1.05" >
+					<and>
+						<using kind="Pole" />
+					</and>
+				</mul>
+			</effect>
+		</for>
 	</skill>
 	<skill id="8240" levels="3" name="Obliteration Storm">
+		<!-- Confirmed CT2.3 -->
+		<table name="#charges"> 3 5 7 </table>
+		<table name="#lvl"> 1 2 3 </table>
+		<set name="weaponsAllowed" val="64" /> <!-- Pole -->
+		<set name="lvlDepend" val="#lvl" />
 		<set name="mpConsume" val="149" />
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
+		<set name="power" val="3000" />
+		<set name="target" val="TARGET_AREA" />
+		<set name="skillRadius" val="700" />
+		<set name="skillType" val="PDAM" />
+		<set name="operateType" val="OP_ACTIVE" />
+		<set name="ignoreShld" val="true" />
+		<set name="castRange" val="200" />
+		<set name="effectRange" val="900" />
 		<set name="hitTime" val="2500" />
+		<set name="reuseDelay" val="20000" />
+		<set name="isDebuff" val="true" />
+		<set name="negateId" val="5760" />
+		<cond msgId="113" addName="1">
+			<player active_effect_id_lvl="5760,#charges" />
+		</cond>
+		<for>
+			<effect name="Stun" time="9" val="0" stackOrder="1" stackType="Stun" effectPower="80" effectType="STUN" />
+			<effect name="Negate" val="0" noicon="1" effectType="NEGATE" />
+		</for>
 	</skill>
 	<skill id="8241" levels="1" name="Critical Up">
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
+		<!-- Confirmed CT2.3 -->		
+		<set name="weaponsAllowed" val="64" /> <!-- Pole -->
+		<set name="mpConsume" val="48" />
+		<set name="target" val="TARGET_SELF" />
+		<set name="skillType" val="BUFF" />
 		<set name="hitTime" val="4000" />
+		<set name="reuseDelay" val="5000" />
+		<set name="operateType" val="OP_ACTIVE" />
+		<for> 
+			<effect name="Buff" time="180" val="0" stackOrder="0.3" stackType="critical_hit_up"> 
+				<basemul order="0x30" stat="rCrit" val="0.3" /> 
+			</effect> 
+		</for>
 	</skill>
 	<skill id="8242" levels="1" name="Ice Ball">
 		<set name="mpConsume" val="61" />
@@ -755,10 +801,19 @@
 		<set name="operateType" val="OP_PASSIVE" />
 	</skill>
 	<skill id="8250" levels="2" name="Summon Tigress">
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
+		<set name="mpConsume" val="117" />
+		<set name="summonTotalLifeTime" val="1200000" />
+		<set name="summonTimeLostIdle" val="500" />
+		<set name="summonTimeLostActive" val="1000" />
+		<set name="target" val="TARGET_SELF" />
+		<set name="reuseDelay" val="20000" />
 		<set name="hitTime" val="15000" />
+		<set name="skillType" val="SUMMON" />
+		<set name="isMagic" val="true" />
+		<set name="operateType" val="OP_ACTIVE" />
+		<!-- Summon-specific -->
+		<table name="#npcIds"> 14916 14917 </table>
+		<set name="npcId" val="#npcIds" />
 	</skill>
 	<skill id="8251" levels="1" name="Collection Agathion Release Seal">
 		<set name="target" val="TARGET_SELF" />
