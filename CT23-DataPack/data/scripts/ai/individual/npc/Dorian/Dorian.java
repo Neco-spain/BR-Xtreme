@@ -14,7 +14,7 @@
  */
 package ai.individual.npc.Dorian;
 
-import quests.Q024_InhabitantsOfTheForestOfTheDead.Q024_InhabitantsOfTheForestOfTheDead;
+import quests.Q00024_InhabitantsOfTheForestOfTheDead.Q00024_InhabitantsOfTheForestOfTheDead;
 import ai.engines.L2AttackableAIScript;
 import ct23.xtreme.gameserver.datatables.SpawnTable;
 import ct23.xtreme.gameserver.model.L2Spawn;
@@ -64,7 +64,7 @@ public final class Dorian extends L2AttackableAIScript
 			{
 				for (L2PcInstance pl : npc.getKnownList().getKnownPlayersInRadius(300))
 				{
-					final QuestState qs = pl.getQuestState(Q024_InhabitantsOfTheForestOfTheDead.class.getSimpleName());
+					final QuestState qs = pl.getQuestState(Q00024_InhabitantsOfTheForestOfTheDead.class.getSimpleName());
 					if ((qs != null) && qs.isCond(3))
 					{
 						qs.takeItems(SILVER_CROSS, -1);
