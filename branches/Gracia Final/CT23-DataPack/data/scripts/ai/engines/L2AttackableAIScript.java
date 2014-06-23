@@ -24,6 +24,7 @@ import ct23.xtreme.gameserver.model.L2Skill;
 import ct23.xtreme.gameserver.model.actor.L2Attackable;
 import ct23.xtreme.gameserver.model.actor.L2Character;
 import ct23.xtreme.gameserver.model.actor.L2Npc;
+import ct23.xtreme.gameserver.model.actor.L2Playable;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2RiftInvaderInstance;
 import ct23.xtreme.gameserver.model.quest.Quest;
@@ -205,7 +206,18 @@ public class L2AttackableAIScript extends QuestJython
     { 
     	return null; 
     }
-    
+	
+	/**
+	 * Monster is running and attacking the playable.
+	 * @param npc
+	 * @param playable
+	 */
+	protected void attackPlayer(L2Attackable npc, L2Playable playable)
+	{
+		npc.setIsRunning(true);
+		npc.addDamageHate(playable, 0, 999);
+		npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, playable);
+	}
     public static void main(String[] args)
     {
     	L2AttackableAIScript ai = new L2AttackableAIScript(-1,"L2AttackableAIScript","L2AttackableAIScript");

@@ -30,7 +30,6 @@ import ct23.xtreme.gameserver.model.quest.State;
 
 public class Q00694_BreakThroughTheHallOfSuffering extends Quest
 {
-	
 	// NPC
 	private static final int TEPIOS = 32603;
 	
@@ -49,8 +48,7 @@ public class Q00694_BreakThroughTheHallOfSuffering extends Quest
 			qs = newQuestState(talker);
 		QuestState reqQs = talker.getQuestState("10273_GoodDayToFly");
 		QuestState reqQs1 = talker.getQuestState("10268_ToTheSeedOfInfinity");
-		if(reqQs != null && reqQs.getState() == State.COMPLETED &&
-				reqQs1 != null && reqQs1.getState() == State.COMPLETED)
+		if(reqQs != null && reqQs.getState() == State.COMPLETED && reqQs1 != null && reqQs1.getState() == State.COMPLETED)
 		{
 			long reentertime = InstanceManager.getInstance().getInstanceTime(talker.getObjectId(), 115);
 			if (System.currentTimeMillis() >= reentertime)
