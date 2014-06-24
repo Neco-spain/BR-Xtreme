@@ -23,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javolution.util.FastMap;
+
 import ct23.xtreme.Config;
 import ct23.xtreme.L2DatabaseFactory;
 import ct23.xtreme.gameserver.GameTimeController;
@@ -1294,6 +1295,26 @@ public final class QuestState
 		return this;
 	}
 
+	/**
+	 * Finishes the quest and removes all quest items associated with this quest from the player's inventory.<br>
+	 * If {@code repeatable} is set to {@code false}, also removes all other quest data associated with this quest.
+	 * @param repeatable if {@code true}, deletes all data and variables of this quest, otherwise keeps them
+	 * @param playExitQuest if {@code true}, plays "ItemSound.quest_finish"
+	 * @return this {@link QuestState} object
+	 * @see #exitQuest(QuestType type)
+	 * @see #exitQuest(QuestType type, boolean playExitQuest)
+	 * @see #exitQuest(boolean repeatable)
+	 */
+	public QuestState exitQuest(boolean repeatable, boolean playExitQuest)
+	{
+		exitQuest(repeatable);
+		if (playExitQuest)
+		{
+			playSound(QuestSound.ITEMSOUND_QUEST_FINISH);
+		}
+		return this;
+	}
+	
 	public void showQuestionMark(int number)
 	{
 		getPlayer().sendPacket(new TutorialShowQuestionMark(number));

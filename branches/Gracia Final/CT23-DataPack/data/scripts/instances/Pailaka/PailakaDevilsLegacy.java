@@ -249,7 +249,7 @@ public class PailakaDevilsLegacy extends Quest
 			enterInstance(player);
 			if(st.getCond() == 1)
 			{
-				st.set("cond","2");
+				st.setCond(2);
 				return "32498-07.htm";
 			}
 			else
@@ -261,9 +261,7 @@ public class PailakaDevilsLegacy extends Quest
 		{
 			if (cond == 0)
 			{
-				st.set("cond","1");
-				st.setState(State.STARTED);
-				st.playSound(QuestSound.ITEMSOUND_QUEST_ACCEPT);
+				st.startQuest();
 			}
 		}
 		else if (event.equalsIgnoreCase("32501-03.htm"))
@@ -271,15 +269,13 @@ public class PailakaDevilsLegacy extends Quest
 			if (cond == 2)
 			{
 				st.giveItems(SWORD, 1);
-				st.set("cond","3");
-				st.playSound(QuestSound.ITEMSOUND_QUEST_MIDDLE);
+				st.setCond(3, true);
 			}
 		}
 		else if (event.equalsIgnoreCase("32510-02.htm"))
 		{
 			st.unset("cond");
-			st.playSound(QuestSound.ITEMSOUND_QUEST_FINISH);
-			st.exitQuest(false);
+			st.exitQuest(false, true);
 
 			Instance inst = InstanceManager.getInstance().getInstance(npc.getInstanceId());
 			inst.setDuration(EXIT_TIME * 60000);
@@ -418,8 +414,7 @@ public class PailakaDevilsLegacy extends Quest
 				if (player.getPet() == null)
 				{
 					st.unset("cond");
-					st.playSound(QuestSound.ITEMSOUND_QUEST_FINISH);
-					st.exitQuest(false);
+					st.exitQuest(false, true);
 
 					Instance inst = InstanceManager.getInstance().getInstance(npc.getInstanceId());
 					inst.setDuration(EXIT_TIME * 60000);
@@ -516,8 +511,7 @@ public class PailakaDevilsLegacy extends Quest
 						_follower.deleteMe();
 					_followerslist.clear();
 				}
-				st.set("cond","4");
-				st.playSound(QuestSound.ITEMSOUND_QUEST_MIDDLE);
+				st.setCond(4, true);
 				addSpawn(ADVENTURER2, 84983, -208736, -3336, 49915, false, 0, false, npc.getInstanceId());
 				break;
 			case POWDER_KEG:
@@ -598,6 +592,7 @@ public class PailakaDevilsLegacy extends Quest
 			addKillId(mobId);
 		addEnterZoneId(ZONE);
 		addSpawnId(FOLLOWERS);
+		addSpawnId(POWDER_KEG);
 		
 		questItemIds = ITEMS;
 	}

@@ -14,7 +14,7 @@
  */
 package ct23.xtreme.gameserver.templates.item;
 
-import ct23.xtreme.gameserver.skills.SkillHolder;
+import ct23.xtreme.gameserver.model.holders.SkillHolder;
 import ct23.xtreme.gameserver.templates.StatsSet;
 import ct23.xtreme.util.StringUtil;
 

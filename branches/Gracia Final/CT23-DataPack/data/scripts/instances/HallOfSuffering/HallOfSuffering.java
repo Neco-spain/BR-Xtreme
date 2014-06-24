@@ -645,8 +645,7 @@ public class HallOfSuffering extends Quest
 						if (((HSWorld)world).rewardMark && st.getQuestItemsCount(MARK_STAGE_1) < 1)
 						st.giveItems(MARK_STAGE_1);
 						quest.unset("cond");
-						quest.playSound(QuestSound.ITEMSOUND_QUEST_FINISH);
-						quest.exitQuest(true);
+						quest.exitQuest(true, true);
 					}
 				}
 				return null;

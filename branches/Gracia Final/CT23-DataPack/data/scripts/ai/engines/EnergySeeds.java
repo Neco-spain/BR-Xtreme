@@ -16,8 +16,9 @@ package ai.engines;
 
 import java.util.Map;
 
-import javolution.util.FastMap;
+import quests.Q00692_HowtoOpposeEvil.Q00692_HowtoOpposeEvil;
 
+import javolution.util.FastMap;
 import ct23.xtreme.Config;
 import ct23.xtreme.gameserver.ThreadPoolManager;
 import ct23.xtreme.gameserver.datatables.DoorTable;
@@ -324,7 +325,7 @@ public class EnergySeeds extends L2AttackableAIScript implements IL2Seed
 		{
 			return;
 		}
-		QuestState st = player.getQuestState("Q00692_HowtoOpposeEvil");
+		QuestState st = player.getQuestState(Q00692_HowtoOpposeEvil.class.getSimpleName());
 		switch (seedType)
 		{
 			case INFINITY:

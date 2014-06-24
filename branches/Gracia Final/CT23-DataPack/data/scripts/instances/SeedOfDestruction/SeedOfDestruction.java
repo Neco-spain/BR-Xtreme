@@ -53,12 +53,12 @@ import ct23.xtreme.gameserver.model.actor.L2Trap;
 import ct23.xtreme.gameserver.model.actor.instance.L2DoorInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2MonsterInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
+import ct23.xtreme.gameserver.model.holders.SkillHolder;
 import ct23.xtreme.gameserver.model.quest.Quest;
 import ct23.xtreme.gameserver.model.quest.QuestState;
 import ct23.xtreme.gameserver.network.SystemMessageId;
 import ct23.xtreme.gameserver.network.serverpackets.ExShowScreenMessage;
 import ct23.xtreme.gameserver.network.serverpackets.SystemMessage;
-import ct23.xtreme.gameserver.skills.SkillHolder;
 import ct23.xtreme.gameserver.util.Util;
 
 /**

@@ -19,6 +19,7 @@ import java.util.Collection;
 import java.util.List;
 
 import javolution.util.FastList;
+
 import ct23.xtreme.gameserver.datatables.SkillTable;
 import ct23.xtreme.gameserver.handler.ISkillHandler;
 import ct23.xtreme.gameserver.handler.SkillHandler;
@@ -29,10 +30,10 @@ import ct23.xtreme.gameserver.model.L2Skill;
 import ct23.xtreme.gameserver.model.actor.L2Character;
 import ct23.xtreme.gameserver.model.actor.L2Npc;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
+import ct23.xtreme.gameserver.model.holders.SkillHolder;
 import ct23.xtreme.gameserver.model.quest.Quest;
 import ct23.xtreme.gameserver.skills.Env;
 import ct23.xtreme.gameserver.skills.Formulas;
-import ct23.xtreme.gameserver.skills.SkillHolder;
 import ct23.xtreme.gameserver.skills.conditions.Condition;
 import ct23.xtreme.gameserver.skills.conditions.ConditionGameChance;
 import ct23.xtreme.gameserver.skills.funcs.Func;

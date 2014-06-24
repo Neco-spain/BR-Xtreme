@@ -1,0 +1,236 @@
+/*
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+package quests.Q00692_HowtoOpposeEvil;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import ct23.xtreme.Config;
+import ct23.xtreme.gameserver.model.actor.L2Npc;
+import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
+import ct23.xtreme.gameserver.model.holders.ItemHolder;
+import ct23.xtreme.gameserver.model.quest.Quest;
+import ct23.xtreme.gameserver.model.quest.QuestState;
+
+/**
+ * How to Oppose Evil (692)
+ * @author Gigiikun, update script for GF by Browser
+ */
+public final class Q00692_HowtoOpposeEvil extends Quest
+{
+	// Npcs
+	private static final int DILIOS = 32549;
+	private static final int KIRKLAN = 32550;
+	
+	// Items
+	private static final int LEKONS_CERTIFICATE = 13857;
+	private static final int[] QUEST_ITEMS =
+	{
+		13863,
+		13864,
+		13865,
+		13866,
+		13867
+	};
+	
+	// Quest Mobs
+	private static final Map<Integer, ItemHolder> QUEST_MOBS = new HashMap<>();
+	static
+	{
+		// Seed of Infinity
+		QUEST_MOBS.put(22509, new ItemHolder(13863, 500));
+		QUEST_MOBS.put(22510, new ItemHolder(13863, 500));
+		QUEST_MOBS.put(22511, new ItemHolder(13863, 500));
+		QUEST_MOBS.put(22512, new ItemHolder(13863, 500));
+		QUEST_MOBS.put(22513, new ItemHolder(13863, 500));
+		QUEST_MOBS.put(22514, new ItemHolder(13863, 500));
+		QUEST_MOBS.put(22515, new ItemHolder(13863, 500));
+		// Seed of Destruction
+		QUEST_MOBS.put(22537, new ItemHolder(13865, 250));
+		QUEST_MOBS.put(22538, new ItemHolder(13865, 250));
+		QUEST_MOBS.put(22539, new ItemHolder(13865, 250));
+		QUEST_MOBS.put(22540, new ItemHolder(13865, 250));
+		QUEST_MOBS.put(22541, new ItemHolder(13865, 250));
+		QUEST_MOBS.put(22542, new ItemHolder(13865, 250));
+		QUEST_MOBS.put(22543, new ItemHolder(13865, 250));
+		QUEST_MOBS.put(22544, new ItemHolder(13865, 250));
+		QUEST_MOBS.put(22546, new ItemHolder(13865, 250));
+		QUEST_MOBS.put(22547, new ItemHolder(13865, 250));
+		QUEST_MOBS.put(22548, new ItemHolder(13865, 250));
+		QUEST_MOBS.put(22549, new ItemHolder(13865, 250));
+		QUEST_MOBS.put(22550, new ItemHolder(13865, 250));
+		QUEST_MOBS.put(22551, new ItemHolder(13865, 250));
+		QUEST_MOBS.put(22552, new ItemHolder(13865, 250));
+		QUEST_MOBS.put(22593, new ItemHolder(13865, 250));
+		QUEST_MOBS.put(22596, new ItemHolder(13865, 250));
+		QUEST_MOBS.put(22597, new ItemHolder(13865, 250));
+	}
+	
+	// Misc
+	private static final int MIN_LV = 75;
+	
+	public Q00692_HowtoOpposeEvil(int questId, String name, String descr)
+	{
+		super(questId, name, descr);
+		addStartNpc(DILIOS);
+		addTalkId(DILIOS, KIRKLAN);
+		for (int id : QUEST_MOBS.keySet()) super.addKillId(id);
+	}
+	
+	@Override
+	public final String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
+	{
+		QuestState st = player.getQuestState(getName());
+		if (st == null)
+		{
+			return getNoQuestMsg();
+		}
+		if (event.equalsIgnoreCase("32549-03.htm"))
+		{
+			st.startQuest();
+		}
+		else if (event.equalsIgnoreCase("32550-04.htm"))
+		{
+			st.setCond(3);
+		}
+		else if (event.equalsIgnoreCase("32550-07.htm"))
+		{
+			if (!giveReward(st, 13863, 5, 13796, 1))
+			{
+				return "32550-08.htm";
+			}
+		}
+		else if (event.equalsIgnoreCase("32550-09.htm"))
+		{
+			if (!giveReward(st, 13798, 1, 57, 5000))
+			{
+				return "32550-10.htm";
+			}
+		}
+		else if (event.equalsIgnoreCase("32550-12.htm"))
+		{
+			if (!giveReward(st, 13865, 5, 13841, 1))
+			{
+				return "32550-13.htm";
+			}
+		}
+		else if (event.equalsIgnoreCase("32550-14.htm"))
+		{
+			if (!giveReward(st, 13867, 1, 57, 5000))
+			{
+				return "32550-15.htm";
+			}
+		}
+		return event;
+	}
+	
+	@Override
+	public final String onKill(L2Npc npc, L2PcInstance player, boolean isPet)
+	{
+		final L2PcInstance partyMember = getRandomPartyMember(player, 3);
+		if (partyMember == null)
+		{
+			return null;
+		}
+		final QuestState st = partyMember.getQuestState(getName());
+		final int npcId = npc.getNpcId();
+		if ((st != null) && QUEST_MOBS.containsKey(npcId))
+		{
+			int chance = (int) (QUEST_MOBS.get(npcId).getCount() * Config.RATE_QUEST_DROP);
+			int numItems = chance / 1000;
+			chance = chance % 1000;
+			if (getRandom(1000) < chance)
+			{
+				numItems++;
+			}
+			if (numItems > 0)
+			{
+				st.giveItems(QUEST_MOBS.get(npcId).getId(), numItems);
+				st.playSound(QuestSound.ITEMSOUND_QUEST_ITEMGET);
+			}
+		}
+		return null;
+	}
+	
+	@Override
+	public final String onTalk(L2Npc npc, L2PcInstance player)
+	{
+		String htmltext = getNoQuestMsg();
+		final QuestState st = player.getQuestState(getName());
+		if (st == null)
+		{
+			return htmltext;
+		}
+		
+		if (st.isCreated())
+		{
+			htmltext = (player.getLevel() >= MIN_LV) ? "32549-01.htm" : "32549-00.htm";
+		}
+		else
+		{
+			if (npc.getNpcId() == DILIOS)
+			{
+				if (st.isCond(1) && st.hasQuestItems(LEKONS_CERTIFICATE))
+				{
+					htmltext = "32549-04.htm";
+					st.takeItems(LEKONS_CERTIFICATE, -1);
+					st.setCond(2);
+				}
+				else if (st.isCond(2))
+				{
+					htmltext = "32549-05.htm";
+				}
+			}
+			else
+			{
+				if (st.isCond(2))
+				{
+					htmltext = "32550-01.htm";
+				}
+				else if (st.isCond(3))
+				{
+					for (int i : QUEST_ITEMS)
+					{
+						if (st.getQuestItemsCount(i) > 0)
+						{
+							return "32550-05.htm";
+						}
+					}
+					htmltext = "32550-04.htm";
+				}
+			}
+		}
+		return htmltext;
+	}
+	
+	private static final boolean giveReward(QuestState st, int itemId, int minCount, int rewardItemId, long rewardCount)
+	{
+		long count = st.getQuestItemsCount(itemId);
+		if (count < minCount)
+		{
+			return false;
+		}
+		
+		count = count / minCount;
+		st.takeItems(itemId, count * minCount);
+		st.rewardItems(rewardItemId, rewardCount * count);
+		return true;
+	}
+	
+	public static void main(String[] args)
+	{
+		new Q00692_HowtoOpposeEvil(692, Q00692_HowtoOpposeEvil.class.getSimpleName(), "How to Oppose Evil");
+	}
+}

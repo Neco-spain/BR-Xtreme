@@ -37,8 +37,66 @@ import ct23.xtreme.gameserver.model.ChanceCondition;
 import ct23.xtreme.gameserver.model.L2Skill;
 import ct23.xtreme.gameserver.model.base.PlayerState;
 import ct23.xtreme.gameserver.model.base.Race;
-import ct23.xtreme.gameserver.skills.conditions.*;
+import ct23.xtreme.gameserver.skills.conditions.Condition;
+import ct23.xtreme.gameserver.skills.conditions.ConditionChangeWeapon;
+import ct23.xtreme.gameserver.skills.conditions.ConditionForceBuff;
+import ct23.xtreme.gameserver.skills.conditions.ConditionGameChance;
+import ct23.xtreme.gameserver.skills.conditions.ConditionGameTime;
 import ct23.xtreme.gameserver.skills.conditions.ConditionGameTime.CheckGameTime;
+import ct23.xtreme.gameserver.skills.conditions.ConditionLogicAnd;
+import ct23.xtreme.gameserver.skills.conditions.ConditionLogicNot;
+import ct23.xtreme.gameserver.skills.conditions.ConditionLogicOr;
+import ct23.xtreme.gameserver.skills.conditions.ConditionMinDistance;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerActiveEffectId;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerActiveSkillId;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerAgathionId;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerCharges;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerClassIdRestriction;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerCloakStatus;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerCp;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerFlyMounted;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerGrade;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerHasCastle;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerHasClanHall;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerHasFort;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerHasPet;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerHp;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerInstanceId;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerInvSize;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerIsClanLeader;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerIsHero;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerLandingZone;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerLevel;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerMp;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerPkCount;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerPledgeClass;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerRace;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerRangeFromNpc;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerServitorNpcId;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerSex;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerSiegeSide;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerSouls;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerState;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerSubclass;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerTvTEvent;
+import ct23.xtreme.gameserver.skills.conditions.ConditionPlayerWeight;
+import ct23.xtreme.gameserver.skills.conditions.ConditionSiegeZone;
+import ct23.xtreme.gameserver.skills.conditions.ConditionSkillStats;
+import ct23.xtreme.gameserver.skills.conditions.ConditionSlotItemId;
+import ct23.xtreme.gameserver.skills.conditions.ConditionTargetAbnormal;
+import ct23.xtreme.gameserver.skills.conditions.ConditionTargetActiveEffectId;
+import ct23.xtreme.gameserver.skills.conditions.ConditionTargetActiveSkillId;
+import ct23.xtreme.gameserver.skills.conditions.ConditionTargetAggro;
+import ct23.xtreme.gameserver.skills.conditions.ConditionTargetClassIdRestriction;
+import ct23.xtreme.gameserver.skills.conditions.ConditionTargetLevel;
+import ct23.xtreme.gameserver.skills.conditions.ConditionTargetNpcId;
+import ct23.xtreme.gameserver.skills.conditions.ConditionTargetNpcType;
+import ct23.xtreme.gameserver.skills.conditions.ConditionTargetRace;
+import ct23.xtreme.gameserver.skills.conditions.ConditionTargetRaceId;
+import ct23.xtreme.gameserver.skills.conditions.ConditionTargetUsesWeaponKind;
+import ct23.xtreme.gameserver.skills.conditions.ConditionUsingItemType;
+import ct23.xtreme.gameserver.skills.conditions.ConditionUsingSkill;
+import ct23.xtreme.gameserver.skills.conditions.ConditionWithSkill;
 import ct23.xtreme.gameserver.skills.effects.EffectChanceSkillTrigger;
 import ct23.xtreme.gameserver.skills.funcs.FuncTemplate;
 import ct23.xtreme.gameserver.skills.funcs.Lambda;
@@ -675,7 +733,20 @@ abstract class DocumentBase
 	        	}
 	        	cond = joinAnd(cond, new ConditionPlayerServitorNpcId(array));
 			}
-        }
+            
+			else if ("npcIdRadius".equalsIgnoreCase(a.getNodeName()))
+			{
+				StringTokenizer st = new StringTokenizer(a.getNodeValue(), ",");
+				int npcId = 0;
+				int radius = 0;
+				if (st.countTokens() > 1)
+				{
+					npcId = Integer.decode(getValue(st.nextToken().trim(), null));
+					radius = Integer.decode(getValue(st.nextToken().trim(), null));
+				}
+				cond = joinAnd(cond, new ConditionPlayerRangeFromNpc(npcId, radius));
+			}
+		}
 
         if (forces[0] + forces[1] > 0)
             cond = joinAnd(cond, new ConditionForceBuff(forces));

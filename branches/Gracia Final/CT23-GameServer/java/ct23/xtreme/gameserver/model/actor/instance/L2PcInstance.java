@@ -176,7 +176,6 @@ import ct23.xtreme.gameserver.network.serverpackets.CharInfo;
 import ct23.xtreme.gameserver.network.serverpackets.ConfirmDlg;
 import ct23.xtreme.gameserver.network.serverpackets.EtcStatusUpdate;
 import ct23.xtreme.gameserver.network.serverpackets.ExAutoSoulShot;
-import ct23.xtreme.gameserver.network.serverpackets.ExBasicActionList;
 import ct23.xtreme.gameserver.network.serverpackets.ExBrExtraUserInfo;
 import ct23.xtreme.gameserver.network.serverpackets.ExDuelUpdateUserInfo;
 import ct23.xtreme.gameserver.network.serverpackets.ExFishingEnd;
@@ -4965,7 +4964,6 @@ public final class L2PcInstance extends L2Playable
             sendPacket(msg);
             return;
         }
-        setQueuedSkill(null, false, false);
         if(isMounted())
         {
         	// Get off the strider or something else if character is mounted
@@ -4973,11 +4971,13 @@ public final class L2PcInstance extends L2Playable
         }
         
         _transformation = transformation;
-        stopAllToggles();
+        for (L2Effect e : getAllEffects())
+        {
+        	if (e != null && e.getSkill().isToggle()) e.exit();
+        }
         transformation.onTransform();
         sendSkillList();
         sendPacket(new SkillCoolTime(this));
-        sendPacket(new ExBasicActionList(this));
         broadcastUserInfo();
     }
     
@@ -4990,10 +4990,9 @@ public final class L2PcInstance extends L2Playable
             _transformation.onUntransform();
             _transformation = null;
             stopEffects(L2EffectType.TRANSFORMATION);
+            broadcastUserInfo();
             sendSkillList();
             sendPacket(new SkillCoolTime(this));
-            sendPacket(new ExBasicActionList(this));
-            broadcastUserInfo();
         }
     }
     

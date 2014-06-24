@@ -15,6 +15,7 @@
 package handlers.itemhandlers;
 
 import javolution.util.FastMap;
+
 import ct23.xtreme.gameserver.handler.IItemHandler;
 import ct23.xtreme.gameserver.model.L2ItemInstance;
 import ct23.xtreme.gameserver.model.L2Skill;
@@ -24,11 +25,11 @@ import ct23.xtreme.gameserver.model.actor.instance.L2PetInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2SummonInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance.TimeStamp;
 import ct23.xtreme.gameserver.model.entity.TvTEvent;
+import ct23.xtreme.gameserver.model.holders.SkillHolder;
 import ct23.xtreme.gameserver.network.SystemMessageId;
 import ct23.xtreme.gameserver.network.serverpackets.ActionFailed;
 import ct23.xtreme.gameserver.network.serverpackets.ExUseSharedGroupItem;
 import ct23.xtreme.gameserver.network.serverpackets.SystemMessage;
-import ct23.xtreme.gameserver.skills.SkillHolder;
 import ct23.xtreme.gameserver.templates.item.L2EtcItemType;
 
 /**

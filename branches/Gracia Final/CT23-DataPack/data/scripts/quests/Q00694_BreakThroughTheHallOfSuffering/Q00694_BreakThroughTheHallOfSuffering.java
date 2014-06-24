@@ -14,6 +14,9 @@
  */
 package quests.Q00694_BreakThroughTheHallOfSuffering;
 
+import quests.Q10268_ToTheSeedOfInfinity.Q10268_ToTheSeedOfInfinity;
+import quests.Q10273_GoodDayToFly.Q10273_GoodDayToFly;
+
 import ct23.xtreme.gameserver.instancemanager.InstanceManager;
 import ct23.xtreme.gameserver.model.actor.L2Npc;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
@@ -33,6 +36,10 @@ public class Q00694_BreakThroughTheHallOfSuffering extends Quest
 	// NPC
 	private static final int TEPIOS = 32603;
 	
+	// Misc
+	private static final int MIN_LV = 75;
+	private static final int MAX_LV = 82;
+	
 	public Q00694_BreakThroughTheHallOfSuffering(int questId, String name, String descr)
 	{
 		super(questId, name, descr);
@@ -46,16 +53,16 @@ public class Q00694_BreakThroughTheHallOfSuffering extends Quest
 		QuestState qs = talker.getQuestState(getName());
 		if (qs == null)
 			qs = newQuestState(talker);
-		QuestState reqQs = talker.getQuestState("10273_GoodDayToFly");
-		QuestState reqQs1 = talker.getQuestState("10268_ToTheSeedOfInfinity");
+		QuestState reqQs = talker.getQuestState(Q10273_GoodDayToFly.class.getSimpleName());
+		QuestState reqQs1 = talker.getQuestState(Q10268_ToTheSeedOfInfinity.class.getSimpleName());
 		if(reqQs != null && reqQs.getState() == State.COMPLETED && reqQs1 != null && reqQs1.getState() == State.COMPLETED)
 		{
 			long reentertime = InstanceManager.getInstance().getInstanceTime(talker.getObjectId(), 115);
 			if (System.currentTimeMillis() >= reentertime)
 			{
-				if (qs.getInt("cond") == 1)
+				if (qs.getCond() == 1)
 					return "32603-3.htm";
-				if (talker.getLevel() >= 75 && talker.getLevel() <= 82)
+				if (talker.getLevel() >= MIN_LV && talker.getLevel() <= MAX_LV)
 					return "32603-0.htm";
 				else
 					return "32603-0a.htm";
@@ -82,11 +89,9 @@ public class Q00694_BreakThroughTheHallOfSuffering extends Quest
 			return null;
 		if (event.equalsIgnoreCase("32603-3.htm"))
 		{
-			if (qs.getInt("cond") != 1)
+			if (qs.getCond() != 1)
 			{
-				qs.set("cond", "1");
-				qs.setState(State.STARTED);
-				qs.playSound(QuestSound.ITEMSOUND_QUEST_ACCEPT);
+				qs.startQuest();
 			}
 		}
 		return event;
