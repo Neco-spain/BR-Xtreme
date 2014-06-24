@@ -23,8 +23,8 @@ import java.util.logging.Logger;
 
 import javolution.util.FastMap;
 
+import ct23.xtreme.gameserver.model.holders.SkillHolder;
 import ct23.xtreme.gameserver.model.interfaces.IParserAdvUtils;
-import ct23.xtreme.gameserver.skills.SkillHolder;
 
 /**
  * @author mkizub

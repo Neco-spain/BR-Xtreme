@@ -120,9 +120,23 @@
 		<set name="operateType" val="OP_PASSIVE" />
 	</skill>
 	<skill id="2615" levels="1" name="Destroyed Darkness Fragment Powder">
-		<set name="target" val="TARGET_NONE" />
-		<set name="skillType" val="NOTDONE" />
-		<set name="operateType" val="OP_PASSIVE" />
+		<!-- Confirmed CT2.3 -->
+		<set name="create_item_count" val="1" />
+		<set name="create_item_id" val="13854" />
+		<set name="itemConsumeCount" val="1" />
+		<set name="operateType" val="OP_ACTIVE" />
+		<set name="reuseDelay" val="3000" />
+		<set name="skillType" val="CREATE_ITEM" />
+		<set name="target" val="TARGET_SELF" />
+		<cond msgId="129">
+			<and>
+				<player invSize="10" />
+				<player weight="80" />
+			</and>
+		</cond>
+		<cond msgId="113">
+			<player npcIdRadius="32529,300" />
+		</cond>
 	</skill>
 	<skill id="2616" levels="1" name="Bond Sealant">
 		<set name="target" val="TARGET_NONE" />

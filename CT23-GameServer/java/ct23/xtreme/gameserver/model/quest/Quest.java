@@ -1000,7 +1000,8 @@ public class Quest extends ManagedScript
 	{
 		if (res == null || res.isEmpty() || player == null)
 			return true;
-		if (res.endsWith(".htm"))
+		
+		if (res.endsWith(".htm") || res.endsWith(".html"))
 		{
 			showHtmlFile(player, res);
 		}
@@ -1806,8 +1807,12 @@ public class Quest extends ManagedScript
 		String content = HtmCache.getInstance().getHtm(prefix, "data/scripts/" + getDescr().toLowerCase() + "/" + getName() + "/" + fileName);
 		
 		if (content == null)
-			content = HtmCache.getInstance().getHtmForce(prefix, "data/scripts/quests/" + getName() + "/" + fileName);
-
+		{
+			content = HtmCache.getInstance().getHtm(prefix, "data/scripts/quests/Q" + getName() + "/" + fileName);
+			if (content == null)
+				content = HtmCache.getInstance().getHtmForce(prefix, "data/scripts/quests/" + getName() + "/" + fileName);				
+		}
+		
 		return content;
 	}
 

@@ -32,13 +32,13 @@ import ct23.xtreme.gameserver.model.actor.L2Playable;
 import ct23.xtreme.gameserver.model.actor.instance.L2MonsterInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import ct23.xtreme.gameserver.model.entity.Instance;
+import ct23.xtreme.gameserver.model.holders.SkillHolder;
 import ct23.xtreme.gameserver.model.quest.Quest;
 import ct23.xtreme.gameserver.model.quest.QuestState;
 import ct23.xtreme.gameserver.model.quest.State;
 import ct23.xtreme.gameserver.model.zone.L2ZoneType;
 import ct23.xtreme.gameserver.network.SystemMessageId;
 import ct23.xtreme.gameserver.network.serverpackets.SpecialCamera;
-import ct23.xtreme.gameserver.skills.SkillHolder;
 import ct23.xtreme.gameserver.util.Util;
 
 /**
@@ -298,19 +298,16 @@ public class PailakaInjuredDragon extends Quest
 		{
 			if (cond == 0 || progress == 0)
 			{
-				st.set("cond","1");
+				st.startQuest();
 				st.set("progress","1");
-				st.setState(State.STARTED);
-				st.playSound(QuestSound.ITEMSOUND_QUEST_ACCEPT);
 			}
 		}
 		else if (event.equalsIgnoreCase("32499-05.htm"))
 		{
 			if (cond == 1 || progress == 1)
 			{
-				st.setCond(2);
+				st.setCond(2, true);
 				st.setProgress(2);
-				st.playSound(QuestSound.ITEMSOUND_QUEST_MIDDLE); // middle or acept ???
 			}
 		}
 		else if (event.equalsIgnoreCase("32502-05.htm"))
@@ -366,8 +363,7 @@ public class PailakaInjuredDragon extends Quest
 		else if (event.equalsIgnoreCase("32512-02.htm"))
 		{
 			st.unset("cond");
-			st.playSound(QuestSound.ITEMSOUND_QUEST_FINISH);
-			st.exitQuest(false);
+			st.exitQuest(false, true);
 
 			Instance inst = InstanceManager.getInstance().getInstance(npc.getInstanceId());
 			inst.setDuration(EXIT_TIME * 60000);
@@ -431,7 +427,7 @@ public class PailakaInjuredDragon extends Quest
 		if (st == null)
 			return getNoQuestMsg();
 
-		final int cond = st.getCond();
+		final int progress = st.getProgress();
 		switch (npc.getNpcId())
 		{
 			case KETRA_ORC_SHAMAN:
@@ -448,7 +444,7 @@ public class PailakaInjuredDragon extends Quest
 							return "32499-no.htm";
 						if (player.getLevel() > MAX_LEVEL)
 							return "32499-no.htm";
-						if (cond > 1)
+						if (progress > 1)
 							return "32499-06.htm";
 					case State.COMPLETED:
 						return "32499-completed.htm";
@@ -456,7 +452,7 @@ public class PailakaInjuredDragon extends Quest
 						return "32499-no.htm";
 				}
 			case KETRA_ORC_SUPPORTER:
-				if (cond > 2)
+				if (progress > 2)
 					return "32502-05.htm";
 				else
 					return "32502-01.htm";
@@ -465,7 +461,7 @@ public class PailakaInjuredDragon extends Quest
 			case KETRA_ORC_SUPPORTER2:
 				if (st.getState() == State.COMPLETED)
 					return "32512-03.htm";
-				else if (cond == 4)
+				else if (progress == 8)
 					return "32512-01.htm";
 		}
 		return getNoQuestMsg();
@@ -619,6 +615,7 @@ public class PailakaInjuredDragon extends Quest
 				break;
 			case LATANA:
 				st.setCond(4);
+				st.setProgress(8);
 				st.playSound(QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				
 				// Spawns Ketra Orc Supporter

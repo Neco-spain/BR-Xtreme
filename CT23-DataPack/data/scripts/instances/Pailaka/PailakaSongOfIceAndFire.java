@@ -199,16 +199,14 @@ public class PailakaSongOfIceAndFire extends Quest
 		{
 			if (cond == 0)
 			{
-				st.set("cond","1");
-				st.setState(State.STARTED);
-				st.playSound(QuestSound.ITEMSOUND_QUEST_ACCEPT);
+				st.startQuest();
 			}
 		}
 		else if (event.equalsIgnoreCase("32500-06.htm"))
 		{
 			if (cond == 1)
 			{
-				st.set("cond","2");
+				st.setCond(2);
 				st.playSound(QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				st.giveItems(SWORD, 1);
 				st.giveItems(BOOK1, 1);
@@ -218,8 +216,7 @@ public class PailakaSongOfIceAndFire extends Quest
 		{
 			if (cond == 3)
 			{
-				st.set("cond","4");
-				st.playSound(QuestSound.ITEMSOUND_QUEST_MIDDLE);
+				st.setCond(4, true);
 				st.takeItems(SWORD, -1);
 				st.takeItems(WATER_ESSENCE, -1);
 				st.takeItems(BOOK2, -1);
@@ -231,7 +228,7 @@ public class PailakaSongOfIceAndFire extends Quest
 		{
 			if (cond == 6)
 			{
-				st.set("cond","7");
+				st.setCond(7);
 				st.playSound(QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				st.takeItems(ENH_SWORD1, -1);
 				st.takeItems(BOOK5, -1);
@@ -243,8 +240,7 @@ public class PailakaSongOfIceAndFire extends Quest
 		else if (event.equalsIgnoreCase("32510-02.htm"))
 		{
 			st.unset("cond");
-			st.playSound(QuestSound.ITEMSOUND_QUEST_FINISH);
-			st.exitQuest(false);
+			st.exitQuest(false, true);
 			
 			Instance inst = InstanceManager.getInstance().getInstance(npc.getInstanceId());
 			inst.setDuration(EXIT_TIME * 60000);
@@ -349,7 +345,7 @@ public class PailakaSongOfIceAndFire extends Quest
 			case HILLAS:
 				if (cond == 2)
 				{
-					st.set("cond", "3");
+					st.setCond(3);
 					st.playSound(QuestSound.ITEMSOUND_QUEST_ITEMGET);
 					st.takeItems(BOOK1, -1);
 					st.giveItems(BOOK2, 1);
@@ -362,7 +358,7 @@ public class PailakaSongOfIceAndFire extends Quest
 				{
 					st.takeItems(BOOK3, -1);
 					st.giveItems(BOOK4, 1);
-					st.set("cond", "5");
+					st.setCond(5);
 					st.playSound(QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				}
 				addSpawn(KINSUS, -61415, 181418, -4818, 63852, false, 0, false, npc.getInstanceId());
@@ -370,7 +366,7 @@ public class PailakaSongOfIceAndFire extends Quest
 			case KINSUS:
 				if (cond == 5)
 				{
-					st.set("cond", "6");
+					st.setCond(6);
 					st.playSound(QuestSound.ITEMSOUND_QUEST_ITEMGET);
 					st.takeItems(BOOK4, -1);
 					st.giveItems(BOOK5, 1);
@@ -381,7 +377,7 @@ public class PailakaSongOfIceAndFire extends Quest
 			case GARGOS:
 				if (cond == 7)
 				{
-					st.set("cond", "8");
+					st.setCond(8);
 					st.playSound(QuestSound.ITEMSOUND_QUEST_ITEMGET);
 					st.takeItems(BOOK6, -1);
 					st.giveItems(BOOK7, 1);
@@ -391,8 +387,7 @@ public class PailakaSongOfIceAndFire extends Quest
 			case ADIANTUM:
 				if (cond == 8)
 				{
-					st.set("cond", "9");
-					st.playSound(QuestSound.ITEMSOUND_QUEST_MIDDLE);
+					st.setCond(9, true);
 					st.takeItems(BOOK7, -1);
 					addSpawn(ADLER2, -53297, 185027, -4617, 33486, false, 0, false, npc.getInstanceId());
 				}
