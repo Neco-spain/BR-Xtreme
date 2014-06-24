@@ -48,6 +48,7 @@ import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2TrapInstance;
 import ct23.xtreme.gameserver.model.zone.L2ZoneType;
 import ct23.xtreme.gameserver.network.serverpackets.ActionFailed;
+import ct23.xtreme.gameserver.network.serverpackets.ExShowScreenMessage;
 import ct23.xtreme.gameserver.network.serverpackets.NpcHtmlMessage;
 import ct23.xtreme.gameserver.network.serverpackets.NpcQuestHtmlMessage;
 import ct23.xtreme.gameserver.network.serverpackets.PlaySound;
@@ -2100,4 +2101,16 @@ public class Quest extends ManagedScript
 	{
 		return _isCustom;
 	}
+
+    /**
+     * Show an on screen message to the player.
+     * @param player the player to display the message to
+     * @param text the message to display
+     * @param time the duration of the message in milliseconds
+     */
+    public static void showOnScreenMsg(L2PcInstance player, String text, int time)
+    {
+        player.sendPacket(new ExShowScreenMessage(text, time));
+    }
+
 }

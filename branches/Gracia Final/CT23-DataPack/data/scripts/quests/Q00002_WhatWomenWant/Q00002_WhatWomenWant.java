@@ -75,8 +75,7 @@ public class Q00002_WhatWomenWant extends Quest
 				st.takeItems(ARUJIEN_LETTER_3, 1);
 				st.giveItems(57,2300);
 				st.addExpAndSp(4254, 335);
-				st.playSound(QuestSound.ITEMSOUND_QUEST_FINISH);
-				st.exitQuest(true);
+				st.exitQuest(false,true);
 				break;
 		}
 		return htmltext;

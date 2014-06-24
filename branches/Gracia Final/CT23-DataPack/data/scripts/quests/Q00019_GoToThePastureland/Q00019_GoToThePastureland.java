@@ -61,8 +61,7 @@ public class Q00019_GoToThePastureland extends Quest
 					st.takeItems(YOUNG_WILD_BEAST_MEAT, 1);
 					st.rewardItems(57, 50000);
 					st.addExpAndSp(136766,12688);
-					st.playSound(QuestSound.ITEMSOUND_QUEST_FINISH);
-					st.exitQuest(true);
+					st.exitQuest(false,true);
 				}
 				else
 					htmltext = "31537-02.htm";
