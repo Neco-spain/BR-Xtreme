@@ -663,16 +663,23 @@ public final class QuestState
 
 		return count;
 	}
+    /**
+     * @param int : ID of the item you're looking for
+     * @return true if item exists in player's inventory, false - if not
+     */
+    public boolean hasQuestItems(int itemId)
+    {
+        return getPlayer().getInventory().getItemByItemId(itemId) != null;
+    }
 
-	/**
-	 * @param int : ID of the item you're looking for
-	 * @return true if item exists in player's inventory, false - if not
-	 */
-	public boolean hasQuestItems(int itemId)
-	{
-		return getPlayer().getInventory().getItemByItemId(itemId) != null;
-	}
-	
+    /**
+     * @param itemIds list of items that are required
+     * @return true if all items exists in player's inventory, false - if not
+     */
+    public boolean hasQuestItems(int... itemIds)
+    {
+        return hasQuestItems(_player, itemIds);
+    }
 	/**
 	 * Check for multiple items in player's inventory.
 	 * @param player the player whose inventory to check for quest items
