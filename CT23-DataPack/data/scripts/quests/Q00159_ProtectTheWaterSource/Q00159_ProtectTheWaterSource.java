@@ -30,9 +30,7 @@ import ct23.xtreme.gameserver.model.quest.State;
  * @author BossForever
  */
 public class Q00159_ProtectTheWaterSource extends Quest
-{
-	private static final String qn = "Q00159_ProtectTheWaterSource";
-	
+{	
 	// Items
 	private static final int PLAGUE_DUST = 1035;
 	private static final int HYACINTH_CHARM1 = 1071;
@@ -44,7 +42,7 @@ public class Q00159_ProtectTheWaterSource extends Quest
 	
 	public Q00159_ProtectTheWaterSource()
 	{
-		super(159, qn, "Protect The Water Source");
+		super(159, Q00159_ProtectTheWaterSource.class.getSimpleName(), "Protect The Water Source");
 		registerQuestItems(PLAGUE_DUST, HYACINTH_CHARM1, HYACINTH_CHARM2);
 		
 		addStartNpc(ASTERIOS);
@@ -55,7 +53,7 @@ public class Q00159_ProtectTheWaterSource extends Quest
 	@Override
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return getNoQuestMsg();
@@ -77,7 +75,7 @@ public class Q00159_ProtectTheWaterSource extends Quest
 	@Override
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
-		final QuestState st = player.getQuestState(qn);
+		final QuestState st = player.getQuestState(getName());
 		String htmltext = getNoQuestMsg();
 		if (st == null)
 		{
@@ -135,7 +133,7 @@ public class Q00159_ProtectTheWaterSource extends Quest
 	@Override
 	public String onKill(L2Npc npc, L2PcInstance killer, boolean isSummon)
 	{
-		final QuestState st = killer.getQuestState(qn);
+		final QuestState st = killer.getQuestState(getName());
 		int cond = st.getInt("cond");
 		
 		if (cond == 1 && st.getRandom(100) < 40 && !st.hasQuestItems(PLAGUE_DUST))

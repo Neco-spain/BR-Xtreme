@@ -20,8 +20,6 @@ import ct23.xtreme.gameserver.model.quest.State;
 
 public class Q00014_WhereaboutsOfTheArchaeologist extends Quest
 {
-	private static final String qn = "Q00014_WhereaboutsOfTheArchaeologist";
-	
 	// NPCs
 	private static final int LIESEL = 31263;
 	private static final int GHOST_OF_ADVENTURER = 31538;
@@ -31,7 +29,7 @@ public class Q00014_WhereaboutsOfTheArchaeologist extends Quest
 	
 	public Q00014_WhereaboutsOfTheArchaeologist()
 	{
-		super(14, qn, "Whereabouts of the Archaeologist");
+		super(14, Q00014_WhereaboutsOfTheArchaeologist.class.getSimpleName(), "Whereabouts of the Archaeologist");
 		
 		registerQuestItems(LETTER);
 		addStartNpc(LIESEL);
@@ -41,7 +39,7 @@ public class Q00014_WhereaboutsOfTheArchaeologist extends Quest
 	@Override
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
-		final QuestState st = player.getQuestState(qn);
+		final QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return getNoQuestMsg();
@@ -70,7 +68,7 @@ public class Q00014_WhereaboutsOfTheArchaeologist extends Quest
 	@Override
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		String htmltext = getNoQuestMsg();
 		if (st == null)
 			return htmltext;

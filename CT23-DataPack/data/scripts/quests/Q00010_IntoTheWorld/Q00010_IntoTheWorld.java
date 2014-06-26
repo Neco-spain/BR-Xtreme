@@ -21,8 +21,6 @@ import ct23.xtreme.gameserver.model.quest.State;
 
 public class Q00010_IntoTheWorld extends Quest
 {
-	private static final String qn = "Q010_IntoTheWorld";
-	
 	// Items
 	private static final int VERY_EXPENSIVE_NECKLACE = 7574;
 	
@@ -37,7 +35,7 @@ public class Q00010_IntoTheWorld extends Quest
 	
 	public Q00010_IntoTheWorld()
 	{
-		super(10, qn, "Into the World");
+		super(10, Q00010_IntoTheWorld.class.getSimpleName(), "Into the World");
 		addStartNpc(BALANKI);
 		addTalkId(BALANKI, REED, GERALD);
 		registerQuestItems(VERY_EXPENSIVE_NECKLACE);
@@ -46,7 +44,7 @@ public class Q00010_IntoTheWorld extends Quest
 	@Override
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
-		final QuestState st = player.getQuestState(qn);
+		final QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return getNoQuestMsg();
@@ -91,7 +89,7 @@ public class Q00010_IntoTheWorld extends Quest
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
 		String htmltext = getNoQuestMsg();
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		if (st == null)
 			return htmltext;
 		

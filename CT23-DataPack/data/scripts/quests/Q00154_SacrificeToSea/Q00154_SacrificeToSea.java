@@ -24,8 +24,6 @@ import ct23.xtreme.gameserver.model.quest.State;
  */
 public class Q00154_SacrificeToSea extends Quest
 {
-	private static final String qn = "Q00154_SacrificeToSea";
-	
 	// Items
 	private static final int FOX_FUR_ID = 1032;
 	private static final int FOX_FUR_YARN_ID = 1033;
@@ -43,7 +41,7 @@ public class Q00154_SacrificeToSea extends Quest
 	
 	public Q00154_SacrificeToSea()
 	{
-		super(154, qn, "Sacrifice To Sea!");
+		super(154, Q00154_SacrificeToSea.class.getSimpleName(), "Sacrifice To Sea!");
 		
 		registerQuestItems(FOX_FUR_ID, FOX_FUR_YARN_ID, MAIDEN_DOLL_ID);
 		addStartNpc(Rockswell);
@@ -54,7 +52,7 @@ public class Q00154_SacrificeToSea extends Quest
 	@Override
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return getNoQuestMsg();
@@ -75,7 +73,7 @@ public class Q00154_SacrificeToSea extends Quest
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
 		String htmltext = getNoQuestMsg();
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		if (st == null)
 			return htmltext;
 		int npcId = npc.getNpcId();
@@ -169,7 +167,7 @@ public class Q00154_SacrificeToSea extends Quest
 	@Override
 	public String onKill(L2Npc npc, L2PcInstance player, boolean isPet)
 	{
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		
 		int npcId = npc.getNpcId();
 		if (npcId == Bearded_Keltir)

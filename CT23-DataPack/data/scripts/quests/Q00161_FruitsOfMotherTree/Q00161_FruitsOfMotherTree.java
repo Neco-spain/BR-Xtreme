@@ -31,8 +31,6 @@ import ct23.xtreme.gameserver.model.quest.State;
  */
 public class Q00161_FruitsOfMotherTree extends Quest
 {
-	private static final String qn = "Q00161_FruitsOfMotherTree";
-	
 	// Items
     private static final int MOTHERTREE_FRUIT = 1036;
     private static final int ANDELLRIAS_LETTER = 1037;
@@ -43,7 +41,7 @@ public class Q00161_FruitsOfMotherTree extends Quest
     
 	public Q00161_FruitsOfMotherTree()
 	{
-		super(161, qn, "Fruits Of MotherTree");
+		super(161, Q00161_FruitsOfMotherTree.class.getSimpleName(), "Fruits Of MotherTree");
 		registerQuestItems(MOTHERTREE_FRUIT,ANDELLRIAS_LETTER);
 		addStartNpc(ANDELLIA);
 		addTalkId(ANDELLIA, THALIA);
@@ -52,7 +50,7 @@ public class Q00161_FruitsOfMotherTree extends Quest
 	@Override
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return getNoQuestMsg();
@@ -72,7 +70,7 @@ public class Q00161_FruitsOfMotherTree extends Quest
 	@Override
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
-		final QuestState st = player.getQuestState(qn);
+		final QuestState st = player.getQuestState(getName());
 		String htmltext = getNoQuestMsg();
 		if (st == null)
 		{

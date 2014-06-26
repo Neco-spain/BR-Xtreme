@@ -20,8 +20,6 @@ import ct23.xtreme.gameserver.model.quest.State;
 
 public class Q00018_MeetingWithTheGoldenRam extends Quest
 {
-	private static final String qn = "Q00018_MeetingWithTheGoldenRam";
-	
 	// Items
 	private static final int SUPPLY_BOX = 7245;
 	
@@ -32,7 +30,7 @@ public class Q00018_MeetingWithTheGoldenRam extends Quest
 	
 	public Q00018_MeetingWithTheGoldenRam()
 	{
-		super(18, qn, "Meeting with the Golden Ram");
+		super(18, Q00018_MeetingWithTheGoldenRam.class.getSimpleName(), "Meeting with the Golden Ram");
 		
 		registerQuestItems(SUPPLY_BOX);
 		addStartNpc(DONAL);
@@ -42,7 +40,7 @@ public class Q00018_MeetingWithTheGoldenRam extends Quest
 	@Override
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
-		final QuestState st = player.getQuestState(qn);
+		final QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return getNoQuestMsg();
@@ -76,7 +74,7 @@ public class Q00018_MeetingWithTheGoldenRam extends Quest
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
 		String htmltext = getNoQuestMsg();
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		if (st == null)
 			return htmltext;
 		

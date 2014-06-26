@@ -19,14 +19,12 @@ import ct23.xtreme.gameserver.model.quest.QuestState;
 import ct23.xtreme.gameserver.model.quest.State;
 
 /**
- * Runaway Youth (651)
- * @author Polo & DrLecter(Python)
- * @author BossForever & Malefic (Java)
+ * Runaway Youth (651) <br>
+ * Original Jython script by Polo and DrLecter.
+ * @author BossForever & Malefic
  */
 public class Q00651_RunawayYouth extends Quest
 {
-	private static final String qn = "Q00651_RunawayYouth";
-	
 	// Items
 	private static final int SOE = 736;
 	
@@ -36,7 +34,7 @@ public class Q00651_RunawayYouth extends Quest
 
 	public Q00651_RunawayYouth()
 	{
-		super(651, qn, "Runaway Youth!");
+		super(651, Q00651_RunawayYouth.class.getSimpleName(), "Runaway Youth!");
 
 		addStartNpc(IVAN);
 		addTalkId(IVAN, BATIDAE);
@@ -46,7 +44,7 @@ public class Q00651_RunawayYouth extends Quest
 	public String onAdvEvent (String event, L2Npc npc, L2PcInstance player)
 	{
 		String htmltext = event;
-	    QuestState st = player.getQuestState(qn);
+	    QuestState st = player.getQuestState(getName());
 		if (st == null)
 			return htmltext;
 	    	    
@@ -72,7 +70,7 @@ public class Q00651_RunawayYouth extends Quest
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
 		String htmltext = getNoQuestMsg();
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		if (st == null)
 			return htmltext;
 		

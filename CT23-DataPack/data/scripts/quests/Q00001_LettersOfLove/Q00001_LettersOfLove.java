@@ -20,8 +20,6 @@ import ct23.xtreme.gameserver.model.quest.State;
 
 public class Q00001_LettersOfLove extends Quest
 {
-	private static final String qn = "Q00001_LettersOfLove";
-	
 	// Npcs
 	private static final int DARIN = 30048;
 	private static final int ROXXY = 30006;
@@ -38,7 +36,7 @@ public class Q00001_LettersOfLove extends Quest
 	
 	public Q00001_LettersOfLove()
 	{
-		super(1, qn, "Letters of Love");
+		super(1, Q00001_LettersOfLove.class.getSimpleName(), "Letters of Love");
 		
 		registerQuestItems(DARINGS_LETTER,RAPUNZELS_KERCHIEF,DARINGS_RECEIPT,BAULROS_POTION);
 		addStartNpc(DARIN);
@@ -48,7 +46,7 @@ public class Q00001_LettersOfLove extends Quest
 	@Override
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
-		final QuestState st = player.getQuestState(qn);
+		final QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return getNoQuestMsg();
@@ -69,7 +67,7 @@ public class Q00001_LettersOfLove extends Quest
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
 		String htmltext = getNoQuestMsg();
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		if (st == null)
 			return htmltext;
 		

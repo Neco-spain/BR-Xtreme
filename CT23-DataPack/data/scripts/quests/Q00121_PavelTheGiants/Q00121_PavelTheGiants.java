@@ -19,21 +19,19 @@ import ct23.xtreme.gameserver.model.quest.QuestState;
 import ct23.xtreme.gameserver.model.quest.State;
 
 /**
- * Pavel The Giants (121)
- * @author Ethernaly Pyton
- * @author BossForever Java
+ * Pavel The Giants (121)<br>
+ * Original Jython script by Ethernaly.
+ * @author BossForever
  */
 public class Q00121_PavelTheGiants extends Quest
 {
-	private static final String qn = "Q00121_PavelTheGiants";
-	
 	// NPCs
 	private static final int NEWYEAR = 31961;
 	private static final int YUMI = 32041;
 
 	public Q00121_PavelTheGiants()
 	{
-		super(121, qn, "Pavel The Giants!");
+		super(121, Q00121_PavelTheGiants.class.getSimpleName(), "Pavel The Giants!");
 		
 		addStartNpc(NEWYEAR);
 		addTalkId(NEWYEAR, YUMI);
@@ -42,7 +40,7 @@ public class Q00121_PavelTheGiants extends Quest
 	@Override
 	public String onAdvEvent (String event, L2Npc npc, L2PcInstance player)
 	{
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return getNoQuestMsg();
@@ -51,16 +49,17 @@ public class Q00121_PavelTheGiants extends Quest
 		
 		switch (event)
 		{
-			case "32041-2.htm":
-				st.playSound(QuestSound.ITEMSOUND_QUEST_FINISH);
-				st.addExpAndSp(76960,5793);
-				st.unset("cond");
-				st.exitQuest(true);
-				break;
-				
-			case "31961-1.htm":
-				st.startQuest();
-				break;
+			
+		case "31961-1.htm":
+			st.startQuest();
+			break;
+			
+		case "32041-2.htm":
+			st.addExpAndSp(76960,5793);
+			st.unset("cond");
+			st.exitQuest(false, true);
+			break;
+
 		}
 		return htmltext;
 	}
@@ -69,7 +68,7 @@ public class Q00121_PavelTheGiants extends Quest
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
 		String htmltext = getNoQuestMsg();
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		if (st == null)
 			return htmltext;
 		

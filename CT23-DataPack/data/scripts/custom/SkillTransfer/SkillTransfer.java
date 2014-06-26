@@ -324,7 +324,7 @@ public class SkillTransfer extends Quest
 		final int index = getTransferClassIndex(player);
 		if (index >= 0)
 		{
-			QuestState st = player.getQuestState(qn);
+			QuestState st = player.getQuestState(getName());
 			if (st == null)
 				st = newQuestState(player);
 

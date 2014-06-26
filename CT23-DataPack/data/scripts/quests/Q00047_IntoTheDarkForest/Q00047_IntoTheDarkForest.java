@@ -27,13 +27,11 @@ import ct23.xtreme.gameserver.model.quest.State;
 
 /**
  * Into The Dark Forest (47)
- * @author CubicVirtuoso Python
- * @author BossForever Java
+ * Original Jython script by CubicVirtuoso.
+ * @author BossForever 
  */
 public class Q00047_IntoTheDarkForest extends Quest
 {
-	private static final String qn = "Q00047_IntoTheDarkForest";
-	
 	// NPCs
     private static final int GALLADUCCI = 30097;
     private static final int GENTLER = 30094;
@@ -51,7 +49,7 @@ public class Q00047_IntoTheDarkForest extends Quest
 	
 	public Q00047_IntoTheDarkForest()
 	{
-		super(47, qn, "Into The Dark Forest");
+		super(47, Q00047_IntoTheDarkForest.class.getSimpleName(), "Into The Dark Forest");
 		
 		registerQuestItems(GALLADUCCIS_ORDER_DOCUMENT_ID_1, GALLADUCCIS_ORDER_DOCUMENT_ID_2, GALLADUCCIS_ORDER_DOCUMENT_ID_3,MAGIC_SWORD_HILT_ID, GEMSTONE_POWDER_ID, PURIFIED_MAGIC_NECKLACE_ID);	
         addStartNpc(GALLADUCCI);
@@ -122,7 +120,7 @@ public class Q00047_IntoTheDarkForest extends Quest
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
 		String htmltext = getNoQuestMsg();
-		final QuestState st = player.getQuestState(qn);
+		final QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return htmltext;

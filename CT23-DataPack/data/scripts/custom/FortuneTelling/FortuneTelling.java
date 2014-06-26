@@ -6,9 +6,7 @@ import ct23.xtreme.gameserver.model.quest.Quest;
 import ct23.xtreme.gameserver.model.quest.QuestState;
 
 public class FortuneTelling extends Quest 
-{
-	private static final String qn = "FortuneTelling";
-	
+{	
 	private static final String BODY = "<html><body>Fortune-Teller Mine:<br>I see an image approaching before you... It is difficult to put what I saw into words.<br>How can I say this? Okay, listen closely:<br><br><center>";
 	private static final String END = "</center><br><br>Take these words to heart. You should seriously consider the meaning...</body></html>";
 	private static final String[] FORTUNE = {
@@ -58,9 +56,9 @@ public class FortuneTelling extends Quest
 			"Momentarily delay an important decision.",
 			"A remedy is on its way for a serious illness." };
 
-	public FortuneTelling(int id, String name, String descr) 
+	public FortuneTelling() 
 	{
-		super(id, name, descr);
+		super(-1, FortuneTelling.class.getSimpleName(), "custom");
 		addStartNpc(32616);
 		addTalkId(32616);
 	}
@@ -68,7 +66,7 @@ public class FortuneTelling extends Quest
 	public String onTalk (L2Npc npc,L2PcInstance player)
 	{
 		String htmltext = getNoQuestMsg();
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		if (st == null)
 			return htmltext;
 
@@ -88,6 +86,6 @@ public class FortuneTelling extends Quest
 
 	public static void main(String[] args)
 	{
-		new FortuneTelling(-1, "FortuneTelling", "custom");
+		new FortuneTelling();
 	}
 }

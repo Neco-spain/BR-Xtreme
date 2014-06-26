@@ -35,6 +35,7 @@ import ct23.xtreme.gameserver.datatables.NpcTable;
 import ct23.xtreme.gameserver.idfactory.IdFactory;
 import ct23.xtreme.gameserver.instancemanager.QuestManager;
 import ct23.xtreme.gameserver.instancemanager.ZoneManager;
+import ct23.xtreme.gameserver.model.L2ItemInstance;
 import ct23.xtreme.gameserver.model.L2Object;
 import ct23.xtreme.gameserver.model.L2Party;
 import ct23.xtreme.gameserver.model.L2Skill;
@@ -46,12 +47,17 @@ import ct23.xtreme.gameserver.model.actor.L2Trap;
 import ct23.xtreme.gameserver.model.actor.instance.L2MonsterInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2TrapInstance;
+import ct23.xtreme.gameserver.model.holders.ItemHolder;
+import ct23.xtreme.gameserver.model.itemcontainer.PcInventory;
 import ct23.xtreme.gameserver.model.zone.L2ZoneType;
+import ct23.xtreme.gameserver.network.SystemMessageId;
 import ct23.xtreme.gameserver.network.serverpackets.ActionFailed;
 import ct23.xtreme.gameserver.network.serverpackets.ExShowScreenMessage;
 import ct23.xtreme.gameserver.network.serverpackets.NpcHtmlMessage;
 import ct23.xtreme.gameserver.network.serverpackets.NpcQuestHtmlMessage;
 import ct23.xtreme.gameserver.network.serverpackets.PlaySound;
+import ct23.xtreme.gameserver.network.serverpackets.StatusUpdate;
+import ct23.xtreme.gameserver.network.serverpackets.SystemMessage;
 import ct23.xtreme.gameserver.scripting.ManagedScript;
 import ct23.xtreme.gameserver.scripting.ScriptManager;
 import ct23.xtreme.gameserver.templates.chars.L2NpcTemplate;
@@ -375,6 +381,25 @@ public class Quest extends ManagedScript
 	{
 		QuestState qs = new QuestState(this, player, getInitialState());
 		return qs;
+	}
+	
+	/**
+	 * Get the specified player's {@link QuestState} object for this quest.<br>
+	 * If the player does not have it and initIfNode is {@code true},<br>
+	 * create a new QuestState object and return it, otherwise return {@code null}.
+	 * @param player the player whose QuestState to get
+	 * @param initIfNone if true and the player does not have a QuestState for this quest,<br>
+	 *            create a new QuestState
+	 * @return the QuestState object for this quest or null if it doesn't exist
+	 */
+	public QuestState getQuestState(L2PcInstance player, boolean initIfNone)
+	{
+		final QuestState qs = player.getQuestState(_name);
+		if ((qs != null) || !initIfNone)
+		{
+			return qs;
+		}
+		return newQuestState(player);
 	}
 	
 	/**
@@ -2112,5 +2137,98 @@ public class Quest extends ManagedScript
     {
         player.sendPacket(new ExShowScreenMessage(text, time));
     }
-
+	
+	/**
+	 * Give item/reward to the player
+	 * @param player
+	 * @param itemId
+	 * @param count
+	 */
+	public static void giveItems(L2PcInstance player, int itemId, long count)
+	{
+		giveItems(player, itemId, count, 0);
+	}
+	
+	/**
+	 * Give item/reward to the player
+	 * @param player
+	 * @param holder
+	 */
+	protected static void giveItems(L2PcInstance player, ItemHolder holder)
+	{
+		giveItems(player, holder.getId(), holder.getCount());
+	}
+	
+	/**
+	 * @param player
+	 * @param itemId
+	 * @param count
+	 * @param enchantlevel
+	 */
+	public static void giveItems(L2PcInstance player, int itemId, long count, int enchantlevel)
+	{
+		if (count <= 0)
+		{
+			return;
+		}
+		
+		// If item for reward is adena (Id=57), modify count with rate for quest reward if rates available
+		if ((itemId == PcInventory.ADENA_ID) && (enchantlevel == 0))
+		{
+			count = (long) (count * Config.RATE_QUEST_REWARD_ADENA);
+		}
+		
+		// Add items to player's inventory
+		L2ItemInstance item = player.getInventory().addItem("Quest", itemId, count, player, player.getTarget());
+		if (item == null)
+		{
+			return;
+		}
+		
+		// set enchant level for item if that item is not adena
+		if ((enchantlevel > 0) && (itemId != PcInventory.ADENA_ID))
+		{
+			item.setEnchantLevel(enchantlevel);
+		}
+		
+		sendItemGetMessage(player, item, count);
+	}
+	
+	/**
+	 * Send the system message and the status update packets to the player.
+	 * @param player the player that has got the item
+	 * @param item the item obtain by the player
+	 * @param count the item count
+	 */
+	private static void sendItemGetMessage(L2PcInstance player, L2ItemInstance item, long count)
+	{
+		// If item for reward is gold, send message of gold reward to client
+		if (item.getItemId() == PcInventory.ADENA_ID)
+		{
+			SystemMessage smsg = new SystemMessage(SystemMessageId.EARNED_ADENA);
+			smsg.addItemNumber(count);
+			player.sendPacket(smsg);
+		}
+		// Otherwise, send message of object reward to client
+		else
+		{
+			if (count > 1)
+			{
+				SystemMessage smsg = new SystemMessage(SystemMessageId.EARNED_S2_S1_S);
+				smsg.addItemName(item);
+				smsg.addItemNumber(count);
+				player.sendPacket(smsg);
+			}
+			else
+			{
+				SystemMessage smsg = new SystemMessage(SystemMessageId.EARNED_ITEM);
+				smsg.addItemName(item);
+				player.sendPacket(smsg);
+			}
+		}
+		// send packets
+		StatusUpdate su = new StatusUpdate(player);
+		su.addAttribute(StatusUpdate.CUR_LOAD, player.getCurrentLoad());
+		player.sendPacket(su);
+	}
 }

@@ -12,6 +12,7 @@
  */
 package quests.Q00006_StepIntoTheFuture;
 
+import quests.Q00005_MinersFavor.Q00005_MinersFavor;
 import ct23.xtreme.gameserver.model.actor.L2Npc;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import ct23.xtreme.gameserver.model.base.Race;
@@ -20,9 +21,7 @@ import ct23.xtreme.gameserver.model.quest.QuestState;
 import ct23.xtreme.gameserver.model.quest.State;
 
 public class Q00006_StepIntoTheFuture extends Quest
-{
-	private static final String qn = "Q00006_StepIntoTheFuture";
-	
+{	
 	// NPCs
 	private static final int ROXXY = 30006;
 	private static final int BAULRO = 30033;
@@ -37,7 +36,7 @@ public class Q00006_StepIntoTheFuture extends Quest
 	
 	public Q00006_StepIntoTheFuture()
 	{
-		super(6, qn, "Step into the Future");
+		super(6, Q00005_MinersFavor.class.getSimpleName(), "Step into the Future");
 		
 		registerQuestItems(BAULRO_LETTER);
 		addStartNpc(ROXXY);
@@ -47,7 +46,7 @@ public class Q00006_StepIntoTheFuture extends Quest
 	@Override
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
-		final QuestState st = player.getQuestState(qn);
+		final QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return getNoQuestMsg();
@@ -90,7 +89,7 @@ public class Q00006_StepIntoTheFuture extends Quest
 	@Override
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		String htmltext = getNoQuestMsg();
 		if (st == null)
 			return htmltext;
