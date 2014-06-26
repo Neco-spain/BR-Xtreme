@@ -31,8 +31,6 @@ import ct23.xtreme.gameserver.model.quest.State;
  */
 public class Q00160_NerupasFavor extends Quest
 {
-	private static final String qn = "Q00160_NerupasFavor";
-	
 	// Items
 	private static final int SILVERY_SPIDERSILK = 1026;
 	private static final int UNOREN_RECEIPT = 1027;
@@ -50,7 +48,7 @@ public class Q00160_NerupasFavor extends Quest
 	
 	public Q00160_NerupasFavor()
 	{
-		super(160, qn, "Nerupas Favor");
+		super(160, Q00160_NerupasFavor.class.getSimpleName(), "Nerupas Favor");
 		registerQuestItems(SILVERY_SPIDERSILK, UNOREN_RECEIPT, CREAMEES_TICKET, NIGHTSHADE_LEAF);
 		addStartNpc(NERUPA);
 		addTalkId(NERUPA, UNOREN, CREAMEES, JULIA);
@@ -59,7 +57,7 @@ public class Q00160_NerupasFavor extends Quest
 	@Override
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return getNoQuestMsg();
@@ -79,7 +77,7 @@ public class Q00160_NerupasFavor extends Quest
 	@Override
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
-		final QuestState st = player.getQuestState(qn);
+		final QuestState st = player.getQuestState(getName());
 		String htmltext = getNoQuestMsg();
 		if (st == null)
 		{

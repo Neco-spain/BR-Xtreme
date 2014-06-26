@@ -21,8 +21,6 @@ import ct23.xtreme.gameserver.model.quest.State;
 
 public class Q00007_ATripBegins extends Quest
 {
-	private static final String qn = "Q00007_ATripBegins";
-	
 	// NPCs
 	private static final int MIRABEL = 30146;
 	private static final int ARIEL = 30148;
@@ -37,7 +35,7 @@ public class Q00007_ATripBegins extends Quest
 	
 	public Q00007_ATripBegins()
 	{
-		super(7, qn, "A Trip Begins");
+		super(7, Q00007_ATripBegins.class.getSimpleName(), "A Trip Begins");
 		
 		registerQuestItems(ARIEL_RECO);
 		addStartNpc(MIRABEL);
@@ -47,7 +45,7 @@ public class Q00007_ATripBegins extends Quest
 	@Override
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
-		final QuestState st = player.getQuestState(qn);
+		final QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return getNoQuestMsg();
@@ -85,7 +83,7 @@ public class Q00007_ATripBegins extends Quest
 	@Override
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		String htmltext = getNoQuestMsg();
 		if (st == null)
 			return htmltext;

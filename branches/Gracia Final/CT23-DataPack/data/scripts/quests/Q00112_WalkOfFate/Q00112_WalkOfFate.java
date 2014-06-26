@@ -19,9 +19,9 @@ import ct23.xtreme.gameserver.model.quest.QuestState;
 import ct23.xtreme.gameserver.model.quest.State;
 
 /**
- * Walk of Fate (112)
- * @author Eyerobot Pyton
- * @author BossForever Java
+ * Walk of Fate (112) <br>
+ * Original Jython script by Eyerobot.
+ * @author BossForever
  */
 public class Q00112_WalkOfFate extends Quest
 {
@@ -45,7 +45,7 @@ public class Q00112_WalkOfFate extends Quest
 	@Override
 	public String onAdvEvent (String event, L2Npc npc, L2PcInstance player)
 	{
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return getNoQuestMsg();
@@ -79,7 +79,7 @@ public class Q00112_WalkOfFate extends Quest
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
 		String htmltext = getNoQuestMsg();
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		if (st == null)
 			return htmltext;
 		

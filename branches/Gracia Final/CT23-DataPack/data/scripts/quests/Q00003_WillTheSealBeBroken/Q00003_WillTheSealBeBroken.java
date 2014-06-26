@@ -31,7 +31,6 @@ import ct23.xtreme.gameserver.model.quest.State;
  */
 public class Q00003_WillTheSealBeBroken extends Quest
 {
-	private static final String qn = "Q00003_WillTheSealBeBroken";
 	// NPC
 	private static final int TALLOTH = 30141;
 	// Monsters
@@ -61,7 +60,7 @@ public class Q00003_WillTheSealBeBroken extends Quest
 	@Override
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
-		final QuestState st = player.getQuestState(qn);
+		final QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return null;

@@ -27,10 +27,7 @@ import ct23.xtreme.util.Rnd;
  * @updates BossForever
  */
 public class Q00611_AllianceWithVarkaSilenos extends Quest
-{
-	private static final String qn = "Q00611_AllianceWithVarkaSilenos";
-	private static final String qn2 = "612_WarWithKetraOrcs";
-	
+{	
 	private static final TIntIntHashMap Chance = new TIntIntHashMap();
 	{
 		Chance.put(21324, 508000);
@@ -99,7 +96,7 @@ public class Q00611_AllianceWithVarkaSilenos extends Quest
 	
 	public Q00611_AllianceWithVarkaSilenos()
 	{
-		super(611, qn, "Alliance with Varka Silenos");
+		super(611, Q00611_AllianceWithVarkaSilenos.class.getSimpleName(), "Alliance with Varka Silenos");
 		
 		registerQuestItems(Ketra_Badge_Soldier,Ketra_Badge_Officer,Ketra_Badge_Captain);	
 		addStartNpc(Naran);
@@ -113,7 +110,7 @@ public class Q00611_AllianceWithVarkaSilenos extends Quest
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
 		String htmltext = event;
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		if (st == null)
 			return htmltext;
 		
@@ -212,7 +209,7 @@ public class Q00611_AllianceWithVarkaSilenos extends Quest
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
 		String htmltext = getNoQuestMsg();
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		if (st == null)
 			return htmltext;
 		
@@ -343,7 +340,7 @@ public class Q00611_AllianceWithVarkaSilenos extends Quest
 		final int npcId = npc.getNpcId();
 		
 		// Support for Q612.
-		QuestState st = partyMember.getQuestState(qn2);
+		QuestState st = partyMember.getQuestState("612_WarWithKetraOrcs");
 		if (st != null && Rnd.get(1) == 0)
 		{
 			int chance = ChanceMolar.get(npcId);
@@ -354,7 +351,7 @@ public class Q00611_AllianceWithVarkaSilenos extends Quest
 			}
 		}
 		
-		st = partyMember.getQuestState(qn);
+		st = partyMember.getQuestState(getName());
 		
 		int cond = st.getInt("cond");
 		if (cond == 6)

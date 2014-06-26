@@ -20,8 +20,6 @@ import ct23.xtreme.gameserver.model.quest.State;
 
 public class Q00011_SecretMeetingWithKetraOrcs extends Quest
 {
-	private static final String qn = "Q00011_SecretMeetingWithKetraOrcs";
-	
 	// Npcs
 	private static final int CADMON = 31296;
 	private static final int LEON = 31256;
@@ -32,7 +30,7 @@ public class Q00011_SecretMeetingWithKetraOrcs extends Quest
 	
 	public Q00011_SecretMeetingWithKetraOrcs()
 	{
-		super(11, qn, "Secret Meeting With Ketra Orcs");
+		super(11, Q00011_SecretMeetingWithKetraOrcs.class.getSimpleName(), "Secret Meeting With Ketra Orcs");
 		
 		registerQuestItems(MUNITIONS_BOX);
 		addStartNpc(CADMON);
@@ -42,7 +40,7 @@ public class Q00011_SecretMeetingWithKetraOrcs extends Quest
 	@Override
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
-		final QuestState st = player.getQuestState(qn);
+		final QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return getNoQuestMsg();
@@ -75,7 +73,7 @@ public class Q00011_SecretMeetingWithKetraOrcs extends Quest
 	@Override
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		String htmltext = getNoQuestMsg();
 		if (st == null)
 			return htmltext;

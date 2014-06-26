@@ -31,8 +31,6 @@ import ct23.xtreme.gameserver.model.quest.State;
  */
 public class Q00172_NewHorizons extends Quest
 {
-	private static final String qn = "Q00172_NewHorizons";
-	
 	// NPCs
 	private static final int ZENYA = 32140;
 	private static final int RAGARA = 32163;
@@ -43,7 +41,7 @@ public class Q00172_NewHorizons extends Quest
 	
 	public Q00172_NewHorizons()
 	{
-		super(172, qn, "New Horizons");
+		super(172, Q00172_NewHorizons.class.getSimpleName(), "New Horizons");
 		addStartNpc(ZENYA);
 		addTalkId(ZENYA, RAGARA);
 	}
@@ -51,7 +49,7 @@ public class Q00172_NewHorizons extends Quest
 	@Override
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return getNoQuestMsg();
@@ -79,7 +77,7 @@ public class Q00172_NewHorizons extends Quest
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
 		String htmltext = getNoQuestMsg();
-		final QuestState st = player.getQuestState(qn);
+		final QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return htmltext;

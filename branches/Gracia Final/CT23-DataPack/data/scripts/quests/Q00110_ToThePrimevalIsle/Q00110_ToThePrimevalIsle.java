@@ -19,14 +19,12 @@ import ct23.xtreme.gameserver.model.quest.QuestState;
 import ct23.xtreme.gameserver.model.quest.State;
 
 /**
- * To The Primeval Isle (110)
- * @author Ethernaly Pyton
- * @author BossForever Java
+ * To The Primeval Isle (110) <br>
+ * Original Jython script by Ethernaly.
+ * @author BossForever
  */
 public class Q00110_ToThePrimevalIsle extends Quest
 {
-	private static final String qn = "Q00110_ToThePrimevalIsle";
-	
 	// Reward
 	private static final int ANCIENT_BOOK = 8777;
 	
@@ -36,7 +34,7 @@ public class Q00110_ToThePrimevalIsle extends Quest
 	
 	public Q00110_ToThePrimevalIsle()
 	{
-		super(110, qn, "To The Primeval Isle!");
+		super(110, Q00110_ToThePrimevalIsle.class.getSimpleName(), "To The Primeval Isle!");
 		addStartNpc(ANTON);
 		addTalkId(ANTON, MARQUEZ);
 	}
@@ -44,7 +42,7 @@ public class Q00110_ToThePrimevalIsle extends Quest
 	@Override
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return getNoQuestMsg();
@@ -79,7 +77,7 @@ public class Q00110_ToThePrimevalIsle extends Quest
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
 		String htmltext = getNoQuestMsg();
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		if (st == null)
 			return htmltext;
 		

@@ -20,8 +20,6 @@ import ct23.xtreme.gameserver.model.quest.State;
 
 public class Q00012_SecretMeetingWithVarkaSilenos extends Quest
 {
-	private static final String qn = "Q00012_SecretMeetingWithVarkaSilenos";
-	
 	// NPCs
 	private static final int CADMON = 31296;
 	private static final int HELMUT = 31258;
@@ -32,7 +30,7 @@ public class Q00012_SecretMeetingWithVarkaSilenos extends Quest
 	
 	public Q00012_SecretMeetingWithVarkaSilenos()
 	{
-		super(12, qn, "Secret Meeting With Varka Silenos");
+		super(12, Q00012_SecretMeetingWithVarkaSilenos.class.getSimpleName(), "Secret Meeting With Varka Silenos");
 		
 		registerQuestItems(MUNITIONS_BOX);
 		addStartNpc(CADMON);
@@ -42,7 +40,7 @@ public class Q00012_SecretMeetingWithVarkaSilenos extends Quest
 	@Override
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
-		final QuestState st = player.getQuestState(qn);
+		final QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return getNoQuestMsg();
@@ -75,7 +73,7 @@ public class Q00012_SecretMeetingWithVarkaSilenos extends Quest
 	@Override
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		String htmltext = getNoQuestMsg();
 		if (st == null)
 			return htmltext;

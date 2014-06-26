@@ -20,8 +20,6 @@ import ct23.xtreme.gameserver.model.quest.State;
 
 public class Q00016_TheComingDarkness extends Quest
 {
-	private static final String qn = "Q00016_TheComingDarkness";
-	
 	// NPCs
 	private static final int HIERARCH = 31517;
 	private static final int EVIL_ALTAR_1 = 31512;
@@ -35,7 +33,7 @@ public class Q00016_TheComingDarkness extends Quest
 	
 	public Q00016_TheComingDarkness()
 	{
-		super(16, qn, "The Coming Darkness");
+		super(16, Q00016_TheComingDarkness.class.getSimpleName(), "The Coming Darkness");
 		
 		registerQuestItems(CRYSTAL_OF_SEAL);
 		addStartNpc(HIERARCH);
@@ -45,7 +43,7 @@ public class Q00016_TheComingDarkness extends Quest
 	@Override
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
-		final QuestState st = player.getQuestState(qn);
+		final QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return getNoQuestMsg();
@@ -97,7 +95,7 @@ public class Q00016_TheComingDarkness extends Quest
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
 		String htmltext = getNoQuestMsg();
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		if (st == null)
 			return htmltext;
 		

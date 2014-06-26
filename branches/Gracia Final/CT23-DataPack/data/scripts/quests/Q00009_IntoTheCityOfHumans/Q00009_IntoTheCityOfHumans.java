@@ -21,8 +21,6 @@ import ct23.xtreme.gameserver.model.quest.State;
 
 public class Q00009_IntoTheCityOfHumans extends Quest
 {
-	private static final String qn = "Q00009_IntoTheCityOfHumans";
-	
 	// NPCs
 	public final int PETUKAI = 30583;
 	public final int TANAPI = 30571;
@@ -34,7 +32,7 @@ public class Q00009_IntoTheCityOfHumans extends Quest
 	
 	public Q00009_IntoTheCityOfHumans()
 	{
-		super(9, qn, "Into the City of Humans");
+		super(9, Q00009_IntoTheCityOfHumans.class.getSimpleName(), "Into the City of Humans");
 		
 		addStartNpc(PETUKAI);
 		addTalkId(PETUKAI, TANAPI, TAMIL);
@@ -43,7 +41,7 @@ public class Q00009_IntoTheCityOfHumans extends Quest
 	@Override
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
-		final QuestState st = player.getQuestState(qn);
+		final QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return getNoQuestMsg();
@@ -75,7 +73,7 @@ public class Q00009_IntoTheCityOfHumans extends Quest
 	@Override
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		String htmltext = getNoQuestMsg();
 		if (st == null)
 			return htmltext;

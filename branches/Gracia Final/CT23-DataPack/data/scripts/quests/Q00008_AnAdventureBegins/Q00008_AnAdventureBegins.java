@@ -21,8 +21,6 @@ import ct23.xtreme.gameserver.model.quest.State;
 
 public class Q00008_AnAdventureBegins extends Quest
 {
-	private static final String qn = "Q00008_AnAdventureBegins";
-	
 	// NPCs
 	private static final int JASMINE = 30134;
 	private static final int ROSELYN = 30355;
@@ -37,7 +35,7 @@ public class Q00008_AnAdventureBegins extends Quest
 	
 	public Q00008_AnAdventureBegins()
 	{
-		super(8, qn, "An Adventure Begins");
+		super(8, Q00008_AnAdventureBegins.class.getSimpleName(), "An Adventure Begins");
 		
 		registerQuestItems(ROSELYN_NOTE);
 		addStartNpc(JASMINE);
@@ -47,7 +45,7 @@ public class Q00008_AnAdventureBegins extends Quest
 	@Override
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
-		final QuestState st = player.getQuestState(qn);
+		final QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return getNoQuestMsg();
@@ -86,7 +84,7 @@ public class Q00008_AnAdventureBegins extends Quest
 	@Override
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		String htmltext = getNoQuestMsg();
 		if (st == null)
 			return htmltext;

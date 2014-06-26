@@ -20,8 +20,6 @@ import ct23.xtreme.gameserver.model.quest.State;
 
 public class Q00013_ParcelDelivery extends Quest
 {
-	private static final String qn = "Q00013_ParcelDelivery";
-	
 	// NPCs
 	private static final int FUNDIN = 31274;
 	private static final int VULCAN = 31539;
@@ -31,7 +29,7 @@ public class Q00013_ParcelDelivery extends Quest
 	
 	public Q00013_ParcelDelivery()
 	{
-		super(13, qn, "Parcel Delivery");
+		super(13, Q00013_ParcelDelivery.class.getSimpleName(), "Parcel Delivery");
 		
 		registerQuestItems(PACKAGE);
 		addStartNpc(FUNDIN);
@@ -41,7 +39,7 @@ public class Q00013_ParcelDelivery extends Quest
 	@Override
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
-		final QuestState st = player.getQuestState(qn);
+		final QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return getNoQuestMsg();
@@ -71,7 +69,7 @@ public class Q00013_ParcelDelivery extends Quest
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
 		String htmltext = getNoQuestMsg();
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		if (st == null)
 			return htmltext;
 		

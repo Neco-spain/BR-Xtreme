@@ -20,8 +20,6 @@ import ct23.xtreme.gameserver.model.quest.State;
 
 public class Q00019_GoToThePastureland extends Quest
 {
-	private static final String qn = "Q00019_GoToThePastureland";
-	
 	// Items
 	private static final int YOUNG_WILD_BEAST_MEAT = 7547;
 	
@@ -31,7 +29,7 @@ public class Q00019_GoToThePastureland extends Quest
 	
 	public Q00019_GoToThePastureland()
 	{
-		super(19, qn, "Go to the Pastureland!");
+		super(19, Q00019_GoToThePastureland.class.getSimpleName(), "Go to the Pastureland!");
 		
 		registerQuestItems(YOUNG_WILD_BEAST_MEAT);
 		addStartNpc(VLADIMIR);
@@ -41,7 +39,7 @@ public class Q00019_GoToThePastureland extends Quest
 	@Override
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
-		final QuestState st = player.getQuestState(qn);
+		final QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return getNoQuestMsg();
@@ -74,7 +72,7 @@ public class Q00019_GoToThePastureland extends Quest
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
 		String htmltext = getNoQuestMsg();
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		if (st == null)
 			return htmltext;
 		

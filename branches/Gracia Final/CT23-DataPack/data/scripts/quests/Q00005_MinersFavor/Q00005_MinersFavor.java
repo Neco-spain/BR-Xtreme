@@ -20,8 +20,6 @@ import ct23.xtreme.gameserver.model.quest.State;
 
 public class Q00005_MinersFavor extends Quest
 {
-	private static final String qn = "Q00005_MinersFavor";
-	
 	// NPCs
 	private static final int BOLTER = 30554;
 	private static final int SHARI = 30517;
@@ -42,7 +40,7 @@ public class Q00005_MinersFavor extends Quest
 	
 	public Q00005_MinersFavor()
 	{
-		super(5, qn, "Miner's Favor");
+		super(5, Q00005_MinersFavor.class.getSimpleName(), "Miner's Favor");
 		
 		registerQuestItems(	BOLTERS_LIST,MINING_BOOTS,MINERS_PICK,BOOMBOOM_POWDER,REDSTONE_BEER,BOLTERS_SMELLY_SOCKS);
 		addStartNpc(BOLTER);
@@ -52,7 +50,7 @@ public class Q00005_MinersFavor extends Quest
 	@Override
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
-		final QuestState st = player.getQuestState(qn);
+		final QuestState st = player.getQuestState(getName());
 		if (st == null)
 		{
 			return getNoQuestMsg();
@@ -86,7 +84,7 @@ public class Q00005_MinersFavor extends Quest
 	@Override
 	public String onTalk(L2Npc npc, L2PcInstance player)
 	{
-		QuestState st = player.getQuestState(qn);
+		QuestState st = player.getQuestState(getName());
 		String htmltext = getNoQuestMsg();
 		if (st == null)
 			return htmltext;

@@ -23,7 +23,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javolution.util.FastMap;
-
 import ct23.xtreme.Config;
 import ct23.xtreme.L2DatabaseFactory;
 import ct23.xtreme.gameserver.GameTimeController;
@@ -36,6 +35,7 @@ import ct23.xtreme.gameserver.model.actor.L2Character;
 import ct23.xtreme.gameserver.model.actor.L2Npc;
 import ct23.xtreme.gameserver.model.actor.instance.L2MonsterInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
+import ct23.xtreme.gameserver.model.holders.ItemHolder;
 import ct23.xtreme.gameserver.model.itemcontainer.PcInventory;
 import ct23.xtreme.gameserver.model.quest.Quest.QuestSound;
 import ct23.xtreme.gameserver.network.SystemMessageId;
@@ -224,7 +224,12 @@ public final class QuestState
 		_vars.put(var, val);
 		return val;
 	}
-
+	
+	public String set(String var, int val)
+	{
+		return set(var, Integer.toString(val));
+	}
+	
 	/**
 	 * Return value of parameter "val" after adding the couple (var,val) in class variable "vars".<BR><BR>
 	 * <U><I>Actions :</I></U><BR>
@@ -647,7 +652,17 @@ public final class QuestState
 
 		((L2PcInstance)character).addNotifyQuestOfDeath(this);
 	}
-
+	
+	/**
+	 * Get the amount of an item in player's inventory.
+	 * @param player the player whose inventory to check
+	 * @param itemId the ID of the item whose amount to get
+	 * @return the amount of the specified item in player's inventory
+	 */
+	public static long getQuestItemsCount(L2PcInstance player, int itemId)
+	{
+		return player.getInventory().getInventoryItemCount(itemId, -1);
+	}
 	/**
 	 * Return the quantity of one sort of item hold by the player
 	 * @param itemId : ID of the item wanted to be count
@@ -680,13 +695,25 @@ public final class QuestState
     {
         return hasQuestItems(_player, itemIds);
     }
+	
+	/**
+	 * Check for an item in player's inventory.
+	 * @param player the player whose inventory to check for quest items
+	 * @param itemId the ID of the item to check for
+	 * @return {@code true} if the item exists in player's inventory, {@code false} otherwise
+	 */
+	public boolean hasQuestItems(L2PcInstance player, int itemId)
+	{
+		return (player.getInventory().getItemByItemId(itemId) != null);
+	}
+	
 	/**
 	 * Check for multiple items in player's inventory.
 	 * @param player the player whose inventory to check for quest items
 	 * @param itemIds a list of item Ids to check for
 	 * @return {@code true} if all items exist in player's inventory, {@code false} otherwise
 	 */
-	public boolean hasQuestItems(L2PcInstance player,int... itemIds)
+	public boolean hasQuestItems(L2PcInstance player, int... itemIds)
 	{
 		final PcInventory inv = player.getInventory();
 		for (int itemId : itemIds)
@@ -1399,4 +1426,84 @@ public final class QuestState
 		final String val = get("restartTime");
 		return ((val == null) || !Util.isDigit(val)) || (Long.parseLong(val) <= System.currentTimeMillis());
 	}
+	
+	public QuestState setMemoState(int value)
+	{
+		set("memoState", String.valueOf(value));
+		return this;
+	}
+	
+	/**
+	 * @return the current Memo State
+	 */
+	public int getMemoState()
+	{
+		if (isStarted())
+		{
+			return getInt("memoState");
+		}
+		return 0;
+	}
+	
+	public boolean isMemoState(int memoState)
+	{
+		return (getInt("memoState") == memoState);
+	}
+	
+	/**
+	 * Check if the player has the specified item in his inventory.
+	 * @param player the player whose inventory to check for the specified item
+	 * @param item the {@link ItemHolder} object containing the ID and count of the item to check
+	 * @return {@code true} if the player has the required count of the item
+	 */
+	public boolean hasItem(L2PcInstance player, ItemHolder item)
+	{
+		return hasItem(player, item, true);
+	}
+	
+	/**
+	 * Check if the player has the required count of the specified item in his inventory.
+	 * @param player the player whose inventory to check for the specified item
+	 * @param item the {@link ItemHolder} object containing the ID and count of the item to check
+	 * @param checkCount if {@code true}, check if each item is at least of the count specified in the ItemHolder,<br>
+	 *            otherwise check only if the player has the item at all
+	 * @return {@code true} if the player has the item
+	 */
+	public boolean hasItem(L2PcInstance player, ItemHolder item, boolean checkCount)
+	{
+		if (item == null)
+		{
+			return false;
+		}
+		if (checkCount)
+		{
+			return (getQuestItemsCount(player, item.getId()) >= item.getCount());
+		}
+		return hasQuestItems(player, item.getId());
+	}
+	
+	/**
+	 * Check if the player has all the specified items in his inventory and, if necessary, if their count is also as required.
+	 * @param player the player whose inventory to check for the specified item
+	 * @param checkCount if {@code true}, check if each item is at least of the count specified in the ItemHolder,<br>
+	 *            otherwise check only if the player has the item at all
+	 * @param itemList a list of {@link ItemHolder} objects containing the IDs of the items to check
+	 * @return {@code true} if the player has all the items from the list
+	 */
+	public boolean hasAllItems(L2PcInstance player, boolean checkCount, ItemHolder... itemList)
+	{
+		if ((itemList == null) || (itemList.length == 0))
+		{
+			return false;
+		}
+		for (ItemHolder item : itemList)
+		{
+			if (!hasItem(player, item, checkCount))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	
 }
