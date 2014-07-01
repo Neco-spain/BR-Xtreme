@@ -54,7 +54,7 @@ public class Q10272_LightFragment extends Quest
 		22550, // Savage Warrior
 		22551, // Priest of Darkness
 		22552, // Mutation Drake
-		22596 // White Dragon Leader
+		22596  // White Dragon Leader
 	};
 	
 	// Items
@@ -138,6 +138,18 @@ public class Q10272_LightFragment extends Quest
 				{
 					event = "32557-04.html";
 				}
+				break;
+			}
+			case "enter":
+			{
+				player.teleToLocation(-23758, -8959, -5384);
+				event = "32566-06a.html";
+				break;
+			}
+			case "exit":
+			{
+				player.teleToLocation(-185057, 242821, 1576);
+				event = "32567-05a.html";	
 				break;
 			}
 			default:

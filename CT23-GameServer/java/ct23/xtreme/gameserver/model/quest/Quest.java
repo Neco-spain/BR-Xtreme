@@ -2126,6 +2126,35 @@ public class Quest extends ManagedScript
 	{
 		return _isCustom;
 	}
+	
+	/**
+	 * Take an amount of all specified items from player's inventory.
+	 * @param player the player whose items to take
+	 * @param amount the amount to take of each item
+	 * @param itemIds a list or an array of Ids of the items to take
+	 * @return {@code true} if all items were taken, {@code false} otherwise
+	 */
+	public boolean takeItems(L2PcInstance player, int amount, int... itemIds)
+	{
+		boolean check = true;
+		if (itemIds != null)
+		{
+			for (int item : itemIds)
+			{
+				check &= takeItems(player, item, amount);
+			}
+		}
+		return check;
+	}
+	
+	/**
+	 * Remove all quest items associated with this quest from the specified player's inventory.
+	 * @param player the player whose quest items to remove
+	 */
+	public void removeRegisteredQuestItems(L2PcInstance player)
+	{
+		takeItems(player, -1, questItemIds);
+	}
 
     /**
      * Show an on screen message to the player.
