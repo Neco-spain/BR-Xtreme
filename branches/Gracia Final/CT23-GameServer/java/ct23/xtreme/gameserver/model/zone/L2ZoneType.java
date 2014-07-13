@@ -14,6 +14,7 @@
  */
 package ct23.xtreme.gameserver.model.zone;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -50,6 +51,7 @@ public abstract class L2ZoneType
 	private int[] _class;
 	private char _classType;
 	private Map<Quest.QuestEventType, FastList<Quest>> _questEvents;
+	private boolean _enabled;
 	
 	protected L2ZoneType(int id)
 	{
@@ -66,6 +68,7 @@ public abstract class L2ZoneType
 		
 		_race = null;
 		_class = null;
+		_enabled = true;
 	}
 	
 	/**
@@ -139,6 +142,10 @@ public abstract class L2ZoneType
 				_class = temp;
 			}
 		}
+		else if (name.equals("default_enabled"))
+		{
+			_enabled = Boolean.parseBoolean(value);
+		}
 		// Affected class type
 		else if (name.equals("affectedClassType"))
 		{
@@ -151,6 +158,7 @@ public abstract class L2ZoneType
 				_classType = 2;
 			}
 		}
+		
 		else
 			_log.info(getClass().getSimpleName()+": Unknown parameter - "+name+" in zone: "+getId());
 	}
@@ -423,5 +431,29 @@ public abstract class L2ZoneType
 			if (character instanceof L2PcInstance)
 				character.sendPacket(packet);
 		}
+	}
+	
+	public List<L2PcInstance> getPlayersInside()
+	{
+		List<L2PcInstance> players = new ArrayList<>();
+		for (L2Character ch : _characterList.values())
+		{
+			if ((ch != null) && ch.isPlayer())
+			{
+				players.add(ch.getActingPlayer());
+			}
+		}
+		
+		return players;
+	}
+	
+	public void setEnabled(boolean state)
+	{
+		_enabled = state;
+	}
+	
+	public boolean isEnabled()
+	{
+		return _enabled;
 	}
 }

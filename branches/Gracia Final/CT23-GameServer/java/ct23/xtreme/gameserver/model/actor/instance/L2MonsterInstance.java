@@ -14,7 +14,6 @@
  */
 package ct23.xtreme.gameserver.model.actor.instance;
 
-import java.util.List;
 import java.util.concurrent.ScheduledFuture;
 
 import ct23.xtreme.gameserver.ThreadPoolManager;
@@ -39,17 +38,16 @@ import ct23.xtreme.util.Rnd;
 public class L2MonsterInstance extends L2Attackable
 {
 	//private static Logger _log = Logger.getLogger(L2MonsterInstance.class.getName());
-
-	private boolean _enableMinions = true;
-
-	private L2MonsterInstance _master = null;
 	
-	protected final MinionList _minionList;
-
+	private boolean _enableMinions = true;
+	
+	private L2MonsterInstance _master = null;
+	private MinionList _minionList = null;
+	
 	protected ScheduledFuture<?> _maintenanceTask = null;
-
+	
 	private static final int MONSTER_MAINTENANCE_INTERVAL = 1000;
-
+	
 	/**
 	 * Constructor of L2MonsterInstance (use L2Character and L2NpcInstance constructor).<BR><BR>
 	 *
@@ -66,24 +64,20 @@ public class L2MonsterInstance extends L2Attackable
 		super(objectId, template);
 		setInstanceType(InstanceType.L2MonsterInstance);
 		setAutoAttackable(true);
-		if (getTemplate().getMinionData() != null)
-			_minionList  = new MinionList(this);
-		else
-			_minionList = null;
 	}
-
+	
 	@Override
 	public final MonsterKnownList getKnownList()
 	{
 		return (MonsterKnownList)super.getKnownList();
 	}
-
+	
 	@Override
 	public void initKnownList()
 	{
 		setKnownList(new MonsterKnownList(this));
 	}
-
+	
 	/**
 	 * Return True if the attacker is not another L2MonsterInstance.<BR><BR>
 	 */
@@ -92,7 +86,7 @@ public class L2MonsterInstance extends L2Attackable
 	{
 		return super.isAutoAttackable(attacker) && !isEventMob;
 	}
-
+	
 	/**
 	 * Return True if the L2MonsterInstance is Agressive (aggroRange > 0).<BR><BR>
 	 */
@@ -101,36 +95,46 @@ public class L2MonsterInstance extends L2Attackable
 	{
 		return (getTemplate().aggroRange > 0) && !isEventMob;
 	}
-
+	
 	@Override
 	public void onSpawn()
 	{
-		super.onSpawn();
-
-		if (_minionList != null)
+		if (!isTeleporting())
 		{
-			try
+			if (getLeader() != null)
 			{
-				for (L2MinionInstance minion : getSpawnedMinions())
-				{
-					if (minion == null) continue;
-					getSpawnedMinions().remove(minion);
-					minion.deleteMe();
-				}
-				_minionList.clearRespawnList();
+				setIsNoRndWalk(true);
+				setIsRaidMinion(getLeader().isRaid());
+				getLeader().getMinionList().onMinionSpawn(this);
 			}
-			catch ( NullPointerException e )
-			{
-			}
+
+			// delete spawned minions before dynamic minions spawned by script
+			if (hasMinions())
+				getMinionList().onMasterSpawn(); 
+
+			startMaintenanceTask();
 		}
-		startMaintenanceTask();
+
+		// dynamic script-based minions spawned here, after all preparations.
+		super.onSpawn();
+	}
+	
+	@Override
+	public void onTeleported()
+	{
+		super.onTeleported();
+
+		if (hasMinions())
+		{
+			getMinionList().onMasterTeleported();
+		}
 	}
 
 	protected int getMaintenanceInterval()
 	{
 		return MONSTER_MAINTENANCE_INTERVAL;
 	}
-
+	
 	/**
 	 * Spawn all minions at a regular interval
 	 *
@@ -138,68 +142,18 @@ public class L2MonsterInstance extends L2Attackable
 	protected void startMaintenanceTask()
 	{
 		// maintenance task now used only for minions spawn
-		if (_minionList == null)
+		if (getTemplate().getMinionData() == null)
 			return;
 
-		_maintenanceTask = ThreadPoolManager.getInstance().scheduleGeneral(new Runnable() {
-			public void run()
-			{
-				if (_enableMinions)
-					_minionList.spawnMinions();
-			}
-		}, getMaintenanceInterval() + Rnd.get(1000));
-	}
-
-	public void callMinions()
-	{
-		if (hasMinions())
+		if (_maintenanceTask == null)
 		{
-			for (L2MinionInstance minion : _minionList.getSpawnedMinions())
-			{
-				if (minion == null || minion.isDead() || minion.isMovementDisabled())
-					continue;
-
-				// Get actual coords of the minion and check to see if it's too far away from this L2MonsterInstance
-				if (!isInsideRadius(minion, 200, false, false))
+			_maintenanceTask = ThreadPoolManager.getInstance().scheduleGeneral(new Runnable() {
+				public void run()
 				{
-					// Calculate a new random coord for the minion based on the master's coord
-					// but with minimum distance from master = 30
-					int minionX = Rnd.nextInt(340);
-					int minionY = Rnd.nextInt(340);
-
-					if (minionX < 171)
-						minionX = getX() + minionX + 30;
-					else
-						minionX = getX() - minionX + 140;
-
-					if (minionY < 171)
-						minionY = getY() + minionY + 30;
-					else
-						minionY = getY() - minionY + 140;
-
-					// Move the minion to the new coords
-					if (!minion.isInCombat() && !minion.isDead() && !minion.isMovementDisabled())
-						minion.moveToLocation(minionX, minionY, getZ(), 0);
+					if (_enableMinions)
+						getMinionList().spawnMinions();
 				}
-			}
-		}
-	}
-
-	public void callMinionsToAssist(L2Character attacker)
-	{
-		if (hasMinions())
-		{
-			for (L2MinionInstance minion : _minionList.getSpawnedMinions())
-			{
-				if (minion == null || attacker == null || minion.isDead() || minion.isInCombat())
-					continue;
-
-				// Trigger the aggro condition of the minion
-				if (isRaid() && !isRaidMinion())
-					minion.addDamageHate(attacker, 0, 100);
-				else
-					minion.addDamageHate(attacker, 0, 1);
-			}
+			}, getMaintenanceInterval() + Rnd.get(1000));
 		}
 	}
 
@@ -210,97 +164,33 @@ public class L2MonsterInstance extends L2Attackable
 			return false;
 
 		if (_maintenanceTask != null)
-			_maintenanceTask.cancel(true); // doesn't do it?
+		{
+			_maintenanceTask.cancel(false); // doesn't do it?
+			_maintenanceTask = null;
+		}
 
-		if (hasMinions() && isRaid())
-			deleteSpawnedMinions();
 		return true;
-	}
-
-	public List<L2MinionInstance> getSpawnedMinions()
-	{
-		if (_minionList == null)
-			return null;
-
-		return _minionList.getSpawnedMinions();
-	}
-
-	public int getTotalSpawnedMinionsInstances()
-	{
-		if (_minionList == null)
-			return 0;
-
-		return _minionList.countSpawnedMinions();
-	}
-
-	public int getTotalSpawnedMinionsGroups()
-	{
-		if (_minionList == null)
-			return 0;
-
-		return _minionList.lazyCountSpawnedMinionsGroups();
-	}
-
-	public void notifyMinionDied(L2MinionInstance minion)
-	{
-		if (_minionList == null)
-			return;
-
-		_minionList.moveMinionToRespawnList(minion);
-	}
-
-	public void notifyMinionSpawned(L2MinionInstance minion)
-	{
-		if (_minionList == null)
-			return;
-
-		_minionList.addSpawnedMinion(minion);
-	}
-	
-	public void notifyMinionAttacked(L2Character attacker, L2MinionInstance minion)
-	{
-		addDamageHate(attacker, 0, 1);
-		callMinionsToAssist(attacker);
-	}
-
-	public boolean hasMinions()
-	{
-		if (_minionList == null)
-			return false;
-
-		return _minionList.hasMinions();
 	}
 
 	@Override
 	public void deleteMe()
 	{
-		if (hasMinions())
+		if (_maintenanceTask != null)
 		{
-			if (_maintenanceTask != null)
-				_maintenanceTask.cancel(true);
-
-			deleteSpawnedMinions();
+			_maintenanceTask.cancel(false);
+			_maintenanceTask = null;
 		}
+
+		if (hasMinions())
+			getMinionList().onMasterDie(true);
+
+		if (getLeader() != null)
+			getLeader().getMinionList().onMinionDie(this, 0);
+
 		super.deleteMe();
 	}
-
-	public void deleteSpawnedMinions()
-	{
-		if (_minionList == null)
-			return;
-
-		for(L2MinionInstance minion : getSpawnedMinions())
-		{
-			if (minion == null)
-				continue;
-			minion.abortAttack();
-			minion.abortCast();
-			minion.deleteMe();
-			getSpawnedMinions().remove(minion);
-		}
-		_minionList.clearRespawnList();
-	}
 	
+	@Override
 	public L2MonsterInstance getLeader()
 	{
 		return _master;
@@ -310,10 +200,23 @@ public class L2MonsterInstance extends L2Attackable
 	{
 		_master = leader;
 	}
-	
+
 	public void enableMinions(boolean b)
 	{
 		_enableMinions = b;
+	}
+
+	public boolean hasMinions()
+	{
+		return _minionList != null;
+	}
+	
+	public MinionList getMinionList()
+	{
+		if (_minionList == null)
+			_minionList = new MinionList(this);
+
+		return _minionList;
 	}
 	
 	private int _aggroRangeOverride = 0;
@@ -332,7 +235,6 @@ public class L2MonsterInstance extends L2Attackable
 	@Override
 	public int getAggroRange()
 	{
-		//Aggresive override for special mobs
 		if (_aggroRangeOverride > 0)
 			return _aggroRangeOverride;
 		
@@ -342,7 +244,6 @@ public class L2MonsterInstance extends L2Attackable
 	@Override
 	public String getClan()
 	{
-		//Clan name override for special mobs
 		if (_clanOverride != null)
 			return _clanOverride;
 		
@@ -352,7 +253,6 @@ public class L2MonsterInstance extends L2Attackable
 	@Override
 	public int getClanRange()
 	{
-		//Default faction range 500
 		if (_clanOverride != null)
 			return 500;
 		
@@ -370,5 +270,4 @@ public class L2MonsterInstance extends L2Attackable
 	{
 		_canAgroWhileMoving = true;
 	}
-	
 }

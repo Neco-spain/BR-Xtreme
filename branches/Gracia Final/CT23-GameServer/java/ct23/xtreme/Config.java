@@ -70,7 +70,7 @@ public final class Config
 	public static final String GRANDBOSS_CONFIG_FILE = "./config/Grandboss.ini";
 	public static final String GRACIASEEDS_CONFIG_FILE = "./config/GraciaSeeds.ini";
 	public static final String CHAT_FILTER_FILE = "./config/chatfilter.txt";
-
+	public static final String HELLBOUND_CONFIG_FILE = "./config/hellbound.ini";
 
 	//--------------------------------------------------
 	// BR Xtreme Variable Definitions
@@ -548,7 +548,14 @@ public final class Config
 	public static boolean CUSTOM_DROPLIST_TABLE;
 	public static boolean CUSTOM_MERCHANT_TABLES;
 	public static boolean CUSTOM_NPCBUFFER_TABLES;
-
+	
+	//Hellbound Settings
+	public static boolean ANNOUNCE_TO_ALL_GAINED_TRUST;
+	public static float RATE_HB_TRUST_INCREASE;
+	public static float RATE_HB_TRUST_DECREASE;
+	public static boolean HELLBOUND_WITHOUT_QUEST;
+	public static boolean HELLBOUND_STATUS;
+	
 	//--------------------------------------------------
 	// Security Settings
 	//--------------------------------------------------
@@ -1836,6 +1843,25 @@ public final class Config
 					e.printStackTrace();
 					throw new Error("Failed to Load "+GENERAL_CONFIG_FILE+" File.");
 				}
+				
+				// Load Hellbound L2Properties file (if exists)
+				try
+				{
+					L2Properties hellbound = new L2Properties();
+					is = new FileInputStream(new File(HELLBOUND_CONFIG_FILE));
+					hellbound.load(is);
+					HELLBOUND_WITHOUT_QUEST = Boolean.parseBoolean(hellbound.getProperty("HellboundWithoutQuest", "false"));
+					ANNOUNCE_TO_ALL_GAINED_TRUST = Boolean.parseBoolean(hellbound.getProperty("AnnounceToAllGainedTrust", "false"));
+					HELLBOUND_STATUS = Boolean.parseBoolean(hellbound.getProperty("HellboundStatus", "false"));
+					RATE_HB_TRUST_INCREASE = Float.parseFloat(hellbound.getProperty("RateHellboundTrustIncrease", "1."));
+					RATE_HB_TRUST_DECREASE = Float.parseFloat(hellbound.getProperty("RateHellboundTrustDecrease", "1."));
+				}
+				
+				catch (Exception e)
+					{
+						e.printStackTrace();
+						throw new Error("Failed to Load "+HELLBOUND_CONFIG_FILE+" File.");
+					}
 				
 				// Load Security L2Properties file
 				try

@@ -340,6 +340,7 @@ public class Quest extends ManagedScript
 		ON_SKILL_SEE(true), // NPC or Mob saw a person casting a skill (regardless what the target is). 
 		ON_FACTION_CALL(true), // NPC or Mob saw a person casting a skill (regardless what the target is). 
 		ON_AGGRO_RANGE_ENTER(true), // a person came within the Npc/Mob's range
+		ON_SEE_CREATURE(true), // onSeeCreature action, triggered when NPC's known list include the character
 		ON_SPELL_FINISHED(true), // on spell finished action when npc finish casting skill
 		ON_SKILL_LEARN(false), // control the AcquireSkill dialog from quest script
 		ON_ENTER_ZONE(true), // on zone enter
@@ -1510,6 +1511,16 @@ public class Quest extends ManagedScript
 	}
 	
 	/**
+	 * Add the quest to the NPC's first-talk (default action dialog)
+	 * @param npcIds A serie of ids.
+	 */
+	public void addAttackId(int... AttackIds)
+	{
+		for (int AttackId : AttackIds)
+			addEventId(AttackId, QuestEventType.ON_ATTACK);
+	}
+	
+	/**
 	 * Add this quest to the list of quests that the passed mob will respond to for Kill Events.<BR><BR>
 	 * @param killId
 	 * @return int : killId
@@ -1558,6 +1569,16 @@ public class Quest extends ManagedScript
 	}
 	
 	/**
+	 * Add this quest to the list of quests that the passed npc will respond to for Talk Events.
+	 * @param talkIds : A serie of ids.
+	 */
+	public void addSpawnId(int... SpawnsIds)
+	{
+		for (int spawnId : SpawnsIds)
+			addEventId(spawnId, Quest.QuestEventType.ON_SPAWN);
+	}
+	
+	/**
 	 * Add this quest to the list of quests that the passed npc will respond to for Skill-See Events.<BR><BR>
 	 * @param talkId : ID of the NPC
 	 * @return int : ID of the NPC
@@ -1566,11 +1587,30 @@ public class Quest extends ManagedScript
 	{
 		return addEventId(npcId, Quest.QuestEventType.ON_SKILL_SEE);
 	}
-
+	
+	/**
+	 * @param npcIds the IDs of the NPCs to register
+	 */
+	public void addSkillSeeId(int... npcIds)
+	{
+		for (int npcId : npcIds)
+			addEventId(npcId, QuestEventType.ON_SKILL_SEE);
+	}
+	
 	public L2NpcTemplate addSpellFinishedId(int npcId)
 	{
 		return addEventId(npcId, Quest.QuestEventType.ON_SPELL_FINISHED);
 	}
+	
+	/**
+	 * @param npcIds the IDs of the NPCs to register
+	 */
+	public void addSpellFinishedId(int... npcIds)
+	{
+		for (int npcId : npcIds)
+			addEventId(npcId, QuestEventType.ON_SPELL_FINISHED);
+	}
+	
 	/**
 	 * Add this quest to the list of quests that the passed npc will respond to for Faction Call Events.<BR><BR>
 	 * @param talkId : ID of the NPC
@@ -1579,6 +1619,16 @@ public class Quest extends ManagedScript
 	public L2NpcTemplate addFactionCallId(int npcId)
 	{
 		return addEventId(npcId, Quest.QuestEventType.ON_FACTION_CALL);
+	}
+	
+	/**
+	 * Add this quest to the list of quests that the passed npc will respond to for faction call events.
+	 * @param npcIds the IDs of the NPCs to register
+	 */
+	public void addFactionCallId(int... npcIds)
+	{
+		for (int npcId : npcIds)
+			addEventId(npcId, QuestEventType.ON_FACTION_CALL);
 	}
 	
 	/**
@@ -2260,4 +2310,54 @@ public class Quest extends ManagedScript
 		su.addAttribute(StatusUpdate.CUR_LOAD, player.getCurrentLoad());
 		player.sendPacket(su);
 	}
+	public class TmpOnSeeCreature implements Runnable
+	{
+		private final L2Npc _npc;
+		private final L2Character _creature;
+		private final boolean _isPet;
+		
+		public TmpOnSeeCreature(L2Npc npc, L2Character creature, boolean isPet)
+		{
+			_npc = npc;
+			_creature = creature;
+			_isPet = isPet;
+		}
+		
+		public void run()
+		{
+			L2PcInstance player = null;
+			if (_isPet || _creature.isPlayer())
+			{
+				player = _creature.getActingPlayer();
+			}
+			String res = null;
+			try
+			{
+				res = onSeeCreature(_npc, _creature, _isPet);
+			}
+			catch (Exception e)
+			{
+				if (player != null)
+				{
+					showError(player, e);
+				}
+			}
+			if (player != null)
+			{
+				showResult(player, res);
+			}
+		}
+	}
+	
+	public String onSeeCreature(L2Npc npc, L2Character creature, boolean isPet)
+	{
+		return null;
+	}
+	
+	public final boolean notifySeeCreature(L2Npc npc, L2Character creature, boolean isPet)
+	{
+		ThreadPoolManager.getInstance().executeAi(new TmpOnSeeCreature(npc, creature, isPet));
+		return true;
+	}
+	
 }

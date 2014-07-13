@@ -98,8 +98,15 @@ public abstract class L2Effect
 	// counter
 	private int _count;
 	
+	/** The Identifier of the stack group */
+	private final String _abnormalType;
+	
+	/** The position of the effect in the stack group */
+	private byte _abnormalLvl;
+	
 	// abnormal effect mask
 	private AbnormalEffect _abnormalEffect;
+	
 	// special effect mask
 	private AbnormalEffect _specialEffect;
 	// event effect mask
@@ -191,8 +198,11 @@ public abstract class L2Effect
 		
 		_period = temp;
 		_abnormalEffect = template.abnormalEffect;
+		_abnormalLvl = template.abnormalLvl;
 		_specialEffect = template.specialEffect;
 		_eventEffect = template.eventEffect;
+		_abnormalType = template.abnormalType;
+		_abnormalLvl = template.abnormalLvl;
 		_stackType = template.stackType;
 		_stackOrder = template.stackOrder;
 		_periodStartTicks = GameTimeController.getGameTicks();
@@ -233,6 +243,8 @@ public abstract class L2Effect
 		_abnormalEffect = _template.abnormalEffect;
 		_specialEffect = _template.specialEffect;
 		_eventEffect = _template.eventEffect;
+		_abnormalType = _template.abnormalType;
+		_abnormalLvl = _template.abnormalLvl;
 		_stackType = _template.stackType;
 		_stackOrder = _template.stackOrder;
 		_periodStartTicks = effect.getPeriodStartTicks();
@@ -260,6 +272,16 @@ public abstract class L2Effect
 	public void setCount(int newcount)
 	{
 		_count = newcount;
+	}
+	
+	public String getAbnormalType()
+	{
+		return _abnormalType;
+	}
+	
+	public byte getAbnormalLvl()
+	{
+		return _abnormalLvl;
 	}
 	
 	public void setFirstTime(int newfirsttime)

@@ -14,41 +14,318 @@
  */
 package ct23.xtreme.gameserver.instancemanager;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Logger;
+
+import ct23.xtreme.Config;
+import ct23.xtreme.L2DatabaseFactory;
+import ct23.xtreme.gameserver.ThreadPoolManager;
+import ct23.xtreme.gameserver.datatables.NpcTable;
+import ct23.xtreme.gameserver.datatables.SpawnTable;
+import ct23.xtreme.gameserver.model.L2Spawn;
+import ct23.xtreme.gameserver.model.actor.L2Npc;
+import ct23.xtreme.gameserver.templates.chars.L2NpcTemplate;
 
 public class HellboundManager
 {
 	private static final Logger _log = Logger.getLogger(HellboundManager.class.getName());
-
-	private HellboundManager()
+	
+	private static final String LOAD_SPAWNS = "SELECT npc_templateid, locx, locy, locz, heading, " + "respawn_delay, respawn_random, min_hellbound_level, " + "max_hellbound_level FROM hellbound_spawnlist ORDER BY npc_templateid";
+	
+	private static int _level = 0;
+	private static int _trust = 0;
+	private static int _maxTrust = 0;
+	private static int _minTrust = 0;
+	
+	private ScheduledFuture<?> _engine = null;
+	private final List<HellboundSpawn> _population = new ArrayList<>();
+	
+	protected HellboundManager()
 	{
-		_log.info(getClass().getSimpleName()+": Initializing");
-		init();
+		loadData();
+		loadSpawns();
 	}
-
-	private void init()
+	
+	public final int getLevel()
 	{
-		_log.info(getClass().getSimpleName()+": Mode: dummy");
+		return _level;
+	}
+	
+	public final synchronized void updateTrust(int t, boolean useRates)
+	{
 		if (isLocked())
-			_log.info(getClass().getSimpleName()+": State: locked");
+		{
+			return;
+		}
+		
+		int reward = t;
+		if (useRates)
+		{
+			reward = (int) (t > 0 ? Config.RATE_HB_TRUST_INCREASE * t : Config.RATE_HB_TRUST_DECREASE * t);
+		}
+		
+		final int trust = Math.max(_trust + reward, _minTrust);
+		if (_maxTrust > 0)
+		{
+			_trust = Math.min(trust, _maxTrust);
+		}
 		else
-			_log.info(getClass().getSimpleName()+": State: unlocked");
+		{
+			_trust = trust;
+		}
 	}
-
-	/**
-	 * Returns true if Hellbound is locked
-	 */
-	public boolean isLocked()
+	
+	public final void setLevel(int lvl)
 	{
-		return false;
+		_level = lvl;
 	}
-
+	
+	public final int getTrust()
+	{
+		return _trust;
+	}
+	
+	public final int getMaxTrust()
+	{
+		return _maxTrust;
+	}
+	
+	public final int getMinTrust()
+	{
+		return _minTrust;
+	}
+	
+	public final void setMaxTrust(int trust)
+	{
+		_maxTrust = trust;
+		if ((_maxTrust > 0) && (_trust > _maxTrust))
+		{
+			_trust = _maxTrust;
+		}
+	}
+	
+	public final void setMinTrust(int trust)
+	{
+		_minTrust = trust;
+		
+		if (_trust >= _maxTrust)
+		{
+			_trust = _minTrust;
+		}
+	}
+	
+	/**
+	 * @return true if Hellbound is locked
+	 */
+	public final boolean isLocked()
+	{
+		return _level == 0;
+	}
+	
+	public final void unlock()
+	{
+		if (_level == 0)
+		{
+			setLevel(1);
+		}
+	}
+	
+	public final void registerEngine(Runnable r, int interval)
+	{
+		if (_engine != null)
+		{
+			_engine.cancel(false);
+		}
+		_engine = ThreadPoolManager.getInstance().scheduleGeneralAtFixedRate(r, interval, interval);
+	}
+	
+	public final void doSpawn()
+	{
+		int added = 0;
+		int deleted = 0;
+		for (HellboundSpawn spawnDat : _population)
+		{
+			try
+			{
+				if (spawnDat == null)
+				{
+					continue;
+				}
+				
+				L2Npc npc = spawnDat.getLastSpawn();
+				if ((_level < spawnDat.getMinLvl()) || (_level > spawnDat.getMaxLvl()))
+				{
+					// npc should be removed
+					spawnDat.stopRespawn();
+					
+					if ((npc != null) && npc.isVisible())
+					{
+						npc.deleteMe();
+						deleted++;
+					}
+				}
+				else
+				{
+					// npc should be added
+					spawnDat.startRespawn();
+					npc = spawnDat.getLastSpawn();
+					if (npc == null)
+					{
+						npc = spawnDat.doSpawn();
+						added++;
+					}
+					else
+					{
+						if (npc.isDecayed())
+						{
+							npc.setDecayed(false);
+						}
+						if (npc.isDead())
+						{
+							npc.doRevive();
+						}
+						if (!npc.isVisible())
+						{
+							added++;
+						}
+						
+						npc.setCurrentHp(npc.getMaxHp());
+						npc.setCurrentMp(npc.getMaxMp());
+						// npc.spawnMe(spawnDat.getLocx(), spawnDat.getLocy(),
+						// spawnDat.getLocz());
+					}
+				}
+			}
+			catch (Exception e)
+			{
+				_log.warning(getClass().getSimpleName() + ": " + e.getMessage());
+			}
+		}
+		
+		if (added > 0)
+		{
+			_log.info(getClass().getSimpleName() + ": Spawned " + added + " NPCs.");
+		}
+		if (deleted > 0)
+		{
+			_log.info(getClass().getSimpleName() + ": Removed " + deleted + " NPCs.");
+		}
+	}
+	
+	public final void cleanUp()
+	{
+		saveData();
+		
+		if (_engine != null)
+		{
+			_engine.cancel(true);
+			_engine = null;
+		}
+		_population.clear();
+	}
+	
+	private final void loadData()
+	{
+		if (GlobalVariablesManager.getInstance().hasVariable("HBLevel"))
+		{
+			_level = GlobalVariablesManager.getInstance().getInt("HBLevel");
+			_trust = GlobalVariablesManager.getInstance().getInt("HBTrust");
+		}
+		else
+		{
+			saveData();
+		}
+	}
+	
+	public final void saveData()
+	{
+		GlobalVariablesManager.getInstance().set("HBLevel", _level);
+		GlobalVariablesManager.getInstance().set("HBTrust", _trust);
+	}
+	
+	private final void loadSpawns()
+	{
+		try (Connection con = L2DatabaseFactory.getInstance().getConnection();
+			Statement s = con.createStatement();
+			ResultSet rs = s.executeQuery(LOAD_SPAWNS))
+		{
+			HellboundSpawn spawnDat;
+			L2NpcTemplate template;
+			while (rs.next())
+			{
+				template = NpcTable.getInstance().getTemplate(rs.getInt("npc_templateid"));
+				if (template != null)
+				{
+					spawnDat = new HellboundSpawn(template);
+					spawnDat.setAmount(1);
+					spawnDat.setLocx(rs.getInt("locx"));
+					spawnDat.setLocy(rs.getInt("locy"));
+					spawnDat.setLocz(rs.getInt("locz"));
+					spawnDat.setHeading(rs.getInt("heading"));
+					spawnDat.setRespawnDelay(rs.getInt("respawn_delay"), rs.getInt("respawn_random"));
+					spawnDat.setMinLvl(rs.getInt("min_hellbound_level"));
+					spawnDat.setMaxLvl(rs.getInt("max_hellbound_level"));
+					
+					// _population.put(spawnDat, null);
+					_population.add(spawnDat);
+					SpawnTable.getInstance().addNewSpawn(spawnDat, false);
+				}
+				else
+				{
+					_log.warning(getClass().getSimpleName() + ": Data missing in NPC table for ID: " + rs.getInt("npc_templateid") + ".");
+				}
+			}
+			rs.close();
+			s.close();
+		}
+		catch (Exception e)
+		{
+			_log.warning(getClass().getSimpleName() + ": problem while loading spawns: " + e);
+		}
+		_log.info(getClass().getSimpleName() + ": Loaded " + _population.size() + " npc spawn locations.");
+	}
+	
+	public static final class HellboundSpawn extends L2Spawn
+	{
+		private int _minLvl;
+		private int _maxLvl;
+		
+		public HellboundSpawn(L2NpcTemplate mobTemplate) throws SecurityException, ClassNotFoundException, NoSuchMethodException
+		{
+			super(mobTemplate);
+		}
+		
+		public final int getMinLvl()
+		{
+			return _minLvl;
+		}
+		
+		public final void setMinLvl(int lvl)
+		{
+			_minLvl = lvl;
+		}
+		
+		public final int getMaxLvl()
+		{
+			return _maxLvl;
+		}
+		
+		public final void setMaxLvl(int lvl)
+		{
+			_maxLvl = lvl;
+		}
+	}
+	
 	public static final HellboundManager getInstance()
 	{
 		return SingletonHolder._instance;
 	}
-
-	@SuppressWarnings("synthetic-access")
+	
 	private static class SingletonHolder
 	{
 		protected static final HellboundManager _instance = new HellboundManager();

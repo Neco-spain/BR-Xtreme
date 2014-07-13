@@ -108,6 +108,7 @@ import ct23.xtreme.gameserver.instancemanager.RaidBossSpawnManager;
 import ct23.xtreme.gameserver.instancemanager.SiegeManager;
 import ct23.xtreme.gameserver.instancemanager.TerritoryWarManager;
 import ct23.xtreme.gameserver.instancemanager.TransformationManager;
+import ct23.xtreme.gameserver.instancemanager.WalkingManager;
 import ct23.xtreme.gameserver.instancemanager.ZoneManager;
 import ct23.xtreme.gameserver.model.AutoChatHandler;
 import ct23.xtreme.gameserver.model.AutoSpawnHandler;
@@ -256,6 +257,7 @@ public class GameServer
 		printSection("NPCs");
 		NpcTable.getInstance();
 		NpcWalkerRoutesTable.getInstance();
+		WalkingManager.getInstance();
 		ZoneManager.getInstance();
 		DoorTable.getInstance();
 		StaticObjects.getInstance();

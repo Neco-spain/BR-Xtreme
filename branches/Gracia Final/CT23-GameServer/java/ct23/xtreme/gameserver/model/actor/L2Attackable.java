@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
+import javolution.util.FastList;
+import javolution.util.FastMap;
 import ct23.xtreme.Config;
 import ct23.xtreme.gameserver.ItemsAutoDestroy;
 import ct23.xtreme.gameserver.ThreadPoolManager;
@@ -28,9 +30,9 @@ import ct23.xtreme.gameserver.ai.L2CharacterAI;
 import ct23.xtreme.gameserver.ai.L2FortSiegeGuardAI;
 import ct23.xtreme.gameserver.ai.L2SiegeGuardAI;
 import ct23.xtreme.gameserver.datatables.EventDroplist;
+import ct23.xtreme.gameserver.datatables.EventDroplist.DateDrop;
 import ct23.xtreme.gameserver.datatables.ItemTable;
 import ct23.xtreme.gameserver.datatables.SkillTable;
-import ct23.xtreme.gameserver.datatables.EventDroplist.DateDrop;
 import ct23.xtreme.gameserver.instancemanager.CursedWeaponsManager;
 import ct23.xtreme.gameserver.model.L2CharPosition;
 import ct23.xtreme.gameserver.model.L2CommandChannel;
@@ -43,7 +45,6 @@ import ct23.xtreme.gameserver.model.L2Skill;
 import ct23.xtreme.gameserver.model.actor.instance.L2DefenderInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2DoorInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2GrandBossInstance;
-import ct23.xtreme.gameserver.model.actor.instance.L2MinionInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2MonsterInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2NpcInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
@@ -65,8 +66,6 @@ import ct23.xtreme.gameserver.templates.chars.L2NpcTemplate;
 import ct23.xtreme.gameserver.templates.item.L2EtcItemType;
 import ct23.xtreme.gameserver.util.Util;
 import ct23.xtreme.util.Rnd;
-import javolution.util.FastList;
-import javolution.util.FastMap;
 
 public class L2Attackable extends L2Npc
 {
@@ -317,7 +316,7 @@ public class L2Attackable extends L2Npc
 
 	private int _isSpoiledBy = 0;
 
-	private int _onKillDelay = 5000;
+	protected int _onKillDelay = 5000;
 
 	/**
 	 * Constructor of L2Attackable (use L2Character and L2NpcInstance constructor).
@@ -426,7 +425,7 @@ public class L2Attackable extends L2Npc
 	@Override
 	public void reduceCurrentHp(double damage, L2Character attacker, boolean awake, boolean isDOT, L2Skill skill)
 	{
-		if (isRaid() && !(this instanceof L2MinionInstance) && attacker != null && attacker.getParty() != null 
+		if (isRaid() && !isMinion() && attacker != null && attacker.getParty() != null
 				&& attacker.getParty().isInCommandChannel() && attacker.getParty().getCommandChannel().meetRaidWarCondition(this))
 		{
 			if (_firstCommandChannelAttacked == null) //looting right isn't set
@@ -446,39 +445,34 @@ public class L2Attackable extends L2Npc
 					}
 				}
 			}
-			else if (attacker.getParty().getCommandChannel().equals(_firstCommandChannelAttacked)) //is in same channel 
+			else if (attacker.getParty().getCommandChannel().equals(_firstCommandChannelAttacked)) //is in same channel
 			{
 				_commandChannelLastAttack = System.currentTimeMillis(); // update last attack time
 			}
 		}
-
+		
 		if (isEventMob) return;
-
+		
 		// Add damage and hate to the attacker AggroInfo of the L2Attackable _aggroList
 		if (attacker != null)
 			addDamage(attacker, (int)damage, skill);
-
+		
 		// If this L2Attackable is a L2MonsterInstance and it has spawned minions, call its minions to battle
 		if (this instanceof L2MonsterInstance)
 		{
 			L2MonsterInstance master = (L2MonsterInstance) this;
 
-			if (this instanceof L2MinionInstance)
-			{
-				master = ((L2MinionInstance)this).getLeader();
-
-				if (master != null && !master.isInCombat() && !master.isDead())
-				{
-					master.notifyMinionAttacked(attacker, (L2MinionInstance) this);
-				}
-			}
-			else if (master.hasMinions())
-				master.callMinionsToAssist(attacker);
+			if (master.hasMinions())
+				master.getMinionList().onAssist(this, attacker);
+			
+			master = master.getLeader();				
+			if (master != null && master.hasMinions())
+				master.getMinionList().onAssist(this, attacker);
 		}
 		// Reduce the current HP of the L2Attackable and launch the doDie Task if necessary
 		super.reduceCurrentHp(damage, attacker, awake, isDOT, skill);
 	}
-
+	
 	public synchronized void setMustRewardExpSp(boolean value)
 	{
 		_mustGiveExpSp = value;
@@ -534,7 +528,7 @@ public class L2Attackable extends L2Npc
 		return true;
 	}
 
-	class OnKillNotifyTask implements Runnable
+	public class OnKillNotifyTask implements Runnable
 	{
 		private L2Attackable _attackable;
 		private Quest _quest;
@@ -2707,4 +2701,12 @@ public class L2Attackable extends L2Npc
 	{
 		return _champion;
 	}
+	/**
+	 * Return leader of this minion or null.
+	 */
+	public L2Attackable getLeader()
+	{
+		return null;
+	}
+
 }

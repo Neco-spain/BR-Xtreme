@@ -775,6 +775,7 @@ grandboss_list.sql
 helper_buff_list.sql
 henna.sql
 henna_trees.sql
+hellbound_spawnlist.sql
 heroes.sql
 heroes_diary.sql
 item_attributes.sql
@@ -820,7 +821,6 @@ territories.sql
 territory_registrations.sql
 territory_spawnlist.sql
 transform_skill_trees.sql
-walker_routes.sql
 weapon.sql
 zone_vertices.sql
 ) do call :dump %%i

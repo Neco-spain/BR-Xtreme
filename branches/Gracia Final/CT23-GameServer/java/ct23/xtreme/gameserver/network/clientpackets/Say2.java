@@ -64,6 +64,8 @@ public final class Say2 extends L2GameClientPacket
 	public final static int SCREEN_ANNOUNCE = 19;
 	public final static int BATTLEFIELD = 20;
 	public final static int MPCC_ROOM = 21;
+	public static final int NPC_ALL = 22;
+	public static final int NPC_SHOUT = 23;
 	
 	private final static String[] CHAT_NAMES =
 	{
@@ -88,7 +90,9 @@ public final class Say2 extends L2GameClientPacket
 		"CRITICAL_ANNOUNCE",
 		"SCREEN_ANNOUNCE",
 		"BATTLEFIELD",
-		"MPCC_ROOM"
+		"MPCC_ROOM",
+		"NPC_ALL",
+		"NPC_SHOUT"
 	};
 	
 	private static final String[] WALKER_COMMAND_LIST = { "USESKILL", "USEITEM", "BUYITEM", "SELLITEM", "SAVEITEM", "LOADITEM", "MSG", "SET", "DELAY", "LABEL", "JMP", "CALL",
