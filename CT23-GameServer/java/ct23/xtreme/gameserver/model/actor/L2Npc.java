@@ -20,7 +20,6 @@ import java.util.Collection;
 import java.util.logging.Level;
 
 import javolution.util.FastList;
-
 import ct23.xtreme.Config;
 import ct23.xtreme.gameserver.SevenSigns;
 import ct23.xtreme.gameserver.SevenSignsFestival;
@@ -32,6 +31,7 @@ import ct23.xtreme.gameserver.handler.IBypassHandler;
 import ct23.xtreme.gameserver.instancemanager.CastleManager;
 import ct23.xtreme.gameserver.instancemanager.FortManager;
 import ct23.xtreme.gameserver.instancemanager.TownManager;
+import ct23.xtreme.gameserver.instancemanager.WalkingManager;
 import ct23.xtreme.gameserver.model.L2ItemInstance;
 import ct23.xtreme.gameserver.model.L2NpcAIData;
 import ct23.xtreme.gameserver.model.L2Object;
@@ -1446,7 +1446,10 @@ public class L2Npc extends L2Character
 
 		// Decrease its spawn counter
 		if (_spawn != null)
-			_spawn.decreaseCount(this);
+			_spawn.decreaseCount(this);		
+		
+		//Notify Walking Manager
+		WalkingManager.getInstance().onDeath(this);
 	}
 
 	/**

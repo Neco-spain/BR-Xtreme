@@ -14,6 +14,9 @@
  */
 package ct23.xtreme.gameserver.network.serverpackets;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Kerberos
@@ -26,7 +29,9 @@ public final class NpcSay extends L2GameServerPacket
     private int _textType;
     private int _npcId;
     private String _text;
-
+	private int _npcString;
+	private List<String> _parameters;
+	
     /**
      * @param _characters
      */
@@ -37,7 +42,26 @@ public final class NpcSay extends L2GameServerPacket
         _npcId = 1000000+npcId;
         _text = text;
     }
-
+	
+	public NpcSay(int objectId, int messageType, int npcId, int npcString)
+	{
+		_objectId = objectId;
+		_textType = messageType;
+		_npcId = 1000000+npcId;
+		_npcString = npcString;
+	}
+	
+	/**
+	 * String parameter for argument S1,S2,.. in npcstring-e.dat
+	 * @param text
+	 */
+	public void addStringParameter(String text)
+	{
+		if (_parameters == null)
+			_parameters = new ArrayList<String>();
+		_parameters.add(text);
+	}
+	
     @Override
     protected final void writeImpl()
     {
@@ -46,11 +70,19 @@ public final class NpcSay extends L2GameServerPacket
         writeD(_textType);
         writeD(_npcId);
         writeS(_text);
+		writeD(_npcString);
+		if (_npcString == 0)
+			writeS(_text);
+		else
+		{
+			if (_parameters != null)
+			{
+				for (String s : _parameters)
+					writeS(s);
+			}
+		}
     }
 
-    /* (non-Javadoc)
-     * @see ct23.xtreme.gameserver.serverpackets.ServerBasePacket#getType()
-     */
     @Override
     public String getType()
     {

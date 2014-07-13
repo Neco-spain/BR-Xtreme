@@ -1136,12 +1136,15 @@ public class GameStatusThread extends Thread
         			else
         				itemCount++;
 
-        		else if (obj instanceof L2MonsterInstance)
-        		{
-        			monsterCount++;
-        			minionCount += ((L2MonsterInstance)obj).getTotalSpawnedMinionsInstances();
-        			minionsGroupCount += ((L2MonsterInstance)obj).getTotalSpawnedMinionsGroups();
-        		}
+				else if (obj instanceof L2MonsterInstance)
+				{
+					monsterCount++;
+					if (((L2MonsterInstance) obj).hasMinions())
+					{
+						minionCount += ((L2MonsterInstance) obj).getMinionList().countSpawnedMinions();
+						minionsGroupCount += ((L2MonsterInstance) obj).getMinionList().lazyCountSpawnedMinionsGroups();
+					}
+				}
         		else if (obj instanceof L2Npc)
         			npcCount++;
         		else if (obj instanceof L2PcInstance)

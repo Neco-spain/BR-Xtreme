@@ -297,6 +297,7 @@ public class L2Multisell
 		return newEntry;
 	}
 	
+	
 	/**
 	 * Separate and send.
 	 *

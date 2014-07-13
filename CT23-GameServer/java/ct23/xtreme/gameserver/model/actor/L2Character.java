@@ -63,7 +63,6 @@ import ct23.xtreme.gameserver.model.L2World;
 import ct23.xtreme.gameserver.model.L2WorldRegion;
 import ct23.xtreme.gameserver.model.Location;
 import ct23.xtreme.gameserver.model.actor.instance.L2DoorInstance;
-import ct23.xtreme.gameserver.model.actor.instance.L2MinionInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2NpcWalkerInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance.SkillDat;
@@ -4524,7 +4523,7 @@ public abstract class L2Character extends L2Object
 				// Path calculation
 				// Overrides previous movement check
 				if((this instanceof L2Playable && !isInVehicle)
-						|| this instanceof L2MinionInstance
+						|| this.isMinion()
 						|| this.isInCombat())
 				{
 					m.geoPath = PathFinding.getInstance().findPath(curX, curY, curZ, originalX, originalY, originalZ, getInstanceId(), this instanceof L2Playable);
@@ -4540,7 +4539,7 @@ public abstract class L2Character extends L2Object
                 		// them to move along with their leader
                 		if (this instanceof L2PcInstance
                 				|| (!(this instanceof L2Playable)
-                						&& !(this instanceof L2MinionInstance) 
+                						&& !this.isMinion()
                 						&& Math.abs(z - curZ) > 140)
                 				|| (this instanceof L2Summon && !((L2Summon)this).getFollowStatus())) 
                 		{
@@ -6836,6 +6835,12 @@ public abstract class L2Character extends L2Object
 	{
 		return false;
     }
+	
+	/** Return True if the L2Character is minion. */
+	public boolean isMinion()
+	{
+		return false;
+	}
 
 	/**
 	 * Check player max buff count

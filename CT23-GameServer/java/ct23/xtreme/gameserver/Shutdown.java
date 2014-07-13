@@ -26,6 +26,7 @@ import ct23.xtreme.gameserver.instancemanager.CastleManorManager;
 import ct23.xtreme.gameserver.instancemanager.CursedWeaponsManager;
 import ct23.xtreme.gameserver.instancemanager.GlobalVariablesManager;
 import ct23.xtreme.gameserver.instancemanager.GrandBossManager;
+import ct23.xtreme.gameserver.instancemanager.HellboundManager;
 import ct23.xtreme.gameserver.instancemanager.ItemsOnGroundManager;
 import ct23.xtreme.gameserver.instancemanager.QuestManager;
 import ct23.xtreme.gameserver.instancemanager.RaidBossSpawnManager;
@@ -534,6 +535,8 @@ public class Shutdown extends Thread
 		_log.info("Hero System: Data saved!!");
 		ClanTable.getInstance().storeClanScore();
 		_log.info("Clan System: Data saved!!");
+		HellboundManager.getInstance().cleanUp();
+		_log.info("HellboundManager: All Hellbound data saved!!");
 		
 		// Save Cursed Weapons data before closing.
 		CursedWeaponsManager.getInstance().saveData();

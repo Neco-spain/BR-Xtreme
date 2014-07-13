@@ -102,6 +102,7 @@ public abstract class L2Object
 		// Attackable
 		L2Attackable(L2Npc),
 		L2GuardInstance(L2Attackable),
+		L2QuestGuardInstance(L2GuardInstance),
 		L2MonsterInstance(L2Attackable),
 		L2ChestInstance(L2MonsterInstance),
 		L2ControllableMobInstance(L2MonsterInstance),
@@ -110,13 +111,11 @@ public abstract class L2Object
 		L2FriendlyMobInstance(L2Attackable),
 		L2PenaltyMonsterInstance(L2MonsterInstance),
 		L2RiftInvaderInstance(L2MonsterInstance),
-		L2MinionInstance(L2MonsterInstance),
 		L2RaidBossInstance(L2MonsterInstance),
 		L2GrandBossInstance(L2RaidBossInstance),
 		// FlyMobs
 		L2FlyNpcInstance(L2NpcInstance),
 		L2FlyMonsterInstance(L2MonsterInstance),
-		L2FlyMinionInstance(L2MinionInstance),
 		L2FlyRaidBossInstance(L2RaidBossInstance),
 		// Sepulchers
 		L2SepulcherNpcInstance(L2NpcInstance),
@@ -723,4 +722,118 @@ public abstract class L2Object
 		}
 		return (T) _scripts.get(script.getName());
 	}
+	
+	/**
+	 * @return {@code true} if object is instance of L2PcInstance
+	 */
+	public boolean isPlayer()
+	{
+		return false;
+	}
+	
+	/**
+	 * @return {@code true} if object is instance of L2Playable
+	 */
+	public boolean isPlayable()
+	{
+		return false;
+	}
+	
+	/**
+	 * @return {@code true} if object is instance of L2Summon
+	 */
+	public boolean isSummon()
+	{
+		return false;
+	}
+	
+	/**
+	 * @return {@code true} if object is instance of L2PetInstance
+	 */
+	public boolean isPet()
+	{
+		return false;
+	}
+	
+	/**
+	 * @return {@code true} if object is instance of L2ServitorInstance
+	 */
+	public boolean isServitor()
+	{
+		return false;
+	}
+	
+	/**
+	 * Verify if object is instance of L2Character.
+	 * @return {@code true} if object is instance of L2Character, {@code false} otherwise
+	 */
+	public boolean isCharacter()
+	{
+		return false;
+	}
+	
+	/**
+	 * @return {@code true} if object is instance of L2DoorInstance
+	 */
+	public boolean isDoor()
+	{
+		return false;
+	}
+	
+	/**
+	 * @return {@code true} if object is instance of L2Npc
+	 */
+	public boolean isNpc()
+	{
+		return false;
+	}
+	
+	/**
+	 * @return {@code true} if object is instance of L2Attackable
+	 */
+	public boolean isL2Attackable()
+	{
+		return false;
+	}
+	
+	/**
+	 * @return {@code true} if object is instance of L2MonsterInstance
+	 */
+	public boolean isMonster()
+	{
+		return false;
+	}
+	
+	/**
+	 * @return {@code true} if object is instance of L2TrapInstance
+	 */
+	public boolean isTrap()
+	{
+		return false;
+	}
+	
+	/**
+	 * @return {@code true} if object is instance of L2ItemInstance
+	 */
+	public boolean isItem()
+	{
+		return false;
+	}
+	
+	/**
+	 * @return {@code true} if object Npc Walker or Vehicle
+	 */
+	public boolean isWalker()
+	{
+		return false;
+	}
+	
+	/**
+	 * @return {@code true} if object Can be targeted
+	 */
+	public boolean isTargetable()
+	{
+		return true;
+	}
+	
 }

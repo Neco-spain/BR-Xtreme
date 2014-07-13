@@ -14,6 +14,7 @@
  */
 package ct23.xtreme.gameserver.network;
 
+
 /**
  *
  * @author  Noctarius & Nille02 & crion
@@ -13682,7 +13683,13 @@ public enum SystemMessageId
 	* Message: The rebel army recaptured the fortress.
 	*/
 	NPCS_RECAPTURED_FORTRESS(2276),
-
+	
+	/**
+	 * ID: 2291<br>
+	 * Message: You can operate the machine when you participate in the party.
+	 */
+	CAN_OPERATE_MACHINE_WHEN_IN_PARTY(2291),
+	
 	/**
 	* ID: 2293<br>
 	* Message: Current location: $s1, $s2, $s3 (inside the Steel Citadel)

@@ -61,6 +61,7 @@ public class Instance
 	private boolean _allowSummon = true;
 	private long _emptyDestroyTime = -1;
 	private long _lastLeft = -1;
+	private long _instanceStartTime = -1;
 	private long _instanceEndTime = -1;
 	private boolean _isPvPInstance = false;
 
@@ -70,6 +71,7 @@ public class Instance
 	{
 		_id = id;
 		_ejectProc = new EjectPlayerProcedure();
+		_instanceStartTime = System.currentTimeMillis();
 	}
 
 	/**
@@ -280,6 +282,16 @@ public class Instance
 				return temp;
 		}
 		return null;
+	}
+	
+	public long getInstanceEndTime()
+	{
+		return _instanceEndTime;
+	}
+	
+	public long getInstanceStartTime()
+	{
+		return _instanceStartTime;
 	}
 	
 	/**

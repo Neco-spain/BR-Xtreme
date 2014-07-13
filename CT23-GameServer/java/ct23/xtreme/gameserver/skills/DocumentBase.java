@@ -304,6 +304,17 @@ abstract class DocumentBase
             String spc = attrs.getNamedItem("event").getNodeValue();
             event = AbnormalEffect.getByName(spc);
         }
+		byte abnormalLvl = 0;
+		String abnormalType = "none";
+		if (attrs.getNamedItem("abnormalType") != null)
+		{
+			abnormalType = attrs.getNamedItem("abnormalType").getNodeValue();
+		}
+		if (attrs.getNamedItem("abnormalLvl") != null)
+		{
+			abnormalLvl = Byte.parseByte(getValue(attrs.getNamedItem("abnormalLvl").getNodeValue(), template));
+		}
+		
         float stackOrder = 0;
         String stackType = "none";
         if (attrs.getNamedItem("stackType") != null)
@@ -369,7 +380,7 @@ abstract class DocumentBase
 			throw new NoSuchElementException("Invalid chance condition: " + chanceCond + " "
 			        + activationChance);        	
         	
-        lt = new EffectTemplate(attachCond, applayCond, name, lambda, count, time, abnormal, special, event, stackType, stackOrder, icon, effectPower, type, trigId, trigLvl, chance);
+        lt = new EffectTemplate(attachCond, applayCond, name, lambda, count, time, abnormal, special, event, abnormalType, abnormalLvl, stackType, stackOrder, icon, effectPower, type, trigId, trigLvl, chance);
 		parseTemplate(n, lt);
 		if (template instanceof L2Item)
 			((L2Item) template).attach(lt);

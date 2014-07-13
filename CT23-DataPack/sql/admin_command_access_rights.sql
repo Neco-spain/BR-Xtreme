@@ -584,6 +584,10 @@ INSERT IGNORE INTO `admin_command_access_rights` VALUES
 ('admin_zone_check','1'),
 ('admin_zone_reload','1'),
 
+-- HELLBOUND
+('admin_hellbound_setlevel',1,'false'),
+('admin_hellbound',1,'false'),
+
 -- voice commands
 ('banchat','7'),
 ('unbanchat','7');

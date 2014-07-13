@@ -165,6 +165,7 @@ public class L2PoisonZone extends L2ZoneType
 		return _target;
 	}
 	
+	@Override
 	public boolean isEnabled()
 	{
 		return _enabled;

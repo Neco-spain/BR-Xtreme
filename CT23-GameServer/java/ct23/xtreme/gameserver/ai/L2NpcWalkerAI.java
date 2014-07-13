@@ -15,7 +15,6 @@
 package ct23.xtreme.gameserver.ai;
 
 import java.util.List;
-import java.util.logging.Level;
 
 import ct23.xtreme.Config;
 import ct23.xtreme.gameserver.ThreadPoolManager;
@@ -64,7 +63,10 @@ public class L2NpcWalkerAI extends L2CharacterAI implements Runnable
 		
 		// Here we need 1 second initial delay cause getActor().hasAI() will return null...
 		// Constructor of L2NpcWalkerAI is called faster then ai object is attached in L2NpcWalkerInstance
-		ThreadPoolManager.getInstance().scheduleAiAtFixedRate(this, 1000, 1000);
+		if (_route != null)
+			ThreadPoolManager.getInstance().scheduleAiAtFixedRate(this, 1000, 1000);
+		else
+			_log.warning(getClass().getSimpleName()+": Missing route data! Npc: "+_actor);
 	}
 	
 	public void run()
@@ -111,19 +113,16 @@ public class L2NpcWalkerAI extends L2CharacterAI implements Runnable
 		int destinationY = _route.get(_currentPos).getMoveY();
 		int destinationZ = _route.get(_currentPos).getMoveZ();
 		
-		if (getActor().getX() == destinationX && getActor().getY() == destinationY && getActor().getZ() == destinationZ)
+		if (getActor().isInsideRadius(destinationX, destinationY, destinationZ, 5, false, false))
 		{
-			String chat = _route.get(_currentPos).getChatText();
-			if (chat != null && !chat.isEmpty())
+			int id = _route.get(_currentPos).getChatId();
+			String chat = null;
+			if (id == 0)
+				chat = _route.get(_currentPos).getChatText();
+			
+			if ((id > 0) || (chat != null && !chat.isEmpty()))
 			{
-				try
-				{
-					getActor().broadcastChat(chat);
-				}
-				catch (Exception e)
-				{
-					_log.log(Level.WARNING, "L2NpcWalkerAI.checkArrived() Error: " + e.getMessage(), e);
-				}
+				getActor().broadcastChat(chat, id);
 			}
 			
 			//time in millis

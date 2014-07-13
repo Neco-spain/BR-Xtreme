@@ -14,16 +14,13 @@
  */
 package ct23.xtreme.gameserver.model.actor.instance;
 
-import java.util.Map;
-
-import ct23.xtreme.Config;
 import ct23.xtreme.gameserver.ai.L2CharacterAI;
 import ct23.xtreme.gameserver.ai.L2NpcWalkerAI;
 import ct23.xtreme.gameserver.model.L2Skill;
 import ct23.xtreme.gameserver.model.actor.L2Character;
 import ct23.xtreme.gameserver.model.actor.L2Npc;
 import ct23.xtreme.gameserver.network.clientpackets.Say2;
-import ct23.xtreme.gameserver.network.serverpackets.CreatureSay;
+import ct23.xtreme.gameserver.network.serverpackets.NpcSay;
 import ct23.xtreme.gameserver.templates.chars.L2NpcTemplate;
 import ct23.xtreme.gameserver.util.Broadcast;
 
@@ -48,49 +45,40 @@ public class L2NpcWalkerInstance extends L2Npc
 		setInstanceType(InstanceType.L2NpcWalkerInstance);
 		setAI(new L2NpcWalkerAI(new L2NpcWalkerAIAccessor()));
 	}
-
+	
 	/**
 	 * AI can't be deattached, npc must move always with the same AI instance.
 	 * @param newAI AI to set for this L2NpcWalkerInstance
 	 */
 	@Override
-    public void setAI(L2CharacterAI newAI)
+	public void setAI(L2CharacterAI newAI)
 	{
 		if(!(_ai instanceof L2NpcWalkerAI))
 			_ai = newAI;
 	}
-
+	
 	@Override
-    public void onSpawn()
+	public void onSpawn()
 	{
 		getAI().setHomeX(getX());
 		getAI().setHomeY(getY());
 		getAI().setHomeZ(getZ());
 	}
-
+	
 	/**
 	 * Sends a chat to all _knowObjects
 	 * @param chat message to say
 	 */
-	public void broadcastChat(String chat)
+	public void broadcastChat(String chat, int id)
 	{
-		Map<Integer, L2PcInstance> _knownPlayers = getKnownList().getKnownPlayers();
-
-		if(_knownPlayers == null)
-		{
-			if(Config.DEVELOPER)
-				_log.info("broadcastChat _players == null");
-			return;
-		}
-
-		//we send message to known players only!
-		if(!_knownPlayers.isEmpty())
-		{
-			CreatureSay cs = new CreatureSay(getObjectId(), Say2.ALL, getName(), chat);
-			Broadcast.toKnownPlayers(this, cs);
-		}
+		NpcSay cs;
+		if (id == 0)
+			cs = new NpcSay(getObjectId(), Say2.ALL, getNpcId(), chat);
+		else
+			cs = new NpcSay(getObjectId(), Say2.ALL, getNpcId(), id);
+		Broadcast.toKnownPlayers(this, cs);
 	}
-
+	
 	/**
 	 * NPCs are immortal
 	 * @param i ignore it
@@ -98,33 +86,33 @@ public class L2NpcWalkerInstance extends L2Npc
 	 * @param awake  ignore it
 	 */
 	@Override
-    public void reduceCurrentHp(double i, L2Character attacker, boolean awake, boolean isDOT, L2Skill skill)
+	public void reduceCurrentHp(double i, L2Character attacker, boolean awake, boolean isDOT, L2Skill skill)
 	{}
-
+	
 	/**
 	 * NPCs are immortal
 	 * @param killer ignore it
 	 * @return false
 	 */
 	@Override
-    public boolean doDie(L2Character killer)
+	public boolean doDie(L2Character killer)
 	{
 		return false;
 	}
-
+	
 	@Override
-    public L2NpcWalkerAI getAI()
+	public L2NpcWalkerAI getAI()
 	{
 		return (L2NpcWalkerAI)_ai;
 	}
-
+	
 	protected class L2NpcWalkerAIAccessor extends L2Character.AIAccessor
 	{
 		/**
 		 * AI can't be deattached.
 		 */
 		@Override
-        public void detachAI()
+		public void detachAI()
 		{}
 	}
 }

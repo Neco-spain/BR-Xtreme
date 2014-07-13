@@ -282,6 +282,7 @@ public abstract class L2Skill implements IChanceSkillTrigger
 	private final boolean _canBeDispeled;
 	
 	private final boolean _isClanSkill;
+	private final boolean _simultaneousCast;
 	
     protected L2Skill(StatsSet set)
     {
@@ -484,6 +485,7 @@ public abstract class L2Skill implements IChanceSkillTrigger
         
         _isClanSkill = set.getBoolean("isClanSkill", false);
         _dependOnTargetBuff = set.getFloat("dependOnTargetBuff", 0);
+        _simultaneousCast = set.getBoolean("simultaneousCast", false);
     }
 
     public abstract void useSkill(L2Character caster, L2Object[] targets);
@@ -2757,5 +2759,10 @@ public abstract class L2Skill implements IChanceSkillTrigger
 	public float getDependOnTargetBuff()
 	{
 		return _dependOnTargetBuff;
+	}
+	
+	public boolean isSimultaneousCast()
+	{
+		return _simultaneousCast;
 	}
 }
