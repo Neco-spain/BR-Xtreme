@@ -19,10 +19,12 @@ import java.util.concurrent.Future;
 
 import ct23.xtreme.gameserver.ThreadPoolManager;
 import ct23.xtreme.gameserver.instancemanager.CastleManager;
+import ct23.xtreme.gameserver.model.L2Object.InstanceType;
 import ct23.xtreme.gameserver.model.actor.L2Character;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import ct23.xtreme.gameserver.model.entity.Castle;
 import ct23.xtreme.gameserver.model.zone.L2ZoneType;
+import ct23.xtreme.gameserver.skills.Stats;
 
 
 /**
@@ -35,10 +37,15 @@ public class L2DamageZone extends L2ZoneType
 	private int _damageHPPerSec;
 	private int _damageMPPerSec;
 	private Future<?> _task;
-
+	
 	private int _castleId;
 	private Castle _castle;
-
+	
+	private int _startTask;
+	private int _reuseTask;
+	
+	private boolean _enabled;
+	
 	public L2DamageZone(int id)
 	{
 		super(id);
@@ -46,10 +53,19 @@ public class L2DamageZone extends L2ZoneType
 		// Setup default damage
 		_damageHPPerSec = 200;
 		_damageMPPerSec = 0;
-
+		
+		// Setup default start / reuse time
+		_startTask = 10;
+		_reuseTask = 5000;
+		
 		// no castle by default
 		_castleId = 0;
 		_castle = null;
+		
+		//enabled by default
+		_enabled = true;
+		
+		setTargetType(InstanceType.L2Playable); // default only playabale
 	}
 	
 	@Override
@@ -67,6 +83,18 @@ public class L2DamageZone extends L2ZoneType
 		{
 			_castleId = Integer.parseInt(value);
 		}
+		else if (name.equalsIgnoreCase("initialDelay"))
+		{
+			_startTask = Integer.parseInt(value);
+		}
+		else if (name.equalsIgnoreCase("reuse"))
+		{
+			_reuseTask = Integer.parseInt(value);
+		}
+		else if (name.equalsIgnoreCase("enabled"))
+		{
+			_enabled = Boolean.parseBoolean(value);
+		}
 		else
 			super.setParameter(name, value);
 	}
@@ -83,7 +111,7 @@ public class L2DamageZone extends L2ZoneType
 			synchronized(this)
 			{
 				if (_task == null)
-					_task = ThreadPoolManager.getInstance().scheduleGeneralAtFixedRate(new ApplyDamage(this), 10, 3300);
+					_task = ThreadPoolManager.getInstance().scheduleGeneralAtFixedRate(new ApplyDamage(this), _startTask, _reuseTask);
 			}
 		}
 	}
@@ -120,15 +148,15 @@ public class L2DamageZone extends L2ZoneType
 			_task = null;
 		}
 	}
-
+	
 	private Castle getCastle()
 	{
 		if (_castleId > 0 &&_castle == null)
 			_castle = CastleManager.getInstance().getCastleById(_castleId);
-
+		
 		return _castle;
 	}
-
+	
 	class ApplyDamage implements Runnable
 	{
 		private final L2DamageZone _dmgZone;
@@ -143,7 +171,7 @@ public class L2DamageZone extends L2ZoneType
 		public void run()
 		{
 			boolean siege = false;
-
+			
 			if (_castle != null)
 			{
 				siege = _castle.getSiege().getIsInProgress();
@@ -154,7 +182,10 @@ public class L2DamageZone extends L2ZoneType
 					return;
 				}
 			}
-
+			
+			if (!_enabled)
+				return;	
+			
 			for (L2Character temp : _dmgZone.getCharacterList())
 			{
 				if (temp != null && !temp.isDead())
@@ -166,11 +197,13 @@ public class L2DamageZone extends L2ZoneType
 						if (player != null && player.isInSiege() && player.getSiegeState() == 2)
 							continue;
 					}
-
+					
+					double multiplier =  1 + (temp.calcStat(Stats.DAMAGE_ZONE_VULN, 0, null, null) / 100);
+					
 					if (getHPDamagePerSecond() != 0)
-						temp.reduceCurrentHp(_dmgZone.getHPDamagePerSecond(), null, null);
+						temp.reduceCurrentHp(_dmgZone.getHPDamagePerSecond() * multiplier, null, null);
 					if (getMPDamagePerSecond() != 0)
-						temp.reduceCurrentMp(_dmgZone.getMPDamagePerSecond());
+						temp.reduceCurrentMp(_dmgZone.getMPDamagePerSecond() * multiplier);
 				}
 			}
 		}
@@ -184,6 +217,12 @@ public class L2DamageZone extends L2ZoneType
 	@Override
 	public void onReviveInside(L2Character character)
 	{
+	}
+	
+	@Override
+	public void setEnabled(boolean state)
+	{
+		_enabled = state;
 	}
 	
 }

@@ -14,18 +14,17 @@
  */
 package ct23.xtreme.gameserver.model.zone.type;
 
-import gnu.trove.map.hash.TIntIntHashMap;
-
 import java.util.Collection;
+import java.util.Map.Entry;
 import java.util.concurrent.Future;
 
+import javolution.util.FastMap;
+
 import ct23.xtreme.gameserver.ThreadPoolManager;
-import ct23.xtreme.gameserver.ai.CtrlIntention;
 import ct23.xtreme.gameserver.datatables.SkillTable;
+import ct23.xtreme.gameserver.model.L2Object.InstanceType;
 import ct23.xtreme.gameserver.model.L2Skill;
 import ct23.xtreme.gameserver.model.actor.L2Character;
-import ct23.xtreme.gameserver.model.actor.L2Playable;
-import ct23.xtreme.gameserver.model.actor.instance.L2MonsterInstance;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import ct23.xtreme.gameserver.model.zone.L2ZoneType;
 import ct23.xtreme.gameserver.network.serverpackets.EtcStatusUpdate;
@@ -38,26 +37,29 @@ import ct23.xtreme.util.StringUtil;
  *
  * @author  kerberos
  */
-public class L2PoisonZone extends L2ZoneType
+public class L2EffectZone extends L2ZoneType
 {
 	private int _chance;
 	private int _initialDelay;
 	private int _reuse;
 	private boolean _enabled;
 	private boolean _bypassConditions;
-	private String _target;
+	private boolean _isShowDangerIcon;
 	private Future<?> _task;
-	private TIntIntHashMap _skills;
+	private FastMap<Integer, Integer> _skills;
 	
-	public L2PoisonZone(int id)
+	
+	
+	public L2EffectZone(int id)
 	{
 		super(id);
 		_chance = 100;
 		_initialDelay = 0;
 		_reuse = 30000;
 		_enabled = true;
-		_target = "pc";
+		setTargetType(InstanceType.L2Playable); // default only playabale
 		_bypassConditions = false;
+		_isShowDangerIcon = true;
 	}
 	
 	@Override
@@ -75,10 +77,6 @@ public class L2PoisonZone extends L2ZoneType
 		{
 			_enabled = Boolean.parseBoolean(value);
 		}
-		else if (name.equals("target"))
-		{
-			_target = String.valueOf(value);
-		}
 		else if (name.equals("reuse"))
 		{
 			_reuse = Integer.parseInt(value);
@@ -87,15 +85,19 @@ public class L2PoisonZone extends L2ZoneType
 		{
 			_bypassConditions = Boolean.parseBoolean(value);
 		}
+		else if (name.equals("maxDynamicSkillCount"))
+		{
+			_skills = new FastMap<Integer, Integer>(Integer.parseInt(value)).shared();
+		}
 		else if (name.equals("skillIdLvl"))
 		{
 			String[] propertySplit = value.split(";");
-			_skills = new TIntIntHashMap(propertySplit.length);	
+			_skills = new FastMap<Integer, Integer>(propertySplit.length);
 			for (String skill : propertySplit)
 			{
 				String[] skillSplit = skill.split("-");
 				if (skillSplit.length != 2)
-					_log.warning(StringUtil.concat("[L2PoisonZone]: invalid config property -> skillsIdLvl \"", skill, "\""));
+					_log.warning(StringUtil.concat(getClass().getSimpleName()+": invalid config property -> skillsIdLvl \"", skill, "\""));
 				else
 				{
 					try
@@ -106,11 +108,15 @@ public class L2PoisonZone extends L2ZoneType
 					{
 						if (!skill.isEmpty())
 						{
-							_log.warning(StringUtil.concat("[L2PoisonZone]: invalid config property -> skillsIdLvl \"", skillSplit[0], "\"", skillSplit[1]));
+							_log.warning(StringUtil.concat(getClass().getSimpleName()+": invalid config property -> skillsIdLvl \"", skillSplit[0], "\"", skillSplit[1]));
 						}
 					}
 				}
 			}
+		}
+		else if (name.equals("showDangerIcon"))
+		{
+			_isShowDangerIcon = Boolean.parseBoolean(value);
 		}
 		else
 			super.setParameter(name, value);
@@ -119,50 +125,51 @@ public class L2PoisonZone extends L2ZoneType
 	@Override
 	protected void onEnter(L2Character character)
 	{
-		if (((character instanceof L2Playable) && _target.equalsIgnoreCase("pc"))
-				|| ((character instanceof L2PcInstance) && _target.equalsIgnoreCase("pc_only"))
-				|| ((character instanceof L2MonsterInstance) && _target.equalsIgnoreCase("npc")))
+		if (_skills != null)
 		{
 			if (_task == null)
 			{
 				synchronized(this)
 				{
 					if (_task == null)
-						_task = ThreadPoolManager.getInstance().scheduleGeneralAtFixedRate(new ApplySkill(this), _initialDelay, _reuse);
+						_task = ThreadPoolManager.getInstance().scheduleGeneralAtFixedRate(new ApplySkill(), _initialDelay, _reuse);
 				}
 			}
 		}
 		if (character instanceof L2PcInstance)
 		{
-			character.setInsideZone(L2Character.ZONE_DANGERAREA, true);
-			character.sendPacket(new EtcStatusUpdate((L2PcInstance) character));
+			character.setInsideZone(L2Character.ZONE_ALTERED, true);
+			if (_isShowDangerIcon)
+			{
+				character.setInsideZone(L2Character.ZONE_DANGERAREA, true);
+				character.sendPacket(new EtcStatusUpdate((L2PcInstance) character));
+			}
 		}
 	}
 	
 	@Override
 	protected void onExit(L2Character character)
 	{
+		if (character instanceof L2PcInstance)
+		{
+			character.setInsideZone(L2Character.ZONE_ALTERED, false);
+			if (_isShowDangerIcon)
+			{
+				character.setInsideZone(L2Character.ZONE_DANGERAREA, false);
+				if (!character.isInsideZone(L2Character.ZONE_DANGERAREA))
+					character.sendPacket(new EtcStatusUpdate((L2PcInstance) character));
+			}
+		}
 		if (_characterList.isEmpty() && _task != null)
 		{
 			_task.cancel(true);
 			_task = null;
 		}
-		if (character instanceof L2PcInstance)
-		{
-			character.setInsideZone(L2Character.ZONE_DANGERAREA, false);
-			if (!character.isInsideZone(L2Character.ZONE_DANGERAREA))
-				character.sendPacket(new EtcStatusUpdate((L2PcInstance) character));
-		}
 	}
 	
-	public L2Skill getSkill(int skillId, int skillLvl)
+	private L2Skill getSkill(int skillId, int skillLvl)
 	{
 		return SkillTable.getInstance().getInfo(skillId, skillLvl);
-	}
-	
-	public String getTargetType()
-	{
-		return _target;
 	}
 	
 	@Override
@@ -176,9 +183,48 @@ public class L2PoisonZone extends L2ZoneType
 		return _chance;
 	}
 	
+	public void addSkill(int skillId, int skillLvL)
+	{
+		if (skillLvL < 1) // remove skill
+		{
+			removeSkill(skillId);
+			return;
+		}
+		if (_skills == null)
+		{
+			synchronized(this)
+			{
+				if (_skills == null)
+					_skills = new FastMap<Integer, Integer>(3).shared();
+			}
+		}
+		_skills.put(skillId, skillLvL);
+		//_log.info("Zone: "+this+" adding skill: "+skillId+" lvl: "+skillLvL);
+	}
+	
+	public void removeSkill(int skillId)
+	{
+		if (_skills != null)
+			_skills.remove(skillId);
+	}
+	
+	public void clearSkills()
+	{
+		if (_skills != null)
+			_skills.clear();
+	}
+	
 	public void setZoneEnabled(boolean val)
 	{
 		_enabled = val;
+	}
+	
+	public int getSkillLevel(int skillId)
+	{
+		if (_skills == null || !_skills.containsKey(skillId))
+			return 0;
+		else
+			return _skills.get(skillId);
 	}
 	
 	protected Collection<L2Character> getCharacterList()
@@ -188,39 +234,29 @@ public class L2PoisonZone extends L2ZoneType
 	
 	class ApplySkill implements Runnable
 	{
-		private final L2PoisonZone _poisonZone;
-		
-		ApplySkill(L2PoisonZone zone)
+		ApplySkill()
 		{
-			_poisonZone = zone;
 			if (_skills == null)
-			{
-				_skills = new TIntIntHashMap(1);
-				_skills.put(4070, 1);
-			}
+				throw new IllegalStateException("No skills defined.");
 		}
 		
+		@Override
 		public void run()
 		{
 			if (isEnabled())
 			{
-				for (L2Character temp : _poisonZone.getCharacterList())
+				for (L2Character temp : L2EffectZone.this.getCharacterList())
 				{
 					if (temp != null && !temp.isDead())
 					{
-						if (((temp instanceof L2PcInstance && getTargetType().equalsIgnoreCase("pc_only"))
-								|| (temp instanceof L2Playable && getTargetType().equalsIgnoreCase("pc"))
-								|| (temp instanceof L2MonsterInstance
-										&& temp.hasAI()
-										&& temp.getAI().getIntention() != CtrlIntention.AI_INTENTION_IDLE
-										&& getTargetType().equalsIgnoreCase("npc")))
-								&& Rnd.get(100) < getChance())
+						if (Rnd.get(100) < getChance())
 						{
-							for (int skillId : _skills.keys())
+							for (Entry<Integer, Integer> e : _skills.entrySet())
 							{
-								if (_bypassConditions || getSkill(skillId, _skills.get(skillId)).checkCondition(temp, temp, false))
-									if (temp.getFirstEffect(skillId) == null)
-										getSkill(skillId, _skills.get(skillId)).getEffects(temp, temp);
+								L2Skill skill = getSkill(e.getKey(), e.getValue());
+								if (_bypassConditions || skill != null && skill.checkCondition(temp, temp, false))
+									if (temp.getFirstEffect(e.getKey()) == null)
+										skill.getEffects(temp, temp);
 							}
 						}
 					}

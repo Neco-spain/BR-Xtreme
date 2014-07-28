@@ -19,13 +19,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import javolution.util.FastList;
+import javolution.util.FastMap;
+
 import ct23.xtreme.gameserver.model.L2Object;
+import ct23.xtreme.gameserver.model.L2Object.InstanceType;
 import ct23.xtreme.gameserver.model.actor.L2Character;
 import ct23.xtreme.gameserver.model.actor.instance.L2PcInstance;
 import ct23.xtreme.gameserver.model.quest.Quest;
 import ct23.xtreme.gameserver.network.serverpackets.L2GameServerPacket;
-import javolution.util.FastList;
-import javolution.util.FastMap;
 
 /**
  * Abstract base class for any zone type
@@ -51,6 +53,7 @@ public abstract class L2ZoneType
 	private int[] _class;
 	private char _classType;
 	private Map<Quest.QuestEventType, FastList<Quest>> _questEvents;
+	private InstanceType _target = InstanceType.L2Character; // default all chars
 	private boolean _enabled;
 	
 	protected L2ZoneType(int id)
@@ -158,6 +161,10 @@ public abstract class L2ZoneType
 				_classType = 2;
 			}
 		}
+		else if (name.equals("targetClass"))
+		{
+			_target = Enum.valueOf(InstanceType.class, value);
+		}
 		
 		else
 			_log.info(getClass().getSimpleName()+": Unknown parameter - "+name+" in zone: "+getId());
@@ -172,6 +179,10 @@ public abstract class L2ZoneType
 	{
 		// Check lvl
 		if (character.getLevel() < _minLvl || character.getLevel() > _maxLvl)
+			return false;
+		
+		// check obj class
+		if (!character.isInstanceType(_target))
 			return false;
 		
 		if (character instanceof L2PcInstance)
@@ -431,6 +442,17 @@ public abstract class L2ZoneType
 			if (character instanceof L2PcInstance)
 				character.sendPacket(packet);
 		}
+	}
+	
+	public InstanceType getTargetType()
+	{
+		return _target;
+	}
+	
+	public void setTargetType(InstanceType type)
+	{
+		_target = type;
+		_checkAffected = true;
 	}
 	
 	public List<L2PcInstance> getPlayersInside()
