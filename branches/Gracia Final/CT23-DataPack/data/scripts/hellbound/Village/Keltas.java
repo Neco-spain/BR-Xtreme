@@ -17,6 +17,7 @@ package hellbound.Village;
 import java.util.List;
 
 import javolution.util.FastList;
+
 import ct23.xtreme.gameserver.model.L2Spawn;
 import ct23.xtreme.gameserver.model.actor.L2Npc;
 import ct23.xtreme.gameserver.model.actor.instance.L2MonsterInstance;
@@ -34,9 +35,10 @@ public class Keltas extends Quest
 	
 	// Constants
 	private L2MonsterInstance spawnedKeltas = null;
-	private List<L2Spawn> spawnedMonsters;private static final int ONSPAWN_FSTRING_ID = 1800076; //Guys, show them our power!!!!
+	private List<L2Spawn> spawnedMonsters;
 	
 	// Strings
+	private static final int ONSPAWN_FSTRING_ID = 1800076; //Guys, show them our power!!!!
 	private static final int DESPAWN_FSTRING_ID = 1800025; //That is it for today...let's retreat. Everyone pull back!
 	
 	private static final int[][] ENFORCER_SPAWN_POINTS = 

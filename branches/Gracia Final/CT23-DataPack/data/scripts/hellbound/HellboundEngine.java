@@ -257,7 +257,7 @@ public class HellboundEngine extends Quest implements Runnable
 	
 	// Let's try to manage all trust changes for killing here
 	@Override
-	public String onKill(L2Npc npc, L2PcInstance killer, boolean isSummon)
+	public String onKill(L2Npc npc, L2PcInstance killer, boolean isPet)
 	{
 		int npcId = npc.getNpcId();
 		if (pointsInfo.containsKey(npcId))
@@ -275,7 +275,7 @@ public class HellboundEngine extends Quest implements Runnable
 			}
 		}
 		
-		return super.onKill(npc, killer, isSummon);
+		return super.onKill(npc, killer, isPet);
 	}
 	
 	public HellboundEngine(int questId, String name, String descr)

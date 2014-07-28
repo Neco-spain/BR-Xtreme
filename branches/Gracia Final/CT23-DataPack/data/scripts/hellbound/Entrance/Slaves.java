@@ -17,6 +17,7 @@ package hellbound.Entrance;
 import java.util.List;
 
 import ai.engines.L2AttackableAIScript;
+
 import ct23.xtreme.gameserver.ai.CtrlIntention;
 import ct23.xtreme.gameserver.instancemanager.HellboundManager;
 import ct23.xtreme.gameserver.model.L2CharPosition;

@@ -113,7 +113,7 @@ public enum Stats
 	SLEEP("sleep"), // sleep (don't move/ATTACK) until attacked
 	VALAKAS("valakas"),
 	VALAKAS_RES("valakasRes"),
-	//
+	// VULNERABILITIES
 	AGGRESSION_VULN("aggressionVuln"),
 	BLEED_VULN("bleedVuln"),
 	POISON_VULN("poisonVuln"),
@@ -121,6 +121,7 @@ public enum Stats
 	PARALYZE_VULN("paralyzeVuln"),
 	ROOT_VULN("rootVuln"),
 	SLEEP_VULN("sleepVuln"),
+	DAMAGE_ZONE_VULN("damageZoneVuln"),
 	CONFUSION_VULN("confusionVuln"),
 	MOVEMENT_VULN("movementVuln"),
 	FIRE_RES("fireRes"),

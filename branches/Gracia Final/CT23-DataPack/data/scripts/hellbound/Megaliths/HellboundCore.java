@@ -54,10 +54,8 @@ public class HellboundCore extends Quest
 			
 			startQuestTimer("cast", 10000, npc, null);
 		}
-
 		return null;
 	}
-
 
 	@Override
 	public final String onSpawn(L2Npc npc)
@@ -65,7 +63,6 @@ public class HellboundCore extends Quest
 		startQuestTimer("cast", 10000, npc, null);
 		return super.onSpawn(npc);
 	}
-
 
 	public static void main(String[] args)
 	{

@@ -162,8 +162,8 @@ public class ZoneManager
 								temp = new L2FortZone(zoneId);
 							else if (zoneType.equals("DamageZone"))
 								temp = new L2DamageZone(zoneId);
-							else if (zoneType.equals("PoisonZone"))
-								temp = new L2PoisonZone(zoneId);
+							else if (zoneType.equals("EffectZone"))
+								temp = new L2EffectZone(zoneId);
 							else if (zoneType.equals("SwampZone"))
 								temp = new L2SwampZone(zoneId);
 							else if (zoneType.equals("Arena"))

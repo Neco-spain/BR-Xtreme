@@ -1762,8 +1762,10 @@
 
 	<!-- Sea of Spores (Swamp/Poison Zones) -->
 	<zone id="16001" type="SwampZone" shape="NPoly" minZ="-4468" maxZ="-4118" /> <!-- [21_18] spore_boss_swamp_zone -->
-	<zone id="16002" type="PoisonZone" shape="NPoly" minZ="-4468" maxZ="-4118" /> <!-- [21_18] spore_boss_poison_zone -->
-
+	<zone id="16002" type="EffectZone" shape="NPoly" minZ="-4468" maxZ="-4118"> <!-- [21_18] spore_boss_poison_zone -->
+		<stat name="skillIdLvl" val="4070-1;" /> <!-- s_area_a_speed_down -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+	</zone>
 	<!-- Aden Castle (Swamp/Damage Zones) -->
 	<zone id="17000" type="SwampZone" shape="NPoly" minZ="-560" maxZ="-360"> <!-- [24_18] aden_slow_8 -->
 		<stat name="move_bonus" val="-80" />
@@ -1951,95 +1953,170 @@
 	</zone>
 
 	<!-- Blazing Swamp (Burn Damage Zones) -->
-	<zone id="20020" type="PoisonZone" shape="NPoly" minZ="-4752" maxZ="-4352"> <!-- [24_17] fireswamp_1 -->
-		<stat name="skillIdLvl" val="4150-1;" /> <!-- s_area_fire1 -->
+	<zone id="20020" type="EffectZone" shape="NPoly" minZ="-4752" maxZ="-4352"> <!-- [24_17] fireswamp_1 -->
+	<stat name="skillIdLvl" val="4150-1;" /> <!-- s_area_fire1 -->
+		<!-- stat name="unitTick" val="30" / -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<!-- stat name="onTime" val="120" / -->
+		<!-- stat name="offTime" val="5" / -->
+		<!-- stat name="randomTime" val="15" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
 	</zone>
-	<zone id="20021" type="PoisonZone" shape="NPoly" minZ="-4908" maxZ="-4508"> <!-- [24_17] fireswamp_2 -->
+	<zone id="20021" type="EffectZone" shape="NPoly" minZ="-4908" maxZ="-4508"> <!-- [24_17] fireswamp_2 -->
 		<stat name="skillIdLvl" val="4150-1;" /> <!-- s_area_fire1 -->
+		<!-- stat name="unitTick" val="30" / -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<!-- stat name="onTime" val="120" / -->
+		<!-- stat name="offTime" val="5" / -->
+		<!-- stat name="randomTime" val="15" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
 	</zone>
-	<zone id="20022" type="PoisonZone" shape="NPoly" minZ="-4776" maxZ="-4376"> <!-- [24_17] fireswamp_3 -->
+	<zone id="20022" type="EffectZone" shape="NPoly" minZ="-4776" maxZ="-4376"> <!-- [24_17] fireswamp_3 -->
 		<stat name="skillIdLvl" val="4150-1;" /> <!-- s_area_fire1 -->
+		<!-- stat name="unitTick" val="30" / -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<!-- stat name="onTime" val="120" / -->
+		<!-- stat name="offTime" val="5" / -->
+		<!-- stat name="randomTime" val="15" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
 	</zone>
-	<zone id="20023" type="PoisonZone" shape="NPoly" minZ="-4888" maxZ="-4288"> <!-- [24_17] fireswamp_4 -->
+	<zone id="20023" type="EffectZone" shape="NPoly" minZ="-4888" maxZ="-4288"> <!-- [24_17] fireswamp_4 -->
 		<stat name="skillIdLvl" val="4150-1;" /> <!-- s_area_fire1 -->
+		<!-- stat name="unitTick" val="30" / -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<!-- stat name="onTime" val="120" / -->
+		<!-- stat name="offTime" val="5" / -->
+		<!-- stat name="randomTime" val="15" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
 	</zone>
-	<zone id="20024" type="PoisonZone" shape="NPoly" minZ="-4672" maxZ="-4272"> <!-- [24_17] fireswamp_5 -->
+	<zone id="20024" type="EffectZone" shape="NPoly" minZ="-4672" maxZ="-4272"> <!-- [24_17] fireswamp_5 -->
 		<stat name="skillIdLvl" val="4150-1;" /> <!-- s_area_fire1 -->
+		<!-- stat name="unitTick" val="30" / -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<!-- stat name="onTime" val="120" / -->
+		<!-- stat name="offTime" val="5" / -->
+		<!-- stat name="randomTime" val="15" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
 	</zone>
-	<zone id="20025" type="PoisonZone" shape="NPoly" minZ="-4676" maxZ="-4276"> <!-- [24_17] fireswamp_6 -->
+	<zone id="20025" type="EffectZone" shape="NPoly" minZ="-4676" maxZ="-4276"> <!-- [24_17] fireswamp_6 -->
 		<stat name="skillIdLvl" val="4150-1;" /> <!-- s_area_fire1 -->
+		<!-- stat name="unitTick" val="30" / -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<!-- stat name="onTime" val="120" / -->
+		<!-- stat name="offTime" val="5" / -->
+		<!-- stat name="randomTime" val="15" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
 	</zone>
-	<zone id="20026" type="PoisonZone" shape="NPoly" minZ="-4728" maxZ="-4328"> <!-- [24_17] fireswamp_7 -->
+	<zone id="20026" type="EffectZone" shape="NPoly" minZ="-4728" maxZ="-4328"> <!-- [24_17] fireswamp_7 -->
 		<stat name="skillIdLvl" val="4150-1;" /> <!-- s_area_fire1 -->
+		<!-- stat name="unitTick" val="30" / -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<!-- stat name="onTime" val="120" / -->
+		<!-- stat name="offTime" val="5" / -->
+		<!-- stat name="randomTime" val="15" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
 	</zone>
-	<zone id="20027" type="PoisonZone" shape="NPoly" minZ="-4636" maxZ="-4036"> <!-- [24_17] fireswamp_8 -->
+	<zone id="20027" type="EffectZone" shape="NPoly" minZ="-4636" maxZ="-4036"> <!-- [24_17] fireswamp_8 -->
 		<stat name="skillIdLvl" val="4150-1;" /> <!-- s_area_fire1 -->
+		<!-- stat name="unitTick" val="30" / -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<!-- stat name="onTime" val="120" / -->
+		<!-- stat name="offTime" val="5" / -->
+		<!-- stat name="randomTime" val="15" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
 	</zone>
-	<zone id="20028" type="PoisonZone" shape="NPoly" minZ="-4700" maxZ="-4300"> <!-- [24_17] fireswamp_9 -->
+	<zone id="20028" type="EffectZone" shape="NPoly" minZ="-4700" maxZ="-4300"> <!-- [24_17] fireswamp_9 -->
 		<stat name="skillIdLvl" val="4150-1;" /> <!-- s_area_fire1 -->
+		<!-- stat name="unitTick" val="30" / -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<!-- stat name="onTime" val="120" / -->
+		<!-- stat name="offTime" val="5" / -->
+		<!-- stat name="randomTime" val="15" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
 	</zone>
-	<zone id="20029" type="PoisonZone" shape="NPoly" minZ="-4572" maxZ="-3972"> <!-- [24_17] fireswamp_10 -->
+	<zone id="20029" type="EffectZone" shape="NPoly" minZ="-4572" maxZ="-3972"> <!-- [24_17] fireswamp_10 -->
 		<stat name="skillIdLvl" val="4150-1;" /> <!-- s_area_fire1 -->
+		<!-- stat name="unitTick" val="30" / -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<!-- stat name="onTime" val="120" / -->
+		<!-- stat name="offTime" val="5" / -->
+		<!-- stat name="randomTime" val="15" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
 	</zone>
-	<zone id="20030" type="PoisonZone" shape="NPoly" minZ="-4572" maxZ="-4172"> <!-- [24_17] fireswamp_11 -->
+	<zone id="20030" type="EffectZone" shape="NPoly" minZ="-4572" maxZ="-4172"> <!-- [24_17] fireswamp_11 -->
 		<stat name="skillIdLvl" val="4150-1;" /> <!-- s_area_fire1 -->
+		<!-- stat name="unitTick" val="30" / -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<!-- stat name="onTime" val="120" / -->
+		<!-- stat name="offTime" val="5" / -->
+		<!-- stat name="randomTime" val="15" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
 	</zone>
-	<zone id="20031" type="PoisonZone" shape="NPoly" minZ="-4476" maxZ="-2976"> <!-- [24_17] fireswamp_12 -->
+	<zone id="20031" type="EffectZone" shape="NPoly" minZ="-4476" maxZ="-2976"> <!-- [24_17] fireswamp_12 -->
 		<stat name="skillIdLvl" val="4150-1;" /> <!-- s_area_fire1 -->
+		<!-- stat name="unitTick" val="30" / -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<!-- stat name="onTime" val="120" / -->
+		<!-- stat name="offTime" val="5" / -->
+		<!-- stat name="randomTime" val="15" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
 	</zone>
-	<zone id="20032" type="PoisonZone" shape="NPoly" minZ="-4604" maxZ="-4204"> <!-- [24_17] fireswamp_13 -->
+	<zone id="20032" type="EffectZone" shape="NPoly" minZ="-4604" maxZ="-4204"> <!-- [24_17] fireswamp_13 -->
 		<stat name="skillIdLvl" val="4150-1;" /> <!-- s_area_fire1 -->
+		<!-- stat name="unitTick" val="30" / -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<!-- stat name="onTime" val="120" / -->
+		<!-- stat name="offTime" val="5" / -->
+		<!-- stat name="randomTime" val="15" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
 	</zone>
-	<zone id="20033" type="PoisonZone" shape="NPoly" minZ="-3476" maxZ="-3076"> <!-- [24_17] fireswamp_14 -->
+	<zone id="20033" type="EffectZone" shape="NPoly" minZ="-3476" maxZ="-3076"> <!-- [24_17] fireswamp_14 -->
 		<stat name="skillIdLvl" val="4150-1;" /> <!-- s_area_fire1 -->
+		<!-- stat name="unitTick" val="30" / -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<!-- stat name="onTime" val="120" / -->
+		<!-- stat name="offTime" val="5" / -->
+		<!-- stat name="randomTime" val="15" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
 	</zone>
-	<zone id="20034" type="PoisonZone" shape="NPoly" minZ="-3208" maxZ="-1608"> <!-- [24_17] fireswamp_15 -->
+	<zone id="20034" type="EffectZone" shape="NPoly" minZ="-3208" maxZ="-1608"> <!-- [24_17] fireswamp_15 -->
 		<stat name="skillIdLvl" val="4150-1;" /> <!-- s_area_fire1 -->
+		<!-- stat name="unitTick" val="30" / -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<!-- stat name="onTime" val="120" / -->
+		<!-- stat name="offTime" val="5" / -->
+		<!-- stat name="randomTime" val="15" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
 	</zone>
 
 	<!-- Devil Isle -->
@@ -2055,19 +2132,19 @@
 	<zone id="20043" type="DamageZone" shape="NPoly" minZ="-3056" maxZ="-2706" /> <!-- [21_24] devil_damage_009 -->
 	<zone id="20044" type="DamageZone" shape="NPoly" minZ="-2736" maxZ="-2536" /> <!-- [21_24] devil_damage_010 -->
 	<!-- Poison -->
-	<zone id="20045" type="PoisonZone" shape="NPoly" minZ="-3752" maxZ="-3552"> <!-- [21_24] devil_poison_001 -->
+	<zone id="20045" type="EffectZone" shape="NPoly" minZ="-3752" maxZ="-3552"> <!-- [21_24] devil_poison_001 -->
 		<stat name="skillIdLvl" val="4148-4;" /> <!-- s_area_poison4 -->
 		<stat name="chance" val="30" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20046" type="PoisonZone" shape="NPoly" minZ="-3800" maxZ="-3600"> <!-- [21_24] devil_poison_002 -->
+	<zone id="20046" type="EffectZone" shape="NPoly" minZ="-3800" maxZ="-3600"> <!-- [21_24] devil_poison_002 -->
 		<stat name="skillIdLvl" val="4148-4;" /> <!-- s_area_poison4 -->
 		<stat name="chance" val="30" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20047" type="PoisonZone" shape="NPoly" minZ="-3628" maxZ="-3428"> <!-- [21_24] devil_poison_003 -->
+	<zone id="20047" type="EffectZone" shape="NPoly" minZ="-3628" maxZ="-3428"> <!-- [21_24] devil_poison_003 -->
 		<stat name="skillIdLvl" val="4148-4;" /> <!-- s_area_poison4 -->
 		<stat name="chance" val="30" />
 		<stat name="initialDelay" val="1000" />
@@ -2086,85 +2163,117 @@
 	</zone>
 
 	<!-- Imperial Tomb/4 Sepulchers -->
-	<zone id="20051" type="PoisonZone" shape="NPoly" minZ="-7260" maxZ="-7010"> <!-- [25_15] conquerors_weakness -->
+	<zone id="20051" type="EffectZone" shape="NPoly" minZ="-7260" maxZ="-7010"> <!-- [25_15] conquerors_weakness -->
 		<stat name="skillIdLvl" val="4146-3;" /> <!-- s_area_pd_down3 -->
 		<stat name="chance" val="70" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="unitTick" val="5" / -->
+		<!-- stat name="defaultStatus" val="off" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
 	</zone>
-	<zone id="20052" type="PoisonZone" shape="NPoly" minZ="-7260" maxZ="-7010"> <!-- [25_15] conquerors_pddown -->
+	<zone id="20052" type="EffectZone" shape="NPoly" minZ="-7260" maxZ="-7010"> <!-- [25_15] conquerors_pddown -->
 		<stat name="skillIdLvl" val="4145-3;" /> <!-- s_area_pa_down3 -->
 		<stat name="chance" val="70" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="unitTick" val="5" / -->
+		<!-- stat name="defaultStatus" val="off" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
 	</zone>
-	<zone id="20053" type="PoisonZone" shape="NPoly" minZ="-7260" maxZ="-7010"> <!-- [25_15] conquerors_poison -->
+	<zone id="20053" type="EffectZone" shape="NPoly" minZ="-7260" maxZ="-7010"> <!-- [25_15] conquerors_poison -->
 		<stat name="skillIdLvl" val="4148-9;" /> <!-- s_area_poison9 -->
 		<stat name="chance" val="70" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="unitTick" val="5" / -->
+		<!-- stat name="defaultStatus" val="off" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
 	</zone>
-	<zone id="20054" type="PoisonZone" shape="NPoly" minZ="-7260" maxZ="-7010"> <!-- [25_15] conquerors_nonheal -->
+	<zone id="20054" type="EffectZone" shape="NPoly" minZ="-7260" maxZ="-7010"> <!-- [25_15] conquerors_nonheal -->
 		<stat name="skillIdLvl" val="4624-9;" /> <!-- s_area_disease9 -->
 		<stat name="chance" val="70" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="unitTick" val="5" / -->
+		<!-- stat name="defaultStatus" val="off" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
 	</zone>
-	<zone id="20055" type="PoisonZone" shape="NPoly" minZ="-7265" maxZ="-7015"> <!-- [25_15] lords_weakness -->
+	<zone id="20055" type="EffectZone" shape="NPoly" minZ="-7265" maxZ="-7015"> <!-- [25_15] lords_weakness -->
 		<stat name="skillIdLvl" val="4146-3;" /> <!-- s_area_pd_down3 -->
 		<stat name="chance" val="70" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="unitTick" val="5" / -->
+		<!-- stat name="defaultStatus" val="off" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
 	</zone>
-	<zone id="20056" type="PoisonZone" shape="NPoly" minZ="-7265" maxZ="-7015"> <!-- [25_15] lords_pddown -->
+	<zone id="20056" type="EffectZone" shape="NPoly" minZ="-7265" maxZ="-7015"> <!-- [25_15] lords_pddown -->
 		<stat name="skillIdLvl" val="4145-3;" /> <!-- s_area_pa_down3 -->
 		<stat name="chance" val="70" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="unitTick" val="5" / -->
+		<!-- stat name="defaultStatus" val="off" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
 	</zone>
-	<zone id="20057" type="PoisonZone" shape="NPoly" minZ="-7265" maxZ="-7015"> <!-- [25_15] lords_poison -->
+	<zone id="20057" type="EffectZone" shape="NPoly" minZ="-7265" maxZ="-7015"> <!-- [25_15] lords_poison -->
 		<stat name="skillIdLvl" val="4148-9;" /> <!-- s_area_poison9 -->
 		<stat name="chance" val="70" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="unitTick" val="5" / -->
+		<!-- stat name="defaultStatus" val="off" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
 	</zone>
-	<zone id="20058" type="PoisonZone" shape="NPoly" minZ="-7265" maxZ="-7015"> <!-- [25_15] lords_nonheal -->
+	<zone id="20058" type="EffectZone" shape="NPoly" minZ="-7265" maxZ="-7015"> <!-- [25_15] lords_nonheal -->
 		<stat name="skillIdLvl" val="4624-9;" /> <!-- s_area_disease9 -->
 		<stat name="chance" val="70" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="unitTick" val="5" / -->
+		<!-- stat name="defaultStatus" val="off" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
 	</zone>
-	<zone id="20059" type="PoisonZone" shape="NPoly" minZ="-7262" maxZ="-7012"> <!-- [25_15] savants_weakness -->
+	<zone id="20059" type="EffectZone" shape="NPoly" minZ="-7262" maxZ="-7012"> <!-- [25_15] savants_weakness -->
 		<stat name="skillIdLvl" val="4146-3;" /> <!-- s_area_pd_down3 -->
 		<stat name="chance" val="70" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="unitTick" val="5" / -->
+		<!-- stat name="defaultStatus" val="off" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
 	</zone>
-	<zone id="20060" type="PoisonZone" shape="NPoly" minZ="-7262" maxZ="-7012"> <!-- [25_15] savants_pddown -->
+	<zone id="20060" type="EffectZone" shape="NPoly" minZ="-7262" maxZ="-7012"> <!-- [25_15] savants_pddown -->
 		<stat name="skillIdLvl" val="4145-3;" /> <!-- s_area_pa_down3 -->
 		<stat name="chance" val="70" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="unitTick" val="5" / -->
+		<!-- stat name="defaultStatus" val="off" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
 	</zone>
-	<zone id="20061" type="PoisonZone" shape="NPoly" minZ="-7262" maxZ="-7012"> <!-- [25_15] savants_poison -->
+	<zone id="20061" type="EffectZone" shape="NPoly" minZ="-7262" maxZ="-7012"> <!-- [25_15] savants_poison -->
 		<stat name="skillIdLvl" val="4148-9;" /> <!-- s_area_poison9 -->
 		<stat name="chance" val="70" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="unitTick" val="5" / -->
+		<!-- stat name="defaultStatus" val="off" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
 	</zone>
-	<zone id="20062" type="PoisonZone" shape="NPoly" minZ="-7262" maxZ="-7012"> <!-- [25_15] savants_nonheal -->
+	<zone id="20062" type="EffectZone" shape="NPoly" minZ="-7262" maxZ="-7012"> <!-- [25_15] savants_nonheal -->
 		<stat name="skillIdLvl" val="4624-9;" /> <!-- s_area_disease9 -->
 		<stat name="chance" val="70" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="unitTick" val="5" / -->
+		<!-- stat name="defaultStatus" val="off" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
 	</zone>
-	<zone id="20063" type="PoisonZone" shape="NPoly" minZ="-7262" maxZ="-7012"> <!-- [25_15] magistrates_weakness -->
+	<zone id="20063" type="EffectZone" shape="NPoly" minZ="-7262" maxZ="-7012"> <!-- [25_15] magistrates_weakness -->
 		<stat name="skillIdLvl" val="4146-3;" /> <!-- s_area_pd_down3 -->
 		<stat name="chance" val="70" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="unitTick" val="5" / -->
+		<!-- stat name="defaultStatus" val="off" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
 	</zone>
-	<zone id="20064" type="PoisonZone" shape="NPoly" minZ="-7262" maxZ="-7012"> <!-- [25_15] magistrates_pddown -->
+	<zone id="20064" type="EffectZone" shape="NPoly" minZ="-7262" maxZ="-7012"> <!-- [25_15] magistrates_pddown -->
 		<stat name="skillIdLvl" val="4145-3;" /> <!-- s_area_pa_down3 -->
 		<stat name="chance" val="70" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="unitTick" val="5" / -->
+		<!-- stat name="defaultStatus" val="off" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
 	</zone>
-	<zone id="20065" type="PoisonZone" shape="NPoly" minZ="-7262" maxZ="-7012"> <!-- [25_15] magistrates_poison -->
+	<zone id="20065" type="EffectZone" shape="NPoly" minZ="-7262" maxZ="-7012"> <!-- [25_15] magistrates_poison -->
 		<stat name="skillIdLvl" val="4148-9;" /> <!-- s_area_poison9 -->
 		<stat name="chance" val="70" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="unitTick" val="5" / -->
+		<!-- stat name="defaultStatus" val="off" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
 	</zone>
-	<zone id="20066" type="PoisonZone" shape="NPoly" minZ="-7262" maxZ="-7012"> <!-- [25_15] magistrates_nonheal -->
+	<zone id="20066" type="EffectZone" shape="NPoly" minZ="-7262" maxZ="-7012"> <!-- [25_15] magistrates_nonheal -->
 		<stat name="skillIdLvl" val="4624-9;" /> <!-- s_area_disease9 -->
 		<stat name="chance" val="70" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="unitTick" val="5" / -->
+		<!-- stat name="defaultStatus" val="off" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
 	</zone>
 
 	<!-- Emerald Square zone -->
@@ -2190,116 +2299,152 @@
 	
 	<!-- Hot Springs Zones -->
 	<!-- Hot Springs Illusion -->
-	<zone id="20200" type="PoisonZone" shape="NPoly" minZ="-3634" maxZ="-3434"> <!-- [24_14] spa_11 -->
+	<zone id="20200" type="EffectZone" shape="NPoly" minZ="-3634" maxZ="-3434"> <!-- [24_14] spa_11 -->
 		<stat name="skillIdLvl" val="4559-1;" /> <!-- s_spa_big_head -->
 		<stat name="chance" val="100" />
+		<!-- stat name="unitTick" val="5" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="3000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="3000" /> <!-- Guess -->
 	</zone>
-	<zone id="20201" type="PoisonZone" shape="NPoly" minZ="-3668" maxZ="-3468"> <!-- [24_14] spa_21 -->
+	<zone id="20201" type="EffectZone" shape="NPoly" minZ="-3668" maxZ="-3468"> <!-- [24_14] spa_21 -->
 		<stat name="skillIdLvl" val="4559-1;" /> <!-- s_spa_big_head -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="5" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="3000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="3000" /> <!-- Guess -->
 	</zone>
-	<zone id="20202" type="PoisonZone" shape="NPoly" minZ="-3724" maxZ="-3524"> <!-- [24_14] spa_31 -->
+	<zone id="20202" type="EffectZone" shape="NPoly" minZ="-3724" maxZ="-3524"> <!-- [24_14] spa_31 -->
 		<stat name="skillIdLvl" val="4559-1;" /> <!-- s_spa_big_head -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="5" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="3000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="3000" /> <!-- Guess -->
 	</zone>
-	<zone id="20203" type="PoisonZone" shape="NPoly" minZ="-2871" maxZ="-2671"> <!-- [24_14] spa_41 -->
+	<zone id="20203" type="EffectZone" shape="NPoly" minZ="-2871" maxZ="-2671"> <!-- [24_14] spa_41 -->
 		<stat name="skillIdLvl" val="4559-1;" /> <!-- s_spa_big_head -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="5" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="3000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="3000" /> <!-- Guess -->
 	</zone>
-	<zone id="20204" type="PoisonZone" shape="NPoly" minZ="-2787" maxZ="-2587"> <!-- [24_14] spa_51 -->
+	<zone id="20204" type="EffectZone" shape="NPoly" minZ="-2787" maxZ="-2587"> <!-- [24_14] spa_51 -->
 		<stat name="skillIdLvl" val="4559-1;" /> <!-- s_spa_big_head -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="5" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="3000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="3000" /> <!-- Guess -->
 	</zone>
-	<zone id="20205" type="PoisonZone" shape="NPoly" minZ="-2717" maxZ="-2517"> <!-- [24_14] spa_61 -->
+	<zone id="20205" type="EffectZone" shape="NPoly" minZ="-2717" maxZ="-2517"> <!-- [24_14] spa_61 -->
 		<stat name="skillIdLvl" val="4559-1;" /> <!-- s_spa_big_head -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="5" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="3000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="3000" /> <!-- Guess -->
 	</zone>
-	<zone id="20206" type="PoisonZone" shape="NPoly" minZ="-1609" maxZ="-1409"> <!-- [24_14] spa_71 -->
+	<zone id="20206" type="EffectZone" shape="NPoly" minZ="-1609" maxZ="-1409"> <!-- [24_14] spa_71 -->
 		<stat name="skillIdLvl" val="4559-1;" /> <!-- s_spa_big_head -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="5" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="3000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="3000" /> <!-- Guess -->
 	</zone>
-	<zone id="20207" type="PoisonZone" shape="NPoly" minZ="-1694" maxZ="-1494"> <!-- [24_14] spa_81 -->
+	<zone id="20207" type="EffectZone" shape="NPoly" minZ="-1694" maxZ="-1494"> <!-- [24_14] spa_81 -->
 		<stat name="skillIdLvl" val="4559-1;" /> <!-- s_spa_big_head -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="5" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="3000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="3000" /> <!-- Guess -->
 	</zone>
-	<zone id="20208" type="PoisonZone" shape="NPoly" minZ="-1979" maxZ="-1779"> <!-- [24_14] spa_91 -->
+	<zone id="20208" type="EffectZone" shape="NPoly" minZ="-1979" maxZ="-1779"> <!-- [24_14] spa_91 -->
 		<stat name="skillIdLvl" val="4559-1;" /> <!-- s_spa_big_head -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="5" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="3000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="3000" /> <!-- Guess -->
 	</zone>
 	<!-- Disease treatment -->
-	<zone id="20209" type="PoisonZone" shape="NPoly" minZ="-3634" maxZ="-3434"> <!-- [24_14] spa_12 -->
+	<zone id="20209" type="EffectZone" shape="NPoly" minZ="-3634" maxZ="-3434"> <!-- [24_14] spa_12 -->
 		<stat name="skillIdLvl" val="4557-1;" /> <!-- s_dispel_spa_disease_bd -->
 		<stat name="chance" val="100" />
+		<!-- stat name="unitTick" val="5" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="3000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="3000" /> <!-- Guess -->
 	</zone>
-	<zone id="20210" type="PoisonZone" shape="NPoly" minZ="-3668" maxZ="-3468"> <!-- [24_14] spa_22 -->
+	<zone id="20210" type="EffectZone" shape="NPoly" minZ="-3668" maxZ="-3468"> <!-- [24_14] spa_22 -->
 		<stat name="skillIdLvl" val="4556-1;" /> <!-- s_dispel_spa_disease_ad -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="5" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="3000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="3000" /> <!-- Guess -->
 	</zone>
-	<zone id="20211" type="PoisonZone" shape="NPoly" minZ="-3724" maxZ="-3524"> <!-- [24_14] spa_32 -->
+	<zone id="20211" type="EffectZone" shape="NPoly" minZ="-3724" maxZ="-3524"> <!-- [24_14] spa_32 -->
 		<stat name="skillIdLvl" val="4558-1;" /> <!-- s_dispel_spa_disease_cd -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="5" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="3000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="3000" /> <!-- Guess -->
 	</zone>
-	<zone id="20212" type="PoisonZone" shape="NPoly" minZ="-2871" maxZ="-2671"> <!-- [24_14] spa_42 -->
+	<zone id="20212" type="EffectZone" shape="NPoly" minZ="-2871" maxZ="-2671"> <!-- [24_14] spa_42 -->
 		<stat name="skillIdLvl" val="4556-1;" /> <!-- s_dispel_spa_disease_ad -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="5" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="3000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="3000" /> <!-- Guess -->
 	</zone>
-	<zone id="20213" type="PoisonZone" shape="NPoly" minZ="-2787" maxZ="-2587"> <!-- [24_14] spa_52 -->
+	<zone id="20213" type="EffectZone" shape="NPoly" minZ="-2787" maxZ="-2587"> <!-- [24_14] spa_52 -->
 		<stat name="skillIdLvl" val="4558-1;" /> <!-- s_dispel_spa_disease_cd -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="5" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="3000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="3000" /> <!-- Guess -->
 	</zone>
-	<zone id="20214" type="PoisonZone" shape="NPoly" minZ="-2717" maxZ="-2517"> <!-- [24_14] spa_62 -->
+	<zone id="20214" type="EffectZone" shape="NPoly" minZ="-2717" maxZ="-2517"> <!-- [24_14] spa_62 -->
 		<stat name="skillIdLvl" val="4557-1;" /> <!-- s_dispel_spa_disease_bd -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="5" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="3000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="3000" /> <!-- Guess -->
 	</zone>
-	<zone id="20215" type="PoisonZone" shape="NPoly" minZ="-1609" maxZ="-1409"> <!-- [24_14] spa_72 -->
+	<zone id="20215" type="EffectZone" shape="NPoly" minZ="-1609" maxZ="-1409"> <!-- [24_14] spa_72 -->
 		<stat name="skillIdLvl" val="4556-1;" /> <!-- s_dispel_spa_disease_ad -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="5" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="3000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="3000" /> <!-- Guess -->
 	</zone>
-	<zone id="20216" type="PoisonZone" shape="NPoly" minZ="-1694" maxZ="-1494"> <!-- [24_14] spa_82 -->
+	<zone id="20216" type="EffectZone" shape="NPoly" minZ="-1694" maxZ="-1494"> <!-- [24_14] spa_82 -->
 		<stat name="skillIdLvl" val="4558-1;" /> <!-- s_dispel_spa_disease_cd -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="5" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="3000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="3000" /> <!-- Guess -->
 	</zone>
-	<zone id="20217" type="PoisonZone" shape="NPoly" minZ="-1979" maxZ="-1779"> <!-- [24_14] spa_92 -->
+	<zone id="20217" type="EffectZone" shape="NPoly" minZ="-1979" maxZ="-1779"> <!-- [24_14] spa_92 -->
 		<stat name="skillIdLvl" val="4557-1;" /> <!-- s_dispel_spa_disease_bd -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="5" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="3000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="3000" /> <!-- Guess -->
 	</zone>
-	<zone id="20218" type="PoisonZone" shape="NPoly" minZ="-2152" maxZ="-1952"> <!-- [24_14] spa_102 -->
+	<zone id="20218" type="EffectZone" shape="NPoly" minZ="-2152" maxZ="-1952"> <!-- [24_14] spa_102 -->
 		<stat name="skillIdLvl" val="4557-1;" /> <!-- s_dispel_spa_disease_bd -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
@@ -2307,418 +2452,472 @@
 	</zone>
 
 	<!-- Forge of the Gods/Hall of Flames (Fire Zones) -->
-	<zone id="20220" type="PoisonZone" shape="NPoly" minZ="-1896" maxZ="-1696"> <!-- [25_14] godad_fire_zone1 -->
+	<zone id="20220" type="EffectZone" shape="NPoly" minZ="-1896" maxZ="-1696"> <!-- [25_14] godad_fire_zone1 -->
 		<stat name="skillIdLvl" val="4150-5;" /> <!-- s_area_fire5 -->
 		<stat name="chance" val="100" />
+		<!-- stat name="unitTick" val="5" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
 	</zone>
-	<zone id="20221" type="PoisonZone" shape="NPoly" minZ="-3384" maxZ="-3184"> <!-- [25_14] godad_fire_zone2 -->
+	<zone id="20221" type="EffectZone" shape="NPoly" minZ="-3384" maxZ="-3184"> <!-- [25_14] godad_fire_zone2 -->
 		<stat name="skillIdLvl" val="4150-5;" /> <!-- s_area_fire5 -->
 		<stat name="chance" val="100" />
+		<!-- stat name="unitTick" val="5" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
 	</zone>
-	<zone id="20222" type="PoisonZone" shape="NPoly" minZ="-4728" maxZ="-4028"> <!-- [25_14] godad_fire_zone3 -->
+	<zone id="20222" type="EffectZone" shape="NPoly" minZ="-4728" maxZ="-4028"> <!-- [25_14] godad_fire_zone3 -->
 		<stat name="skillIdLvl" val="4150-5;" /> <!-- s_area_fire5 -->
 		<stat name="chance" val="100" />
+		<!-- stat name="unitTick" val="5" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
 	</zone>
-	<zone id="20223" type="PoisonZone" shape="NPoly" minZ="-6160" maxZ="-5260"> <!-- [25_14] godad_fire_zone4 -->
+	<zone id="20223" type="EffectZone" shape="NPoly" minZ="-6160" maxZ="-5260"> <!-- [25_14] godad_fire_zone4 -->
 		<stat name="skillIdLvl" val="4150-5;" /> <!-- s_area_fire5 -->
 		<stat name="chance" val="100" />
+		<!-- stat name="unitTick" val="5" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
 	</zone>
 
 	<!-- Forge of the Gods/Hall of Flames (Npc HP Regeneration Zones) -->
-	<zone id="20240" type="PoisonZone" shape="NPoly" minZ="-3359" maxZ="-2959"> <!-- [25_14] fire_pot_god_hp_regen1 -->
+	<zone id="20240" type="EffectZone" shape="NPoly" minZ="-3359" maxZ="-2959"> <!-- [25_14] fire_pot_god_hp_regen1 -->
 		<stat name="skillIdLvl" val="4698-7;" /> <!-- s_area_hp_regeneration7 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20241" type="PoisonZone" shape="NPoly" minZ="-3246" maxZ="-2846"> <!-- [25_14] fire_pot_god_hp_regen2 -->
+	<zone id="20241" type="EffectZone" shape="NPoly" minZ="-3246" maxZ="-2846"> <!-- [25_14] fire_pot_god_hp_regen2 -->
 		<stat name="skillIdLvl" val="4698-7;" /> <!-- s_area_hp_regeneration7 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20242" type="PoisonZone" shape="NPoly" minZ="-3180" maxZ="-2780"> <!-- [25_14] fire_pot_god_hp_regen3 -->
+	<zone id="20242" type="EffectZone" shape="NPoly" minZ="-3180" maxZ="-2780"> <!-- [25_14] fire_pot_god_hp_regen3 -->
 		<stat name="skillIdLvl" val="4698-7;" /> <!-- s_area_hp_regeneration7 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20243" type="PoisonZone" shape="NPoly" minZ="-3164" maxZ="-2764"> <!-- [25_14] fire_pot_god_hp_regen4 -->
+	<zone id="20243" type="EffectZone" shape="NPoly" minZ="-3164" maxZ="-2764"> <!-- [25_14] fire_pot_god_hp_regen4 -->
 		<stat name="skillIdLvl" val="4698-7;" /> <!-- s_area_hp_regeneration7 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20244" type="PoisonZone" shape="NPoly" minZ="-3152" maxZ="-2752"> <!-- [25_14] fire_pot_god_hp_regen5 -->
+	<zone id="20244" type="EffectZone" shape="NPoly" minZ="-3152" maxZ="-2752"> <!-- [25_14] fire_pot_god_hp_regen5 -->
 		<stat name="skillIdLvl" val="4698-7;" /> <!-- s_area_hp_regeneration7 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20245" type="PoisonZone" shape="NPoly" minZ="-3388" maxZ="-2988"> <!-- [25_14] fire_pot_god_hp_regen6 -->
+	<zone id="20245" type="EffectZone" shape="NPoly" minZ="-3388" maxZ="-2988"> <!-- [25_14] fire_pot_god_hp_regen6 -->
 		<stat name="skillIdLvl" val="4698-7;" /> <!-- s_area_hp_regeneration7 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20246" type="PoisonZone" shape="NPoly" minZ="-3356" maxZ="-2956"> <!-- [25_14] fire_pot_god_hp_regen7 -->
+	<zone id="20246" type="EffectZone" shape="NPoly" minZ="-3356" maxZ="-2956"> <!-- [25_14] fire_pot_god_hp_regen7 -->
 		<stat name="skillIdLvl" val="4698-7;" /> <!-- s_area_hp_regeneration7 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
 
 	<!-- Swamp of Screams (Buffs/Debuffs Zones) -->
 	<!-- Monsters Buffs Zones -->
-	<zone id="20260" type="PoisonZone" shape="NPoly" minZ="-3375" maxZ="-2975"> <!-- [22_16] godad_swamp_monster1 -->
-		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
+	<zone id="20260" type="EffectZone" shape="NPoly" minZ="-3375" maxZ="-2975"> <!-- [22_16] godad_swamp_monster1 -->
+		<stat name="skillIdLvl" val="4644-2;4645-3;4647-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_might3 -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20261" type="PoisonZone" shape="NPoly" minZ="-3191" maxZ="-2991"> <!-- [22_16] godad_swamp_monster2 -->
+	<zone id="20261" type="EffectZone" shape="NPoly" minZ="-3191" maxZ="-2991"> <!-- [22_16] godad_swamp_monster2 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20262" type="PoisonZone" shape="NPoly" minZ="-3335" maxZ="-2935"> <!-- [22_16] godad_swamp_monster3 -->
+	<zone id="20262" type="EffectZone" shape="NPoly" minZ="-3335" maxZ="-2935"> <!-- [22_16] godad_swamp_monster3 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20263" type="PoisonZone" shape="NPoly" minZ="-3179" maxZ="-2979"> <!-- [22_16] godad_swamp_monster4 -->
+	<zone id="20263" type="EffectZone" shape="NPoly" minZ="-3179" maxZ="-2979"> <!-- [22_16] godad_swamp_monster4 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20264" type="PoisonZone" shape="NPoly" minZ="-3255" maxZ="-2955"> <!-- [22_16] godad_swamp_monster5 -->
+	<zone id="20264" type="EffectZone" shape="NPoly" minZ="-3255" maxZ="-2955"> <!-- [22_16] godad_swamp_monster5 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20265" type="PoisonZone" shape="NPoly" minZ="-3458" maxZ="-3158"> <!-- [22_16] godad_swamp_monster6 -->
+	<zone id="20265" type="EffectZone" shape="NPoly" minZ="-3458" maxZ="-3158"> <!-- [22_16] godad_swamp_monster6 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20266" type="PoisonZone" shape="NPoly" minZ="-3418" maxZ="-3118"> <!-- [22_16] godad_swamp_monster7 -->
+	<zone id="20266" type="EffectZone" shape="NPoly" minZ="-3418" maxZ="-3118"> <!-- [22_16] godad_swamp_monster7 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20267" type="PoisonZone" shape="NPoly" minZ="-3410" maxZ="-3110"> <!-- [22_16] godad_swamp_monster8 -->
+	<zone id="20267" type="EffectZone" shape="NPoly" minZ="-3410" maxZ="-3110"> <!-- [22_16] godad_swamp_monster8 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20268" type="PoisonZone" shape="NPoly" minZ="-3422" maxZ="-3122"> <!-- [22_16] godad_swamp_monster9 -->
+	<zone id="20268" type="EffectZone" shape="NPoly" minZ="-3422" maxZ="-3122"> <!-- [22_16] godad_swamp_monster9 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20269" type="PoisonZone" shape="NPoly" minZ="-3370" maxZ="-3070"> <!-- [22_16] godad_swamp_monster10 -->
+	<zone id="20269" type="EffectZone" shape="NPoly" minZ="-3370" maxZ="-3070"> <!-- [22_16] godad_swamp_monster10 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20270" type="PoisonZone" shape="NPoly" minZ="-3366" maxZ="-3066"> <!-- [22_16] godad_swamp_monster11 -->
+	<zone id="20270" type="EffectZone" shape="NPoly" minZ="-3366" maxZ="-3066"> <!-- [22_16] godad_swamp_monster11 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20271" type="PoisonZone" shape="NPoly" minZ="-2522" maxZ="-2222"> <!-- [22_16] godad_swamp_monster12 -->
+	<zone id="20271" type="EffectZone" shape="NPoly" minZ="-2522" maxZ="-2222"> <!-- [22_16] godad_swamp_monster12 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20272" type="PoisonZone" shape="NPoly" minZ="-2470" maxZ="-2170"> <!-- [22_16] godad_swamp_monster13 -->
+	<zone id="20272" type="EffectZone" shape="NPoly" minZ="-2470" maxZ="-2170"> <!-- [22_16] godad_swamp_monster13 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20273" type="PoisonZone" shape="NPoly" minZ="-2458" maxZ="-2158"> <!-- [22_16] godad_swamp_monster14 -->
+	<zone id="20273" type="EffectZone" shape="NPoly" minZ="-2458" maxZ="-2158"> <!-- [22_16] godad_swamp_monster14 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20274" type="PoisonZone" shape="NPoly" minZ="-2542" maxZ="-2242"> <!-- [22_16] godad_swamp_monster15 -->
+	<zone id="20274" type="EffectZone" shape="NPoly" minZ="-2542" maxZ="-2242"> <!-- [22_16] godad_swamp_monster15 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20275" type="PoisonZone" shape="NPoly" minZ="-2558" maxZ="-2258"> <!-- [22_16] godad_swamp_monster16 -->
+	<zone id="20275" type="EffectZone" shape="NPoly" minZ="-2558" maxZ="-2258"> <!-- [22_16] godad_swamp_monster16 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20276" type="PoisonZone" shape="NPoly" minZ="-2414" maxZ="-2114"> <!-- [22_16] godad_swamp_monster17 -->
+	<zone id="20276" type="EffectZone" shape="NPoly" minZ="-2414" maxZ="-2114"> <!-- [22_16] godad_swamp_monster17 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20277" type="PoisonZone" shape="NPoly" minZ="-2522" maxZ="-2222"> <!-- [22_16] godad_swamp_monster18 -->
+	<zone id="20277" type="EffectZone" shape="NPoly" minZ="-2522" maxZ="-2222"> <!-- [22_16] godad_swamp_monster18 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
 		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20278" type="PoisonZone" shape="NPoly" minZ="-2462" maxZ="-2162"> <!-- [22_16] godad_swamp_monster19 -->
+	<zone id="20278" type="EffectZone" shape="NPoly" minZ="-2462" maxZ="-2162"> <!-- [22_16] godad_swamp_monster19 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20279" type="PoisonZone" shape="NPoly" minZ="-2574" maxZ="-2274"> <!-- [22_16] godad_swamp_monster20 -->
+	<zone id="20279" type="EffectZone" shape="NPoly" minZ="-2574" maxZ="-2274"> <!-- [22_16] godad_swamp_monster20 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20280" type="PoisonZone" shape="NPoly" minZ="-2727" maxZ="-2427"> <!-- [22_16] godad_swamp_monster21 -->
+	<zone id="20280" type="EffectZone" shape="NPoly" minZ="-2727" maxZ="-2427"> <!-- [22_16] godad_swamp_monster21 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20281" type="PoisonZone" shape="NPoly" minZ="-2767" maxZ="-2467"> <!-- [22_16] godad_swamp_monster22 -->
+	<zone id="20281" type="EffectZone" shape="NPoly" minZ="-2767" maxZ="-2467"> <!-- [22_16] godad_swamp_monster22 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20282" type="PoisonZone" shape="NPoly" minZ="-2763" maxZ="-2463"> <!-- [22_16] godad_swamp_monster23 -->
+	<zone id="20282" type="EffectZone" shape="NPoly" minZ="-2763" maxZ="-2463"> <!-- [22_16] godad_swamp_monster23 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20283" type="PoisonZone" shape="NPoly" minZ="-2550" maxZ="-2150"> <!-- [22_16] godad_swamp_monster24 -->
+	<zone id="20283" type="EffectZone" shape="NPoly" minZ="-2550" maxZ="-2150"> <!-- [22_16] godad_swamp_monster24 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20284" type="PoisonZone" shape="NPoly" minZ="-2486" maxZ="-2286"> <!-- [22_16] godad_swamp_monster25 -->
+	<zone id="20284" type="EffectZone" shape="NPoly" minZ="-2486" maxZ="-2286"> <!-- [22_16] godad_swamp_monster25 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
-	<zone id="20285" type="PoisonZone" shape="NPoly" minZ="-2819" maxZ="-2619"> <!-- [22_16] godad_swamp_monster26 -->
+	<zone id="20285" type="EffectZone" shape="NPoly" minZ="-2819" maxZ="-2619"> <!-- [22_16] godad_swamp_monster26 -->
 		<stat name="skillIdLvl" val="4644-2;4645-3;4646-3;4647-3;4648-3;" /> <!-- @s_area_haste2;@s_area_focus3;@s_area_death_wisper3;@s_area_might3;@s_area_shield3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
-		<stat name="target" val="npc" />
+		<stat name="targetClass" val="L2Npc" />
 	</zone>
 	<!-- Pc Debuffs Zones -->
-	<zone id="20300" type="PoisonZone" shape="NPoly" minZ="-3375" maxZ="-2975"> <!-- [22_16] godad_swamp_pc1 -->
+	<zone id="20300" type="EffectZone" shape="NPoly" minZ="-3375" maxZ="-2975"> <!-- [22_16] godad_swamp_pc1 -->
 		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20301" type="PoisonZone" shape="NPoly" minZ="-3191" maxZ="-2991"> <!-- [22_16] godad_swamp_pc2 -->
+	<zone id="20301" type="EffectZone" shape="NPoly" minZ="-3191" maxZ="-2991"> <!-- [22_16] godad_swamp_pc2 -->
 		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20302" type="PoisonZone" shape="NPoly" minZ="-3335" maxZ="-2935"> <!-- [22_16] godad_swamp_pc3 -->
+	<zone id="20302" type="EffectZone" shape="NPoly" minZ="-3335" maxZ="-2935"> <!-- [22_16] godad_swamp_pc3 -->
 		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20303" type="PoisonZone" shape="NPoly" minZ="-3179" maxZ="-2979"> <!-- [22_16] godad_swamp_pc4 -->
+	<zone id="20303" type="EffectZone" shape="NPoly" minZ="-3179" maxZ="-2979"> <!-- [22_16] godad_swamp_pc4 -->
+		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
+		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
+		<stat name="initialDelay" val="1000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->>
+	</zone>
+	<zone id="20304" type="EffectZone" shape="NPoly" minZ="-3255" maxZ="-2955"> <!-- [22_16] godad_swamp_pc5 -->
+		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
+		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
+		<stat name="initialDelay" val="1000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+	</zone>
+	<zone id="20305" type="EffectZone" shape="NPoly" minZ="-3458" maxZ="-3158"> <!-- [22_16] godad_swamp_pc6 -->
+		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
+		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
+		<stat name="initialDelay" val="1000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+	</zone>
+	<zone id="20306" type="EffectZone" shape="NPoly" minZ="-3418" maxZ="-3118"> <!-- [22_16] godad_swamp_pc7 -->
+		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
+		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
+		<stat name="initialDelay" val="1000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+	</zone>
+	<zone id="20307" type="EffectZone" shape="NPoly" minZ="-3410" maxZ="-3110"> <!-- [22_16] godad_swamp_pc8 -->
+		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
+		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
+		<stat name="initialDelay" val="1000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+	</zone>
+	<zone id="20308" type="EffectZone" shape="NPoly" minZ="-3422" maxZ="-3122"> <!-- [22_16] godad_swamp_pc9 -->
+		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
+		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
+		<stat name="initialDelay" val="1000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+	</zone>
+	<zone id="20309" type="EffectZone" shape="NPoly" minZ="-3370" maxZ="-3070"> <!-- [22_16] godad_swamp_pc10 -->
+		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
+		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
+		<stat name="initialDelay" val="1000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+	</zone>
+	<zone id="20310" type="EffectZone" shape="NPoly" minZ="-3366" maxZ="-3066"> <!-- [22_16] godad_swamp_pc11 -->
+		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
+		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
+		<stat name="initialDelay" val="1000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+	</zone>
+	<zone id="20311" type="EffectZone" shape="NPoly" minZ="-2522" maxZ="-2222"> <!-- [22_16] godad_swamp_pc12 -->
+		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
+		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
+		<stat name="initialDelay" val="1000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+	</zone>
+	<zone id="20312" type="EffectZone" shape="NPoly" minZ="-2470" maxZ="-2170"> <!-- [22_16] godad_swamp_pc13 -->
 		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20304" type="PoisonZone" shape="NPoly" minZ="-3255" maxZ="-2955"> <!-- [22_16] godad_swamp_pc5 -->
+	<zone id="20313" type="EffectZone" shape="NPoly" minZ="-2458" maxZ="-2158"> <!-- [22_16] godad_swamp_pc14 -->
 		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20305" type="PoisonZone" shape="NPoly" minZ="-3458" maxZ="-3158"> <!-- [22_16] godad_swamp_pc6 -->
+	<zone id="20314" type="EffectZone" shape="NPoly" minZ="-2542" maxZ="-2242"> <!-- [22_16] godad_swamp_pc15 -->
 		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20306" type="PoisonZone" shape="NPoly" minZ="-3418" maxZ="-3118"> <!-- [22_16] godad_swamp_pc7 -->
+	<zone id="20315" type="EffectZone" shape="NPoly" minZ="-2558" maxZ="-2258"> <!-- [22_16] godad_swamp_pc16 -->
 		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20307" type="PoisonZone" shape="NPoly" minZ="-3410" maxZ="-3110"> <!-- [22_16] godad_swamp_pc8 -->
+	<zone id="20316" type="EffectZone" shape="NPoly" minZ="-2414" maxZ="-2114"> <!-- [22_16] godad_swamp_pc17 -->
 		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20308" type="PoisonZone" shape="NPoly" minZ="-3422" maxZ="-3122"> <!-- [22_16] godad_swamp_pc9 -->
+	<zone id="20317" type="EffectZone" shape="NPoly" minZ="-2522" maxZ="-2222"> <!-- [22_16] godad_swamp_pc18 -->
+		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
+		<stat name="chance" val="70" />
+		<!-- stat name="unitTick" val="9" / -->
+		<stat name="initialDelay" val="1000" />
+		<!-- stat name="defaultStatus" val="on" / -->
+		<stat name="reuse" val="6000" /> <!-- Guess -->
+	</zone>
+	<zone id="20318" type="EffectZone" shape="NPoly" minZ="-2462" maxZ="-2162"> <!-- [22_16] godad_swamp_pc19 -->
 		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20309" type="PoisonZone" shape="NPoly" minZ="-3370" maxZ="-3070"> <!-- [22_16] godad_swamp_pc10 -->
+	<zone id="20319" type="EffectZone" shape="NPoly" minZ="-2574" maxZ="-2274"> <!-- [22_16] godad_swamp_pc20 -->
 		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20310" type="PoisonZone" shape="NPoly" minZ="-3366" maxZ="-3066"> <!-- [22_16] godad_swamp_pc11 -->
+	<zone id="20320" type="EffectZone" shape="NPoly" minZ="-2727" maxZ="-2427"> <!-- [22_16] godad_swamp_pc21 -->
 		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20311" type="PoisonZone" shape="NPoly" minZ="-2522" maxZ="-2222"> <!-- [22_16] godad_swamp_pc12 -->
+	<zone id="20321" type="EffectZone" shape="NPoly" minZ="-2767" maxZ="-2467"> <!-- [22_16] godad_swamp_pc22 -->
 		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20312" type="PoisonZone" shape="NPoly" minZ="-2470" maxZ="-2170"> <!-- [22_16] godad_swamp_pc13 -->
+	<zone id="20322" type="EffectZone" shape="NPoly" minZ="-2763" maxZ="-2463"> <!-- [22_16] godad_swamp_pc23 -->
 		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20313" type="PoisonZone" shape="NPoly" minZ="-2458" maxZ="-2158"> <!-- [22_16] godad_swamp_pc14 -->
+	<zone id="20323" type="EffectZone" shape="NPoly" minZ="-2550" maxZ="-2150"> <!-- [22_16] godad_swamp_pc24 -->
 		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20314" type="PoisonZone" shape="NPoly" minZ="-2542" maxZ="-2242"> <!-- [22_16] godad_swamp_pc15 -->
+	<zone id="20324" type="EffectZone" shape="NPoly" minZ="-2486" maxZ="-2286"> <!-- [22_16] godad_swamp_pc25 -->
 		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20315" type="PoisonZone" shape="NPoly" minZ="-2558" maxZ="-2258"> <!-- [22_16] godad_swamp_pc16 -->
-		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
-		<stat name="chance" val="70" />
-		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-	</zone>
-	<zone id="20316" type="PoisonZone" shape="NPoly" minZ="-2414" maxZ="-2114"> <!-- [22_16] godad_swamp_pc17 -->
-		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
-		<stat name="chance" val="70" />
-		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-	</zone>
-	<zone id="20317" type="PoisonZone" shape="NPoly" minZ="-2522" maxZ="-2222"> <!-- [22_16] godad_swamp_pc18 -->
-		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
-		<stat name="chance" val="70" />
-		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-	</zone>
-	<zone id="20318" type="PoisonZone" shape="NPoly" minZ="-2462" maxZ="-2162"> <!-- [22_16] godad_swamp_pc19 -->
-		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
-		<stat name="chance" val="70" />
-		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-	</zone>
-	<zone id="20319" type="PoisonZone" shape="NPoly" minZ="-2574" maxZ="-2274"> <!-- [22_16] godad_swamp_pc20 -->
-		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
-		<stat name="chance" val="70" />
-		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-	</zone>
-	<zone id="20320" type="PoisonZone" shape="NPoly" minZ="-2727" maxZ="-2427"> <!-- [22_16] godad_swamp_pc21 -->
-		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
-		<stat name="chance" val="70" />
-		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-	</zone>
-	<zone id="20321" type="PoisonZone" shape="NPoly" minZ="-2767" maxZ="-2467"> <!-- [22_16] godad_swamp_pc22 -->
-		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
-		<stat name="chance" val="70" />
-		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-	</zone>
-	<zone id="20322" type="PoisonZone" shape="NPoly" minZ="-2763" maxZ="-2463"> <!-- [22_16] godad_swamp_pc23 -->
-		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
-		<stat name="chance" val="70" />
-		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-	</zone>
-	<zone id="20323" type="PoisonZone" shape="NPoly" minZ="-2550" maxZ="-2150"> <!-- [22_16] godad_swamp_pc24 -->
-		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
-		<stat name="chance" val="70" />
-		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-	</zone>
-	<zone id="20324" type="PoisonZone" shape="NPoly" minZ="-2486" maxZ="-2286"> <!-- [22_16] godad_swamp_pc25 -->
-		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
-		<stat name="chance" val="70" />
-		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="6000" />
-	</zone>
-	<zone id="20325" type="PoisonZone" shape="NPoly" minZ="-2819" maxZ="-2619"> <!-- [22_16] godad_swamp_pc26 -->
+	<zone id="20325" type="EffectZone" shape="NPoly" minZ="-2819" maxZ="-2619"> <!-- [22_16] godad_swamp_pc26 -->
 		<stat name="skillIdLvl" val="4148-7;4146-3;" /> <!-- @s_area_poison7;@s_area_pd_down3 -->
 		<stat name="chance" val="70" />
 		<stat name="initialDelay" val="1000" />
@@ -2726,295 +2925,295 @@
 	</zone>
 
 	<!-- Valakas Nest Lava -->
-	<zone id="20400" type="PoisonZone" shape="NPoly" minZ="-1700" maxZ="-1500"> <!-- [26_14] balakas_lava_1 -->
+	<zone id="20400" type="EffectZone" shape="NPoly" minZ="-1700" maxZ="-1500"> <!-- [26_14] balakas_lava_1 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20401" type="PoisonZone" shape="NPoly" minZ="-1800" maxZ="-1600"> <!-- [26_14] balakas_lava_2 -->
+	<zone id="20401" type="EffectZone" shape="NPoly" minZ="-1800" maxZ="-1600"> <!-- [26_14] balakas_lava_2 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20402" type="PoisonZone" shape="NPoly" minZ="-1772" maxZ="-1572"> <!-- [26_14] balakas_lava_3 -->
+	<zone id="20402" type="EffectZone" shape="NPoly" minZ="-1772" maxZ="-1572"> <!-- [26_14] balakas_lava_3 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20403" type="PoisonZone" shape="NPoly" minZ="-1800" maxZ="-1600"> <!-- [26_14] balakas_lava_4 -->
+	<zone id="20403" type="EffectZone" shape="NPoly" minZ="-1800" maxZ="-1600"> <!-- [26_14] balakas_lava_4 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20404" type="PoisonZone" shape="NPoly" minZ="-1820" maxZ="-1620"> <!-- [26_14] balakas_lava_5 -->
+	<zone id="20404" type="EffectZone" shape="NPoly" minZ="-1820" maxZ="-1620"> <!-- [26_14] balakas_lava_5 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20405" type="PoisonZone" shape="NPoly" minZ="-1768" maxZ="-1568"> <!-- [26_14] balakas_lava_6 -->
+	<zone id="20405" type="EffectZone" shape="NPoly" minZ="-1768" maxZ="-1568"> <!-- [26_14] balakas_lava_6 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20406" type="PoisonZone" shape="NPoly" minZ="-1764" maxZ="-1564"> <!-- [26_14] balakas_lava_7 -->
+	<zone id="20406" type="EffectZone" shape="NPoly" minZ="-1764" maxZ="-1564"> <!-- [26_14] balakas_lava_7 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20407" type="PoisonZone" shape="NPoly" minZ="-1716" maxZ="-1516"> <!-- [26_14] balakas_lava_8 -->
+	<zone id="20407" type="EffectZone" shape="NPoly" minZ="-1716" maxZ="-1516"> <!-- [26_14] balakas_lava_8 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20408" type="PoisonZone" shape="NPoly" minZ="-1720" maxZ="-1520"> <!-- [26_14] balakas_lava_9 -->
+	<zone id="20408" type="EffectZone" shape="NPoly" minZ="-1720" maxZ="-1520"> <!-- [26_14] balakas_lava_9 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20409" type="PoisonZone" shape="NPoly" minZ="-1732" maxZ="-1532"> <!-- [26_14] balakas_lava_10 -->
+	<zone id="20409" type="EffectZone" shape="NPoly" minZ="-1732" maxZ="-1532"> <!-- [26_14] balakas_lava_10 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20410" type="PoisonZone" shape="NPoly" minZ="-1736" maxZ="-1536"> <!-- [26_14] balakas_lava_11 -->
+	<zone id="20410" type="EffectZone" shape="NPoly" minZ="-1736" maxZ="-1536"> <!-- [26_14] balakas_lava_11 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20411" type="PoisonZone" shape="NPoly" minZ="-1748" maxZ="-1548"> <!-- [26_14] balakas_lava_12 -->
+	<zone id="20411" type="EffectZone" shape="NPoly" minZ="-1748" maxZ="-1548"> <!-- [26_14] balakas_lava_12 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20412" type="PoisonZone" shape="NPoly" minZ="-1792" maxZ="-1592"> <!-- [26_14] balakas_lava_13 -->
+	<zone id="20412" type="EffectZone" shape="NPoly" minZ="-1792" maxZ="-1592"> <!-- [26_14] balakas_lava_13 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20413" type="PoisonZone" shape="NPoly" minZ="-1812" maxZ="-1612"> <!-- [26_14] balakas_lava_14 -->
+	<zone id="20413" type="EffectZone" shape="NPoly" minZ="-1812" maxZ="-1612"> <!-- [26_14] balakas_lava_14 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20414" type="PoisonZone" shape="NPoly" minZ="-1764" maxZ="-1564"> <!-- [26_14] balakas_lava_15 -->
+	<zone id="20414" type="EffectZone" shape="NPoly" minZ="-1764" maxZ="-1564"> <!-- [26_14] balakas_lava_15 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20415" type="PoisonZone" shape="NPoly" minZ="-1716" maxZ="-1516"> <!-- [26_14] balakas_lava_16 -->
+	<zone id="20415" type="EffectZone" shape="NPoly" minZ="-1716" maxZ="-1516"> <!-- [26_14] balakas_lava_16 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20416" type="PoisonZone" shape="NPoly" minZ="-1700" maxZ="-1500"> <!-- [26_14] balakas_lava_17 -->
+	<zone id="20416" type="EffectZone" shape="NPoly" minZ="-1700" maxZ="-1500"> <!-- [26_14] balakas_lava_17 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20417" type="PoisonZone" shape="NPoly" minZ="-1684" maxZ="-1484"> <!-- [26_14] balakas_lava_18 -->
+	<zone id="20417" type="EffectZone" shape="NPoly" minZ="-1684" maxZ="-1484"> <!-- [26_14] balakas_lava_18 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20418" type="PoisonZone" shape="NPoly" minZ="-1740" maxZ="-1540"> <!-- [26_14] balakas_lava_19 -->
+	<zone id="20418" type="EffectZone" shape="NPoly" minZ="-1740" maxZ="-1540"> <!-- [26_14] balakas_lava_19 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20419" type="PoisonZone" shape="NPoly" minZ="-1792" maxZ="-1592"> <!-- [26_14] balakas_lava_20 -->
+	<zone id="20419" type="EffectZone" shape="NPoly" minZ="-1792" maxZ="-1592"> <!-- [26_14] balakas_lava_20 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20420" type="PoisonZone" shape="NPoly" minZ="-1772" maxZ="-1572"> <!-- [26_14] balakas_lava_21 -->
+	<zone id="20420" type="EffectZone" shape="NPoly" minZ="-1772" maxZ="-1572"> <!-- [26_14] balakas_lava_21 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20421" type="PoisonZone" shape="NPoly" minZ="-1744" maxZ="-1544"> <!-- [26_14] balakas_lava_22 -->
+	<zone id="20421" type="EffectZone" shape="NPoly" minZ="-1744" maxZ="-1544"> <!-- [26_14] balakas_lava_22 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20422" type="PoisonZone" shape="NPoly" minZ="-1600" maxZ="-1400"> <!-- [26_14] balakas_lava_23 -->
+	<zone id="20422" type="EffectZone" shape="NPoly" minZ="-1600" maxZ="-1400"> <!-- [26_14] balakas_lava_23 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20423" type="PoisonZone" shape="NPoly" minZ="-1528" maxZ="-1328"> <!-- [26_14] balakas_lava_24 -->
+	<zone id="20423" type="EffectZone" shape="NPoly" minZ="-1528" maxZ="-1328"> <!-- [26_14] balakas_lava_24 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20424" type="PoisonZone" shape="NPoly" minZ="-1564" maxZ="-1364"> <!-- [26_14] balakas_lava_25 -->
+	<zone id="20424" type="EffectZone" shape="NPoly" minZ="-1564" maxZ="-1364"> <!-- [26_14] balakas_lava_25 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20425" type="PoisonZone" shape="NPoly" minZ="-1572" maxZ="-1372"> <!-- [26_14] balakas_lava_26 -->
+	<zone id="20425" type="EffectZone" shape="NPoly" minZ="-1572" maxZ="-1372"> <!-- [26_14] balakas_lava_26 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20426" type="PoisonZone" shape="NPoly" minZ="-1488" maxZ="-1288"> <!-- [26_14] balakas_lava_27 -->
+	<zone id="20426" type="EffectZone" shape="NPoly" minZ="-1488" maxZ="-1288"> <!-- [26_14] balakas_lava_27 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20427" type="PoisonZone" shape="NPoly" minZ="-1492" maxZ="-1292"> <!-- [26_14] balakas_lava_28 -->
+	<zone id="20427" type="EffectZone" shape="NPoly" minZ="-1492" maxZ="-1292"> <!-- [26_14] balakas_lava_28 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20428" type="PoisonZone" shape="NPoly" minZ="-1476" maxZ="-1276"> <!-- [26_14] balakas_lava_29 -->
+	<zone id="20428" type="EffectZone" shape="NPoly" minZ="-1476" maxZ="-1276"> <!-- [26_14] balakas_lava_29 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20429" type="PoisonZone" shape="NPoly" minZ="-1452" maxZ="-1252"> <!-- [26_14] balakas_lava_30 -->
+	<zone id="20429" type="EffectZone" shape="NPoly" minZ="-1452" maxZ="-1252"> <!-- [26_14] balakas_lava_30 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20430" type="PoisonZone" shape="NPoly" minZ="-1548" maxZ="-1348"> <!-- [26_14] balakas_lava_31 -->
+	<zone id="20430" type="EffectZone" shape="NPoly" minZ="-1548" maxZ="-1348"> <!-- [26_14] balakas_lava_31 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20431" type="PoisonZone" shape="NPoly" minZ="-1484" maxZ="-1284"> <!-- [26_14] balakas_lava_32 -->
+	<zone id="20431" type="EffectZone" shape="NPoly" minZ="-1484" maxZ="-1284"> <!-- [26_14] balakas_lava_32 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20432" type="PoisonZone" shape="NPoly" minZ="-1456" maxZ="-1256"> <!-- [26_14] balakas_lava_33 -->
+	<zone id="20432" type="EffectZone" shape="NPoly" minZ="-1456" maxZ="-1256"> <!-- [26_14] balakas_lava_33 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20433" type="PoisonZone" shape="NPoly" minZ="-1616" maxZ="-1416"> <!-- [26_14] balakas_lava_34 -->
+	<zone id="20433" type="EffectZone" shape="NPoly" minZ="-1616" maxZ="-1416"> <!-- [26_14] balakas_lava_34 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20434" type="PoisonZone" shape="NPoly" minZ="-1480" maxZ="-1280"> <!-- [26_14] balakas_lava_35 -->
+	<zone id="20434" type="EffectZone" shape="NPoly" minZ="-1480" maxZ="-1280"> <!-- [26_14] balakas_lava_35 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20435" type="PoisonZone" shape="NPoly" minZ="-1520" maxZ="-1320"> <!-- [26_14] balakas_lava_36 -->
+	<zone id="20435" type="EffectZone" shape="NPoly" minZ="-1520" maxZ="-1320"> <!-- [26_14] balakas_lava_36 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20436" type="PoisonZone" shape="NPoly" minZ="-1568" maxZ="-1368"> <!-- [26_14] balakas_lava_37 -->
+	<zone id="20436" type="EffectZone" shape="NPoly" minZ="-1568" maxZ="-1368"> <!-- [26_14] balakas_lava_37 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20437" type="PoisonZone" shape="NPoly" minZ="-1444" maxZ="-1244"> <!-- [26_14] balakas_lava_38 -->
+	<zone id="20437" type="EffectZone" shape="NPoly" minZ="-1444" maxZ="-1244"> <!-- [26_14] balakas_lava_38 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20438" type="PoisonZone" shape="NPoly" minZ="-1448" maxZ="-1248"> <!-- [26_14] balakas_lava_39 -->
+	<zone id="20438" type="EffectZone" shape="NPoly" minZ="-1448" maxZ="-1248"> <!-- [26_14] balakas_lava_39 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20439" type="PoisonZone" shape="NPoly" minZ="-1516" maxZ="-1316"> <!-- [26_14] balakas_lava_40 -->
+	<zone id="20439" type="EffectZone" shape="NPoly" minZ="-1516" maxZ="-1316"> <!-- [26_14] balakas_lava_40 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20440" type="PoisonZone" shape="NPoly" minZ="-1508" maxZ="-1308"> <!-- [26_14] balakas_lava_41 -->
+	<zone id="20440" type="EffectZone" shape="NPoly" minZ="-1508" maxZ="-1308"> <!-- [26_14] balakas_lava_41 -->
 		<stat name="skillIdLvl" val="4150-7" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20441" type="PoisonZone" shape="NPoly" minZ="-1480" maxZ="-1280"> <!-- [26_14] balakas_lava_42 -->
+	<zone id="20441" type="EffectZone" shape="NPoly" minZ="-1480" maxZ="-1280"> <!-- [26_14] balakas_lava_42 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20442" type="PoisonZone" shape="NPoly" minZ="-1500" maxZ="-1300"> <!-- [26_14] balakas_lava_43 -->
+	<zone id="20442" type="EffectZone" shape="NPoly" minZ="-1500" maxZ="-1300"> <!-- [26_14] balakas_lava_43 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20443" type="PoisonZone" shape="NPoly" minZ="-1576" maxZ="-1376"> <!-- [26_14] balakas_lava_44 -->
+	<zone id="20443" type="EffectZone" shape="NPoly" minZ="-1576" maxZ="-1376"> <!-- [26_14] balakas_lava_44 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20444" type="PoisonZone" shape="NPoly" minZ="-1556" maxZ="-1356"> <!-- [26_14] balakas_lava_45 -->
+	<zone id="20444" type="EffectZone" shape="NPoly" minZ="-1556" maxZ="-1356"> <!-- [26_14] balakas_lava_45 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20445" type="PoisonZone" shape="NPoly" minZ="-1508" maxZ="-1308"> <!-- [26_14] balakas_lava_46 -->
+	<zone id="20445" type="EffectZone" shape="NPoly" minZ="-1508" maxZ="-1308"> <!-- [26_14] balakas_lava_46 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20446" type="PoisonZone" shape="NPoly" minZ="-1544" maxZ="-1344"> <!-- [26_14] balakas_lava_47 -->
+	<zone id="20446" type="EffectZone" shape="NPoly" minZ="-1544" maxZ="-1344"> <!-- [26_14] balakas_lava_47 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20447" type="PoisonZone" shape="NPoly" minZ="-1656" maxZ="-1456"> <!-- [26_14] balakas_lava_48 -->
+	<zone id="20447" type="EffectZone" shape="NPoly" minZ="-1656" maxZ="-1456"> <!-- [26_14] balakas_lava_48 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
 		<stat name="reuse" val="6000" />
 	</zone>
-	<zone id="20448" type="PoisonZone" shape="NPoly" minZ="-1608" maxZ="-1408"> <!-- [26_14] balakas_lava_49 -->
+	<zone id="20448" type="EffectZone" shape="NPoly" minZ="-1608" maxZ="-1408"> <!-- [26_14] balakas_lava_49 -->
 		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
 		<stat name="chance" val="50" />
 		<stat name="initialDelay" val="1000" />
@@ -3039,7 +3238,7 @@
 
 	<!-- Hellbound Zones (vertices, min Z & Max Z are estimated) -->
 	<!-- Hellbound Desert -->
-	<zone id="40100" type="PoisonZone" shape="NPoly" minZ="-3500" maxZ="-700">
+	<zone id="40100" type="EffectZone" shape="NPoly" minZ="-3500" maxZ="-700">
 		<stat name="skillIdLvl" val="5399-1;" /> <!-- Heat of Desert -->
 		<stat name="chance" val="100" />
 		<stat name="initialDelay" val="1000" />
@@ -3164,4 +3363,35 @@
 	<zone id="112060" type="NoHqZone" shape="NPoly" minZ="-3397" maxZ="30000" />
 	<zone id="112070" type="NoHqZone" shape="NPoly" minZ="-3000" maxZ="30000" />
 	<zone id="112080" type="NoHqZone" shape="NPoly" minZ="-3800" maxZ="30000" />
+	
+	<!-- Tully Workshop 5th floor (Damage Zone) -->
+	<zone id="200011" type="DamageZone" shape="NPoly" minZ="-9136" maxZ="-7936">
+		<stat name="dmgHPSec" val="2000" />
+		<stat name="enabled" val="false" />
+		<stat name="reuse" val="5000" />
+	</zone>
+	
+	<!-- Effect zones for Tower of Naia -->
+	<!-- Poison Zone for Naia's door -->
+	<zone id="200100" type="EffectZone" shape="NPoly" minZ="-14240" maxZ="-13340">
+		<stat name="chance" val="100" />
+		<stat name="default_enabled" val="false" />		
+		<stat name="initialDelay" val="1000" />		
+		<stat name="reuse" val="5000" />		
+		<stat name="skillIdLvl" val="4148-12;" /> <!-- Poison -->
+	</zone>
+	<zone id="200101" type="EffectZone" shape="NPoly" minZ="-12440" maxZ="-12240">
+		<stat name="chance" val="100" />
+		<stat name="default_enabled" val="false" />		
+		<stat name="initialDelay" val="1000" />		
+		<stat name="reuse" val="10000" />		
+		<stat name="skillIdLvl" val="4625-8;" /> <!-- Bleed -->
+	</zone>
+	<zone id="200102" type="EffectZone" shape="NPoly" minZ="-12440" maxZ="-12240">
+		<stat name="chance" val="100" />
+		<stat name="default_enabled" val="true" />		
+		<stat name="initialDelay" val="1000" />		
+		<stat name="reuse" val="10000" />		
+		<stat name="skillIdLvl" val="4625-8;" /> <!-- Bleed -->
+	</zone>
 </list>
