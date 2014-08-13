@@ -34,11 +34,11 @@ public class Kanaf extends Quest
 	public final String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
 		if (event.equalsIgnoreCase("info"))
-			return "32346-0" + (getRandom(3) + 1) + ".htm";
-		
-		return null; 
+		{
+			return "32346-0" + getRandom(1, 3) + ".htm";
+		}	
+		return super.onAdvEvent(event, npc, player);
 	}
-	
 
 	public static void main(String[] args)
 	{

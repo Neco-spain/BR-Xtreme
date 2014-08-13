@@ -4670,7 +4670,17 @@ INSERT INTO `zone_vertices` VALUES
 (40105,0,-32768,229376),
 (40105,1,32768,229376),
 (40105,2,32768,262143),
-(40105,3,-32768,262143);
+(40105,3,-32768,262143),
+
+-- Hellbound Dolmen
+(40107,0,-6230,249000),
+(40107,1,-5230,249880),
+
+-- Hellbound Quarry
+(40108,0,-9675,240402),
+(40108,1,-2401,240307),
+(40108,2,-2393,246927),
+(40108,3,-9590,246820);
 
 -- Rune Castle (Water Zones) (vertices, min Z & Max Z are estimated)
 INSERT INTO `zone_vertices` VALUES

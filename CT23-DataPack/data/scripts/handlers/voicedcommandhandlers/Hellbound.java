@@ -27,7 +27,7 @@ public class Hellbound implements IVoicedCommandHandler
 
 	/**
 	 * 
-	 * @see ct25.xtreme.gameserver.handler.IVoicedCommandHandler#useVoicedCommand(java.lang.String, l2.brick.gameserver.model.actor.instance.L2PcInstance, java.lang.String)
+	 * @see ct25.xtreme.gameserver.handler.IVoicedCommandHandler#useVoicedCommand
 	 */
 	public boolean useVoicedCommand(String command, L2PcInstance activeChar, String params)
 	{
