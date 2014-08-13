@@ -81,14 +81,14 @@ public class Hude extends Quest
 		{
 			if (player.getInventory().getInventoryItemCount(STANDART_CERT, -1, false) > 0
 					|| player.getInventory().getInventoryItemCount(PREMIUM_CERT, -1, false) > 0);
-				// FIXME L2Multisell.getInstance().separateAndSend(322980001, player, npc, false);
+				//FIXME L2Multisell.getInstance().separateAndSend(322980001, player, npc, false);
 			
 		}
 
 		else if ("multisell2".equalsIgnoreCase(event))
 		{
 			if (player.getInventory().getInventoryItemCount(PREMIUM_CERT, -1, false) > 0);
-			// FIXME L2Multisell.getInstance().separateAndSend(322980002, player, npc, false);
+				//FIXME L2Multisell.getInstance().separateAndSend(322980002, player, npc, false);
 		}
 
 		return null;

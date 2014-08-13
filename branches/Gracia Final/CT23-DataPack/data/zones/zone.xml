@@ -3258,7 +3258,9 @@
 		<stat name="isPeaceZone" val="false" />
 		<spawn X="-16341" Y="209285" Z="-3665" />
 	</zone>
-
+	<zone id="40107" type="ScriptZone" shape="Cuboid" minZ="-3200" maxZ="-3000" />
+	<zone id="40108" type="ScriptZone" shape="NPoly" minZ="-2509" maxZ="-1509" />
+	
 	<!-- Rune Castle (Water Zones) (vertices, min Z & Max Z are estimated) -->
 	<zone id="40500" type="WaterZone" shape="NPoly" minZ="-1310" maxZ="-1120" />
 	<zone id="40501" type="WaterZone" shape="NPoly" minZ="-1310" maxZ="-1120" />

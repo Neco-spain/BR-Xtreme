@@ -102,6 +102,7 @@ public class MasterHandler
 		AdminCommandHandler.getInstance().registerAdminCommandHandler(new AdminGmChat());
 		AdminCommandHandler.getInstance().registerAdminCommandHandler(new AdminGraciaSeeds());
 		AdminCommandHandler.getInstance().registerAdminCommandHandler(new AdminHeal());
+		AdminCommandHandler.getInstance().registerAdminCommandHandler(new AdminHellbound());
 		AdminCommandHandler.getInstance().registerAdminCommandHandler(new AdminHelpPage());
 		AdminCommandHandler.getInstance().registerAdminCommandHandler(new AdminInstance());
 		AdminCommandHandler.getInstance().registerAdminCommandHandler(new AdminInstanceZone());
@@ -314,6 +315,8 @@ public class MasterHandler
 			VoicedCommandHandler.getInstance().registerVoicedCommandHandler(new ChatAdmin());
 		if (Config.L2JMOD_MULTILANG_ENABLE && Config.L2JMOD_MULTILANG_VOICED_ALLOW)
 			VoicedCommandHandler.getInstance().registerVoicedCommandHandler(new Lang());
+		if (Config.HELLBOUND_STATUS)
+			VoicedCommandHandler.getInstance().registerVoicedCommandHandler(new Hellbound());
 		_log.config("Loaded " + VoicedCommandHandler.getInstance().size() + " VoicedHandlers");
 	}
 	
