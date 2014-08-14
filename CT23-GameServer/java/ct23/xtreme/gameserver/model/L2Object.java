@@ -102,8 +102,8 @@ public abstract class L2Object
 		// Attackable
 		L2Attackable(L2Npc),
 		L2GuardInstance(L2Attackable),
-		L2QuestGuardInstance(L2GuardInstance),
 		L2MonsterInstance(L2Attackable),
+		L2QuestGuardInstance(L2GuardInstance),
 		L2ChestInstance(L2MonsterInstance),
 		L2ControllableMobInstance(L2MonsterInstance),
 		L2FeedableBeastInstance(L2MonsterInstance),
@@ -111,12 +111,15 @@ public abstract class L2Object
 		L2FriendlyMobInstance(L2Attackable),
 		L2PenaltyMonsterInstance(L2MonsterInstance),
 		L2RiftInvaderInstance(L2MonsterInstance),
+		L2MinionInstance(L2MonsterInstance),
 		L2RaidBossInstance(L2MonsterInstance),
 		L2GrandBossInstance(L2RaidBossInstance),
 		// FlyMobs
 		L2FlyNpcInstance(L2NpcInstance),
 		L2FlyMonsterInstance(L2MonsterInstance),
+		L2FlyMinionInstance(L2MinionInstance),
 		L2FlyRaidBossInstance(L2RaidBossInstance),
+		L2FlyTerrainObjectInstance(L2Npc),
 		// Sepulchers
 		L2SepulcherNpcInstance(L2NpcInstance),
 		L2SepulcherMonsterInstance(L2MonsterInstance),

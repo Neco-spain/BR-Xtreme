@@ -3237,13 +3237,6 @@
 	</zone>
 
 	<!-- Hellbound Zones (vertices, min Z & Max Z are estimated) -->
-	<!-- Hellbound Desert -->
-	<zone id="40100" type="EffectZone" shape="NPoly" minZ="-3500" maxZ="-700">
-		<stat name="skillIdLvl" val="5399-1;" /> <!-- Heat of Desert -->
-		<stat name="chance" val="100" />
-		<stat name="initialDelay" val="1000" />
-		<stat name="reuse" val="9000" />
-	</zone>
 	<!-- Hellbound (No Landing Zone) -->
 	<zone id="40101" type="ScriptZone" shape="NPoly" minZ="-30000" maxZ="30000" />
 	<!-- Hellbound (No Summon Friend zone) -->
@@ -3395,5 +3388,51 @@
 		<stat name="initialDelay" val="1000" />		
 		<stat name="reuse" val="10000" />		
 		<stat name="skillIdLvl" val="4625-8;" /> <!-- Bleed -->
+	</zone>
+	<!-- Hellbound Anomic Foundry Lava -->
+	<zone id="200103" type="EffectZone" shape="NPoly" minZ="-2916" maxZ="-2266">
+		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
+		<stat name="chance" val="50" />
+		<!-- stat name="unitTick" val="5" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
+	</zone>
+	<zone id="200104" type="EffectZone" shape="NPoly" minZ="-2004" maxZ="-1704">
+		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
+		<stat name="chance" val="50" />
+		<!-- stat name="unitTick" val="5" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
+	</zone>
+	<zone id="200105" type="EffectZone" shape="NPoly" minZ="-3220" maxZ="-3120">
+		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
+		<stat name="chance" val="50" />
+		<!-- stat name="unitTick" val="5" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
+	</zone>
+	<zone id="200106" type="EffectZone" shape="NPoly" minZ="-3212" maxZ="-3112">
+		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
+		<stat name="chance" val="50" />
+		<!-- stat name="unitTick" val="5" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
+	</zone>
+	<zone id="200107" type="EffectZone" shape="NPoly" minZ="-3704" maxZ="-3604">
+		<stat name="skillIdLvl" val="4150-7;" /> <!-- s_area_fire7 -->
+		<stat name="chance" val="50" />
+		<!-- stat name="unitTick" val="5" / -->
+		<stat name="reuse" val="5000" /> <!-- Guess -->
+	</zone>
+	<!-- Hellbound Heat of Desert -->
+	<zone id="200108" type="EffectZone" shape="NPoly" minZ="-5156" maxZ="1844"> <!-- [19_25] -->
+		<stat name="skillIdLvl" val="5399-1;" /> <!-- s_area_hot_ground1 -->
+		<stat name="chance" val="100" />
+		<!-- stat name="unitTick" val="10" / -->
+		<stat name="default_enabled" val="true" />
+		<stat name="reuse" val="5000" /> <!-- Guess -->
+	</zone>
+	<zone id="200109" type="EffectZone" shape="NPoly" minZ="-5980" maxZ="1020"> <!-- [20_25] -->
+		<stat name="skillIdLvl" val="5399-1;" /> <!-- s_area_hot_ground1 -->
+		<stat name="chance" val="100" />
+		<!-- stat name="unitTick" val="10" / -->
+		<stat name="default_enabled" val="true" />
+		<stat name="reuse" val="5000" /> <!-- Guess -->
 	</zone>
 </list>
