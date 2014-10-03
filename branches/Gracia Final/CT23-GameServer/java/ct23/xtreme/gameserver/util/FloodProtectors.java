@@ -76,13 +76,14 @@ public final class FloodProtectors
 	 */
 	private final FloodProtectorAction _manor;
 	/**
-	 * Send mail flood protector.
-	 */
-	private final FloodProtectorAction _sendMail;
-	/**
 	 * Character Select protector
 	 */
 	private final FloodProtectorAction _characterSelect;
+	
+	/**
+	 * Banking flood protector
+	 */
+	private final FloodProtectorAction _banking;
 
 	/**
 	 * Creates new instance of FloodProtectors.
@@ -106,8 +107,8 @@ public final class FloodProtectors
 		_transaction = new FloodProtectorAction(client, Config.FLOOD_PROTECTOR_TRANSACTION);
 		_manufacture = new FloodProtectorAction(client, Config.FLOOD_PROTECTOR_MANUFACTURE);
 		_manor = new FloodProtectorAction(client, Config.FLOOD_PROTECTOR_MANOR);
-		_sendMail = new FloodProtectorAction(client, Config.FLOOD_PROTECTOR_SENDMAIL);
 		_characterSelect = new FloodProtectorAction(client, Config.FLOOD_PROTECTOR_CHARACTER_SELECT);
+		_banking = new FloodProtectorAction(client, Config.FLOOD_PROTECTOR_BANKING);
 	}
 	
 	/**
@@ -241,16 +242,6 @@ public final class FloodProtectors
 	}
 
 	/**
-	 * Returns {@link #_sendMail}.
-	 * 
-	 * @return {@link #_sendMail}
-	 */
-	public FloodProtectorAction getSendMail()
-	{
-		return _sendMail;
-	}
-
-	/**
 	 * Returns {@link #_characterSelect}.
 	 * 
 	 * @return {@link #_characterSelect}
@@ -259,4 +250,15 @@ public final class FloodProtectors
 	{
 		return _characterSelect;
 	}
+	
+	/**
+	 * Returns {@link #_banking}.
+	 * 
+	 * @return {@link #_banking}
+	 */
+	public FloodProtectorAction getBankingSystem() 
+	{
+		return _banking;
+	}
+		
 }
