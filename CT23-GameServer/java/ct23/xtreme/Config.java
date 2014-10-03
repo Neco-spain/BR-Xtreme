@@ -606,9 +606,9 @@ public final class Config
 	public static FloodProtectorConfig FLOOD_PROTECTOR_MANOR;
 	public static FloodProtectorConfig FLOOD_PROTECTOR_SENDMAIL;
 	public static FloodProtectorConfig FLOOD_PROTECTOR_CHARACTER_SELECT;
+	public static FloodProtectorConfig FLOOD_PROTECTOR_BANKING;
 	public static boolean USE_SAY_FILTER;
 	public static String CHAT_FILTER_CHARS;
-
 
 	//--------------------------------------------------
 	// BR Xtreme Mods Settings
@@ -3134,8 +3134,8 @@ public final class Config
 		loadFloodProtectorConfig(properties, FLOOD_PROTECTOR_TRANSACTION, "Transaction", "10");
 		loadFloodProtectorConfig(properties, FLOOD_PROTECTOR_MANUFACTURE, "Manufacture", "3");
 		loadFloodProtectorConfig(properties, FLOOD_PROTECTOR_MANOR, "Manor", "30");
-		loadFloodProtectorConfig(properties, FLOOD_PROTECTOR_SENDMAIL, "SendMail", "100");
 		loadFloodProtectorConfig(properties, FLOOD_PROTECTOR_CHARACTER_SELECT, "CharacterSelect", "30");
+		loadFloodProtectorConfig(properties, FLOOD_PROTECTOR_BANKING, "Banking", "1");
 	}
 	
 	/**

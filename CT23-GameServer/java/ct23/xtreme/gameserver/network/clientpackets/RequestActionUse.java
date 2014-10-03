@@ -45,6 +45,7 @@ import ct23.xtreme.gameserver.network.serverpackets.ChairSit;
 import ct23.xtreme.gameserver.network.serverpackets.RecipeShopManageList;
 import ct23.xtreme.gameserver.network.serverpackets.SocialAction;
 import ct23.xtreme.gameserver.network.serverpackets.SystemMessage;
+import ct23.xtreme.gameserver.util.BotPunish;
 
 
 /**
@@ -76,6 +77,33 @@ public final class RequestActionUse extends L2GameClientPacket
 		
 		if (activeChar == null)
 			return;
+		
+		// Check if has any bot punishment
+		if(activeChar.isBeingPunished())
+		{
+			// Remove punishment if finished
+			if(activeChar.getPlayerPunish().canPerformAction() && activeChar.getBotPunishType() == BotPunish.PunishType.ACTIONBAN)
+			{
+				activeChar.endPunishment();
+			}
+			// Else apply it
+			else
+			{
+				SystemMessageId msgId = null;
+				switch(activeChar.getPlayerPunish().getDuration())
+				{
+					case 7200:
+						msgId = SystemMessageId.YOU_HAVE_BEEN_REPORTED_120_MIN_ACTION_BLOCKED;
+						break;
+					case 10800:
+						msgId = SystemMessageId.YOU_HAVE_BEEN_REPORTED_180_MIN_ACTION_BLOCKED;
+						break;
+					default:
+				}
+				activeChar.sendPacket(new SystemMessage(msgId));
+				return;
+			}	
+		}
 		
 		if (Config.DEBUG)
 			_log.finest(activeChar.getName() + " request Action use: id " + _actionId + " 2:" + _ctrlPressed + " 3:" + _shiftPressed);

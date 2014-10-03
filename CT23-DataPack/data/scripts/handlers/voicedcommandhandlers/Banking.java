@@ -37,7 +37,12 @@ public class Banking implements IVoicedCommandHandler
 	 * @see ct23.xtreme.gameserver.handler.IVoicedCommandHandler#useVoicedCommand(java.lang.String, ct23.xtreme.gameserver.model.actor.instance.L2PcInstance, java.lang.String)
 	 */
 	public boolean useVoicedCommand(String command, L2PcInstance activeChar, String params)
-	{
+	{	
+		if (!activeChar.getFloodProtectors().getBankingSystem().tryPerformAction("Banking"))
+		{
+			activeChar.sendMessage("You Cannot Use The Banking System So Fast!");
+		}
+		
 		if (command.equalsIgnoreCase("bank"))
 		{
 			activeChar.sendMessage(".deposit (" + Config.BANKING_SYSTEM_ADENA + " Adena = " + Config.BANKING_SYSTEM_GOLDBARS + " Goldbar) / .withdraw (" + Config.BANKING_SYSTEM_GOLDBARS + " Goldbar = " + Config.BANKING_SYSTEM_ADENA + " Adena)");
