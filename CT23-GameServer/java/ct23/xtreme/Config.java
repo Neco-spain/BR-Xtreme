@@ -1033,6 +1033,8 @@ public final class Config
 				new FloodProtectorConfig("SendMailFloodProtector");
 			FLOOD_PROTECTOR_CHARACTER_SELECT =
 				new FloodProtectorConfig("CharacterSelectFloodProtector");
+			FLOOD_PROTECTOR_BANKING =
+				new FloodProtectorConfig("BankingFloodProtector");
 
 			_log.info("Loading GameServer Configuration Files...");
 			InputStream is = null;
